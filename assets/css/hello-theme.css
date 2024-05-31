@@ -36,7 +36,7 @@
     margin: 10px;
 }
 /* Optional: Style your other elements (form, button) further if needed */
-.woocommerce-order-pay #virtual_pay_form, #wc-virtual-pay-payment-gateway-button {
+.woocommerce-order-pay #virtual_pay_form, #wc-virtual-pay-payment-gateway-button, .woocommerce-order-pay #virtual_pay_form #cancel-btn {
     margin-top: 20px; /* Add spacing between elements */
 }
 .woocommerce-order-pay #virtual_pay_form, #virtual-pay-modal { /* Target both the form and modal */
