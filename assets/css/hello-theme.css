@@ -8,3 +8,25 @@
  */
 
 /* Add your custom CSS here */
+
+/* Woocomerce Order Pay */
+.woocommerce-order-pay #content .page-header h1 {
+    text-align: center;
+}
+.hello-theme-order-details {
+    display: flex; /* Enable flexbox layout */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.hello-theme-order-details .order_details {
+    /* Optional: Style your list further if needed */
+    list-style: none;
+    padding: 0;
+}
+
+.hello-theme-order-details .order_details li {
+    /* Optional: Style individual list items */
+    margin: 10px;
+}
+/*End Woocomerce Order Pay */
