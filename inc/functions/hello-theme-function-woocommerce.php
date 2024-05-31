@@ -53,7 +53,7 @@ function get_hello_theme_woo_settings() {
             'name' => 'On Hold Order Page URL',
             'type' => 'select',
             'desc' => 'URL to redirect to for on-hold orders.',
-            'id'   => 'hello_theme_on_hold_page_url'
+            'id'   => 'hello_theme_on_hold_page_url',
             'options' => $pages
         ),
         'section_end' => array(
