@@ -22,6 +22,7 @@ define( 'HELLO_THEME_VERSION', '2.0.1' );
  * @return void
  */
 require_once get_stylesheet_directory() . '/inc/functions/hello-theme-functions.php';
+require_once get_stylesheet_directory() . '/inc/functions/hello-theme-function-woocommerce.php';
 
 function hello_theme_scripts_styles() {
     wp_enqueue_style(
