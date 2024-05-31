@@ -19,7 +19,8 @@
     padding-top:30px;
     padding-bottom: 30px;
 }
-.woocommerce-order-pay #content .page-header h1 {
+.woocommerce-order-pay #content .page-header h1,
+.woocommerce-order-pay #content #yes-add {
     text-align: center;
 }
 .woocommerce-order-pay .hello-theme-order-details {
