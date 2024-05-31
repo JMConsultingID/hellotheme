@@ -92,6 +92,6 @@ function hello_theme_redirect_after_purchase( $order_id ) {
             exit;
     }
 }
-add_action( 'woocommerce_thankyou', 'custom_redirect_after_purchase' );
+add_action( 'woocommerce_thankyou', 'hello_theme_redirect_after_purchase' );
 
 ?>
