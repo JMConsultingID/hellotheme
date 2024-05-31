@@ -15,7 +15,7 @@
     flex-direction: column; /* Arrange content vertically */
     justify-content: center; /* Center vertically */
     align-items: center; /* Center horizontally */
-    min-height: 100vh; /* Minimum height of viewport */
+    min-height: 50vh; /* Minimum height of viewport */
 }
 .woocommerce-order-pay #content .page-header h1 {
     text-align: center;
@@ -38,5 +38,18 @@
 /* Optional: Style your other elements (form, button) further if needed */
 .woocommerce-order-pay #virtual_pay_form, #wc-virtual-pay-payment-gateway-button {
     margin-top: 20px; /* Add spacing between elements */
+}
+.woocommerce-order-pay #virtual_pay_form, #virtual-pay-modal { /* Target both the form and modal */
+    display: flex;            /* Enable flexbox for centering */
+    flex-direction: column;   /* Align items vertically */
+    justify-content: center;  /* Center vertically */
+    align-items: center;      /* Center horizontally */
+}
+.woocommerce-order-pay .virtual-pay-modal-content {
+    text-align: center; /* Center text within the modal */
+}
+.woocommerce-order-pay .virtual-pay-payment-method-selection {
+    display: flex; /* Center payment method options horizontally */
+    justify-content: space-around; /* Evenly space the options */
 }
 /*End Woocomerce Order Pay */
