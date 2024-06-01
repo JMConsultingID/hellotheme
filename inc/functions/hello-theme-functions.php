@@ -31,16 +31,28 @@ add_filter( 'woocommerce_adjust_non_base_location_prices', '__return_false' );
 add_filter('woocommerce_enable_order_notes_field', '__return_false');
 
 // Change order button text
-add_filter( 'woocommerce_order_button_text', 'exf_wc_custom_order_button_text' );
-function exf_wc_custom_order_button_text() {
+add_filter( 'woocommerce_order_button_text', 'hello_theme_wc_custom_order_button_text' );
+function hello_theme_wc_custom_order_button_text() {
     return __( 'PROCEED TO PAYMENT', 'woocommerce' );
 }
 
-add_filter('woocommerce_checkout_fields', 'exf_modify_woocommerce_billing_fields', 18, 1);
-function exf_modify_woocommerce_billing_fields($fields)
-{
-    $fields['billing']['billing_address_1']['label'] = __('Address', 'woocommerce');
-    // $fields['billing']['billing_address_1']['class'][0] = 'form-row-first';
+add_filter('woocommerce_checkout_fields', 'hello_theme_modify_woocommerce_billing_fields', 18, 1);
+function hello_theme_modify_woocommerce_billing_fields($fields)
+{   
+    // Remove Default Field
+    unset($fields['billing']['billing_address_1']);
+    unset($fields['billing']['billing_company']);
+    unset($fields['billing']['billing_address_2']);
+
+    // Add Hello Theme Field
+    $fields['billing']['billing_address_1'] = array(
+        'type'        => 'text',
+        'label'       => __('Address', 'woocommerce'),
+        'required'    => true,
+        'class'       => array('form-row-first', 'address-field','hello-theme-checkout-field'),
+        'clear'       => true,
+        'priority'    => 40,
+    );
 
     // Remove the billing company field
     unset($fields['billing']['billing_company']);
