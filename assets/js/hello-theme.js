@@ -6,26 +6,12 @@
             addressField.text('Address');
         }
     }
-
-    function adjustCheckoutFieldClasses() {
-        // Target and adjust classes for specific fields
-        $('#billing_email_field').addClass('form-row-wide');
-
-        $('#billing_city_field').addClass('form-row-first');
-        $('#billing_postcode_field').addClass('form-row-last');
-
-    }
-
-    // Apply classes on page load
-    adjustCheckoutFieldClasses();
-
     // Change label on page load
     changeBillingAddressLabel();
 
     // Change label after AJAX update
     $(document.body).on('updated_checkout', function() {
         changeBillingAddressLabel();
-        adjustCheckoutFieldClasses();
     });
 
 
