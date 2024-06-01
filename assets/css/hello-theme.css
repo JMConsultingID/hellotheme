@@ -9,6 +9,127 @@
 
 /* Add your custom CSS here */
 
+/* Page WooCommerce Checkout */
+.woocommerce-checkout .site-main {
+    padding-top: 50px;
+}
+.woocommerce-checkout .site-main .page-header {
+    display: none;
+}
+.woocommerce-checkout .site-main .page-content .woocommerce .woocommerce-info, .woocommerce-checkout .site-main .page-content .woocommerce .woocommerce-error, .woocommerce-checkout .site-main .page-content .woocommerce .woocommerce-error {
+    background-color: #cd06060d;
+    border-top-color: var(--e-global-color-primary);
+    border-radius: 8px;
+}
+.woocommerce-checkout .site-main .page-content .woocommerce .woocommerce-form-coupon-toggle .woocommerce-info::before {
+    color: var(--e-global-color-primary);
+}
+.woocommerce form.hello-theme-checkout, .woocommerce form.hello-theme-checkout p, .woocommerce form.hello-theme-checkout ul li, .woocommerce form.hello-theme-checkout .payment_methods .payment_method_africheckout-woo {
+    font-size: 16px;
+    line-height: 26px;
+}
+.woocommerce form.hello-theme-checkout {
+    margin-bottom: 50px;
+}
+.woocommerce form.hello-theme-checkout .form-row .select2-container {
+    padding: 0.5rem 1rem;
+    height: auto;
+    border: 1px solid #666;
+}
+.woocommerce form.hello-theme-checkout .form-row .select2-container .select2-selection__rendered {
+    padding: 0;
+}
+.woocommerce form.hello-theme-checkout .form-row .select2-container .select2-selection__arrow {
+    top: 7px;
+}
+.woocommerce form.hello-theme-checkout .form-row .select2-container--default .select2-selection--single {
+    border: none;
+}
+.woocommerce form.hello-theme-checkout .col2-set .col-1 {
+}
+.woocommerce form.hello-theme-checkout .col2-set .col-2 {
+    background-color: #cd06060d;
+    padding: 20px 20px;
+    border-radius: 8px;
+}
+.woocommerce form.hello-theme-checkout #payment {
+    background: transparent;
+}
+.woocommerce form.hello-theme-checkout table.shop_table {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 0 -1px 24px 0;
+    text-align: left;
+    width: 100%;
+    border-collapse: separate;
+    border-radius: 5px;
+    font-size: 16px;
+}
+.woocommerce form.hello-theme-checkout table.shop_table {
+    font-size: 16px;
+}
+.woocommerce form.hello-theme-checkout table.shop_table strong, .woocommerce form.hello-theme-checkout table.shop_table th, .woocommerce form.hello-theme-checkout table.shop_table tfoot td, .woocommerce form.hello-theme-checkout table.shop_table tfoot th {
+    font-weight: 500;
+}
+.woocommerce form.hello-theme-checkout table.shop_table th, .woocommerce form.hello-theme-checkout table.shop_table td {
+    border: none !important;
+}
+.woocommerce form.hello-theme-checkout .payment_methods, .woocommerce form.hello-theme-checkout .place-order {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+.woocommerce form.hello-theme-checkout .payment_methods .payment_method_africheckout-woo label {
+    width: calc(93% - 16px);
+    display: inline-block;
+    vertical-align: middle;
+    padding-top: 6px;
+}
+.woocommerce form.hello-theme-checkout .payment_methods .payment_method_africheckout-woo img {
+    max-width: 115px;
+    float: right;
+}
+.woocommerce form.hello-theme-checkout .place-order {
+    font-size: 16px;
+    line-height: 26px;
+}
+.woocommerce-checkout form.checkout_coupon .button, .woocommerce form.hello-theme-checkout .place-order .button {
+    border-radius: 8px;
+    padding: 18px 25px;
+    background-color: var(--e-global-color-primary);
+    color: var(--wp--preset--color--white);
+    text-transform: capitalize;
+}
+.woocommerce form.hello-theme-checkout .place-order .button {
+    width: 100%;
+    margin-top: 15px;
+}
+.woocommerce-checkout form.checkout_coupon .form-row-first, .woocommerce-checkout form.checkout_coupon .form-row-last {
+    float: none;
+    display: inline-block;
+}
+.woocommerce-checkout form.checkout_coupon .form-row-first {
+    max-width: 300px;
+}
+@media (max-width: 767px) {
+    .woocommerce-checkout .site-main {
+        padding-top: 40px;
+    }
+
+    .woocommerce form.hello-theme-checkout .col2-set .col-2 {
+        margin-top: 35px;
+    }
+
+    .woocommerce form.hello-theme-checkout .woocommerce-checkout-payment {
+        margin-top: -35px;
+    }
+
+    .woocommerce-checkout form.checkout_coupon .form-row-first, .woocommerce-checkout form.checkout_coupon .form-row-last, .woocommerce-checkout form.checkout_coupon .button {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+    }
+}
+/* End - Page WooCommerce Checkout*/
+
 /* Woocomerce Order Pay */
 .woocommerce-order-pay main#content.site-main {
     display: flex; /* Enable flexbox layout */
