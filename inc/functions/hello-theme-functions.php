@@ -76,6 +76,14 @@ function hello_theme_checkout_fields_order_and_class($fields) {
             'class'       => array('form-row-last'),
             'clear'       => false, 
             'priority' => 30
+        ),        
+        'billing_phone' => array(
+            'label'       => __('Phone', 'woocommerce'),
+            'placeholder' => _x('Phone number', 'placeholder', 'woocommerce'),
+            'required'    => true,
+            'class'       => array('form-row-last'),
+            'clear'       => false, 
+            'priority' => 40
         ),
         'billing_address_1' => array( 
             'label'       => __('Address', 'woocommerce'),
@@ -83,14 +91,6 @@ function hello_theme_checkout_fields_order_and_class($fields) {
             'required'    => true,
             'class'       => array('form-row-first'),
             'clear'       => true,
-            'priority' => 40
-        ),
-        'billing_phone' => array(
-            'label'       => __('Phone', 'woocommerce'),
-            'placeholder' => _x('Phone number', 'placeholder', 'woocommerce'),
-            'required'    => true,
-            'class'       => array('form-row-last'),
-            'clear'       => false, 
             'priority' => 50
         ),
         'billing_country' => array(
