@@ -53,12 +53,6 @@ function hello_theme_modify_woocommerce_billing_fields($fields)
         'clear'       => true,
         'priority'    => 40,
     );
-
-    // Remove the billing company field
-    unset($fields['billing']['billing_company']);
-    // Remove the billing address 2 field
-    unset($fields['billing']['billing_address_2']);
-
     return $fields;
 }
 ?>
