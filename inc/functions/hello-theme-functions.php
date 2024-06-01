@@ -123,7 +123,7 @@ function hello_theme_checkout_fields_order_and_class($fields) {
             'required'    => true,
             'class'       => array('form-row-last'),
             'clear'       => false, 
-            'priority' => 50
+            'priority' => 90
         )
     );
 
