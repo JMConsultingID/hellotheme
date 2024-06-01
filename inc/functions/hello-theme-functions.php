@@ -91,6 +91,7 @@ function hello_theme_checkout_fields_order_and_class($fields) {
         'billing_country' => array(
             'label'       => __('Country', 'woocommerce'), 
             'required'    => true,
+            'type'        => 'country',
             'class'       => array('form-row-first'),
             'clear'       => true,
             'priority' => 60
@@ -98,6 +99,7 @@ function hello_theme_checkout_fields_order_and_class($fields) {
         'billing_state' => array(
             'label'       => __('State', 'woocommerce'),
             'required'    => true,
+            'type'        => 'state',
             'class'       => array('form-row-last'),
             'clear'       => false,
             'priority' => 70
@@ -113,7 +115,7 @@ function hello_theme_checkout_fields_order_and_class($fields) {
         'billing_postcode' => array(
             'label'       => __('Postcode / ZIP', 'woocommerce'), 
             'placeholder' => _x('Postcode / ZIP', 'placeholder', 'woocommerce'), 
-            'required'    => true,
+            'required'    => false,
             'class'       => array('form-row-last'),
             'clear'       => false, 
             'priority' => 90
