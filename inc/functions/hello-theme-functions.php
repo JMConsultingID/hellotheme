@@ -81,7 +81,7 @@ function hello_theme_checkout_fields_order_and_class($fields) {
             'label'       => __('Address', 'woocommerce'),
             'placeholder' => _x('Street address', 'placeholder', 'woocommerce'),
             'required'    => true,
-            'class'       => array('hello-theme-address-field'),
+            'class'       => array('form-row-wide hello-theme-address-field'),
             'clear'       => true,
             'priority' => 40
         ),
@@ -121,7 +121,7 @@ function hello_theme_checkout_fields_order_and_class($fields) {
             'label'       => __('Phone', 'woocommerce'),
             'placeholder' => _x('Phone number', 'placeholder', 'woocommerce'),
             'required'    => true,
-            'class'       => array('form-row-last'),
+            'class'       => array('form-row-wide'),
             'clear'       => false, 
             'priority' => 90
         )
