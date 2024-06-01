@@ -75,8 +75,6 @@
 .woocommerce-checkout form.checkout_coupon .button, .woocommerce form.hello-theme-checkout .place-order .button {
     border-radius: 8px;
     padding: 18px 25px;
-    background-color: var(--e-global-color-primary);
-    color: var(--wp--preset--color--white);
     text-transform: capitalize;
 }
 .woocommerce form.hello-theme-checkout .place-order .button {
@@ -94,15 +92,12 @@
     .woocommerce-checkout .site-main {
         padding-top: 40px;
     }
-
     .woocommerce form.hello-theme-checkout .col2-set .col-2 {
         margin-top: 35px;
     }
-
     .woocommerce form.hello-theme-checkout .woocommerce-checkout-payment {
         margin-top: -35px;
     }
-
     .woocommerce-checkout form.checkout_coupon .form-row-first, .woocommerce-checkout form.checkout_coupon .form-row-last, .woocommerce-checkout form.checkout_coupon .button {
         display: block;
         width: 100%;
