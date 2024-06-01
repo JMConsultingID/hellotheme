@@ -81,7 +81,7 @@ function hello_theme_checkout_fields_order_and_class($fields) {
             'label'       => __('Address', 'woocommerce'),
             'placeholder' => _x('Street address', 'placeholder', 'woocommerce'),
             'required'    => true,
-            'class'       => array('form-row-first'),
+            'class'       => array('form-row-first hello-theme-address-field'),
             'clear'       => true,
             'priority' => 40
         ),
@@ -97,7 +97,7 @@ function hello_theme_checkout_fields_order_and_class($fields) {
             'label'       => __('Country', 'woocommerce'), 
             'required'    => true,
             'type'        => 'country',
-            'class'       => array('form-row-first'),
+            'class'       => array('form-row-first hello-theme-country-field'),
             'clear'       => true,
             'priority' => 60
         ),
@@ -105,7 +105,7 @@ function hello_theme_checkout_fields_order_and_class($fields) {
             'label'       => __('State', 'woocommerce'),
             'required'    => true,
             'type'        => 'state',
-            'class'       => array('form-row-last'),
+            'class'       => array('form-row-last hello-theme-state-field'),
             'clear'       => false,
             'priority' => 70
         ),
