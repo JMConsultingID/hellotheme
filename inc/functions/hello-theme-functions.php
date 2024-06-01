@@ -36,4 +36,17 @@ function exf_wc_custom_order_button_text() {
     return __( 'PROCEED TO PAYMENT', 'woocommerce' );
 }
 
+add_filter('woocommerce_checkout_fields', 'exf_modify_woocommerce_billing_fields', 18, 1);
+function exf_modify_woocommerce_billing_fields($fields)
+{
+    $fields['billing']['billing_address_1']['label'] = __('Address', 'woocommerce');
+    // $fields['billing']['billing_address_1']['class'][0] = 'form-row-first';
+
+    // Remove the billing company field
+    unset($fields['billing']['billing_company']);
+    // Remove the billing address 2 field
+    unset($fields['billing']['billing_address_2']);
+
+    return $fields;
+}
 ?>

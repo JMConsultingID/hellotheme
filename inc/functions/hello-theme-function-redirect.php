@@ -1,4 +1,12 @@
 <?php
+/**
+ * Theme functions and definitions.
+ *
+ * For additional information on potential customization options,
+ * read the developers' documentation:
+ *
+ * @package HelloTheme
+ */
 function hello_theme_woo_settings_tab( $settings_tabs ) {
     $settings_tabs['custom_redirects'] = 'Hello Theme Redirects';
     return $settings_tabs;

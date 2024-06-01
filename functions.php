@@ -25,28 +25,8 @@ require_once get_stylesheet_directory() . '/inc/functions/hello-theme-functions.
 require_once get_stylesheet_directory() . '/inc/functions/hello-theme-function-redirect.php';
 
 function hello_theme_scripts_styles() {
-    wp_enqueue_style(
-        'hello-theme-style',
-        get_stylesheet_directory_uri() . '/style.css',
-        [],
-        HELLO_THEME_VERSION
-    );
-
-    // Enqueue the custom theme CSS
-    wp_enqueue_style(
-        'hello-theme-custom-style',
-        get_stylesheet_directory_uri() . '/assets/css/hello-theme.css',
-        [],
-        HELLO_THEME_VERSION
-    );
-
-    // Enqueue the custom theme JS
-    wp_enqueue_script(
-        'hello-theme-custom-script',
-        get_stylesheet_directory_uri() . '/assets/js/hello-theme.js',
-        [],
-        HELLO_THEME_VERSION,
-        true // Load script in the footer
-    );
+    wp_enqueue_style('hello-theme-style', get_stylesheet_directory_uri() . '/style.css', [], HELLO_THEME_VERSION);
+    wp_enqueue_style('hello-theme-custom-style', get_stylesheet_directory_uri() . '/assets/css/hello-theme.css', [],      HELLO_THEME_VERSION);
+    wp_enqueue_script('hello-theme-custom-script', get_stylesheet_directory_uri() . '/assets/js/hello-theme.js', [],HELLO_THEME_VERSION, true);
 }
 add_action('wp_enqueue_scripts', 'hello_theme_scripts_styles', 20);
