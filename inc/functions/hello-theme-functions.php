@@ -47,6 +47,10 @@ function hello_theme_modify_woocommerce_billing_fields( $fields ) {
 add_filter('woocommerce_checkout_fields', 'hello_theme_checkout_fields_order_and_class');
 
 function hello_theme_checkout_fields_order_and_class($fields) {
+    // Unset existing fields first
+    unset($fields['billing']['billing_country']);
+    unset($fields['billing']['billing_state']);
+    
     $billing_fields_order = array(
         'billing_email' => array(
             'label'       => __('Email', 'woocommerce'),
