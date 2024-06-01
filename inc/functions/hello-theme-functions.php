@@ -39,21 +39,65 @@ function hello_theme_wc_custom_order_button_text() {
 add_filter( 'woocommerce_checkout_fields' , 'hello_theme_modify_woocommerce_billing_fields' );
 function hello_theme_modify_woocommerce_billing_fields( $fields ) {
     // Remove Default Field
-    unset($fields['billing']['billing_company']);
-    unset($fields['billing']['billing_address_1']);    
+    unset($fields['billing']['billing_company']);    
     unset($fields['billing']['billing_address_2']);
+    return $fields;
+}
 
-    // Tambahkan field baru
-    $fields['billing']['billing_address'] = array(
-        'label'       => __('Address', 'woocommerce'),
-        'placeholder' => _x('Address address', 'placeholder', 'woocommerce'),
-        'required'    => true,
-        'class'       => array('form-row-first'),
-        'clear'       => true,
-        'priority' => 50 // Prioritas field baru
+add_filter('woocommerce_checkout_fields', 'hello_theme_checkout_fields_order_and_class');
+function hello_theme_checkout_fields_order_and_class($fields) {
+    $billing_fields_order = array(
+        'billing_email' => array(
+            'label'       => __('Email', 'woocommerce'),
+            'placeholder' => _x('Email address', 'placeholder', 'woocommerce'),
+            'required'    => true,
+            'class'       => array('form-row-wide'),
+            'clear'       => true,
+            'priority' => 10 // You can adjust the priority as needed
+        ),
+        'billing_first_name' => array(
+            'class' => array('form-row-first'),
+            'priority' => 20
+        ),
+        'billing_last_name' => array(
+            'class' => array('form-row-last'),
+            'priority' => 30
+        ),
+        'billing_address_1' => array( // Assuming you want to use billing_address_1 for Address
+            'label'       => __('Address', 'woocommerce'),
+            'placeholder' => _x('Street address', 'placeholder', 'woocommerce'),
+            'required'    => true,
+            'class'       => array('form-row-first'),
+            'clear'       => true,
+            'priority' => 40
+        ),
+        'billing_phone' => array(
+            'class' => array('form-row-last'),
+            'priority' => 50
+        ),
+        'billing_country' => array(
+            'class' => array('form-row-first'),
+            'priority' => 60
+        ),
+        'billing_state' => array(
+            'class' => array('form-row-last'),
+            'priority' => 70
+        ),
+        'billing_city' => array(
+            'class' => array('form-row-first'),
+            'priority' => 80
+        ),
+        'billing_postcode' => array(
+            'class' => array('form-row-last'),
+            'priority' => 90
+        )
     );
+
+    // Overwrite the existing billing fields with our custom order and classes
+    $fields['billing'] = $billing_fields_order;
 
     return $fields;
 }
+
 
 ?>
