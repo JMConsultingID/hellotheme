@@ -43,10 +43,91 @@ function hello_theme_modify_woocommerce_billing_fields( $fields ) {
     unset($fields['billing']['billing_address_2']);
 
     // Change Priority Field
-    $fields['billing']['billing_email']['priority'] = 5;
-    $fields['billing']['billing_address_1']['priority'] = 30;
-    $fields['billing']['billing_country']['priority'] = 40;
-    $fields['billing']['billing_state']['priority'] = 50;
+    // $fields['billing']['billing_email']['priority'] = 5;
+    // $fields['billing']['billing_address_1']['priority'] = 30;
+    // $fields['billing']['billing_country']['priority'] = 40;
+    // $fields['billing']['billing_state']['priority'] = 50;
+    return $fields;
+}
+
+add_filter('woocommerce_checkout_fields', 'hello_theme_checkout_fields_order_and_class');
+function hello_theme_checkout_fields_order_and_class($fields) {
+    $billing_fields_order = array(
+        'billing_email' => array(
+            'label'       => __('Email', 'woocommerce'),
+            'placeholder' => _x('Email address', 'placeholder', 'woocommerce'),
+            'required'    => true,
+            'class'       => array('form-row-wide hello-theme-checkout-field'),
+            'clear'       => true,
+            'priority' => 10 
+        ),
+        'billing_first_name' => array(
+            'label'       => __('First Name', 'woocommerce'), 
+            'placeholder' => _x('First name', 'placeholder', 'woocommerce'), 
+            'required'    => true,
+            'class'       => array('form-row-first hello-theme-checkout-field'),
+            'clear'       => false, 
+            'priority' => 20
+        ),
+        'billing_last_name' => array(
+            'label'       => __('Last Name', 'woocommerce'), 
+            'placeholder' => _x('Last name', 'placeholder', 'woocommerce'), 
+            'required'    => true,
+            'class'       => array('form-row-last hello-theme-checkout-field'),
+            'clear'       => false, 
+            'priority' => 30
+        ),
+        'billing_address_1' => array( 
+            'label'       => __('Address', 'woocommerce'),
+            'placeholder' => _x('Street address', 'placeholder', 'woocommerce'),
+            'required'    => true,
+            'class'       => array('form-row-wide hello-theme-checkout-field'),
+            'clear'       => true,
+            'priority' => 40
+        ),
+        'billing_country' => array(
+            'label'       => __('Country', 'woocommerce'), 
+            'required'    => true,
+            'type'        => 'country',
+            'class'       => array('form-row-wide hello-theme-checkout-field'),
+            'clear'       => true,
+            'priority' => 50
+        ),
+        'billing_state' => array(
+            'label'       => __('State', 'woocommerce'),
+            'required'    => true,
+            'type'        => 'state',
+            'class'       => array('form-row-wide hello-theme-checkout-field'),
+            'clear'       => false,
+            'priority' => 60
+        ),
+        'billing_city' => array(
+            'label'       => __('Town / City', 'woocommerce'), // Default label for billing_city
+            'placeholder' => _x('Town / City', 'placeholder', 'woocommerce'), 
+            'required'    => true,
+            'class'       => array('form-row-wide hello-theme-checkout-field'),
+            'clear'       => true,
+            'priority' => 70
+        ),
+        'billing_postcode' => array(
+            'label'       => __('Postcode / ZIP', 'woocommerce'), 
+            'placeholder' => _x('Postcode / ZIP', 'placeholder', 'woocommerce'), 
+            'required'    => true,
+            'class'       => array('form-row-wide hello-theme-checkout-field'),
+            'clear'       => false, 
+            'priority' => 80
+        ),
+
+        'billing_phone' => array(
+            'label'       => __('Phone', 'woocommerce'),
+            'placeholder' => _x('Phone number', 'placeholder', 'woocommerce'),
+            'required'    => true,
+            'class'       => array('form-row-wide hello-theme-checkout-field'),
+            'clear'       => false, 
+            'priority' => 90
+        ),
+    );
+    $fields['billing'] = $billing_fields_order;
     return $fields;
 }
 ?>
