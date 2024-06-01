@@ -49,10 +49,30 @@ function hello_theme_modify_woocommerce_billing_fields($fields)
         'type'        => 'text',
         'label'       => __('Address', 'woocommerce'),
         'required'    => true,
-        'class'       => array('form-row form-row-first', 'address-field','hello-theme-checkout-field'),
+        'class'       => array('address-field','hello-theme-checkout-field'),
         'clear'       => true,
         'priority'    => 40,
     );
     return $fields;
 }
+
+add_filter( 'woocommerce_checkout_fields' , 'ganti_alamat_penagihan' );
+function ganti_alamat_penagihan( $fields ) {
+    // Hapus field lama
+    unset($fields['billing']['billing_address_1']);
+    unset($fields['billing']['billing_address_2']);
+
+    // Tambahkan field baru
+    $fields['billing']['billing_address'] = array(
+        'label'       => __('Address', 'woocommerce'),
+        'placeholder' => _x('Address address', 'placeholder', 'woocommerce'),
+        'required'    => true,
+        'class'       => array('form-row-first'),
+        'clear'       => true,
+        'priority' => 50 // Prioritas field baru
+    );
+
+    return $fields;
+}
+
 ?>
