@@ -16,18 +16,6 @@
 .woocommerce-checkout .site-main .page-header {
     display: none;
 }
-.woocommerce-checkout .site-main .page-content .woocommerce .woocommerce-info, .woocommerce-checkout .site-main .page-content .woocommerce .woocommerce-error, .woocommerce-checkout .site-main .page-content .woocommerce .woocommerce-error {
-    background-color: #cd06060d;
-    border-top-color: var(--e-global-color-primary);
-    border-radius: 8px;
-}
-.woocommerce-checkout .site-main .page-content .woocommerce .woocommerce-form-coupon-toggle .woocommerce-info::before {
-    color: var(--e-global-color-primary);
-}
-.woocommerce form.hello-theme-checkout, .woocommerce form.hello-theme-checkout p, .woocommerce form.hello-theme-checkout ul li, .woocommerce form.hello-theme-checkout .payment_methods .payment_method_africheckout-woo {
-    font-size: 16px;
-    line-height: 26px;
-}
 .woocommerce form.hello-theme-checkout {
     margin-bottom: 50px;
 }
@@ -44,13 +32,6 @@
 }
 .woocommerce form.hello-theme-checkout .form-row .select2-container--default .select2-selection--single {
     border: none;
-}
-.woocommerce form.hello-theme-checkout .col2-set .col-1 {
-}
-.woocommerce form.hello-theme-checkout .col2-set .col-2 {
-    background-color: #cd06060d;
-    padding: 20px 20px;
-    border-radius: 8px;
 }
 .woocommerce form.hello-theme-checkout #payment {
     background: transparent;
