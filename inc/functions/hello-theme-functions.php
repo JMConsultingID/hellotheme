@@ -104,6 +104,7 @@ function hello_theme_checkout_fields_order_and_class($fields) {
         'billing_state' => array(
             'label'       => __('State', 'woocommerce'),
             'required'    => true,
+            'type'        => 'true',
             'class'       => array('form-row-last'),
             'clear'       => false,
             'priority' => 70
