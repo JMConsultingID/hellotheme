@@ -45,6 +45,7 @@ function hello_theme_modify_woocommerce_billing_fields( $fields ) {
 }
 
 add_filter('woocommerce_checkout_fields', 'hello_theme_checkout_fields_order_and_class');
+
 function hello_theme_checkout_fields_order_and_class($fields) {
     $billing_fields_order = array(
         'billing_email' => array(
@@ -53,17 +54,25 @@ function hello_theme_checkout_fields_order_and_class($fields) {
             'required'    => true,
             'class'       => array('form-row-wide'),
             'clear'       => true,
-            'priority' => 10 // You can adjust the priority as needed
+            'priority' => 10 
         ),
         'billing_first_name' => array(
-            'class' => array('form-row-first'),
+            'label'       => __('First Name', 'woocommerce'), 
+            'placeholder' => _x('First name', 'placeholder', 'woocommerce'), 
+            'required'    => true,
+            'class'       => array('form-row-first'),
+            'clear'       => false, 
             'priority' => 20
         ),
         'billing_last_name' => array(
-            'class' => array('form-row-last'),
+            'label'       => __('Last Name', 'woocommerce'), 
+            'placeholder' => _x('Last name', 'placeholder', 'woocommerce'), 
+            'required'    => true,
+            'class'       => array('form-row-last'),
+            'clear'       => false, 
             'priority' => 30
         ),
-        'billing_address_1' => array( // Assuming you want to use billing_address_1 for Address
+        'billing_address_1' => array( 
             'label'       => __('Address', 'woocommerce'),
             'placeholder' => _x('Street address', 'placeholder', 'woocommerce'),
             'required'    => true,
@@ -72,23 +81,41 @@ function hello_theme_checkout_fields_order_and_class($fields) {
             'priority' => 40
         ),
         'billing_phone' => array(
-            'class' => array('form-row-last'),
+            'label'       => __('Phone', 'woocommerce'),
+            'placeholder' => _x('Phone number', 'placeholder', 'woocommerce'),
+            'required'    => true,
+            'class'       => array('form-row-last'),
+            'clear'       => false, 
             'priority' => 50
         ),
         'billing_country' => array(
-            'class' => array('form-row-first'),
+            'label'       => __('Country', 'woocommerce'), 
+            'required'    => true,
+            'class'       => array('form-row-first'),
+            'clear'       => true,
             'priority' => 60
         ),
         'billing_state' => array(
-            'class' => array('form-row-last'),
+            'label'       => __('State', 'woocommerce'),
+            'required'    => true,
+            'class'       => array('form-row-last'),
+            'clear'       => false,
             'priority' => 70
         ),
         'billing_city' => array(
-            'class' => array('form-row-first'),
+            'label'       => __('Town / City', 'woocommerce'), // Default label for billing_city
+            'placeholder' => _x('Town / City', 'placeholder', 'woocommerce'), 
+            'required'    => true,
+            'class'       => array('form-row-first'),
+            'clear'       => true,
             'priority' => 80
         ),
         'billing_postcode' => array(
-            'class' => array('form-row-last'),
+            'label'       => __('Postcode / ZIP', 'woocommerce'), 
+            'placeholder' => _x('Postcode / ZIP', 'placeholder', 'woocommerce'), 
+            'required'    => true,
+            'class'       => array('form-row-last'),
+            'clear'       => false, 
             'priority' => 90
         )
     );
@@ -98,6 +125,7 @@ function hello_theme_checkout_fields_order_and_class($fields) {
 
     return $fields;
 }
+
 
 
 ?>
