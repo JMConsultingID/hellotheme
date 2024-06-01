@@ -18,16 +18,14 @@
         $('#billing_email_field').addClass('form-row-wide');
 
         $('#billing_first_name_field').addClass('form-row-first');
-        $('#billing_last_name_field').addClass('form-row-last');
-
-        $('#billing_address_1_field').addClass('form-row-first');
-        $('#billing_phone_field').addClass('form-row-last');
+        $('#billing_last_name_field').addClass('form-row-last');      
 
         $('#billing_country_field').addClass('form-row-first');
         $('#billing_state_field').addClass('form-row-last');
 
         $('#billing_city_field').addClass('form-row-first');
         $('#billing_postcode_field').addClass('form-row-last');
+
     }
 
     // Apply classes on page load
