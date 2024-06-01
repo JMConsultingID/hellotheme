@@ -44,7 +44,7 @@ function hello_theme_modify_woocommerce_billing_fields( $fields ) {
     return $fields;
 }
 
-
+add_filter('woocommerce_checkout_fields', 'hello_theme_checkout_fields_order_and_class');
 
 function hello_theme_checkout_fields_order_and_class($fields) {
     // Unset existing fields first
@@ -76,14 +76,6 @@ function hello_theme_checkout_fields_order_and_class($fields) {
             'class'       => array('form-row-last'),
             'clear'       => false, 
             'priority' => 30
-        ),        
-        'billing_phone' => array(
-            'label'       => __('Phone', 'woocommerce'),
-            'placeholder' => _x('Phone number', 'placeholder', 'woocommerce'),
-            'required'    => true,
-            'class'       => array('form-row-last'),
-            'clear'       => false, 
-            'priority' => 40
         ),
         'billing_address_1' => array( 
             'label'       => __('Address', 'woocommerce'),
@@ -91,6 +83,14 @@ function hello_theme_checkout_fields_order_and_class($fields) {
             'required'    => true,
             'class'       => array('form-row-first'),
             'clear'       => true,
+            'priority' => 40
+        ),
+        'billing_phone' => array(
+            'label'       => __('Phone', 'woocommerce'),
+            'placeholder' => _x('Phone number', 'placeholder', 'woocommerce'),
+            'required'    => true,
+            'class'       => array('form-row-last'),
+            'clear'       => false, 
             'priority' => 50
         ),
         'billing_country' => array(
@@ -104,7 +104,7 @@ function hello_theme_checkout_fields_order_and_class($fields) {
         'billing_state' => array(
             'label'       => __('State', 'woocommerce'),
             'required'    => true,
-            'type'        => 'true',
+            'type'        => 'state',
             'class'       => array('form-row-last'),
             'clear'       => false,
             'priority' => 70
@@ -133,10 +133,6 @@ function hello_theme_checkout_fields_order_and_class($fields) {
     return $fields;
 }
 
-// Use a high priority to ensure this runs last
-add_action('woocommerce_after_checkout_form', 'apply_custom_checkout_fields', 9999);
-function apply_custom_checkout_fields() {
-    add_filter('woocommerce_checkout_fields', 'hello_theme_checkout_fields_order_and_class', 10, 1);
-}
+
 
 ?>
