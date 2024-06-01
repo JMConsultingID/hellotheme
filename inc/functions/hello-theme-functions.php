@@ -49,7 +49,7 @@ function hello_theme_modify_woocommerce_billing_fields($fields)
         'type'        => 'text',
         'label'       => __('Address', 'woocommerce'),
         'required'    => true,
-        'class'       => array('form-row-first', 'address-field','hello-theme-checkout-field'),
+        'class'       => array('form-row form-row-first', 'address-field','hello-theme-checkout-field'),
         'clear'       => true,
         'priority'    => 40,
     );
