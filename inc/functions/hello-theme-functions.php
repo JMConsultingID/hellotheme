@@ -41,37 +41,9 @@ function hello_theme_modify_woocommerce_billing_fields( $fields ) {
     // Remove Default Field
     unset($fields['billing']['billing_company']);    
     unset($fields['billing']['billing_address_2']);
+
+    // Change Priority Field
+    $fields['billing']['billing_email']['priority'] = 5;
     return $fields;
 }
-
-add_filter('woocommerce_checkout_fields', 'hello_theme_checkout_fields_order_and_class');
-
-function hello_theme_checkout_fields_order_and_class($fields) {
-    $billing_fields_order = array(
-        'billing_email' => array(
-            'label'       => __('Email', 'woocommerce'),
-            'placeholder' => _x('Email address', 'placeholder', 'woocommerce'),
-            'required'    => true,
-            'class'       => array('form-row-wide'),
-            'clear'       => true,
-            'priority' => 10 
-        ),
-        // 'billing_first_name' => array(
-        //     'label'       => __('First Name', 'woocommerce'), 
-        //     'placeholder' => _x('First name', 'placeholder', 'woocommerce'), 
-        //     'required'    => true,
-        //     'class'       => array('form-row-first'),
-        //     'clear'       => false, 
-        //     'priority' => 20
-        // )
-    );
-
-    // Overwrite the existing billing fields with our custom order and classes
-    $fields['billing'] = $billing_fields_order;
-
-    return $fields;
-}
-
-
-
 ?>
