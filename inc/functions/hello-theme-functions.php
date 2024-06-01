@@ -91,6 +91,7 @@ function hello_theme_checkout_fields_order_and_class($fields) {
         'billing_country' => array(
             'label'       => __('Country', 'woocommerce'), 
             'required'    => true,
+            'type'        => 'country',
             'class'       => array('form-row-first'),
             'clear'       => true,
             'priority' => 60
