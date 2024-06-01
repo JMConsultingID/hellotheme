@@ -44,7 +44,7 @@ function hello_theme_modify_woocommerce_billing_fields( $fields ) {
     return $fields;
 }
 
-add_filter('woocommerce_checkout_fields', 'hello_theme_checkout_fields_order_and_class');
+
 
 function hello_theme_checkout_fields_order_and_class($fields) {
     // Unset existing fields first
@@ -133,6 +133,10 @@ function hello_theme_checkout_fields_order_and_class($fields) {
     return $fields;
 }
 
-
+// Use a high priority to ensure this runs last
+add_action('woocommerce_after_checkout_form', 'apply_custom_checkout_fields', 9999);
+function apply_custom_checkout_fields() {
+    add_filter('woocommerce_checkout_fields', 'hello_theme_checkout_fields_order_and_class', 10, 1);
+}
 
 ?>
