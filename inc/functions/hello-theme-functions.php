@@ -40,8 +40,8 @@ add_filter('woocommerce_checkout_fields', 'hello_theme_modify_woocommerce_billin
 function hello_theme_modify_woocommerce_billing_fields($fields)
 {   
     // Remove Default Field
-    unset($fields['billing']['billing_address_1']);
     unset($fields['billing']['billing_company']);
+    unset($fields['billing']['billing_address_1']);    
     unset($fields['billing']['billing_address_2']);
 
     // Add Hello Theme Field
