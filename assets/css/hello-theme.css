@@ -24,6 +24,10 @@
     height: auto;
     border: 1px solid #666;
 }
+.woocommerce form.hello-theme-checkout .form-row input.input-text, 
+.woocommerce form.hello-theme-checkout .form-row textarea{
+    background: transparent;
+}
 .woocommerce form.hello-theme-checkout .form-row .select2-container .select2-selection__rendered {
     padding: 0;
 }
