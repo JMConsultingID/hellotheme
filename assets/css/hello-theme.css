@@ -11,7 +11,7 @@
 
 /* Page WooCommerce Checkout */
 li.select2-results__option {
-    color: #000!important;
+    color: #000;
 }
 .woocommerce-checkout .site-main {
     padding-top: 50px;
