@@ -16,6 +16,9 @@ li.select2-results__option {
 .woocommerce-checkout .site-main {
     padding-top: 50px;
 }
+.woocommerce-checkout .woocommerce {
+    padding: 20px;
+}
 .woocommerce-checkout .site-main .page-header {
     display: none;
 }
