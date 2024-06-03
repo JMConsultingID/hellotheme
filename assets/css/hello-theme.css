@@ -116,6 +116,18 @@ li.select2-results__option {
 }
 /* End - Page WooCommerce Checkout*/
 
+/* Checkout Coupon Code*/
+.woocommerce form.checkout_coupon{
+    text-align:center;
+}
+.woocommerce-checkout form.checkout_coupon .form-row-last{
+    width:auto;
+}
+.checkout_coupon input.input-text{
+    min-height:55px;
+}
+/* End Checkout Coupon Code*/
+
 /* Woocomerce Order Pay */
 .woocommerce-order-pay main#content.site-main {
     display: flex; /* Enable flexbox layout */
