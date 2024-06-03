@@ -89,6 +89,7 @@ li.select2-results__option {
 .woocommerce form.hello-theme-checkout .place-order .button {
     width: 100%;
     margin-top: 15px;
+    outline: none;
 }
 .woocommerce-checkout form.checkout_coupon .form-row-first, .woocommerce-checkout form.checkout_coupon .form-row-last {
     float: none;
