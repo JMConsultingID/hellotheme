@@ -125,6 +125,7 @@ li.select2-results__option {
 }
 .checkout_coupon input.input-text{
     min-height:55px;
+    text-align: center;
 }
 /* End Checkout Coupon Code*/
 
