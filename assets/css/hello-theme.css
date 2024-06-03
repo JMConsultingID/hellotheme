@@ -28,7 +28,7 @@
     background: #fff;
 }
 .woocommerce form.hello-theme-checkout .form-row .select2-container .select2-results__options,
-.woocommerce form.hello-theme-checkout .form-row .select2-container ul.select2-results__options li.select2-results__option{
+.woocommerce form.hello-theme-checkout .form-row .select2-container li.select2-results__option {
     color: #000;
 }
 .woocommerce form.hello-theme-checkout .form-row .select2-container .select2-selection__rendered {
