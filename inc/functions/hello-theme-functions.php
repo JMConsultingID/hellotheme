@@ -80,7 +80,7 @@ function hello_theme_checkout_fields_order_and_class($fields) {
         'billing_address_1' => array( 
             'label'       => __('Address', 'woocommerce'),
             'placeholder' => _x('Street address', 'placeholder', 'woocommerce'),
-            'required'    => true,
+            'required'    => false,
             'class'       => array('form-row-wide hello-theme-checkout-field'),
             'clear'       => true,
             'priority' => 40
@@ -95,7 +95,7 @@ function hello_theme_checkout_fields_order_and_class($fields) {
         ),
         'billing_state' => array(
             'label'       => __('State', 'woocommerce'),
-            'required'    => true,
+            'required'    => false,
             'type'        => 'state',
             'class'       => array('form-row-wide hello-theme-checkout-field'),
             'clear'       => false,
@@ -104,7 +104,7 @@ function hello_theme_checkout_fields_order_and_class($fields) {
         'billing_city' => array(
             'label'       => __('Town / City', 'woocommerce'), // Default label for billing_city
             'placeholder' => _x('Town / City', 'placeholder', 'woocommerce'), 
-            'required'    => true,
+            'required'    => false,
             'class'       => array('form-row-wide hello-theme-checkout-field'),
             'clear'       => true,
             'priority' => 70
