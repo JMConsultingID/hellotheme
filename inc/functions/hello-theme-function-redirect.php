@@ -8,7 +8,7 @@
  * @package HelloTheme
  */
 function hello_theme_woo_settings_tab( $settings_tabs ) {
-    $settings_tabs['custom_redirects'] = 'Hello Theme Redirects';
+    $settings_tabs['custom_redirects'] = 'Hello Theme Settings';
     return $settings_tabs;
 }
 add_filter( 'woocommerce_settings_tabs_array', 'hello_theme_woo_settings_tab', 50 );
@@ -76,6 +76,26 @@ function get_hello_theme_woo_settings() {
             'id'   => 'hello_theme_on_hold_page_url',
             'options' => $pages
         ),
+        'section_title' => array(
+            'name'     => 'Hello Theme AffiliateWP Settings',
+            'type'     => 'title',
+            'desc'     => '',
+            'id'       => 'hello_theme_redirects_section_title'
+        ),
+        'affiliatewp_register' => array(
+            'name' => 'AffiliateWP Register Page ID',
+            'type' => 'select',
+            'desc' => 'AffiliateWP Register Page.',
+            'id'   => 'hello_theme_affiliatewp_register_id',
+            'options' => $pages
+        ),
+        'affiliatewp_area_login' => array(
+            'name' => 'AffiliateWP Area Login Page ID',
+            'type' => 'select',
+            'desc' => 'AffiliateWP Area Login Page, Please Set the Affiliate Area Slug : <code>/affiliate-area/</code>.',
+            'id'   => 'hello_theme_affiliatewp_area_id',
+            'options' => $pages
+        ),
         'section_end' => array(
             'type' => 'sectionend',
             'id'   => 'hello_theme_redirects_section_end'
@@ -126,5 +146,50 @@ function hello_theme_redirect_cart_to_home() {
     }
 }
 add_action( 'template_redirect', 'hello_theme_redirect_cart_to_home' );
+
+function hello_theme_affwp_register_form_script() {
+    // Get the current post ID
+    $post_id = get_the_ID();
+    $affiliatewp_register_id = get_option( 'hello_theme_affiliatewp_register_id' );
+    $affiliatewp_login_id = get_option( 'hello_theme_affiliatewp_area_id' );
+
+    // Check if the current post ID is 639 and not in the Elementor editor
+    if ( $post_id === $affiliatewp_register_id && strpos($_SERVER['REQUEST_URI'], 'elementor') === false ) {
+    ?>
+    <script>
+    jQuery(document).ready(function($) {
+        if ($('#affwp-register-form').length === 0) {
+            window.location.href = '/affiliate-area';
+        }
+    });
+    </script>
+    <?php
+    }
+
+    // Check if the current post ID is 631 and not in the Elementor editor
+    if ( $post_id === $affiliatewp_login_id && strpos($_SERVER['REQUEST_URI'], 'elementor') === false ) {
+        // Check if user is logged in and not an affiliate
+        if ( is_user_logged_in() && !affwp_is_affiliate() ) {
+            ?>
+            <script>
+            jQuery(document).ready(function($) {
+                if ($('#affwp-register-form').length > 0) {
+                    $('#affwp-login-form').hide();
+                }
+            });
+            </script>
+            <?php
+        } else {
+            ?>
+            <script>
+            jQuery(document).ready(function($) {
+                $('#affwp-register-form').hide();
+            });
+            </script>
+            <?php
+        }
+    }
+}
+add_action('wp_footer', 'hello_theme_affwp_register_form_script');
 
 ?>
