@@ -7,23 +7,63 @@
  *
  * @package HelloTheme
  */
-function hello_theme_woo_settings_tab( $settings_tabs ) {
-    $settings_tabs['hello_theme_redirects'] = 'Hello Theme Settings';
-    return $settings_tabs;
+// 1. Create the "Hello Theme" Menu
+function hello_theme_create_menu() {
+    add_menu_page(
+        'Hello Theme Settings',          // Page title
+        'Hello Theme',                   // Menu title
+        'manage_options',                // Capability (admin level)
+        'hello_theme_settings',          // Menu slug (unique identifier)
+        'hello_theme_settings_page',     // Function to display the page
+        'dashicons-admin-settings',      // Menu icon (optional)
+        null                             // Position (optional)
+    );
 }
-add_filter( 'woocommerce_settings_tabs_array', 'hello_theme_woo_settings_tab', 50 );
+add_action('admin_menu', 'hello_theme_create_menu');
 
-function hello_theme_woo_settings() {
-    woocommerce_admin_fields( get_hello_theme_woo_settings() );
+// 2. Function to Render the Settings Page
+function hello_theme_settings_page() {
+    ?>
+    <div class="wrap">
+        <h1>Hello Theme Settings</h1>
+        <form method="post" action="options.php"> 
+            <?php
+                settings_fields('hello_theme_settings_group'); // Settings group
+                do_settings_sections('hello_theme_settings');  // Settings sections
+                submit_button(); 
+            ?>
+        </form>
+    </div>
+    <?php
 }
 
-add_action( 'woocommerce_settings_hello_theme_redirects', 'hello_theme_woo_settings' );
+// 3. Register the Settings (and Sections)
+function hello_theme_register_settings() {
+    register_setting(
+        'hello_theme_settings_group',       // Settings group
+        'hello_theme_settings_options'     // Option name
+    );
+    
+    add_settings_section(
+        'hello_theme_redirects_section',  // Section ID
+        'Hello Theme Redirects Settings', // Section title
+        '',                              // Empty callback function for now
+        'hello_theme_settings'            // Page to display on
+    );
 
+    // Add your existing settings fields here (from get_hello_theme_woo_settings)
+    // Make sure to change the section ID in each field to 'hello_theme_redirects_section'
 
-function save_hello_theme_woo_settings() {
-    woocommerce_update_options( get_hello_theme_woo_settings() );
+    // ... your existing settings fields ...
+
+    add_settings_section(
+        'hello_theme_affiliatewp_section',  // Section ID
+        'Hello Theme AffiliateWP Settings', // Section title
+        '',                              // Empty callback function for now
+        'hello_theme_settings'            // Page to display on
+    );
 }
-add_action( 'woocommerce_update_options_hello_theme_redirects', 'save_hello_theme_woo_settings' );
+add_action('admin_init', 'hello_theme_register_settings');
 
 function hello_theme_get_pages_array() {
     $pages = get_pages();
