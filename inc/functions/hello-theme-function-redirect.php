@@ -76,6 +76,10 @@ function get_hello_theme_woo_settings() {
             'id'   => 'hello_theme_on_hold_page_url',
             'options' => $pages
         ),
+        'section_end' => array(
+            'type' => 'sectionend',
+            'id'   => 'hello_theme_redirects_section_end'
+        ),
         'section_title_second' => array(
             'name'     => 'Hello Theme AffiliateWP Settings',
             'type'     => 'title',
@@ -96,9 +100,9 @@ function get_hello_theme_woo_settings() {
             'id'   => 'hello_theme_affiliatewp_area_id',
             'options' => $pages
         ),
-        'section_end' => array(
+        'section_end_second' => array(
             'type' => 'sectionend',
-            'id'   => 'hello_theme_redirects_section_end'
+            'id'   => 'hello_theme_redirects_section_second_end'
         ),
     );
 
