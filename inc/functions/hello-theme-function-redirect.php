@@ -8,7 +8,7 @@
  * @package HelloTheme
  */
 function hello_theme_woo_settings_tab( $settings_tabs ) {
-    $settings_tabs['custom_redirects'] = 'Hello Theme Settings';
+    $settings_tabs['hello_theme_redirects'] = 'Hello Theme Settings';
     return $settings_tabs;
 }
 add_filter( 'woocommerce_settings_tabs_array', 'hello_theme_woo_settings_tab', 50 );
@@ -76,7 +76,7 @@ function get_hello_theme_woo_settings() {
             'id'   => 'hello_theme_on_hold_page_url',
             'options' => $pages
         ),
-        'section_title' => array(
+        'section_title_second' => array(
             'name'     => 'Hello Theme AffiliateWP Settings',
             'type'     => 'title',
             'desc'     => '',
