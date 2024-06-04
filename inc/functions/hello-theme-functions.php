@@ -112,7 +112,7 @@ function hello_theme_checkout_fields_order_and_class($fields) {
         'billing_postcode' => array(
             'label'       => __('Postcode / ZIP', 'woocommerce'), 
             'placeholder' => _x('Postcode / ZIP', 'placeholder', 'woocommerce'), 
-            'required'    => true,
+            'required'    => false,
             'class'       => array('form-row-wide hello-theme-checkout-field'),
             'clear'       => false, 
             'priority' => 80
@@ -121,7 +121,7 @@ function hello_theme_checkout_fields_order_and_class($fields) {
         'billing_phone' => array(
             'label'       => __('Phone', 'woocommerce'),
             'placeholder' => _x('Phone number', 'placeholder', 'woocommerce'),
-            'required'    => true,
+            'required'    => false,
             'class'       => array('form-row-wide hello-theme-checkout-field'),
             'clear'       => false, 
             'priority' => 90
