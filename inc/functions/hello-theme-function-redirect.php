@@ -23,7 +23,7 @@ add_action( 'woocommerce_settings_custom_redirects', 'hello_theme_woo_settings' 
 function save_hello_theme_woo_settings() {
     woocommerce_update_options( get_hello_theme_woo_settings() );
 }
-add_action( 'woocommerce_update_options_custom_redirects', 'save_hello_theme_woo_settings' );
+add_action( 'woocommerce_update_options_hello_theme_redirects', 'save_hello_theme_woo_settings' );
 
 function hello_theme_get_pages_array() {
     $pages = get_pages();
@@ -80,7 +80,7 @@ function get_hello_theme_woo_settings() {
             'name'     => 'Hello Theme AffiliateWP Settings',
             'type'     => 'title',
             'desc'     => '',
-            'id'       => 'hello_theme_redirects_section_title'
+            'id'       => 'hello_theme_redirects_section_second_title'
         ),
         'affiliatewp_register' => array(
             'name' => 'AffiliateWP Register Page ID',
