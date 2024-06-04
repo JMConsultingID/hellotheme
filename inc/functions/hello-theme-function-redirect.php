@@ -17,7 +17,7 @@ function hello_theme_woo_settings() {
     woocommerce_admin_fields( get_hello_theme_woo_settings() );
 }
 
-add_action( 'woocommerce_settings_custom_redirects', 'hello_theme_woo_settings' );
+add_action( 'woocommerce_settings_hello_theme_redirects', 'hello_theme_woo_settings' );
 
 
 function save_hello_theme_woo_settings() {
