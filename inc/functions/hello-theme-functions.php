@@ -39,18 +39,18 @@ function hello_theme_wc_custom_order_button_text() {
 add_filter( 'woocommerce_checkout_fields' , 'hello_theme_modify_woocommerce_billing_fields' );
 function hello_theme_modify_woocommerce_billing_fields( $fields ) {
     // Remove Default Field
-    unset($fields['billing']['billing_company']);    
-    unset($fields['billing']['billing_address_2']);
+    // unset($fields['billing']['billing_company']);    
+    // unset($fields['billing']['billing_address_2']);
 
     // Change Priority Field
-    // $fields['billing']['billing_email']['priority'] = 5;
+    $fields['billing']['billing_email']['priority'] = 5;
     // $fields['billing']['billing_address_1']['priority'] = 30;
     // $fields['billing']['billing_country']['priority'] = 40;
     // $fields['billing']['billing_state']['priority'] = 50;
     return $fields;
 }
 
-add_filter('woocommerce_checkout_fields', 'hello_theme_checkout_fields_order_and_class');
+//add_filter('woocommerce_checkout_fields', 'hello_theme_checkout_fields_order_and_class');
 function hello_theme_checkout_fields_order_and_class($fields) {
     $billing_fields_order = array(
         'billing_email' => array(
