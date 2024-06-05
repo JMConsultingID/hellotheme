@@ -43,6 +43,17 @@ function get_hello_theme_woo_settings() {
             'desc'     => '',
             'id'       => 'hello_theme_redirects_section_title'
         ),
+        'checkout_mode' => array(
+            'name' => 'Select Checkout Mode',
+            'type' => 'select',
+            'desc' => 'Select Checkout Mode: Single Product and Multiple Products',
+            'id'   => 'hello_theme_checkout_mode',
+            'options' => array(
+                'single' => 'Single Product',
+                'multiple' => 'Multiple Products'
+            ),
+            'default' => 'single'
+        ),
         'enable_thank_you_redirect' => array(
             'name' => 'Enable Thank You Page Redirect',
             'type' => 'checkbox',
@@ -85,6 +96,12 @@ function get_hello_theme_woo_settings() {
             'type'     => 'title',
             'desc'     => '',
             'id'       => 'hello_theme_redirects_section_second_title'
+        ),
+        'enable_affiliatewp_config' => array(
+            'name' => 'Enable AffiliateWP Configuration',
+            'type' => 'checkbox',
+            'desc' => 'Enable AffiliateWP Configuration Redirects.',
+            'id'   => 'hello_theme_affiliatewp_enable'
         ),
         'affiliatewp_register' => array(
             'name' => 'AffiliateWP Register Page ID',
@@ -152,48 +169,51 @@ function hello_theme_redirect_cart_to_home() {
 add_action( 'template_redirect', 'hello_theme_redirect_cart_to_home' );
 
 function hello_theme_affwp_register_form_script() {
-    // Get the current post ID
-    $post_id = get_the_ID();
-    $affiliatewp_register_id = get_option( 'hello_theme_affiliatewp_register_id' );
-    $affiliatewp_login_id = get_option( 'hello_theme_affiliatewp_area_id' );
+    if ( get_option( 'hello_theme_affiliatewp_enable' ) == 'yes'  ) {
+        // Get the current post ID
+        $post_id = get_the_ID();
+        $affiliatewp_register_id = get_option( 'hello_theme_affiliatewp_register_id' );
+        $affiliatewp_login_id = get_option( 'hello_theme_affiliatewp_area_id' );
 
-    // Check if the current post ID is 639 and not in the Elementor editor
-    if ( $post_id === $affiliatewp_register_id && strpos($_SERVER['REQUEST_URI'], 'elementor') === false ) {
-    ?>
-    <script>
-    jQuery(document).ready(function($) {
-        if ($('#affwp-register-form').length === 0) {
-            window.location.href = '/affiliate-area';
+        // Check if the current post ID is 639 and not in the Elementor editor
+        if ( $post_id === $affiliatewp_register_id && strpos($_SERVER['REQUEST_URI'], 'elementor') === false ) {
+        ?>
+        <script>
+        jQuery(document).ready(function($) {
+            if ($('#affwp-register-form').length === 0) {
+                window.location.href = '/affiliate-area';
+            }
+        });
+        </script>
+        <?php
         }
-    });
-    </script>
-    <?php
-    }
 
-    // Check if the current post ID is 631 and not in the Elementor editor
-    if ( $post_id === $affiliatewp_login_id && strpos($_SERVER['REQUEST_URI'], 'elementor') === false ) {
-        // Check if user is logged in and not an affiliate
-        if ( is_user_logged_in() && !affwp_is_affiliate() ) {
-            ?>
-            <script>
-            jQuery(document).ready(function($) {
-                if ($('#affwp-register-form').length > 0) {
-                    $('#affwp-login-form').hide();
-                }
-            });
-            </script>
-            <?php
-        } else {
-            ?>
-            <script>
-            jQuery(document).ready(function($) {
-                $('#affwp-register-form').hide();
-            });
-            </script>
-            <?php
+        // Check if the current post ID is 631 and not in the Elementor editor
+        if ( $post_id === $affiliatewp_login_id && strpos($_SERVER['REQUEST_URI'], 'elementor') === false ) {
+            // Check if user is logged in and not an affiliate
+            if ( is_user_logged_in() && !affwp_is_affiliate() ) {
+                ?>
+                <script>
+                jQuery(document).ready(function($) {
+                    if ($('#affwp-register-form').length > 0) {
+                        $('#affwp-login-form').hide();
+                    }
+                });
+                </script>
+                <?php
+            } else {
+                ?>
+                <script>
+                jQuery(document).ready(function($) {
+                    $('#affwp-register-form').hide();
+                });
+                </script>
+                <?php
+            }
         }
     }
 }
+
 add_action('wp_footer', 'hello_theme_affwp_register_form_script');
 
 ?>

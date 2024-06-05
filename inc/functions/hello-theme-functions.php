@@ -9,18 +9,24 @@
  */
 
 // Disable add to cart messages
-add_filter( 'wc_add_to_cart_message_html', '__return_false' );
+function setup_single_product_checkout_mode() {
+    if ( get_option( 'hello_theme_checkout_mode' ) === 'single' ) {
+        // Disable add to cart messages
+        add_filter( 'wc_add_to_cart_message_html', '__return_false' );
+        // Empty cart before adding a new item
+        add_filter( 'woocommerce_add_cart_item_data', '_empty_cart' );
+    }
+}
+add_action( 'init', 'setup_single_product_checkout_mode' );
 
-// Empty cart before adding a new item
-add_filter( 'woocommerce_add_cart_item_data', '_empty_cart' );
 function _empty_cart( $cart_item_data ) {
     WC()->cart->empty_cart();
     return $cart_item_data;
 }
 
 // Redirect to checkout page after adding an item to the cart
-add_filter('woocommerce_add_to_cart_redirect', 'hello_funding_add_to_cart_redirect');
-function hello_funding_add_to_cart_redirect() {
+add_filter('woocommerce_add_to_cart_redirect', 'hello_theme_add_to_cart_redirect');
+function hello_theme_add_to_cart_redirect() {
     return wc_get_checkout_url();
 }
 
