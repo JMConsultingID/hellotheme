@@ -172,8 +172,8 @@ function hello_theme_affwp_register_form_script() {
     if ( get_option( 'hello_theme_affiliatewp_enable' ) === 'yes'  ) {
         // Get the current post ID
         $post_id = get_the_ID();
-        $affiliatewp_register_id = get_option( 'hello_theme_affiliatewp_register_id' );
-        $affiliatewp_login_id = get_option( 'hello_theme_affiliatewp_area_id' );
+        $affiliatewp_register_id = intval(get_option( 'hello_theme_affiliatewp_register_id' ));
+        $affiliatewp_login_id = intval(get_option( 'hello_theme_affiliatewp_area_id' ));
 
         // Check if the current post ID is 639 and not in the Elementor editor
         if ( $post_id === $affiliatewp_register_id && strpos($_SERVER['REQUEST_URI'], 'elementor') === false ) {
