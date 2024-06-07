@@ -17,7 +17,7 @@ function hello_theme_add_admin_menu() {
         'manage_options', // Capability
         'hello-panel', // Menu slug
         'hello_panel_page', // Function to display page content
-        'dashicons-admin-generic', // Icon URL
+        'dashicons-screenoptions', // Icon URL
         3 // Position
     );
 
