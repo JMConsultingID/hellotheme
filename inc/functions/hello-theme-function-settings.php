@@ -212,35 +212,39 @@ function hello_theme_woocommerce_section_callback() {
 
 function hello_theme_checkout_mode_render() {
     $options = get_option( 'hello_woocommerce_settings' );
+    $checkout_mode = isset( $options['hello_theme_checkout_mode'] ) ? $options['hello_theme_checkout_mode'] : '';
     ?>
     <select name='hello_woocommerce_settings[hello_theme_checkout_mode]'>
-        <option value='single' <?php selected( $options['hello_theme_checkout_mode'], 'single' ); ?>>Single Product</option>
-        <option value='multiple' <?php selected( $options['hello_theme_checkout_mode'], 'multiple' ); ?>>Multiple Products</option>
+        <option value='single' <?php selected( $checkout_mode, 'single' ); ?>>Single Product</option>
+        <option value='multiple' <?php selected( $checkout_mode, 'multiple' ); ?>>Multiple Products</option>
     </select>
     <?php
 }
 
 function enable_thank_you_redirect_render() {
     $options = get_option( 'hello_woocommerce_settings' );
+    $enable_thank_you_redirect = isset( $options['enable_thank_you_redirect'] ) ? $options['enable_thank_you_redirect'] : 0;
     ?>
-    <input type='checkbox' name='hello_woocommerce_settings[enable_thank_you_redirect]' <?php checked( $options['enable_thank_you_redirect'], 1 ); ?> value='1'>
+    <input type='checkbox' name='hello_woocommerce_settings[enable_thank_you_redirect]' <?php checked( $enable_thank_you_redirect, 1 ); ?> value='1'>
     <?php
 }
 
 function skip_cart_render() {
     $options = get_option( 'hello_woocommerce_settings' );
+    $skip_cart = isset( $options['skip_cart'] ) ? $options['skip_cart'] : 0;
     ?>
-    <input type='checkbox' name='hello_woocommerce_settings[skip_cart]' <?php checked( $options['skip_cart'], 1 ); ?> value='1'>
+    <input type='checkbox' name='hello_woocommerce_settings[skip_cart]' <?php checked( $skip_cart, 1 ); ?> value='1'>
     <?php
 }
 
 function thank_you_page_render() {
     $options = get_option( 'hello_woocommerce_settings' );
+    $thank_you_page = isset( $options['thank_you_page'] ) ? $options['thank_you_page'] : '';
     $pages = hello_theme_get_pages_array();
     ?>
     <select name='hello_woocommerce_settings[thank_you_page]'>
         <?php foreach ( $pages as $id => $title ) { ?>
-            <option value='<?php echo $id; ?>' <?php selected( $options['thank_you_page'], $id ); ?>><?php echo $title; ?></option>
+            <option value='<?php echo $id; ?>' <?php selected( $thank_you_page, $id ); ?>><?php echo $title; ?></option>
         <?php } ?>
     </select>
     <?php
@@ -248,11 +252,12 @@ function thank_you_page_render() {
 
 function failed_page_render() {
     $options = get_option( 'hello_woocommerce_settings' );
+    $failed_page = isset( $options['failed_page'] ) ? $options['failed_page'] : '';
     $pages = hello_theme_get_pages_array();
     ?>
     <select name='hello_woocommerce_settings[failed_page]'>
         <?php foreach ( $pages as $id => $title ) { ?>
-            <option value='<?php echo $id; ?>' <?php selected( $options['failed_page'], $id ); ?>><?php echo $title; ?></option>
+            <option value='<?php echo $id; ?>' <?php selected( $failed_page, $id ); ?>><?php echo $title; ?></option>
         <?php } ?>
     </select>
     <?php
@@ -260,11 +265,12 @@ function failed_page_render() {
 
 function on_hold_page_render() {
     $options = get_option( 'hello_woocommerce_settings' );
+    $on_hold_page = isset( $options['on_hold_page'] ) ? $options['on_hold_page'] : '';
     $pages = hello_theme_get_pages_array();
     ?>
     <select name='hello_woocommerce_settings[on_hold_page]'>
         <?php foreach ( $pages as $id => $title ) { ?>
-            <option value='<?php echo $id; ?>' <?php selected( $options['on_hold_page'], $id ); ?>><?php echo $title; ?></option>
+            <option value='<?php echo $id; ?>' <?php selected( $on_hold_page, $id ); ?>><?php echo $title; ?></option>
         <?php } ?>
     </select>
     <?php
@@ -272,18 +278,20 @@ function on_hold_page_render() {
 
 function enable_affiliatewp_config_render() {
     $options = get_option( 'hello_affiliatewp_settings' );
+    $enable_affiliatewp_config = isset( $options['enable_affiliatewp_config'] ) ? $options['enable_affiliatewp_config'] : 0;
     ?>
-    <input type='checkbox' name='hello_affiliatewp_settings[enable_affiliatewp_config]' <?php checked( $options['enable_affiliatewp_config'], 1 ); ?> value='1'>
+    <input type='checkbox' name='hello_affiliatewp_settings[enable_affiliatewp_config]' <?php checked( $enable_affiliatewp_config, 1 ); ?> value='1'>
     <?php
 }
 
 function affiliatewp_register_render() {
     $options = get_option( 'hello_affiliatewp_settings' );
+    $affiliatewp_register = isset( $options['affiliatewp_register'] ) ? $options['affiliatewp_register'] : '';
     $pages = hello_theme_get_pages_array();
     ?>
     <select name='hello_affiliatewp_settings[affiliatewp_register]'>
         <?php foreach ( $pages as $id => $title ) { ?>
-            <option value='<?php echo $id; ?>' <?php selected( $options['affiliatewp_register'], $id ); ?>><?php echo $title; ?></option>
+            <option value='<?php echo $id; ?>' <?php selected( $affiliatewp_register, $id ); ?>><?php echo $title; ?></option>
         <?php } ?>
     </select>
     <?php
@@ -291,11 +299,12 @@ function affiliatewp_register_render() {
 
 function affiliatewp_area_login_render() {
     $options = get_option( 'hello_affiliatewp_settings' );
+    $affiliatewp_area_login = isset( $options['affiliatewp_area_login'] ) ? $options['affiliatewp_area_login'] : '';
     $pages = hello_theme_get_pages_array();
     ?>
     <select name='hello_affiliatewp_settings[affiliatewp_area_login]'>
         <?php foreach ( $pages as $id => $title ) { ?>
-            <option value='<?php echo $id; ?>' <?php selected( $options['affiliatewp_area_login'], $id ); ?>><?php echo $title; ?></option>
+            <option value='<?php echo $id; ?>' <?php selected( $affiliatewp_area_login, $id ); ?>><?php echo $title; ?></option>
         <?php } ?>
     </select>
     <?php
