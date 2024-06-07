@@ -107,34 +107,34 @@ function hello_theme_affiliatewp_settings_init() {
     register_setting( 'hello_affiliatewp_settings_group', 'hello_affiliatewp_settings' );
 
     add_settings_section(
-        'hello_affiliatewp_section',
+        'hello_theme_redirects_section_second_title',
         __( 'Hello Theme AffiliateWP Settings', 'hello-theme' ),
         'hello_theme_affiliatewp_section_callback',
         'hello-affiliatewp'
     );
 
     add_settings_field(
-        'enable_affiliatewp_config',
+        'hello_theme_affiliatewp_enable',
         __( 'Enable AffiliateWP Configuration', 'hello-theme' ),
-        'enable_affiliatewp_config_render',
+        'hello_theme_affiliatewp_enable_render',
         'hello-affiliatewp',
-        'hello_affiliatewp_section'
+        'hello_theme_redirects_section_second_title'
     );
 
     add_settings_field(
-        'affiliatewp_register',
+        'hello_theme_affiliatewp_register_id',
         __( 'AffiliateWP Register Page ID', 'hello-theme' ),
-        'affiliatewp_register_render',
+        'hello_theme_affiliatewp_register_id_render',
         'hello-affiliatewp',
-        'hello_affiliatewp_section'
+        'hello_theme_redirects_section_second_title'
     );
 
     add_settings_field(
-        'affiliatewp_area_login',
+        'hello_theme_affiliatewp_area_id',
         __( 'AffiliateWP Area Login Page ID', 'hello-theme' ),
-        'affiliatewp_area_login_render',
+        'hello_theme_affiliatewp_area_id_render',
         'hello-affiliatewp',
-        'hello_affiliatewp_section'
+        'hello_theme_redirects_section_second_title'
     );
 }
 
@@ -145,8 +145,8 @@ function hello_theme_woocommerce_settings_init() {
     register_setting( 'hello_woocommerce_settings_group', 'hello_woocommerce_settings' );
 
     add_settings_section(
-        'hello_woocommerce_section',
-        __( 'Hello Theme WooCommerce Settings', 'hello-theme' ),
+        'hello_theme_redirects_section_title',
+        __( 'Hello Theme Redirects Settings', 'hello-theme' ),
         'hello_theme_woocommerce_section_callback',
         'hello-woocommerce'
     );
@@ -156,7 +156,7 @@ function hello_theme_woocommerce_settings_init() {
         __( 'Select Checkout Mode', 'hello-theme' ),
         'hello_theme_checkout_mode_render',
         'hello-woocommerce',
-        'hello_woocommerce_section'
+        'hello_theme_redirects_section_title'
     );
 
     add_settings_field(
@@ -164,39 +164,39 @@ function hello_theme_woocommerce_settings_init() {
         __( 'Enable Thank You Page Redirect', 'hello-theme' ),
         'enable_thank_you_redirect_render',
         'hello-woocommerce',
-        'hello_woocommerce_section'
+        'hello_theme_redirects_section_title'
     );
 
     add_settings_field(
-        'skip_cart',
+        'skip_cart_page',
         __( 'Skip Cart Page', 'hello-theme' ),
-        'skip_cart_render',
+        'skip_cart_page_render',
         'hello-woocommerce',
-        'hello_woocommerce_section'
+        'hello_theme_redirects_section_title'
     );
 
     add_settings_field(
-        'thank_you_page',
+        'hello_theme_thank_you_page_url',
         __( 'Thank You Page URL', 'hello-theme' ),
-        'thank_you_page_render',
+        'hello_theme_thank_you_page_url_render',
         'hello-woocommerce',
-        'hello_woocommerce_section'
+        'hello_theme_redirects_section_title'
     );
 
     add_settings_field(
-        'failed_page',
+        'hello_theme_failed_page_url',
         __( 'Failed Order Page URL', 'hello-theme' ),
-        'failed_page_render',
+        'hello_theme_failed_page_url_render',
         'hello-woocommerce',
-        'hello_woocommerce_section'
+        'hello_theme_redirects_section_title'
     );
 
     add_settings_field(
-        'on_hold_page',
+        'hello_theme_on_hold_page_url',
         __( 'On Hold Order Page URL', 'hello-theme' ),
-        'on_hold_page_render',
+        'hello_theme_on_hold_page_url_render',
         'hello-woocommerce',
-        'hello_woocommerce_section'
+        'hello_theme_redirects_section_title'
     );
 }
 
@@ -229,20 +229,20 @@ function enable_thank_you_redirect_render() {
     <?php
 }
 
-function skip_cart_render() {
+function skip_cart_page_render() {
     $options = get_option( 'hello_woocommerce_settings' );
-    $skip_cart = isset( $options['skip_cart'] ) ? $options['skip_cart'] : 0;
+    $skip_cart_page = isset( $options['skip_cart_page'] ) ? $options['skip_cart_page'] : 0;
     ?>
-    <input type='checkbox' name='hello_woocommerce_settings[skip_cart]' <?php checked( $skip_cart, 1 ); ?> value='1'>
+    <input type='checkbox' name='hello_woocommerce_settings[skip_cart_page]' <?php checked( $skip_cart_page, 1 ); ?> value='1'>
     <?php
 }
 
-function thank_you_page_render() {
+function hello_theme_thank_you_page_url_render() {
     $options = get_option( 'hello_woocommerce_settings' );
-    $thank_you_page = isset( $options['thank_you_page'] ) ? $options['thank_you_page'] : '';
+    $thank_you_page = isset( $options['hello_theme_thank_you_page_url'] ) ? $options['hello_theme_thank_you_page_url'] : '';
     $pages = hello_theme_get_pages_array();
     ?>
-    <select name='hello_woocommerce_settings[thank_you_page]'>
+    <select name='hello_woocommerce_settings[hello_theme_thank_you_page_url]'>
         <?php foreach ( $pages as $id => $title ) { ?>
             <option value='<?php echo $id; ?>' <?php selected( $thank_you_page, $id ); ?>><?php echo $title; ?></option>
         <?php } ?>
@@ -250,12 +250,12 @@ function thank_you_page_render() {
     <?php
 }
 
-function failed_page_render() {
+function hello_theme_failed_page_url_render() {
     $options = get_option( 'hello_woocommerce_settings' );
-    $failed_page = isset( $options['failed_page'] ) ? $options['failed_page'] : '';
+    $failed_page = isset( $options['hello_theme_failed_page_url'] ) ? $options['hello_theme_failed_page_url'] : '';
     $pages = hello_theme_get_pages_array();
     ?>
-    <select name='hello_woocommerce_settings[failed_page]'>
+    <select name='hello_woocommerce_settings[hello_theme_failed_page_url]'>
         <?php foreach ( $pages as $id => $title ) { ?>
             <option value='<?php echo $id; ?>' <?php selected( $failed_page, $id ); ?>><?php echo $title; ?></option>
         <?php } ?>
@@ -263,12 +263,12 @@ function failed_page_render() {
     <?php
 }
 
-function on_hold_page_render() {
+function hello_theme_on_hold_page_url_render() {
     $options = get_option( 'hello_woocommerce_settings' );
-    $on_hold_page = isset( $options['on_hold_page'] ) ? $options['on_hold_page'] : '';
+    $on_hold_page = isset( $options['hello_theme_on_hold_page_url'] ) ? $options['hello_theme_on_hold_page_url'] : '';
     $pages = hello_theme_get_pages_array();
     ?>
-    <select name='hello_woocommerce_settings[on_hold_page]'>
+    <select name='hello_woocommerce_settings[hello_theme_on_hold_page_url]'>
         <?php foreach ( $pages as $id => $title ) { ?>
             <option value='<?php echo $id; ?>' <?php selected( $on_hold_page, $id ); ?>><?php echo $title; ?></option>
         <?php } ?>
@@ -276,20 +276,20 @@ function on_hold_page_render() {
     <?php
 }
 
-function enable_affiliatewp_config_render() {
+function hello_theme_affiliatewp_enable_render() {
     $options = get_option( 'hello_affiliatewp_settings' );
-    $enable_affiliatewp_config = isset( $options['enable_affiliatewp_config'] ) ? $options['enable_affiliatewp_config'] : 0;
+    $enable_affiliatewp_config = isset( $options['hello_theme_affiliatewp_enable'] ) ? $options['hello_theme_affiliatewp_enable'] : 0;
     ?>
-    <input type='checkbox' name='hello_affiliatewp_settings[enable_affiliatewp_config]' <?php checked( $enable_affiliatewp_config, 1 ); ?> value='1'>
+    <input type='checkbox' name='hello_affiliatewp_settings[hello_theme_affiliatewp_enable]' <?php checked( $enable_affiliatewp_config, 1 ); ?> value='1'>
     <?php
 }
 
-function affiliatewp_register_render() {
+function hello_theme_affiliatewp_register_id_render() {
     $options = get_option( 'hello_affiliatewp_settings' );
-    $affiliatewp_register = isset( $options['affiliatewp_register'] ) ? $options['affiliatewp_register'] : '';
+    $affiliatewp_register = isset( $options['hello_theme_affiliatewp_register_id'] ) ? $options['hello_theme_affiliatewp_register_id'] : '';
     $pages = hello_theme_get_pages_array();
     ?>
-    <select name='hello_affiliatewp_settings[affiliatewp_register]'>
+    <select name='hello_affiliatewp_settings[hello_theme_affiliatewp_register_id]'>
         <?php foreach ( $pages as $id => $title ) { ?>
             <option value='<?php echo $id; ?>' <?php selected( $affiliatewp_register, $id ); ?>><?php echo $title; ?></option>
         <?php } ?>
@@ -297,12 +297,12 @@ function affiliatewp_register_render() {
     <?php
 }
 
-function affiliatewp_area_login_render() {
+function hello_theme_affiliatewp_area_id_render() {
     $options = get_option( 'hello_affiliatewp_settings' );
-    $affiliatewp_area_login = isset( $options['affiliatewp_area_login'] ) ? $options['affiliatewp_area_login'] : '';
+    $affiliatewp_area_login = isset( $options['hello_theme_affiliatewp_area_id'] ) ? $options['hello_theme_affiliatewp_area_id'] : '';
     $pages = hello_theme_get_pages_array();
     ?>
-    <select name='hello_affiliatewp_settings[affiliatewp_area_login]'>
+    <select name='hello_affiliatewp_settings[hello_theme_affiliatewp_area_id]'>
         <?php foreach ( $pages as $id => $title ) { ?>
             <option value='<?php echo $id; ?>' <?php selected( $affiliatewp_area_login, $id ); ?>><?php echo $title; ?></option>
         <?php } ?>
