@@ -248,7 +248,7 @@ function hello_theme_register_table_pricing_settings() {
 
     add_settings_field(
         'hello_theme_table_pricing_description',
-        'Description',
+        'Shortcode',
         'hello_theme_table_pricing_description_callback',
         'hello-table-pricing-settings',
         'hello_table_pricing_settings_section'
