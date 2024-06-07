@@ -20,7 +20,7 @@ require_once get_stylesheet_directory() . '/inc/functions/public/hello-public-fu
 
 
 //Theme Activation
-function ypf_addons_create_table() {
+function hello_theme_ypf_addons_create_table() {
     global $wpdb;
     define('YPF_ADDONS_TABLE_NAME', $wpdb->prefix . 'hello_theme_ypf_addons_fee');
     $charset_collate = $wpdb->get_charset_collate();
@@ -43,7 +43,7 @@ function ypf_addons_create_table() {
 
 function hello_theme_activate() {
     if (!get_option('hello_theme_addons_table_created')) {
-        ypf_addons_create_table();
+        hello_theme_ypf_addons_create_table();
     }
 }
 add_action('after_switch_theme', 'hello_theme_activate');
