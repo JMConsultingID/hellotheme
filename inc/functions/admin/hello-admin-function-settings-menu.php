@@ -22,6 +22,15 @@ function hello_theme_add_menu_page() {
 
     add_submenu_page(
         'hello-theme-panel',
+        'Hello Affiliate WP',
+        'Hello Affiliate WP',
+        'manage_options',
+        'hello-affiliatewp-settings',
+        'hello_theme_affiliatewp_settings_page'
+    );
+
+    add_submenu_page(
+        'hello-theme-panel',
         'Hello WooCommerce',
         'Hello WooCommerce',
         'manage_options',
@@ -29,21 +38,13 @@ function hello_theme_add_menu_page() {
         'hello_theme_woocommerce_settings_page'
     );
 
-    add_submenu_page(
-        'hello-theme-panel',
-        'Hello Affiliate WP',
-        'Hello Affiliate WP',
-        'manage_options',
-        'hello-affiliatewp-settings',
-        'hello_theme_affiliatewp_settings_page'
-    );
 }
 add_action( 'admin_menu', 'hello_theme_add_menu_page' );
 
 // Konten halaman utama Hello Theme Panel
 function hello_theme_panel_page_content() {
-    echo '<h1>Welcome to Hello Theme Panel</h1>';
-    echo '<p>Manage your theme settings here.</p>';
+    echo "<h1>Welcome to Hello Theme Panel</h1>";
+    echo "<p>We're still under development. Please be patient – we'll let you know as soon as we're live!</p>";
 }
 
 // Konten halaman pengaturan WooCommerce
