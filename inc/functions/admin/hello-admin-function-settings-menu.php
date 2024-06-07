@@ -380,7 +380,7 @@ function hello_theme_table_mode_callback() {
     $options = get_option( 'hello_theme_table_mode' );
     ?>
     <select name="hello_theme_table_mode">
-        <option value="single" <?php selected( $options, 'single' ); ?>>Without Heading Tab (Single Table)</option>
+        <option value="single" <?php selected( $options, 'single' ); ?>>Single Table</option>
         <option value="one_tab" <?php selected( $options, 'one_tab' ); ?>>1 Tab Heading</option>
         <option value="two_tabs" <?php selected( $options, 'two_tabs' ); ?>>2 Tabs Heading</option>
         <option value="three_tabs" <?php selected( $options, 'three_tabs' ); ?>>3 Tabs Heading</option>
