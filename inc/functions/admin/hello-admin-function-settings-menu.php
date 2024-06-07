@@ -16,7 +16,7 @@ function hello_theme_add_menu_page() {
         'manage_options',
         'hello-theme-panel',
         'hello_theme_panel_page_content',
-        'dashicons-admin-generic',
+        'dashicons-screenoptions',
         2
     );
 
