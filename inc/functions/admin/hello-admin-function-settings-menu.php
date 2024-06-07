@@ -477,7 +477,7 @@ function hello_theme_table_pricing_description_callback() {
     <p>Use this shortcode on your front-end page :
         <ol>
             <li><code>[hello_pricing_table mode='<?php echo esc_attr( $mode ); ?>' style='<?php echo esc_attr( $style ); ?>']</code> for live version</li>
-            <li><code>or using [hello_pricing_table_dev]</code> for development version</li>
+            <li>or using <code>[hello_pricing_table_dev]</code> for development version</li>
         </ol>
     </p>
     <?php
