@@ -22,10 +22,10 @@ require_once get_stylesheet_directory() . '/inc/functions/public/hello-public-fu
 //Theme Activation
 function hello_theme_ypf_addons_create_table() {
     global $wpdb;
-    define('YPF_ADDONS_TABLE_NAME', $wpdb->prefix . 'hello_theme_ypf_addons_fee');
+    define('HELLO_ADDONS_TABLE_NAME', $wpdb->prefix . 'hello_theme_ypf_addons_fee');
     $charset_collate = $wpdb->get_charset_collate();
 
-    $sql = "CREATE TABLE " . YPF_ADDONS_TABLE_NAME . " (
+    $sql = "CREATE TABLE " . HELLO_ADDONS_TABLE_NAME . " (
         id mediumint(9) NOT NULL AUTO_INCREMENT,
         addon_name varchar(255) NOT NULL,
         value_percentage decimal(5,2) NOT NULL,
@@ -57,7 +57,7 @@ function hello_theme_addons_table_notice() {
     if (get_option('hello_theme_show_addons_table_notice')) {
         ?>
         <div class="notice notice-success is-dismissible">
-            <p><?php _e('Add-ons table has been created successfully.', 'hello-theme'); ?></p>
+            <p><?php _e('Hello Theme Add-ons Fee table has been created successfully.', 'hello-theme'); ?></p>
         </div>
         <?php
         // Hapus opsi setelah menampilkan notifikasi
