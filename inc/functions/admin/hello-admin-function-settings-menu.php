@@ -264,6 +264,10 @@ function hello_affiliatewp_settings_section_callback() {
     echo '<p>Configure your AffiliateWP settings below.</p>';
 }
 
+function hello_table_pricing_settings_section_callback() {
+    echo '<p>Configure your Table Pricing settings below.</p>';
+}
+
 function hello_theme_checkout_mode_callback() {
     $options = get_option( 'hello_theme_checkout_mode' );
     ?>
