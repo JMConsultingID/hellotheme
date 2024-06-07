@@ -22,6 +22,15 @@ function hello_theme_add_menu_page() {
 
     add_submenu_page(
         'hello-theme-panel',
+        'Hello Add-ons Fee',
+        'Hello Add-ons Fee',
+        'manage_options',
+        'hello-woo-addon-fee-settings',
+        'hello_theme_woo_addon_fee_settings_page'
+    );
+
+    add_submenu_page(
+        'hello-theme-panel',
         'Hello AffiliateWP',
         'Hello AffiliateWP',
         'manage_options',
@@ -45,16 +54,7 @@ function hello_theme_add_menu_page() {
         'manage_options',
         'hello-woocommerce-settings',
         'hello_theme_woocommerce_settings_page'
-    );
-
-    add_submenu_page(
-        'hello-theme-panel',
-        'Hello Add-ons Fee',
-        'Hello Add-ons Fee',
-        'manage_options',
-        'hello-woo-addon-fee-settings',
-        'hello_theme_woo_addon_fee_settings_page'
-    );
+    );   
 
 }
 add_action( 'admin_menu', 'hello_theme_add_menu_page' );
