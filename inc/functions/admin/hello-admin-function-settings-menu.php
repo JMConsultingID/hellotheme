@@ -22,11 +22,20 @@ function hello_theme_add_menu_page() {
 
     add_submenu_page(
         'hello-theme-panel',
-        'Hello Affiliate WP',
-        'Hello Affiliate WP',
+        'Hello AffiliateWP',
+        'Hello AffiliateWP',
         'manage_options',
         'hello-affiliatewp-settings',
         'hello_theme_affiliatewp_settings_page'
+    );
+
+    add_submenu_page(
+        'hello-theme-panel',
+        'Hello Table Pricing',
+        'Hello Table Pricing',
+        'manage_options',
+        'hello-table-pricing-settings',
+        'hello_theme_table_pricing_settings_page'
     );
 
     add_submenu_page(
@@ -184,6 +193,53 @@ function hello_theme_register_affiliatewp_settings() {
 }
 add_action( 'admin_init', 'hello_theme_register_affiliatewp_settings' );
 
+// Mendaftarkan pengaturan dan bagian pengaturan untuk Table Pricing
+function hello_theme_register_table_pricing_settings() {
+    register_setting( 'hello_table_pricing_settings_group', 'hello_theme_enable_table_pricing' );
+    register_setting( 'hello_table_pricing_settings_group', 'hello_theme_table_mode' );
+    register_setting( 'hello_table_pricing_settings_group', 'hello_theme_table_style' );
+
+    add_settings_section(
+        'hello_table_pricing_settings_section',
+        'Hello Theme Table Pricing Settings',
+        'hello_table_pricing_settings_section_callback',
+        'hello-table-pricing-settings'
+    );
+
+    add_settings_field(
+        'hello_theme_enable_table_pricing',
+        'Enable Table Pricing',
+        'hello_theme_enable_table_pricing_callback',
+        'hello-table-pricing-settings',
+        'hello_table_pricing_settings_section'
+    );
+
+    add_settings_field(
+        'hello_theme_table_mode',
+        'Table Mode',
+        'hello_theme_table_mode_callback',
+        'hello-table-pricing-settings',
+        'hello_table_pricing_settings_section'
+    );
+
+    add_settings_field(
+        'hello_theme_table_style',
+        'Select Table Style',
+        'hello_theme_table_style_callback',
+        'hello-table-pricing-settings',
+        'hello_table_pricing_settings_section'
+    );
+
+    add_settings_field(
+        'hello_theme_table_pricing_description',
+        'Description',
+        'hello_theme_table_pricing_description_callback',
+        'hello-table-pricing-settings',
+        'hello_table_pricing_settings_section'
+    );
+}
+add_action( 'admin_init', 'hello_theme_register_table_pricing_settings' );
+
 function hello_woocommerce_settings_section_callback() {
     echo '<p>Configure your WooCommerce settings below.</p>';
 }
@@ -290,6 +346,42 @@ function hello_theme_affiliatewp_area_id_callback() {
         }
         ?>
     </select>
+    <?php
+}
+
+function hello_theme_enable_table_pricing_callback() {
+    $options = get_option( 'hello_theme_enable_table_pricing' );
+    ?>
+    <input type="checkbox" name="hello_theme_enable_table_pricing" value="1" <?php checked( 1, $options, true ); ?> />
+    <?php
+}
+
+function hello_theme_table_mode_callback() {
+    $options = get_option( 'hello_theme_table_mode' );
+    ?>
+    <select name="hello_theme_table_mode">
+        <option value="single" <?php selected( $options, 'single' ); ?>>Without Heading Tab (Single Table)</option>
+        <option value="one_tab" <?php selected( $options, 'one_tab' ); ?>>1 Tab Heading</option>
+        <option value="two_tabs" <?php selected( $options, 'two_tabs' ); ?>>2 Tabs Heading</option>
+        <option value="three_tabs" <?php selected( $options, 'three_tabs' ); ?>>3 Tabs Heading</option>
+    </select>
+    <?php
+}
+
+function hello_theme_table_style_callback() {
+    $options = get_option( 'hello_theme_table_style' );
+    ?>
+    <select name="hello_theme_table_style">
+        <option value="style1" <?php selected( $options, 'style1' ); ?>>Style 1</option>
+        <option value="style2" <?php selected( $options, 'style2' ); ?>>Style 2</option>
+        <option value="style3" <?php selected( $options, 'style3' ); ?>>Style 3</option>
+    </select>
+    <?php
+}
+
+function hello_theme_table_pricing_description_callback() {
+    ?>
+    <p>Use this shortcode [ypfhello_table_pricing] on your front-end page.</p>
     <?php
 }
 
