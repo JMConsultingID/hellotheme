@@ -14,6 +14,8 @@ require_once get_stylesheet_directory() . '/inc/functions/admin/hello-admin-func
 // Public Settings
 require_once get_stylesheet_directory() . '/inc/functions/public/hello-public-function-affiliate-wp.php';
 require_once get_stylesheet_directory() . '/inc/functions/public/hello-public-function-redirect-page.php';
+require_once get_stylesheet_directory() . '/inc/functions/public/hello-public-function-pricing-table.php';
+require_once get_stylesheet_directory() . '/inc/functions/public/hello-public-function-pricing-table-dev.php';
 require_once get_stylesheet_directory() . '/inc/functions/public/hello-public-function-woocommerce.php';
 
 ?>
