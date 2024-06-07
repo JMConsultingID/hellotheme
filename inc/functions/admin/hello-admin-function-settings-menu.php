@@ -16,7 +16,7 @@ function hello_theme_add_menu_page() {
         'manage_options',
         'hello-theme-panel',
         'hello_theme_panel_page_content',
-        'dashicons-screenoptions',
+        'dashicons-admin-generic',
         2
     );
 
@@ -27,6 +27,15 @@ function hello_theme_add_menu_page() {
         'manage_options',
         'hello-woocommerce-settings',
         'hello_theme_woocommerce_settings_page'
+    );
+
+    add_submenu_page(
+        'hello-theme-panel',
+        'Hello Affiliate WP',
+        'Hello Affiliate WP',
+        'manage_options',
+        'hello-affiliatewp-settings',
+        'hello_theme_affiliatewp_settings_page'
     );
 }
 add_action( 'admin_menu', 'hello_theme_add_menu_page' );
@@ -53,7 +62,23 @@ function hello_theme_woocommerce_settings_page() {
     <?php
 }
 
-// Mendaftarkan pengaturan dan bagian pengaturan
+// Konten halaman pengaturan Affiliate WP
+function hello_theme_affiliatewp_settings_page() {
+    ?>
+    <div class="wrap">
+        <h1>Hello AffiliateWP Settings</h1>
+        <form method="post" action="options.php">
+            <?php
+            settings_fields( 'hello_affiliatewp_settings_group' );
+            do_settings_sections( 'hello-affiliatewp-settings' );
+            submit_button();
+            ?>
+        </form>
+    </div>
+    <?php
+}
+
+// Mendaftarkan pengaturan dan bagian pengaturan untuk WooCommerce
 function hello_theme_register_settings() {
     register_setting( 'hello_woocommerce_settings_group', 'hello_theme_checkout_mode' );
     register_setting( 'hello_woocommerce_settings_group', 'enable_thank_you_redirect' );
@@ -119,8 +144,51 @@ function hello_theme_register_settings() {
 }
 add_action( 'admin_init', 'hello_theme_register_settings' );
 
+// Mendaftarkan pengaturan dan bagian pengaturan untuk Affiliate WP
+function hello_theme_register_affiliatewp_settings() {
+    register_setting( 'hello_affiliatewp_settings_group', 'hello_theme_affiliatewp_enable' );
+    register_setting( 'hello_affiliatewp_settings_group', 'hello_theme_affiliatewp_register_id' );
+    register_setting( 'hello_affiliatewp_settings_group', 'hello_theme_affiliatewp_area_id' );
+
+    add_settings_section(
+        'hello_affiliatewp_settings_section',
+        'Hello Theme AffiliateWP Settings',
+        'hello_affiliatewp_settings_section_callback',
+        'hello-affiliatewp-settings'
+    );
+
+    add_settings_field(
+        'hello_theme_affiliatewp_enable',
+        'Enable AffiliateWP Configuration',
+        'hello_theme_affiliatewp_enable_callback',
+        'hello-affiliatewp-settings',
+        'hello_affiliatewp_settings_section'
+    );
+
+    add_settings_field(
+        'hello_theme_affiliatewp_register_id',
+        'AffiliateWP Register Page ID',
+        'hello_theme_affiliatewp_register_id_callback',
+        'hello-affiliatewp-settings',
+        'hello_affiliatewp_settings_section'
+    );
+
+    add_settings_field(
+        'hello_theme_affiliatewp_area_id',
+        'AffiliateWP Area Login Page ID',
+        'hello_theme_affiliatewp_area_id_callback',
+        'hello-affiliatewp-settings',
+        'hello_affiliatewp_settings_section'
+    );
+}
+add_action( 'admin_init', 'hello_theme_register_affiliatewp_settings' );
+
 function hello_woocommerce_settings_section_callback() {
     echo '<p>Configure your WooCommerce settings below.</p>';
+}
+
+function hello_affiliatewp_settings_section_callback() {
+    echo '<p>Configure your AffiliateWP settings below.</p>';
 }
 
 function hello_theme_checkout_mode_callback() {
@@ -180,6 +248,41 @@ function hello_theme_on_hold_page_url_callback() {
     $pages = hello_theme_menu_get_pages_array();
     ?>
     <select name="hello_theme_on_hold_page_url">
+        <?php
+        foreach ( $pages as $id => $title ) {
+            echo '<option value="' . esc_attr( $id ) . '" ' . selected( $options, $id, false ) . '>' . esc_html( $title ) . '</option>';
+        }
+        ?>
+    </select>
+    <?php
+}
+
+function hello_theme_affiliatewp_enable_callback() {
+    $options = get_option( 'hello_theme_affiliatewp_enable' );
+    ?>
+    <input type="checkbox" name="hello_theme_affiliatewp_enable" value="1" <?php checked( 1, $options, true ); ?> />
+    <?php
+}
+
+function hello_theme_affiliatewp_register_id_callback() {
+    $options = get_option( 'hello_theme_affiliatewp_register_id' );
+    $pages = hello_theme_menu_get_pages_array();
+    ?>
+    <select name="hello_theme_affiliatewp_register_id">
+        <?php
+        foreach ( $pages as $id => $title ) {
+            echo '<option value="' . esc_attr( $id ) . '" ' . selected( $options, $id, false ) . '>' . esc_html( $title ) . '</option>';
+        }
+        ?>
+    </select>
+    <?php
+}
+
+function hello_theme_affiliatewp_area_id_callback() {
+    $options = get_option( 'hello_theme_affiliatewp_area_id' );
+    $pages = hello_theme_menu_get_pages_array();
+    ?>
+    <select name="hello_theme_affiliatewp_area_id">
         <?php
         foreach ( $pages as $id => $title ) {
             echo '<option value="' . esc_attr( $id ) . '" ' . selected( $options, $id, false ) . '>' . esc_html( $title ) . '</option>';
