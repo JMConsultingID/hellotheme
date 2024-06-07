@@ -8,7 +8,7 @@
  * @package HelloTheme
  */
 function hello_theme_affwp_register_form_script() {
-    if ( get_option( 'hello_theme_affiliatewp_enable' ) === 'yes'  ) {
+    if ( get_option( 'hello_theme_affiliatewp_enable' ) === '1'  ) {
         // Get the current post ID
         $post_id = get_the_ID();
         $affiliatewp_register_id = intval(get_option( 'hello_theme_affiliatewp_register_id' ));

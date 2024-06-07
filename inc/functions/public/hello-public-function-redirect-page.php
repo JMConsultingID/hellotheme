@@ -8,7 +8,7 @@
  * @package HelloTheme
  */
 function hello_theme_redirect_after_purchase( $order_id ) {
-    if ( get_option( 'enable_thank_you_redirect' ) == 'yes' ) {
+    if ( get_option( 'enable_thank_you_redirect' ) == '1' ) {
         $order = wc_get_order( $order_id );
         $status = $order->get_status();
 
@@ -39,8 +39,8 @@ function hello_theme_redirect_after_purchase( $order_id ) {
 add_action( 'woocommerce_thankyou', 'hello_theme_redirect_after_purchase' );
 
 function hello_theme_redirect_cart_to_home() {
-    if ( get_option( 'enable_thank_you_redirect' ) == 'yes' ) {
-        if ( get_option( 'skip_cart_page' ) == 'yes' && ( is_page( 'cart' ) || ( isset( $_GET['cancel_order'] ) && $_GET['cancel_order'] === 'true' ) ) ) {
+    if ( get_option( 'enable_thank_you_redirect' ) == '1' ) {
+        if ( get_option( 'skip_cart_page' ) == '1' && ( is_page( 'cart' ) || ( isset( $_GET['cancel_order'] ) && $_GET['cancel_order'] === 'true' ) ) ) {
             $home_page_url = home_url();
             wp_safe_redirect( $home_page_url );
             exit;
