@@ -392,16 +392,18 @@ function hello_theme_table_style_callback() {
     $options = get_option( 'hello_theme_table_style' );
     ?>
     <select name="hello_theme_table_style">
-        <option value="style1" <?php selected( $options, 'style1' ); ?>>Style 1</option>
-        <option value="style2" <?php selected( $options, 'style2' ); ?>>Style 2</option>
-        <option value="style3" <?php selected( $options, 'style3' ); ?>>Style 3</option>
+        <option value="style1" <?php selected( $options, 'style1' ); ?>>Table Style 1</option>
+        <option value="style2" <?php selected( $options, 'style2' ); ?>>Tabel Style 2</option>
+        <option value="style3" <?php selected( $options, 'style3' ); ?>>Table Style 3</option>
     </select>
     <?php
 }
 
 function hello_theme_table_pricing_description_callback() {
+    $mode = get_option( 'hello_theme_table_mode', 'single' ); // Default to 'single' if not set
+    $style = get_option( 'hello_theme_table_style', 'style1' ); // Default to 'style1' if not set
     ?>
-    <p>Use this shortcode [ypfhello_table_pricing] on your front-end page.</p>
+    <p>Use this shortcode <code>[ypfhello_table_pricing mode='<?php echo esc_attr( $mode ); ?>' style='<?php echo esc_attr( $style ); ?>']</code> on your front-end page.</p>
     <?php
 }
 
