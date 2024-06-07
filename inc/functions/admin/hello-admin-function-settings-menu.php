@@ -31,8 +31,8 @@ function hello_theme_add_menu_page() {
 
     add_submenu_page(
         'hello-theme-panel',
-        'Hello Table Pricing',
-        'Hello Table Pricing',
+        'Hello Pricing Table',
+        'Hello Pricing Table',
         'manage_options',
         'hello-table-pricing-settings',
         'hello_theme_table_pricing_settings_page'
@@ -217,14 +217,14 @@ function hello_theme_register_table_pricing_settings() {
 
     add_settings_section(
         'hello_table_pricing_settings_section',
-        'Hello Theme Table Pricing Settings',
+        'Hello Theme Pricing Table Settings',
         'hello_table_pricing_settings_section_callback',
         'hello-table-pricing-settings'
     );
 
     add_settings_field(
         'hello_theme_enable_table_pricing',
-        'Enable Table Pricing',
+        'Enable Pricing Table',
         'hello_theme_enable_table_pricing_callback',
         'hello-table-pricing-settings',
         'hello_table_pricing_settings_section'
@@ -265,7 +265,7 @@ function hello_affiliatewp_settings_section_callback() {
 }
 
 function hello_table_pricing_settings_section_callback() {
-    echo '<p>Configure your Table Pricing settings below.</p>';
+    echo '<p>Configure your Pricing Table settings below.</p>';
 }
 
 function hello_theme_checkout_mode_callback() {
