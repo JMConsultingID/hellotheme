@@ -49,8 +49,8 @@ function hello_theme_add_menu_page() {
 
     add_submenu_page(
         'hello-theme-panel',
-        'Hello Woo Add-ons Fee',
-        'Hello Woo Add-ons Fee',
+        'Hello Add-ons Fee',
+        'Hello Add-ons Fee',
         'manage_options',
         'hello-woo-addon-fee-settings',
         'hello_theme_woo_addon_fee_settings_page'
@@ -101,7 +101,7 @@ function hello_theme_table_pricing_settings_page() {
 function hello_theme_woo_addon_fee_settings_page() {
     ?>
     <div class="wrap">
-        <h1>Hello Hello Woocommerc Checkout Add-ons Fee Settings</h1>
+        <h1>Hello Woocommerce Checkout Add-ons Fee Settings</h1>
         <form method="post" action="options.php">
             <?php
             settings_fields( 'hello_woo_addon_fee_settings_group' );
@@ -300,7 +300,7 @@ function hello_theme_register_woo_addon_fee_settings() {
         'Enable Add-ons Fee',
         'hello_theme_woo_addon_fee_enable_callback',
         'hello-woo-addon-fee-settings',
-        'hello-woo-addon-fee-settings_section'
+        'hello_woo_addon_fee_settings_section'
     );
 
     add_settings_field(
@@ -308,7 +308,7 @@ function hello_theme_register_woo_addon_fee_settings() {
         'Add-on Title',
         'hello_theme_woo_addon_fee_title_callback',
         'hello-woo-addon-fee-settings',
-        'hello-woo-addon-fee-settings_section'
+        'hello_woo_addon_fee_settings_section'
     );
 
     add_settings_field(
@@ -316,7 +316,7 @@ function hello_theme_register_woo_addon_fee_settings() {
         'Default Add-On ID',
         'hello_theme_woo_addon_fee_default_id_callback',
         'hello-woo-addon-fee-settings',
-        'hello-woo-addon-fee-settings_section'
+        'hello_woo_addon_fee_settings_section'
     );
 }
 add_action( 'admin_init', 'hello_theme_register_woo_addon_fee_settings' );
