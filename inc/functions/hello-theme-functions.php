@@ -7,6 +7,18 @@
  *
  * @package HelloTheme
  */
+// Admin Settings
+require_once get_stylesheet_directory() . '/inc/functions/admin/hello-admin-function-settings-menu.php';
+//require_once get_stylesheet_directory() . '/inc/functions/admin/hello-admin-function-settings-tab.php';
+
+// Public Settings
+require_once get_stylesheet_directory() . '/inc/functions/public/hello-public-function-affiliate-wp.php';
+require_once get_stylesheet_directory() . '/inc/functions/public/hello-public-function-redirect-page.php';
+require_once get_stylesheet_directory() . '/inc/functions/public/hello-public-function-pricing-table.php';
+require_once get_stylesheet_directory() . '/inc/functions/public/hello-public-function-pricing-table-dev.php';
+require_once get_stylesheet_directory() . '/inc/functions/public/hello-public-function-woocommerce.php';
+
+
 //Theme Activation
 function ypf_addons_create_table() {
     global $wpdb;
@@ -24,6 +36,9 @@ function ypf_addons_create_table() {
     dbDelta($sql);
 
     update_option('hello_theme_addons_table_created', '1');
+
+    // Set flag to show admin notice
+    update_option('hello_theme_show_addons_table_notice', '1');
 }
 
 function hello_theme_activate() {
@@ -38,15 +53,15 @@ function hello_theme_deactivate() {
 }
 add_action('switch_theme', 'hello_theme_deactivate');
 
-// Admin Settings
-require_once get_stylesheet_directory() . '/inc/functions/admin/hello-admin-function-settings-menu.php';
-//require_once get_stylesheet_directory() . '/inc/functions/admin/hello-admin-function-settings-tab.php';
-
-// Public Settings
-require_once get_stylesheet_directory() . '/inc/functions/public/hello-public-function-affiliate-wp.php';
-require_once get_stylesheet_directory() . '/inc/functions/public/hello-public-function-redirect-page.php';
-require_once get_stylesheet_directory() . '/inc/functions/public/hello-public-function-pricing-table.php';
-require_once get_stylesheet_directory() . '/inc/functions/public/hello-public-function-pricing-table-dev.php';
-require_once get_stylesheet_directory() . '/inc/functions/public/hello-public-function-woocommerce.php';
-
-?>
+function hello_theme_addons_table_notice() {
+    if (get_option('hello_theme_show_addons_table_notice')) {
+        ?>
+        <div class="notice notice-success is-dismissible">
+            <p><?php _e('Add-ons table has been created successfully.', 'hello-theme'); ?></p>
+        </div>
+        <?php
+        // Hapus opsi setelah menampilkan notifikasi
+        delete_option('hello_theme_show_addons_table_notice');
+    }
+}
+add_action('admin_notices', 'hello_theme_addons_table_notice');
