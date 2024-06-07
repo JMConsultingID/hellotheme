@@ -39,7 +39,3 @@ function hello_pricing_table_dev_shortcode() {
     }
 }
 add_shortcode( 'hello_pricing_table_dev', 'hello_pricing_table_dev_shortcode' );
-
-
-
-?>
