@@ -493,7 +493,7 @@ function hello_theme_woo_addon_fee_enable_callback() {
 function hello_theme_woo_addon_fee_title_callback() {
     $title = get_option('hello_theme_woo_addon_fee_title');
      ?>
-    <input type="text" name="hello_theme_woo_addon_fee_title" id="hello_theme_woo_addon_fee_title" value="<?php echo esc_attr($title); ?>" />';
+    <input type="text" name="hello_theme_woo_addon_fee_title" id="hello_theme_woo_addon_fee_title" value="<?php echo esc_attr($title); ?>" />
     <?php
 }
 
@@ -501,7 +501,7 @@ function hello_theme_woo_addon_fee_title_callback() {
 function hello_theme_woo_addon_fee_default_id_callback() {
     $addons_default_id = get_option('hello_theme_woo_addon_fee_default_id');
      ?>
-    <input type="text" name="hello_theme_woo_addon_fee_default_id" id="hello_theme_woo_addon_fee_default_id" value="<?php echo esc_attr($addons_default_id); ?>" />';
+    <input type="text" name="hello_theme_woo_addon_fee_default_id" id="hello_theme_woo_addon_fee_default_id" value="<?php echo esc_attr($addons_default_id); ?>" />
     <?php
 }
 
