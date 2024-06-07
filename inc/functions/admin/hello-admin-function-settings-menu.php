@@ -149,7 +149,7 @@ function hello_theme_skip_cart_page_callback() {
 
 function hello_theme_thank_you_page_url_callback() {
     $options = get_option( 'hello_theme_thank_you_page_url' );
-    $pages = hello_theme_get_pages_array();
+    $pages = hello_theme_menu_get_pages_array();
     ?>
     <select name="hello_theme_thank_you_page_url">
         <?php
@@ -163,7 +163,7 @@ function hello_theme_thank_you_page_url_callback() {
 
 function hello_theme_failed_page_url_callback() {
     $options = get_option( 'hello_theme_failed_page_url' );
-    $pages = hello_theme_get_pages_array();
+    $pages = hello_theme_menu_get_pages_array();
     ?>
     <select name="hello_theme_failed_page_url">
         <?php
@@ -177,7 +177,7 @@ function hello_theme_failed_page_url_callback() {
 
 function hello_theme_on_hold_page_url_callback() {
     $options = get_option( 'hello_theme_on_hold_page_url' );
-    $pages = hello_theme_get_pages_array();
+    $pages = hello_theme_menu_get_pages_array();
     ?>
     <select name="hello_theme_on_hold_page_url">
         <?php
@@ -189,7 +189,7 @@ function hello_theme_on_hold_page_url_callback() {
     <?php
 }
 
-function hello_theme_get_pages_array() {
+function hello_theme_menu_get_pages_array() {
     $pages = get_pages();
     $pages_array = array();
     foreach ( $pages as $page ) {
