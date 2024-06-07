@@ -8,6 +8,7 @@
  * @package HelloTheme
  */
 // Admin Settings
+require_once get_stylesheet_directory() . '/inc/functions/admin/hello-admin-function-settings-menu.php';
 require_once get_stylesheet_directory() . '/inc/functions/admin/hello-admin-function-settings-tab.php';
 
 // Public Settings
