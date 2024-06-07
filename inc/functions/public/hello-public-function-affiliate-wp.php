@@ -13,6 +13,7 @@ function hello_theme_affwp_register_form_script() {
         $post_id = get_the_ID();
         $affiliatewp_register_id = intval(get_option( 'hello_theme_affiliatewp_register_id' ));
         $affiliatewp_login_id = intval(get_option( 'hello_theme_affiliatewp_area_id' ));
+        $affiliatewp_area_url = $affiliatewp_login_id  ? get_permalink( $affiliatewp_login_id  ) : home_url();
 
         // Check if the current post ID is 639 and not in the Elementor editor
         if ( $post_id === $affiliatewp_register_id && strpos($_SERVER['REQUEST_URI'], 'elementor') === false ) {
@@ -20,7 +21,7 @@ function hello_theme_affwp_register_form_script() {
         <script>
         jQuery(document).ready(function($) {
             if ($('#affwp-register-form').length === 0) {
-                window.location.href = '/affiliate-area';
+                window.location.href = '<?php echo esc_js($affiliatewp_area_url); ?>';
             }
         });
         </script>
