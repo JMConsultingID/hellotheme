@@ -72,6 +72,22 @@ function hello_theme_woocommerce_settings_page() {
     <?php
 }
 
+// Konten halaman pengaturan Table Pricing
+function hello_theme_table_pricing_settings_page() {
+    ?>
+    <div class="wrap">
+        <h1>Hello Table Pricing Settings</h1>
+        <form method="post" action="options.php">
+            <?php
+            settings_fields( 'hello_table_pricing_settings_group' );
+            do_settings_sections( 'hello-table-pricing-settings' );
+            submit_button();
+            ?>
+        </form>
+    </div>
+    <?php
+}
+
 // Konten halaman pengaturan Affiliate WP
 function hello_theme_affiliatewp_settings_page() {
     ?>
