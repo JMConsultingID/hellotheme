@@ -403,7 +403,7 @@ function hello_theme_table_pricing_description_callback() {
     $mode = get_option( 'hello_theme_table_mode', 'single' ); // Default to 'single' if not set
     $style = get_option( 'hello_theme_table_style', 'style1' ); // Default to 'style1' if not set
     ?>
-    <p>Use this shortcode <code>[ypfhello_table_pricing mode='<?php echo esc_attr( $mode ); ?>' style='<?php echo esc_attr( $style ); ?>']</code> on your front-end page.</p>
+    <p>Use this shortcode <code>[hello_pricing_table mode='<?php echo esc_attr( $mode ); ?>' style='<?php echo esc_attr( $style ); ?>']</code> on your front-end page.</p>
     <?php
 }
 

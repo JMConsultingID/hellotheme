@@ -7,53 +7,39 @@
  *
  * @package HelloTheme
  */
-function hello_theme_affwp_register_form_script() {
-    if ( get_option( 'hello_theme_affiliatewp_enable' ) === '1'  ) {
-        // Get the current post ID
-        $post_id = get_the_ID();
-        $affiliatewp_register_id = intval(get_option( 'hello_theme_affiliatewp_register_id' ));
-        $affiliatewp_login_id = intval(get_option( 'hello_theme_affiliatewp_area_id' ));
-        $affiliatewp_area_url = $affiliatewp_login_id  ? get_permalink( $affiliatewp_login_id  ) : home_url();
-
-        // Check if the current post ID is 639 and not in the Elementor editor
-        if ( $post_id === $affiliatewp_register_id && strpos($_SERVER['REQUEST_URI'], 'elementor') === false ) {
+// Fungsi untuk menampilkan tabel harga
+function hello_pricing_table_shortcode() {
+    if ( get_option( 'hello_theme_enable_table_pricing' ) == '1' ) {
+        ob_start();
         ?>
-        <script>
-        jQuery(document).ready(function($) {
-            if ($('#affwp-register-form').length === 0) {
-                window.location.href = '<?php echo esc_js($affiliatewp_area_url); ?>';
-            }
-        });
-        </script>
+        <table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse; width: 100%;">
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>Basic</th>
+                    <th>Standard</th>
+                    <th>Premium</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php for ( $i = 1; $i <= 9; $i++ ) : ?>
+                    <tr>
+                        <td>Feature <?php echo $i; ?></td>
+                        <td>Basic Feature <?php echo $i; ?></td>
+                        <td>Standard Feature <?php echo $i; ?></td>
+                        <td>Premium Feature <?php echo $i; ?></td>
+                    </tr>
+                <?php endfor; ?>
+            </tbody>
+        </table>
         <?php
-        }
-
-        // Check if the current post ID is 631 and not in the Elementor editor
-        if ( $post_id === $affiliatewp_login_id && strpos($_SERVER['REQUEST_URI'], 'elementor') === false ) {
-            // Check if user is logged in and not an affiliate
-            if ( is_user_logged_in() && !affwp_is_affiliate() ) {
-                ?>
-                <script>
-                jQuery(document).ready(function($) {
-                    if ($('#affwp-register-form').length > 0) {
-                        $('#affwp-login-form').hide();
-                    }
-                });
-                </script>
-                <?php
-            } else {
-                ?>
-                <script>
-                jQuery(document).ready(function($) {
-                    $('#affwp-register-form').hide();
-                });
-                </script>
-                <?php
-            }
-        }
+        return ob_get_clean();
+    } else {
+        return '<p>Table pricing is not enabled.</p>';
     }
 }
+add_shortcode( 'hello_pricing_table', 'hello_pricing_table_shortcode' );
 
-add_action('wp_footer', 'hello_theme_affwp_register_form_script');
+
 
 ?>
