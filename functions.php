@@ -21,9 +21,7 @@ define( 'HELLO_THEME_VERSION', '2.1.3' );
  *
  * @return void
  */
-require_once get_stylesheet_directory() . '/inc/functions/hello-theme-function-settings-tab.php';
 require_once get_stylesheet_directory() . '/inc/functions/hello-theme-functions.php';
-require_once get_stylesheet_directory() . '/inc/functions/hello-theme-function-redirect.php';
 
 function hello_theme_scripts_styles() {
     wp_enqueue_style('hello-theme-style', get_stylesheet_directory_uri() . '/style.css', [], HELLO_THEME_VERSION);
