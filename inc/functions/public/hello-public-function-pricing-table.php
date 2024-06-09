@@ -12,28 +12,6 @@ function hello_pricing_table_shortcode() {
     if ( get_option( 'hello_theme_enable_table_pricing' ) === '1' ) {
         ob_start();
         ?>
-        <table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse; width: 100%;">
-            <thead>
-                <tr>
-                    <th>Feature</th>
-                    <th>Basic</th>
-                    <th>Standard</th>
-                    <th>Premium</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php for ( $i = 1; $i <= 9; $i++ ) : ?>
-                    <tr>
-                        <td>Feature <?php echo $i; ?></td>
-                        <td>Basic Feature <?php echo $i; ?></td>
-                        <td>Standard Feature <?php echo $i; ?></td>
-                        <td>Premium Feature <?php echo $i; ?></td>
-                    </tr>
-                <?php endfor; ?>
-            </tbody>
-        </table>
-
-
         <h1>Responsive Pricing Table, Table Columns in Desktop, Slider in Mobile</h1>
 
         <div class="pricing__table">
@@ -52,7 +30,7 @@ function hello_pricing_table_shortcode() {
             </div>
           </div>
           <div class="pt__option">
-            
+
             <?php display_swiper_navigation_buttons('navBtnLeft', 'navBtnRight'); ?>
 
             <div class="pt__option__slider swiper" id="pricingTableSlider">
