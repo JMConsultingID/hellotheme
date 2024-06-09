@@ -15,9 +15,9 @@ function hello_pricing_table_shortcode() {
         <div class="hello-theme-container hello-theme-table-pricing hello-theme-with-tab">
 
         <div class="hello-theme-tab-buttons">
-            <div class="hello-theme-tab-button active" data-tab-id="tab1">Tab 1</div>
-            <div class="hello-theme-tab-button" data-tab-id="tab2">Tab 2</div>
-            <div class="hello-theme-tab-button" data-tab-id="tab3">Tab 3</div>
+            <div class="hello-theme-tab-button active" data-tab-id="tab1">Origin Funded</div>
+            <div class="hello-theme-tab-button" data-tab-id="tab2">Evaluation Funded</div>
+            <div class="hello-theme-tab-button" data-tab-id="tab3">Plus Funded</div>
         </div>
 
         <div id="tab1" class="hello-theme-tab-content active" data-tab-id="tab1">
@@ -45,7 +45,7 @@ function hello_pricing_table_shortcode() {
                 <div class="swiper-slide pt__option__item">
                   <div class="pt__item recommend">
                     <div class="pt__item__wrap">
-                      <div class="pt__row">Premium</div>
+                      <div class="pt__row">Origin Funded Stater</div>
                       <div class="pt__row">150,000</div>
                       <div class="pt__row">Unlimited</div>
                       <div class="pt__row">Unlimited</div>
@@ -64,7 +64,7 @@ function hello_pricing_table_shortcode() {
                 <div class="swiper-slide pt__option__item">
                   <div class="pt__item">
                     <div class="pt__item__wrap">
-                      <div class="pt__row">Standard</div>
+                      <div class="pt__row">Origin Funded Standard</div>
                       <div class="pt__row">16,000</div>
                       <div class="pt__row">5 Seats</div>
                       <div class="pt__row">5 Audiences</div>
@@ -83,7 +83,7 @@ function hello_pricing_table_shortcode() {
                 <div class="swiper-slide pt__option__item">
                   <div class="pt__item">
                     <div class="pt__item__wrap">
-                      <div class="pt__row">Essentials</div>
+                      <div class="pt__row">Origin Funded Profesional</div>
                       <div class="pt__row">5,000</div>
                       <div class="pt__row">3 Seats</div>
                       <div class="pt__row">3 Audiences</div>
@@ -130,7 +130,7 @@ function hello_pricing_table_shortcode() {
                 <div class="swiper-slide pt__option__item">
                   <div class="pt__item recommend">
                     <div class="pt__item__wrap">
-                      <div class="pt__row">Premium</div>
+                      <div class="pt__row">Evaluation Funded Premium</div>
                       <div class="pt__row">150,000</div>
                       <div class="pt__row">Unlimited</div>
                       <div class="pt__row">Unlimited</div>
@@ -149,7 +149,7 @@ function hello_pricing_table_shortcode() {
                 <div class="swiper-slide pt__option__item">
                   <div class="pt__item">
                     <div class="pt__item__wrap">
-                      <div class="pt__row">Standard</div>
+                      <div class="pt__row">Evaluation Funded Standard</div>
                       <div class="pt__row">16,000</div>
                       <div class="pt__row">5 Seats</div>
                       <div class="pt__row">5 Audiences</div>
@@ -168,7 +168,7 @@ function hello_pricing_table_shortcode() {
                 <div class="swiper-slide pt__option__item">
                   <div class="pt__item">
                     <div class="pt__item__wrap">
-                      <div class="pt__row">Essentials</div>
+                      <div class="pt__row">Evaluation Funded Essentials</div>
                       <div class="pt__row">5,000</div>
                       <div class="pt__row">3 Seats</div>
                       <div class="pt__row">3 Audiences</div>
@@ -215,7 +215,7 @@ function hello_pricing_table_shortcode() {
                 <div class="swiper-slide pt__option__item">
                   <div class="pt__item recommend">
                     <div class="pt__item__wrap">
-                      <div class="pt__row">Premium</div>
+                      <div class="pt__row">Plus Funded Premium</div>
                       <div class="pt__row">150,000</div>
                       <div class="pt__row">Unlimited</div>
                       <div class="pt__row">Unlimited</div>
@@ -234,7 +234,7 @@ function hello_pricing_table_shortcode() {
                 <div class="swiper-slide pt__option__item">
                   <div class="pt__item">
                     <div class="pt__item__wrap">
-                      <div class="pt__row">Standard</div>
+                      <div class="pt__row">Plus Funded Standard</div>
                       <div class="pt__row">16,000</div>
                       <div class="pt__row">5 Seats</div>
                       <div class="pt__row">5 Audiences</div>
@@ -253,7 +253,26 @@ function hello_pricing_table_shortcode() {
                 <div class="swiper-slide pt__option__item">
                   <div class="pt__item">
                     <div class="pt__item__wrap">
-                      <div class="pt__row">Essentials</div>
+                      <div class="pt__row">Plus Funded Essentials</div>
+                      <div class="pt__row">5,000</div>
+                      <div class="pt__row">3 Seats</div>
+                      <div class="pt__row">3 Audiences</div>
+                      <div class="pt__row">24/7 Email & Chat Support</div>
+                      <div class="pt__row"><i class="fa-solid fa-check"></i></div>
+                      <div class="pt__row"><i class="fa-solid fa-check"></i></div>
+                      <div class="pt__row">Limited</div>
+                      <div class="pt__row"><i class="fa-solid fa-check"></i></div>
+                      <div class="pt__row">Limited</div>
+                      <div class="pt__row">
+                        <a href="">Purchase Now</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide pt__option__item">
+                  <div class="pt__item">
+                    <div class="pt__item__wrap">
+                      <div class="pt__row">Plus Funded Plus</div>
                       <div class="pt__row">5,000</div>
                       <div class="pt__row">3 Seats</div>
                       <div class="pt__row">3 Audiences</div>
