@@ -36,7 +36,7 @@ add_action('wp_enqueue_scripts', 'hello_theme_scripts_styles', 20);
  */
 function hello_theme_pricing_table_live() {
     // Check if the pricing table is enabled
-    if ( get_option( 'hello_theme_enable_table_pricing' ) == '1' ) {
+    if ( get_option( 'hello_theme_enable_table_pricing' ) === '1' ) {
         // Register styles        
         wp_register_style( 'hello-theme-font-awesome-css', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
         wp_register_style( 'hello-theme-swiper-bundle-css', 'https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css');

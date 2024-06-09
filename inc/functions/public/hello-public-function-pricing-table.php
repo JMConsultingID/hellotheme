@@ -9,7 +9,7 @@
  */
 // Fungsi untuk menampilkan tabel harga
 function hello_pricing_table_shortcode() {
-    if ( get_option( 'hello_theme_enable_table_pricing' ) == '1' ) {
+    if ( get_option( 'hello_theme_enable_table_pricing' ) === '1' ) {
         ob_start();
         ?>
         <table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse; width: 100%;">
@@ -129,7 +129,7 @@ function hello_pricing_table_shortcode() {
             </div>
           </div>
         </div>
-        
+
         <?php
         return ob_get_clean();
     } else {
