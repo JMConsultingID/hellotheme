@@ -1,18 +1,32 @@
 (function( $ ) {
 	'use strict';
-    function changeBillingAddressLabel() {
-        var addressField = $('#billing_address_1_field label');
-        if (addressField.length && addressField.text().trim() !== 'Address') {
-            addressField.text('Address');
+    // Pricing table - mobile only slider
+    var init = false;
+    var pricingCardSwiper;
+    var pricingLoanSwiper
+    function swiperCard() {
+      if (window.innerWidth <= 991) {
+        if (!init) {
+          init = true;
+          pricingCardSwiper = new Swiper("#pricingTableSlider", {
+            slidesPerView: "auto",
+            spaceBetween: 5,
+            grabCursor: true,
+            keyboard: true,
+            autoHeight: false,
+            navigation: {
+              nextEl: "#navBtnRight",
+              prevEl: "#navBtnLeft",
+            },
+          });
         }
+      } else if (init) {
+        pricingCardSwiper.destroy();
+        init = false;
+      }
     }
-    // Change label on page load
-    changeBillingAddressLabel();
-
-    // Change label after AJAX update
-    $(document.body).on('updated_checkout', function() {
-        changeBillingAddressLabel();
-    });
+    swiperCard();
+    window.addEventListener("resize", swiperCard);
 
 
 })( jQuery );
