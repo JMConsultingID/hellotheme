@@ -53,7 +53,7 @@ function hello_theme_addons_table_notice() {
 }
 add_action('admin_notices', 'hello_theme_addons_table_notice');
 
-function display_swiper_navigation_buttons($left_button_id, $right_button_id) {
+function hello_theme_display_swiper_navigation_buttons($left_button_id, $right_button_id) {
     ?>
     <div class="pt__option__mobile__nav">
         <a id="<?php echo esc_attr($left_button_id); ?>" href="#" class="mobile__nav__btn">

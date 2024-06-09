@@ -12,9 +12,9 @@ function hello_pricing_table_shortcode() {
     if ( get_option( 'hello_theme_enable_table_pricing' ) === '1' ) {
         ob_start();
         ?>
-        <h1>Responsive Pricing Table, Table Columns in Desktop, Slider in Mobile</h1>
+        <div class="hello-theme-container hello-theme-table-pricing hello-theme-with-tab">
 
-        <div class="pricing__table">
+        <div class="pricing__table hello-theme-product-id">
           <div class="pt__title">
             <div class="pt__title__wrap">
               <div class="pt__row"></div>
@@ -31,7 +31,7 @@ function hello_pricing_table_shortcode() {
           </div>
           <div class="pt__option">
 
-            <?php display_swiper_navigation_buttons('navBtnLeft', 'navBtnRight'); ?>
+            <?php hello_theme_display_swiper_navigation_buttons('navBtnLeft', 'navBtnRight'); ?>
 
             <div class="pt__option__slider swiper" id="pricingTableSlider">
               <div class="swiper-wrapper">
@@ -95,6 +95,8 @@ function hello_pricing_table_shortcode() {
               </div>
             </div>
           </div>
+        </div>
+
         </div>
 
         <?php
