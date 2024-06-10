@@ -8,7 +8,7 @@
  * @package HelloTheme
  */
 function hello_pricing_table_level_2_shortcode() {
-    // Get all product categories
+     // Get all product categories
     $categories = get_terms('product_cat');
     ob_start();
     ?>
