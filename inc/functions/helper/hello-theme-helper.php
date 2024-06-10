@@ -76,6 +76,9 @@ function render_pricing_table($product) {
     ob_start();
     hello_theme_display_swiper_navigation_buttons('navBtnLeft', 'navBtnRight');
     $navigationButtons = ob_get_clean();
+    $product_id = $product->get_id();
+    $product_price = wc_price($product->get_price()); // Get product price with currency symbol
+    $checkout_url = "/checkout/?add-to-cart={$product_id}"; // Generate checkout URL
 
     return "<div class='pricing__table hello-theme-product-id'>
           <div class='pt__title'>
@@ -112,7 +115,7 @@ function render_pricing_table($product) {
                       <div class='pt__row'><i class='fa-solid fa-check'></i></div>
                       <div class='pt__row'><i class='fa-solid fa-check'></i></div>
                       <div class='pt__row'>
-                        <a href='{$product->get_permalink()}'>Purchase Now</a>
+                        <a href='{$checkout_url}'>Purchase Now ({$product_price})</a>
                       </div>
                     </div>
                   </div>
@@ -131,7 +134,7 @@ function render_pricing_table($product) {
                       <div class='pt__row'><i class='fa-solid fa-check'></i></div>
                       <div class='pt__row'><i class='fa-solid fa-check'></i></div>
                       <div class='pt__row'>
-                        <a href=''>Purchase Now</a>
+                        <a href='{$checkout_url}'>Purchase Now ({$product_price})</a>
                       </div>
                     </div>
                   </div>
@@ -150,7 +153,7 @@ function render_pricing_table($product) {
                       <div class='pt__row'><i class='fa-solid fa-check'></i></div>
                       <div class='pt__row'>Limited</div>
                       <div class='pt__row'>
-                        <a href=''>Purchase Now</a>
+                        <a href='{$checkout_url}'>Purchase Now ({$product_price})</a>
                       </div>
                     </div>
                   </div>
