@@ -27,6 +27,7 @@
 
             return swiperInstance;
         }
+        return null;
     }
 
     // Function to update navigation buttons' disabled state
@@ -69,11 +70,13 @@
                 activeSubTabContent.classList.add('active');
 
                 // Set the active slide index for the new sub-tab
-                if (activeSubTabContent.swiperInstance) {
+                if (activeSubTabContent && activeSubTabContent.swiperInstance) {
                     activeSubTabContent.swiperInstance.slideTo(activeSlideIndex, 0); // Use slideTo with no animation
-                } else {
+                } else if (activeSubTabContent) {
                     activeSubTabContent.swiperInstance = initTabSwiper(activeSubTabContent);
-                    activeSubTabContent.swiperInstance.slideTo(activeSlideIndex, 0);
+                    if (activeSubTabContent.swiperInstance) {
+                        activeSubTabContent.swiperInstance.slideTo(activeSlideIndex, 0);
+                    }
                 }
             });
         });
@@ -82,7 +85,9 @@
         const activeSubTabContent = mainTab.querySelector('.hello-theme-sub-tab-content.active');
         if (activeSubTabContent && !activeSubTabContent.swiperInstance) {
             activeSubTabContent.swiperInstance = initTabSwiper(activeSubTabContent);
-            activeSubTabContent.swiperInstance.slideTo(activeSlideIndex, 0);
+            if (activeSubTabContent.swiperInstance) {
+                activeSubTabContent.swiperInstance.slideTo(activeSlideIndex, 0);
+            }
         }
     }
 
@@ -102,7 +107,9 @@
                 activeTabContent.swiperInstance.slideTo(activeSlideIndex, 0); // Use slideTo with no animation
             } else {
                 activeTabContent.swiperInstance = initTabSwiper(activeTabContent);
-                activeTabContent.swiperInstance.slideTo(activeSlideIndex, 0);
+                if (activeTabContent.swiperInstance) {
+                    activeTabContent.swiperInstance.slideTo(activeSlideIndex, 0);
+                }
             }
 
             // Initialize sub-tabs for the active main tab
@@ -115,7 +122,9 @@
             if (tabContent.classList.contains('active')) {
                 if (!tabContent.swiperInstance) {
                     tabContent.swiperInstance = initTabSwiper(tabContent);
-                    tabContent.swiperInstance.slideTo(activeSlideIndex, 0);
+                    if (tabContent.swiperInstance) {
+                        tabContent.swiperInstance.slideTo(activeSlideIndex, 0);
+                    }
                 }
             } else if (tabContent.swiperInstance) {
                 tabContent.swiperInstance.destroy();
@@ -131,9 +140,8 @@
     });
 
     // Initialize sub-tabs for the initially active main tab
-    const activeMainTab = document.querySelector('.hello-theme-tab-content');
+    const activeMainTab = document.querySelector('.hello-theme-tab-content.active');
     if (activeMainTab) {
-        activeMainTab.classList.add('active');
         initSubTabs(activeMainTab);
     }
 })( jQuery );
