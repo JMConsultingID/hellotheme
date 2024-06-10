@@ -102,7 +102,7 @@ function render_pricing_table($product) {
             <div class='pt__option__slider swiper' id='pricingTableSlider'>
               <div class='swiper-wrapper'>
                 <div class='swiper-slide pt__option__item'>
-                  <div class='pt__item recommend'>
+                  <div class='pt__item'>
                     <div class='pt__item__wrap'>
                       <div class='pt__row'>Origin Funded Stater</div>
                       <div class='pt__row'>150,000</div>
