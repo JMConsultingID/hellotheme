@@ -71,7 +71,7 @@
                 // Set the active slide index for the new sub-tab
                 if (activeSubTabContent.swiperInstance) {
                     activeSubTabContent.swiperInstance.slideTo(activeSlideIndex, 0); // Use slideTo with no animation
-                } else {
+                } else if (window.innerWidth <= 991) {
                     activeSubTabContent.swiperInstance = initTabSwiper(activeSubTabContent);
                     activeSubTabContent.swiperInstance.slideTo(activeSlideIndex, 0);
                 }
@@ -80,7 +80,7 @@
 
         // Initialize swiper for the active sub-tab
         const activeSubTabContent = mainTab.querySelector('.hello-theme-sub-tab-content.active');
-        if (activeSubTabContent && !activeSubTabContent.swiperInstance) {
+        if (activeSubTabContent && !activeSubTabContent.swiperInstance && window.innerWidth <= 991) {
             activeSubTabContent.swiperInstance = initTabSwiper(activeSubTabContent);
             activeSubTabContent.swiperInstance.slideTo(activeSlideIndex, 0);
         }
@@ -102,7 +102,9 @@
                 activeTabContent.swiperInstance.slideTo(activeSlideIndex, 0); // Use slideTo with no animation
             } else {
                 activeTabContent.swiperInstance = initTabSwiper(activeTabContent);
-                activeTabContent.swiperInstance.slideTo(activeSlideIndex, 0);
+                if (activeTabContent.swiperInstance) {
+                    activeTabContent.swiperInstance.slideTo(activeSlideIndex, 0);
+                }
             }
 
             // Initialize sub-tabs for the active main tab
@@ -113,7 +115,7 @@
     const initAllSwipers = () => {
         document.querySelectorAll('.hello-theme-tab-content').forEach(tabContent => {
             if (tabContent.classList.contains('active')) {
-                if (!tabContent.swiperInstance) {
+                if (!tabContent.swiperInstance && window.innerWidth <= 991) {
                     tabContent.swiperInstance = initTabSwiper(tabContent);
                     tabContent.swiperInstance.slideTo(activeSlideIndex, 0);
                 }
