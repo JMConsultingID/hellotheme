@@ -24,7 +24,10 @@ function hello_pricing_table_level_2_shortcode() {
         <?php foreach ($categories as $index => $category): ?>
             <div id="tab-<?php echo $category->term_id; ?>" class="hello-theme-tab-content <?php echo $index == 0 ? 'active' : ''; ?>" data-tab-id="tab-<?php echo $category->term_id; ?>">
                 <?php
-                $products = wc_get_products(array('category' => array($category->slug)));
+                $products = wc_get_products(array(
+                    'category' => array($category->slug),
+                    'status' => 'publish'
+                ));
                 if ($products): ?>
                     <div class="hello-theme-sub-tab-buttons">
                         <?php foreach ($products as $productIndex => $product): ?>
