@@ -32,6 +32,9 @@
 .hello-theme-checkout-button{
 	text-align:center;
 }
+.hello-theme-sub-tab-content{
+	margin-bottom:50px;
+}
 .hello-theme-checkout-button a{
 	padding: 15px 30px;
     font-weight: 500;
