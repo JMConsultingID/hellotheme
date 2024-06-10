@@ -8,25 +8,25 @@
  */
 
 /* Add your custom CSS here */
-.hello-theme-tab-buttons {
+.hello-theme-tab-buttons, .hello-theme-sub-tab-buttons {
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
 }
-.hello-theme-tab-button {
+.hello-theme-tab-button, .hello-theme-sub-tab-button {
     margin: 0 10px;
     padding: 10px 20px;
     cursor: pointer;
     background-color: #f1f1f1;
     border: 1px solid #ccc;
 }
-.hello-theme-tab-button.active {
+.hello-theme-tab-button.active, .hello-theme-sub-tab-button.active {
     background-color: #ddd;
 }
-.hello-theme-tab-content {
+.hello-theme-tab-content, .hello-theme-sub-tab-content {
     display: none;
 }
-.hello-theme-tab-content.active {
+.hello-theme-tab-content.active, .hello-theme-sub-tab-content.active {
     display: block;
 }
 .pricing__table {

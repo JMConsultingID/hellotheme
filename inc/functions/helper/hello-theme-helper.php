@@ -71,3 +71,88 @@ function hello_theme_display_swiper_navigation_buttons($left_button_id, $right_b
     </div>
     <?php
 }
+
+function render_pricing_table($tableName) {
+    return "<div class='pricing__table hello-theme-product-id'>
+          <div class='pt__title'>
+            <div class='pt__title__wrap'>
+              <div class='pt__row'>{$tableName}</div>
+              <div class='pt__row'>Monthly Email Sends</div>
+              <div class='pt__row'>Users</div>
+              <div class='pt__row'>Audiences</div>
+              <div class='pt__row'>24/7 Email & Chat Support</div>
+              <div class='pt__row'>Pre-built Email Templates</div>
+              <div class='pt__row'>300+ Integrations</div>
+              <div class='pt__row'>Reporting & Analytics</div>
+              <div class='pt__row'>Forms & Landing Pages</div>
+              <div class='pt__row'>Creative Assistant</div>
+            </div>
+          </div>
+          <div class='pt__option'>
+
+            <?php hello_theme_display_swiper_navigation_buttons('navBtnLeft', 'navBtnRight'); ?>
+
+            <div class='pt__option__slider swiper' id='pricingTableSlider'>
+              <div class='swiper-wrapper'>
+                <div class='swiper-slide pt__option__item'>
+                  <div class='pt__item recommend'>
+                    <div class='pt__item__wrap'>
+                      <div class='pt__row'>Origin Funded Stater</div>
+                      <div class='pt__row'>150,000</div>
+                      <div class='pt__row'>Unlimited</div>
+                      <div class='pt__row'>Unlimited</div>
+                      <div class='pt__row'>Phone & Priority Support</div>
+                      <div class='pt__row'><i class='fa-solid fa-check'></i></div>
+                      <div class='pt__row'><i class='fa-solid fa-check'></i></div>
+                      <div class='pt__row'><i class='fa-solid fa-check'></i></div>
+                      <div class='pt__row'><i class='fa-solid fa-check'></i></div>
+                      <div class='pt__row'><i class='fa-solid fa-check'></i></div>
+                      <div class='pt__row'>
+                        <a href=''>Purchase Now</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class='swiper-slide pt__option__item'>
+                  <div class='pt__item'>
+                    <div class='pt__item__wrap'>
+                      <div class='pt__row'>Origin Funded Standard</div>
+                      <div class='pt__row'>16,000</div>
+                      <div class='pt__row'>5 Seats</div>
+                      <div class='pt__row'>5 Audiences</div>
+                      <div class='pt__row'>24/7 Email & Chat Support</div>
+                      <div class='pt__row'><i class='fa-solid fa-check'></i></div>
+                      <div class='pt__row'><i class='fa-solid fa-check'></i></div>
+                      <div class='pt__row'><i class='fa-solid fa-check'></i></div>
+                      <div class='pt__row'><i class='fa-solid fa-check'></i></div>
+                      <div class='pt__row'><i class='fa-solid fa-check'></i></div>
+                      <div class='pt__row'>
+                        <a href=''>Purchase Now</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class='swiper-slide pt__option__item'>
+                  <div class='pt__item'>
+                    <div class='pt__item__wrap'>
+                      <div class='pt__row'>Origin Funded Profesional</div>
+                      <div class='pt__row'>5,000</div>
+                      <div class='pt__row'>3 Seats</div>
+                      <div class='pt__row'>3 Audiences</div>
+                      <div class='pt__row'>24/7 Email & Chat Support</div>
+                      <div class='pt__row'><i class='fa-solid fa-check'></i></div>
+                      <div class='pt__row'><i class='fa-solid fa-check'></i></div>
+                      <div class='pt__row'>Limited</div>
+                      <div class='pt__row'><i class='fa-solid fa-check'></i></div>
+                      <div class='pt__row'>Limited</div>
+                      <div class='pt__row'>
+                        <a href=''>Purchase Now</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>";
+}
