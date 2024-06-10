@@ -153,7 +153,10 @@ function render_pricing_table($product) {
             </div>
           </div>
         </div>
-        <a href='{$checkout_url}'>Purchase Now ({$product_price})</a>";
+        <div class='hello-theme-checkout-button'>
+            <a href='{$checkout_url}'>Purchase Now ({$product_price})</a>
+        </div>";
+
 }
 
 function render_product_pricing_table($product) {

@@ -29,6 +29,20 @@
 .hello-theme-tab-content.active, .hello-theme-sub-tab-content.active {
     display: block;
 }
+.hello-theme-checkout-button{
+	text-align:center;
+}
+.hello-theme-checkout-button a{
+	padding: 15px 30px;
+    font-weight: 500;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 10px;
+    background-color: #0061ff;
+    transition: 0.25s;
+    text-align: center;
+}
 .pricing__table {
 	display: flex;
 	margin: 30px 30px 90px 30px;
