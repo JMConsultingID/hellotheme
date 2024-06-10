@@ -73,6 +73,10 @@ function hello_theme_display_swiper_navigation_buttons($left_button_id, $right_b
 }
 
 function render_pricing_table($tableName) {
+    ob_start();
+    hello_theme_display_swiper_navigation_buttons('navBtnLeft', 'navBtnRight');
+    $navigationButtons = ob_get_clean();
+
     return "<div class='pricing__table hello-theme-product-id'>
           <div class='pt__title'>
             <div class='pt__title__wrap'>
@@ -90,8 +94,8 @@ function render_pricing_table($tableName) {
           </div>
           <div class='pt__option'>
 
-            <?php hello_theme_display_swiper_navigation_buttons('navBtnLeft', 'navBtnRight'); ?>
-
+            {$navigationButtons}
+            
             <div class='pt__option__slider swiper' id='pricingTableSlider'>
               <div class='swiper-wrapper'>
                 <div class='swiper-slide pt__option__item'>
