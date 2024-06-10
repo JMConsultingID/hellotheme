@@ -72,7 +72,7 @@ function hello_theme_display_swiper_navigation_buttons($left_button_id, $right_b
     <?php
 }
 
-function render_product_pricing_table($product) {
+function render_pricing_table($product) {
     ob_start();
     hello_theme_display_swiper_navigation_buttons('navBtnLeft', 'navBtnRight');
     $navigationButtons = ob_get_clean();
