@@ -27,7 +27,6 @@
 
             return swiperInstance;
         }
-        return null; // Return null if swiper is not initialized
     }
 
     // Function to update navigation buttons' disabled state
@@ -35,18 +34,16 @@
         const prevButton = tabContent.querySelector(".mobile__nav__btn:first-of-type");
         const nextButton = tabContent.querySelector(".mobile__nav__btn:last-of-type");
 
-        if (swiperInstance) {
-            if (swiperInstance.isBeginning) {
-                prevButton.classList.add('swiper-button-disabled');
-            } else {
-                prevButton.classList.remove('swiper-button-disabled');
-            }
+        if (swiperInstance.isBeginning) {
+            prevButton.classList.add('swiper-button-disabled');
+        } else {
+            prevButton.classList.remove('swiper-button-disabled');
+        }
 
-            if (swiperInstance.isEnd) {
-                nextButton.classList.add('swiper-button-disabled');
-            } else {
-                nextButton.classList.remove('swiper-button-disabled');
-            }
+        if (swiperInstance.isEnd) {
+            nextButton.classList.add('swiper-button-disabled');
+        } else {
+            nextButton.classList.remove('swiper-button-disabled');
         }
     }
 
@@ -72,19 +69,20 @@
                 activeSubTabContent.classList.add('active');
 
                 // Set the active slide index for the new sub-tab
-                if (window.innerWidth <= 991 && activeSubTabContent.swiperInstance) {
+                if (activeSubTabContent.swiperInstance) {
                     activeSubTabContent.swiperInstance.slideTo(activeSlideIndex, 0); // Use slideTo with no animation
+                } else {
+                    activeSubTabContent.swiperInstance = initTabSwiper(activeSubTabContent);
+                    activeSubTabContent.swiperInstance.slideTo(activeSlideIndex, 0);
                 }
             });
         });
 
         // Initialize swiper for the active sub-tab
         const activeSubTabContent = mainTab.querySelector('.hello-theme-sub-tab-content.active');
-        if (activeSubTabContent) {
-            if (window.innerWidth <= 991 && !activeSubTabContent.swiperInstance) {
-                activeSubTabContent.swiperInstance = initTabSwiper(activeSubTabContent);
-                activeSubTabContent.swiperInstance.slideTo(activeSlideIndex, 0);
-            }
+        if (activeSubTabContent && !activeSubTabContent.swiperInstance) {
+            activeSubTabContent.swiperInstance = initTabSwiper(activeSubTabContent);
+            activeSubTabContent.swiperInstance.slideTo(activeSlideIndex, 0);
         }
     }
 
@@ -100,13 +98,11 @@
             activeTabContent.classList.add('active');
 
             // Set the active slide index for the new tab
-            if (window.innerWidth <= 991) {
-                if (activeTabContent.swiperInstance) {
-                    activeTabContent.swiperInstance.slideTo(activeSlideIndex, 0); // Use slideTo with no animation
-                } else {
-                    activeTabContent.swiperInstance = initTabSwiper(activeTabContent);
-                    activeTabContent.swiperInstance.slideTo(activeSlideIndex, 0);
-                }
+            if (activeTabContent.swiperInstance) {
+                activeTabContent.swiperInstance.slideTo(activeSlideIndex, 0); // Use slideTo with no animation
+            } else {
+                activeTabContent.swiperInstance = initTabSwiper(activeTabContent);
+                activeTabContent.swiperInstance.slideTo(activeSlideIndex, 0);
             }
 
             // Initialize sub-tabs for the active main tab
@@ -117,7 +113,7 @@
     const initAllSwipers = () => {
         document.querySelectorAll('.hello-theme-tab-content').forEach(tabContent => {
             if (tabContent.classList.contains('active')) {
-                if (!tabContent.swiperInstance && window.innerWidth <= 991) {
+                if (!tabContent.swiperInstance) {
                     tabContent.swiperInstance = initTabSwiper(tabContent);
                     tabContent.swiperInstance.slideTo(activeSlideIndex, 0);
                 }
@@ -135,8 +131,9 @@
     });
 
     // Initialize sub-tabs for the initially active main tab
-    const activeMainTab = document.querySelector('.hello-theme-tab-content.active');
+    const activeMainTab = document.querySelector('.hello-theme-tab-content');
     if (activeMainTab) {
+        activeMainTab.classList.add('active');
         initSubTabs(activeMainTab);
     }
 })( jQuery );
