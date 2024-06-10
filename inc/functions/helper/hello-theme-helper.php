@@ -114,9 +114,6 @@ function render_pricing_table($product) {
                       <div class='pt__row'><i class='fa-solid fa-check'></i></div>
                       <div class='pt__row'><i class='fa-solid fa-check'></i></div>
                       <div class='pt__row'><i class='fa-solid fa-check'></i></div>
-                      <div class='pt__row'>
-                        <a href='{$checkout_url}'>Purchase Now ({$product_price})</a>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -133,9 +130,6 @@ function render_pricing_table($product) {
                       <div class='pt__row'><i class='fa-solid fa-check'></i></div>
                       <div class='pt__row'><i class='fa-solid fa-check'></i></div>
                       <div class='pt__row'><i class='fa-solid fa-check'></i></div>
-                      <div class='pt__row'>
-                        <a href='{$checkout_url}'>Purchase Now ({$product_price})</a>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -152,16 +146,14 @@ function render_pricing_table($product) {
                       <div class='pt__row'>Limited</div>
                       <div class='pt__row'><i class='fa-solid fa-check'></i></div>
                       <div class='pt__row'>Limited</div>
-                      <div class='pt__row'>
-                        <a href='{$checkout_url}'>Purchase Now ({$product_price})</a>
-                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>";
+        </div>
+        <a href='{$checkout_url}'>Purchase Now ({$product_price})</a>";
 }
 
 function render_product_pricing_table($product) {
