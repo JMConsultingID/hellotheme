@@ -131,8 +131,9 @@
     });
 
     // Initialize sub-tabs for the initially active main tab
-    const activeMainTab = document.querySelector('.hello-theme-tab-content.active');
+    const activeMainTab = document.querySelector('.hello-theme-tab-content');
     if (activeMainTab) {
+        activeMainTab.classList.add('active');
         initSubTabs(activeMainTab);
     }
 })( jQuery );
