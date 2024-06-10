@@ -45,7 +45,7 @@
 }
 .pricing__table {
 	display: flex;
-	margin: 30px 30px 90px 30px;
+	margin: 30px 30px 30px 30px;
 }
 
 .pricing__table .pt__title {
