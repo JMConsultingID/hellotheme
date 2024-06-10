@@ -72,7 +72,7 @@ function hello_theme_display_swiper_navigation_buttons($left_button_id, $right_b
     <?php
 }
 
-function render_pricing_table($tableName) {
+function render_product_pricing_table($product) {
     ob_start();
     hello_theme_display_swiper_navigation_buttons('navBtnLeft', 'navBtnRight');
     $navigationButtons = ob_get_clean();
@@ -80,7 +80,7 @@ function render_pricing_table($tableName) {
     return "<div class='pricing__table hello-theme-product-id'>
           <div class='pt__title'>
             <div class='pt__title__wrap'>
-              <div class='pt__row'>{$tableName}</div>
+              <div class='pt__row'>{$product->get_name()}</div>
               <div class='pt__row'>Monthly Email Sends</div>
               <div class='pt__row'>Users</div>
               <div class='pt__row'>Audiences</div>
@@ -112,7 +112,7 @@ function render_pricing_table($tableName) {
                       <div class='pt__row'><i class='fa-solid fa-check'></i></div>
                       <div class='pt__row'><i class='fa-solid fa-check'></i></div>
                       <div class='pt__row'>
-                        <a href=''>Purchase Now</a>
+                        <a href='{$product->get_permalink()}'>Purchase Now</a>
                       </div>
                     </div>
                   </div>

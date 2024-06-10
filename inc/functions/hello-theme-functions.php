@@ -39,13 +39,13 @@ function hello_theme_pricing_table_live() {
         wp_enqueue_script( 'hello-theme-popper-js', 'https://unpkg.com/@popperjs/core@2.11.8/dist/umd/popper.min.js', array(), null, true );
         wp_enqueue_script( 'hello-theme-tippy-js', 'https://unpkg.com/tippy.js@6.3.7/dist/tippy-bundle.umd.min.js', array(), null, true );
 
-        if ( get_option( 'hello_theme_table_mode' ) === 'one_tab' ) {
-        wp_enqueue_script( 'hello-theme-pricing-table-level-1-js', get_stylesheet_directory_uri() . '/assets/js/hello-theme-pricing-table.js', array('jquery', 'hello-theme-swiper-bundle-js','hello-theme-popper-js', 'hello-theme-tippy-js'), HELLO_THEME_VERSION, true );
-        } else if ( get_option( 'hello_theme_table_mode' ) === 'two_tabs' ) {
-            wp_enqueue_script( 'hello-theme-pricing-table-level-2-js', get_stylesheet_directory_uri() . '/assets/js/hello-theme-pricing-table-level-2.js', array('jquery', 'hello-theme-swiper-bundle-js','hello-theme-popper-js', 'hello-theme-tippy-js'), HELLO_THEME_VERSION, true );
-        } else {
-            wp_enqueue_script( 'hello-theme-pricing-table-level-1-js', get_stylesheet_directory_uri() . '/assets/js/hello-theme-pricing-table.js', array('jquery', 'hello-theme-swiper-bundle-js','hello-theme-popper-js', 'hello-theme-tippy-js'), HELLO_THEME_VERSION, true );
-        }
+        // if ( get_option( 'hello_theme_table_mode' ) === 'one_tab' ) {
+        // wp_enqueue_script( 'hello-theme-pricing-table-level-1-js', get_stylesheet_directory_uri() . '/assets/js/hello-theme-pricing-table.js', array('jquery', 'hello-theme-swiper-bundle-js','hello-theme-popper-js', 'hello-theme-tippy-js'), HELLO_THEME_VERSION, true );
+        // } else if ( get_option( 'hello_theme_table_mode' ) === 'two_tabs' ) {
+        //     wp_enqueue_script( 'hello-theme-pricing-table-level-2-js', get_stylesheet_directory_uri() . '/assets/js/hello-theme-pricing-table-level-2.js', array('jquery', 'hello-theme-swiper-bundle-js','hello-theme-popper-js', 'hello-theme-tippy-js'), HELLO_THEME_VERSION, true );
+        // } else {
+        //     wp_enqueue_script( 'hello-theme-pricing-table-level-1-js', get_stylesheet_directory_uri() . '/assets/js/hello-theme-pricing-table.js', array('jquery', 'hello-theme-swiper-bundle-js','hello-theme-popper-js', 'hello-theme-tippy-js'), HELLO_THEME_VERSION, true );
+        // }
     }
 }
 add_action( 'wp_enqueue_scripts', 'hello_theme_pricing_table_live', 20);
