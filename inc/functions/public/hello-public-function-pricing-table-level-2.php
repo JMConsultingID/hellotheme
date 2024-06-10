@@ -37,7 +37,7 @@ function hello_pricing_table_level_2_shortcode() {
 
                         <?php foreach ($products as $productIndex => $product): ?>
                             <div id="subtab-<?php echo $product->get_id(); ?>" class="hello-theme-sub-tab-content <?php echo $productIndex == 0 ? 'active' : ''; ?>" data-sub-tab-id="subtab-<?php echo $product->get_id(); ?>">
-                                <?php echo render_pricing_table($product); ?>
+                                <?php echo render_product_pricing_table($product); ?>
                             </div>
                         <?php endforeach; ?>
                     <?php else: ?>
