@@ -189,16 +189,16 @@ function render_product_pricing_table($product) {
 }
 
 // Add Kosovo as a checkout country
-add_filter('woocommerce_countries', 'snippetpress_add_kosovo');
-function snippetpress_add_kosovo($countries) {
+add_filter('woocommerce_countries', 'hello_theme_add_kosovo');
+function hello_theme_add_kosovo($countries) {
     // Add Kosovo to the list of countries
     $countries['XK'] = __('Kosovo', 'woocommerce');
     return $countries;
 }
 
 // Add Kosovo to the list of continents (EU)
-add_filter('woocommerce_continents', 'snippetpress_add_kosovo_to_continents');
-function snippetpress_add_kosovo_to_continents($continents) {
+add_filter('woocommerce_continents', 'hello_theme_add_kosovo_to_continents');
+function hello_theme_add_kosovo_to_continents($continents) {
     // Add Kosovo to the list of European countries
     $continents['EU']['countries'][] = 'XK';
     return $continents;
