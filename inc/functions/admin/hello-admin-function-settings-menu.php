@@ -22,15 +22,6 @@ function hello_theme_add_menu_page() {
 
     add_submenu_page(
         'hello-theme-panel',
-        'Hello Add-ons Fee',
-        'Hello Add-ons Fee',
-        'manage_options',
-        'hello-woo-addon-fee-settings',
-        'hello_theme_woo_addon_fee_settings_page'
-    );
-
-    add_submenu_page(
-        'hello-theme-panel',
         'Hello AffiliateWP',
         'Hello AffiliateWP',
         'manage_options',
@@ -96,23 +87,6 @@ function hello_theme_table_pricing_settings_page() {
     </div>
     <?php
 }
-
-// Konten halaman pengaturan Table Pricing
-function hello_theme_woo_addon_fee_settings_page() {
-    ?>
-    <div class="wrap">
-        <h1>Hello Woocommerce Checkout Add-ons Fee Settings</h1>
-        <form method="post" action="options.php">
-            <?php
-            settings_fields( 'hello_woo_addon_fee_settings_group' );
-            do_settings_sections( 'hello-woo-addon-fee-settings' );
-            submit_button();
-            ?>
-        </form>
-    </div>
-    <?php
-}
-
 
 // Konten halaman pengaturan Affiliate WP
 function hello_theme_affiliatewp_settings_page() {
@@ -282,47 +256,6 @@ function hello_theme_register_table_pricing_settings() {
 }
 add_action( 'admin_init', 'hello_theme_register_table_pricing_settings' );
 
-// Mendaftarkan pengaturan dan bagian pengaturan untuk Addon Fee Woocommerce Checkout
-function hello_theme_register_woo_addon_fee_settings() {
-    register_setting( 'hello_woo_addon_fee_settings_group', 'hello_theme_woo_addon_fee_enable' );
-    register_setting( 'hello_woo_addon_fee_settings_group', 'hello_theme_woo_addon_fee_title' );
-    register_setting( 'hello_woo_addon_fee_settings_group', 'hello_theme_woo_addon_fee_default_id' );
-
-    add_settings_section(
-        'hello_woo_addon_fee_settings_section',
-        'Hello Theme WooCommerce Add-ons Fee Settings',
-        'hello_woo_addon_fee_settings_section_callback',
-        'hello-woo-addon-fee-settings'
-    );
-
-    add_settings_field(
-        'hello_theme_woo_addon_fee_enable',
-        'Enable Add-ons Fee',
-        'hello_theme_woo_addon_fee_enable_callback',
-        'hello-woo-addon-fee-settings',
-        'hello_woo_addon_fee_settings_section'
-    );
-
-    add_settings_field(
-        'hello_theme_woo_addon_fee_title',
-        'Add-on Title',
-        'hello_theme_woo_addon_fee_title_callback',
-        'hello-woo-addon-fee-settings',
-        'hello_woo_addon_fee_settings_section'
-    );
-
-    add_settings_field(
-        'hello_theme_woo_addon_fee_default_id',
-        'Default Add-On ID',
-        'hello_theme_woo_addon_fee_default_id_callback',
-        'hello-woo-addon-fee-settings',
-        'hello_woo_addon_fee_settings_section'
-    );
-}
-add_action( 'admin_init', 'hello_theme_register_woo_addon_fee_settings' );
-
-
-
 function hello_woocommerce_settings_section_callback() {
     echo '<p>Configure your WooCommerce settings below.</p>';
 }
@@ -333,10 +266,6 @@ function hello_affiliatewp_settings_section_callback() {
 
 function hello_table_pricing_settings_section_callback() {
     echo '<p>Configure your Pricing Table settings below.</p>';
-}
-
-function hello_woo_addon_fee_settings_section_callback() {
-    echo '<p>Configure your Add-ons Fee Woocomerce Checkout settings below.</p>';
 }
 
 function hello_theme_checkout_mode_callback() {
@@ -480,29 +409,6 @@ function hello_theme_table_pricing_description_callback() {
             <li>or using <code>[hello_pricing_table_dev]</code> for development version</li>
         </ol>
     </p>
-    <?php
-}
-
-function hello_theme_woo_addon_fee_enable_callback() {
-    $options = get_option( 'hello_theme_woo_addon_fee_enable' );
-    ?>
-    <input type="checkbox" name="hello_theme_woo_addon_fee_enable" value="1" <?php checked( 1, $options, true ); ?> />
-    <?php
-}
-
-// Callback function for the add-ons default ID field
-function hello_theme_woo_addon_fee_title_callback() {
-    $title = get_option('hello_theme_woo_addon_fee_title');
-     ?>
-    <input type="text" name="hello_theme_woo_addon_fee_title" id="hello_theme_woo_addon_fee_title" value="<?php echo esc_attr($title); ?>" />
-    <?php
-}
-
-// Callback function for the add-ons default ID field
-function hello_theme_woo_addon_fee_default_id_callback() {
-    $addons_default_id = get_option('hello_theme_woo_addon_fee_default_id');
-     ?>
-    <input type="text" name="hello_theme_woo_addon_fee_default_id" id="hello_theme_woo_addon_fee_default_id" value="<?php echo esc_attr($addons_default_id); ?>" />
     <?php
 }
 
