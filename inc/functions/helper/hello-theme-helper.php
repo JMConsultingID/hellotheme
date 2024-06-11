@@ -187,3 +187,37 @@ function render_product_pricing_table($product) {
     </div>";
     return $content;
 }
+
+// Add Kosovo as a checkout country
+add_filter('woocommerce_countries', 'snippetpress_add_kosovo');
+function snippetpress_add_kosovo($countries) {
+    // Add Kosovo to the list of countries
+    $countries['XK'] = __('Kosovo', 'woocommerce');
+    return $countries;
+}
+
+// Add Kosovo to the list of continents (EU)
+add_filter('woocommerce_continents', 'snippetpress_add_kosovo_to_continents');
+function snippetpress_add_kosovo_to_continents($continents) {
+    // Add Kosovo to the list of European countries
+    $continents['EU']['countries'][] = 'XK';
+    return $continents;
+}
+
+// Add states (cities) for Kosovo
+add_filter('woocommerce_states', 'add_kosovo_states');
+function add_kosovo_states($states) {
+    // Define the states (cities) in Kosovo
+    $states['XK'] = array(
+        '' => __('Your State Name', 'woocommerce'), // Replace with your own state name
+        'pristina' => __('Pristina', 'woocommerce'),
+        'peja' => __('Peja', 'woocommerce'),
+        'prizren' => __('Prizren', 'woocommerce'),
+        'mitrovica' => __('Mitrovica', 'woocommerce'),
+        'gjilan' => __('Gjilan', 'woocommerce'),
+        'gjakova' => __('Gjakova', 'woocommerce'),
+        'ferizaj' => __('Ferizaj', 'woocommerce'),
+        // Add more cities here
+    );
+    return $states;
+}
