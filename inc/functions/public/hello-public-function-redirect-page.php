@@ -46,6 +46,19 @@ function hello_theme_redirect_cart_to_home() {
             exit;
         }
     }
+
+    // Check if shop page is disabled
+    if ( is_shop() && get_option( 'disable_shop_page' ) == '1' ) {
+        $home_page_url = home_url();
+        wp_safe_redirect( $home_page_url );
+        exit;
+    }
+
+    // Check if product page is disabled
+    if ( is_product() && get_option( 'disable_product_page' ) == '1' ) {
+        $home_page_url = home_url();
+            wp_safe_redirect( $home_page_url );
+        exit;
+    }
 }
 add_action( 'template_redirect', 'hello_theme_redirect_cart_to_home' );
-?>
