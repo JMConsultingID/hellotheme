@@ -127,21 +127,23 @@ li.select2-results__option {
     min-height:55px;
     text-align: center;
 }
-.coupon-form {
+.hello-theme-coupon-form {
     margin-bottom: 20px;
+    padding: 20px 50px;
+    background: rgb(127 84 179 / 24%);
 }
 
-.coupon-form label {
+.hello-theme-coupon-form label {
     display: block;
     margin-bottom: 5px;
 }
 
-.coupon-form div {
+.hello-theme-coupon-form div {
     display: flex;
     align-items: center;
 }
 
-.coupon-form input {
+.hello-theme-coupon-form input {
     flex: 1;
     margin-right: 10px;
     padding: 10px;
@@ -150,7 +152,7 @@ li.select2-results__option {
     font-size: 14px;
 }
 
-.coupon-form button {
+.hello-theme-coupon-form button {
     background-color: #a065a8;
     color: white;
     padding: 10px 20px;
@@ -159,7 +161,7 @@ li.select2-results__option {
     cursor: pointer;
 }
 
-.coupon-form button:hover {
+.hello-theme-coupon-form button:hover {
     background-color: #8c5494;
 }
 

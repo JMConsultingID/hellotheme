@@ -30,10 +30,10 @@ function hello_theme_scripts_styles() {
 }
 add_action('wp_enqueue_scripts', 'hello_theme_scripts_styles', 20);
 
-function move_coupon_field_below_order_review() {
+function hello_theme_move_coupon_field_below_order_review() {
     remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10 );
 }
-add_action( 'woocommerce_checkout_init', 'move_coupon_field_below_order_review' );
+add_action( 'woocommerce_checkout_init', 'hello_theme_move_coupon_field_below_order_review' );
 
 
 function hello_theme_enqueue_coupon_script() {
@@ -44,7 +44,7 @@ function hello_theme_enqueue_coupon_script() {
 }
 add_action('wp_enqueue_scripts', 'hello_theme_enqueue_coupon_script');
 
-function apply_coupon_action() {
+function hello_theme_apply_coupon_action() {
     if (!isset($_POST['coupon_code'])) {
         wp_send_json_error('Coupon code not provided.');
     }
@@ -60,19 +60,19 @@ function apply_coupon_action() {
 
     wp_send_json_success();
 }
-add_action('wp_ajax_apply_coupon_action', 'apply_coupon_action');
-add_action('wp_ajax_nopriv_apply_coupon_action', 'apply_coupon_action');
+add_action('wp_ajax_apply_coupon_action', 'hello_theme_apply_coupon_action');
+add_action('wp_ajax_nopriv_apply_coupon_action', 'hello_theme_apply_coupon_action');
 
-function add_coupon_form_before_payment() {
-    echo '<div class="coupon-form">
-        <label for="coupon_code_field" style="display: block; margin-bottom: 5px;">If you have a coupon code, please apply it below.</label>
+function hello_theme_add_coupon_form_before_payment() {
+    echo '<div class="hello-theme-coupon-form">
+        <label for="coupon_code_field" style="display: block; margin-bottom: 15px;">If you have a coupon code, please apply it below.</label>
         <div style="display: flex; align-items: center;">
             <input type="text" id="coupon_code_field" name="coupon_code" />
             <button type="button" id="apply_coupon_button">Apply Coupon</button>
         </div>
     </div>';
 }
-add_action('woocommerce_review_order_before_payment', 'add_coupon_form_before_payment');
+add_action('woocommerce_review_order_before_payment', 'hello_theme_add_coupon_form_before_payment');
 
 
 
