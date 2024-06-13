@@ -15,10 +15,11 @@
                 },
                 success: function(response) {
                     if (response.success) {
-                        alert('Coupon applied successfully!');
-                        location.reload();
+                        // Trigger WooCommerce notices update
+                        $('body').trigger('update_checkout');
                     } else {
-                        alert('Failed to apply coupon: ' + response.data);
+                        // Display error message using WooCommerce notices
+                        $('body').trigger('checkout_error', [response.data]);
                     }
                 }
             });
