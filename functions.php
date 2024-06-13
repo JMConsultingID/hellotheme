@@ -30,6 +30,12 @@ function hello_theme_scripts_styles() {
 }
 add_action('wp_enqueue_scripts', 'hello_theme_scripts_styles', 20);
 
+function move_coupon_field_below_order_review() {
+    remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10 );
+}
+add_action( 'woocommerce_checkout_init', 'move_coupon_field_below_order_review' );
+
+
 function hello_theme_enqueue_coupon_script() {
     if (is_checkout()) {
         wp_enqueue_script('hello-theme-coupon-ajax', get_stylesheet_directory_uri() . '/assets/js/hello-theme-coupon-ajax.js', array('jquery'), null, true);
