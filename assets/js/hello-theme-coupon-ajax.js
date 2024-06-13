@@ -1,6 +1,7 @@
-(function( $ ) {
-	'use strict';
-	$(document).ready(function() {
+(function($) {
+    'use strict';
+
+    $(document).ready(function() {
         $('#apply_coupon_button').click(function(e) {
             e.preventDefault();
 
@@ -19,11 +20,16 @@
                         $('body').trigger('update_checkout');
                     } else {
                         // Display error message using WooCommerce notices
-                        $('body').trigger('checkout_error', [response.data]);
+                        if (typeof response.data === 'string') {
+                            $('.woocommerce-error, .woocommerce-message').remove();
+                            $('form.checkout').prepend('<div class="woocommerce-NoticeGroup woocommerce-NoticeGroup-updateOrderReview"><ul class="woocommerce-error" role="alert"><li>' + response.data + '</li></ul></div>');
+                        } else {
+                            $('body').trigger('checkout_error', [response.data]);
+                        }
                     }
                 }
             });
         });
     });
 
-})( jQuery );
+})(jQuery);
