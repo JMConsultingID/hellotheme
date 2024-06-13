@@ -128,28 +128,32 @@ li.select2-results__option {
     text-align: center;
 }
 .coupon-form {
+    margin-bottom: 20px;
+}
+
+.coupon-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.coupon-form div {
     display: flex;
     align-items: center;
 }
 
-.coupon-form label {
-    margin-right: 10px;
-    white-space: nowrap;
-}
-
 .coupon-form input {
     flex: 1;
-    min-width: 200px;
     margin-right: 10px;
-    padding: 5px;
+    padding: 10px;
     border-radius: 4px;
     border: 1px solid #ccc;
+    font-size: 14px;
 }
 
 .coupon-form button {
     background-color: #a065a8;
     color: white;
-    padding: 5px 10px;
+    padding: 10px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
