@@ -164,7 +164,12 @@ li.select2-results__option {
 .hello-theme-coupon-form button:hover {
     background-color: #8c5494;
 }
-
+@media (max-width: 600px) {
+.hello-theme-coupon-form {
+    margin-bottom: 20px;
+    padding: 10px;
+}
+}
 /* End Checkout Coupon Code*/
 
 /* Woocomerce Order Pay */
