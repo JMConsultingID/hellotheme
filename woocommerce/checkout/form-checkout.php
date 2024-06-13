@@ -41,6 +41,8 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 			</div>
 
 			<div class="col-2">
+				
+
 				<?php do_action( 'woocommerce_checkout_shipping' ); ?>
 				
 				<?php do_action( 'woocommerce_checkout_after_order_review' ); ?>
