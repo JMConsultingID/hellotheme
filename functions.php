@@ -29,3 +29,9 @@ function hello_theme_scripts_styles() {
     wp_enqueue_script('hello-theme-custom-script', get_stylesheet_directory_uri() . '/assets/js/hello-theme.js', [], HELLO_THEME_VERSION, true);
 }
 add_action('wp_enqueue_scripts', 'hello_theme_scripts_styles', 20);
+
+function move_coupon_field_below_order_review() {
+    remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10 );
+    add_action( 'woocommerce_checkout_after_order_review', 'woocommerce_checkout_coupon_form', 10 );
+}
+add_action( 'woocommerce_checkout_init', 'move_coupon_field_below_order_review' );
