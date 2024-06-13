@@ -30,7 +30,30 @@ function hello_theme_scripts_styles() {
 }
 add_action('wp_enqueue_scripts', 'hello_theme_scripts_styles', 20);
 
-function move_coupon_field_below_order_review() {
-    remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10 );    
+function hello_theme_enqueue_coupon_script() {
+    if (is_checkout()) {
+        wp_enqueue_script('hello-theme-coupon-ajax', get_stylesheet_directory_uri() . '/assets/js/hello-theme-coupon-ajax.js', array('jquery'), null, true);
+        wp_localize_script('hello-theme-coupon-ajax', 'ajax_object', array('ajax_url' => admin_url('admin-ajax.php')));
+    }
 }
-add_action( 'woocommerce_checkout_init', 'move_coupon_field_below_order_review' );
+add_action('wp_enqueue_scripts', 'hello_theme_enqueue_coupon_script');
+
+function apply_coupon_action() {
+    if (!isset($_POST['coupon_code'])) {
+        wp_send_json_error('Coupon code not provided.');
+    }
+
+    $coupon_code = sanitize_text_field($_POST['coupon_code']);
+    WC()->cart->add_discount($coupon_code);
+
+    if (wc_notice_count('error') > 0) {
+        $errors = wc_get_notices('error');
+        wc_clear_notices();
+        wp_send_json_error(join(', ', wp_list_pluck($errors, 'notice')));
+    }
+
+    wp_send_json_success();
+}
+add_action('wp_ajax_apply_coupon_action', 'apply_coupon_action');
+add_action('wp_ajax_nopriv_apply_coupon_action', 'apply_coupon_action');
+

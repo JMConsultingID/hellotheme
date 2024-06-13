@@ -41,8 +41,6 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 			</div>
 
 			<div class="col-2">
-				<?php do_action( 'woocommerce_checkout_coupon_form' ); ?>
-
 				<?php do_action( 'woocommerce_checkout_shipping' ); ?>
 				
 				<?php do_action( 'woocommerce_checkout_after_order_review' ); ?>
@@ -59,7 +57,11 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 					<?php do_action( 'woocommerce_checkout_order_review' ); ?>
 				</div>
 
-				
+				<div class="coupon-form">
+				    <label for="coupon_code_field">If you have a coupon code, please apply it below.</label>
+				    <input type="text" id="coupon_code_field" name="coupon_code" />
+				    <button type="button" id="apply_coupon_button">Apply Coupon</button>
+				</div>
 
 			</div>
 		</div>
