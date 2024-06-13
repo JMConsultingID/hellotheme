@@ -57,3 +57,12 @@ function apply_coupon_action() {
 add_action('wp_ajax_apply_coupon_action', 'apply_coupon_action');
 add_action('wp_ajax_nopriv_apply_coupon_action', 'apply_coupon_action');
 
+function add_coupon_form_before_payment() {
+    echo '<div class="coupon-form">
+        <label for="coupon_code_field">If you have a coupon code, please apply it below.</label>
+        <input type="text" id="coupon_code_field" name="coupon_code" />
+        <button type="button" id="apply_coupon_button">Apply Coupon</button>
+    </div>';
+}
+add_action('woocommerce_review_order_before_payment', 'add_coupon_form_before_payment');
+
