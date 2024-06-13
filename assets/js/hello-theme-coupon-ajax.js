@@ -7,6 +7,13 @@
 
             var coupon_code = $('#coupon_code_field').val();
 
+            if (!coupon_code) {
+                // Display error message using WooCommerce notices
+                $('.woocommerce-error, .woocommerce-message').remove();
+                $('form.checkout').prepend('<div class="woocommerce-NoticeGroup woocommerce-NoticeGroup-updateOrderReview"><ul class="woocommerce-error" role="alert"><li>Please enter a coupon code.</li></ul></div>');
+                return;
+            }
+
             $.ajax({
                 type: 'POST',
                 url: ajax_object.ajax_url,
@@ -16,10 +23,8 @@
                 },
                 success: function(response) {
                     if (response.success) {
-                        // Trigger WooCommerce notices update
                         $('body').trigger('update_checkout');
                     } else {
-                        // Display error message using WooCommerce notices
                         if (typeof response.data === 'string') {
                             $('.woocommerce-error, .woocommerce-message').remove();
                             $('form.checkout').prepend('<div class="woocommerce-NoticeGroup woocommerce-NoticeGroup-updateOrderReview"><ul class="woocommerce-error" role="alert"><li>' + response.data + '</li></ul></div>');
