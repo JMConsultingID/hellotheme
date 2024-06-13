@@ -127,21 +127,26 @@ li.select2-results__option {
     min-height:55px;
     text-align: center;
 }
-.hello-theme-coupon-form {
+.coupon-form {
     display: flex;
     align-items: center;
 }
-.hello-theme-coupon-form label {
+
+.coupon-form label {
     margin-right: 10px;
+    white-space: nowrap;
 }
-.hello-theme-coupon-form input {
+
+.coupon-form input {
     flex: 1;
+    min-width: 200px;
     margin-right: 10px;
     padding: 5px;
     border-radius: 4px;
     border: 1px solid #ccc;
 }
-.hello-theme-coupon-form button {
+
+.coupon-form button {
     background-color: #a065a8;
     color: white;
     padding: 5px 10px;
@@ -149,9 +154,11 @@ li.select2-results__option {
     border-radius: 4px;
     cursor: pointer;
 }
-.hello-theme-coupon-form button:hover {
+
+.coupon-form button:hover {
     background-color: #8c5494;
 }
+
 /* End Checkout Coupon Code*/
 
 /* Woocomerce Order Pay */
