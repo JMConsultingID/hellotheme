@@ -49,7 +49,7 @@ function hello_theme_modify_woocommerce_billing_fields( $fields ) {
     // unset($fields['billing']['billing_address_2']);
 
     // Change Priority Field
-    $fields['billing']['billing_email']['priority'] = 5;
+    $fields['billing']['billing_email']['priority'] = 30;
     // $fields['billing']['billing_address_1']['priority'] = 30;
     // $fields['billing']['billing_country']['priority'] = 40;
     // $fields['billing']['billing_state']['priority'] = 50;
