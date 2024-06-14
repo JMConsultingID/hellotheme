@@ -51,9 +51,12 @@ function hello_theme_modify_woocommerce_billing_fields( $fields ) {
     // Change Priority Field
     $fields['billing']['billing_email']['priority'] = 20;
     $fields['billing']['billing_phone']['priority'] = 30;
-    $fields['billing']['billing_address_1']['class'] = 'hello-theme-field hello-theme-first-field';
-    $fields['billing']['billing_address_2']['class'] = 'hello-theme-field hello-theme-last-field';
+    $fields['billing']['billing_postcode']['priority'] = 70;
     $fields['billing']['billing_country']['priority'] = 80;
+    $fields['billing']['billing_city']['class'] = 'hello-theme-field hello-theme-first-field';
+    $fields['billing']['billing_postcode']['class'] = 'hello-theme-field hello-theme-last-field';
+    
+    billing_postcode
     // $fields['billing']['billing_address_1']['priority'] = 30;
     // $fields['billing']['billing_country']['priority'] = 40;
     // $fields['billing']['billing_state']['priority'] = 50;
