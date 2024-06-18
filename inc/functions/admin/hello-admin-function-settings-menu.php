@@ -162,6 +162,15 @@ function hello_theme_register_settings() {
         'hello_woocommerce_settings_section'
     );
 
+
+    add_settings_field(
+        'select_custom_url_thank_you_page',
+        'Custom Url Thank You Page',
+        'hello_theme_select_custom_url_thank_you_page_callback',
+        'hello-woocommerce-settings',
+        'hello_woocommerce_settings_section'
+    );
+
     add_settings_field(
         'hello_theme_thank_you_page_url',
         'Thank You Page URL',
@@ -185,10 +194,25 @@ function hello_theme_register_settings() {
         'hello-woocommerce-settings',
         'hello_woocommerce_settings_section'
     );
+
+    add_settings_field(
+        'hello_theme_custom_thank_you_page_url',
+        'Custom Thank You Page URL',
+        'hello_theme_custom_thank_you_page_url_callback',
+        'hello-woocommerce-settings',
+        'hello_woocommerce_settings_section'
+    );
+
+    add_settings_field(
+        'hello_theme_custom_failed_page_url',
+        'Custom Failed Order Page URL',
+        'hello_theme_custom_failed_page_url_callback',
+        'hello-woocommerce-settings',
+        'hello_woocommerce_settings_section'
+    );
 }
 add_action( 'admin_init', 'hello_theme_register_settings' );
 
-// Mendaftarkan pengaturan dan bagian pengaturan untuk Affiliate WP
 function hello_theme_register_affiliatewp_settings() {
     register_setting( 'hello_affiliatewp_settings_group', 'hello_theme_affiliatewp_enable' );
     register_setting( 'hello_affiliatewp_settings_group', 'hello_theme_affiliatewp_register_id' );
@@ -227,7 +251,6 @@ function hello_theme_register_affiliatewp_settings() {
 }
 add_action( 'admin_init', 'hello_theme_register_affiliatewp_settings' );
 
-// Mendaftarkan pengaturan dan bagian pengaturan untuk Table Pricing
 function hello_theme_register_table_pricing_settings() {
     register_setting( 'hello_table_pricing_settings_group', 'hello_theme_enable_table_pricing' );
     register_setting( 'hello_table_pricing_settings_group', 'hello_theme_table_mode' );
@@ -324,6 +347,13 @@ function hello_theme_disable_product_page_callback() {
     <?php
 }
 
+function hello_theme_select_custom_url_thank_you_page_callback() {
+    $options = get_option( 'select_custom_url_thank_you_page' );
+    ?>
+    <input type="checkbox" name="select_custom_url_thank_you_page" value="1" <?php checked( 1, $options, true ); ?> />
+    <?php
+}
+
 function hello_theme_thank_you_page_url_callback() {
     $options = get_option( 'hello_theme_thank_you_page_url' );
     $pages = hello_theme_menu_get_pages_array();
@@ -365,6 +395,21 @@ function hello_theme_on_hold_page_url_callback() {
     </select>
     <?php
 }
+
+function hello_theme_custom_thank_you_page_url_callback() {
+    $options = get_option( 'hello_theme_custom_thank_you_page_url' );
+    ?>
+    <input type="text" name="hello_theme_custom_thank_you_page_url" value="<?php echo esc_url_raw($options); ?>"/>
+    <?php
+}
+
+function hello_theme_custom_failed_page_url_callback() {
+    $options = get_option( 'hello_theme_custom_failed_page_url' );
+    ?>
+    <input type="text" name="hello_theme_custom_failed_page_url" value="<?php echo esc_url_raw($options); ?>"/>
+    <?php
+}
+
 
 function hello_theme_affiliatewp_enable_callback() {
     $options = get_option( 'hello_theme_affiliatewp_enable' );

@@ -10,15 +10,26 @@
 function hello_theme_redirect_after_purchase( $order_id ) {
     if ( get_option( 'enable_thank_you_redirect' ) == '1' ) {
         $order = wc_get_order( $order_id );
-        $status = $order->get_status();
+        $status = $order->get_status();        
 
-        $thank_you_page_id = get_option( 'hello_theme_thank_you_page_url' );
-        $failed_page_id = get_option( 'hello_theme_failed_page_url' );
-        $on_hold_page_id = get_option( 'hello_theme_on_hold_page_url' );
+        if ( get_option( 'select_custom_url_thank_you_page' ) == '1' ) {
+            $thank_you_page_id = get_option( 'hello_theme_custom_thank_you_page_url' );
+            $failed_page_id = get_option( 'hello_theme_custom_failed_page_url' );
+            $on_hold_page_id = get_option( 'hello_theme_custom_thank_you_page_url' );
 
-        $thank_you_page_url = $thank_you_page_id ? get_permalink( $thank_you_page_id ) : home_url();
-        $failed_page_url = $failed_page_id ? get_permalink( $failed_page_id ) : home_url();
-        $on_hold_page_url = $on_hold_page_id ? get_permalink( $on_hold_page_id ) : home_url();
+            $thank_you_page_url = $thank_you_page_id ? $thank_you_page_id : home_url();
+            $failed_page_url = $failed_page_id ? $failed_page_id : home_url();
+            $on_hold_page_url = $on_hold_page_id ? $on_hold_page_id : home_url();
+        } else {
+            $thank_you_page_id = get_option( 'hello_theme_thank_you_page_url' );
+            $failed_page_id = get_option( 'hello_theme_failed_page_url' );
+            $on_hold_page_id = get_option( 'hello_theme_on_hold_page_url' );
+
+            $thank_you_page_url = $thank_you_page_id ? get_permalink( $thank_you_page_id ) : home_url();
+            $failed_page_url = $failed_page_id ? get_permalink( $failed_page_id ) : home_url();
+            $on_hold_page_url = $on_hold_page_id ? get_permalink( $on_hold_page_id ) : home_url();
+        }
+        
 
         switch ( $status ) {
             case 'completed':
