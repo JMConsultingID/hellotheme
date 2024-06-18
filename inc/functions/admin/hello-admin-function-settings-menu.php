@@ -111,9 +111,12 @@ function hello_theme_register_settings() {
     register_setting( 'hello_woocommerce_settings_group', 'skip_cart_page' );
     register_setting( 'hello_woocommerce_settings_group', 'disable_shop_page' );
     register_setting( 'hello_woocommerce_settings_group', 'disable_product_page' );
+    register_setting( 'hello_woocommerce_settings_group', 'select_custom_url_thank_you_page' );
     register_setting( 'hello_woocommerce_settings_group', 'hello_theme_thank_you_page_url' );
     register_setting( 'hello_woocommerce_settings_group', 'hello_theme_failed_page_url' );
     register_setting( 'hello_woocommerce_settings_group', 'hello_theme_on_hold_page_url' );
+    register_setting( 'hello_woocommerce_settings_group', 'hello_theme_custom_thank_you_page_url' );
+    register_setting( 'hello_woocommerce_settings_group', 'hello_theme_custom_failed_page_url' );
 
     add_settings_section(
         'hello_woocommerce_settings_section',
