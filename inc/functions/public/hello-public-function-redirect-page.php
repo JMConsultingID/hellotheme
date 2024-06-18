@@ -17,9 +17,9 @@ function hello_theme_redirect_after_purchase( $order_id ) {
             $failed_page_id = get_option( 'hello_theme_custom_failed_page_url' );
             $on_hold_page_id = get_option( 'hello_theme_custom_thank_you_page_url' );
 
-            $thank_you_page_url = $thank_you_page_id ? $thank_you_page_id : home_url();
-            $failed_page_url = $failed_page_id ? $failed_page_id : home_url();
-            $on_hold_page_url = $on_hold_page_id ? $on_hold_page_id : home_url();
+            $thank_you_page_url = $thank_you_page_id ? esc_url_raw($thank_you_page_id) : home_url();
+            $failed_page_url = $failed_page_id ? esc_url_raw($failed_page_id) : home_url();
+            $on_hold_page_url = $on_hold_page_id ? esc_url_raw($on_hold_page_id) : home_url();
         } else {
             $thank_you_page_id = get_option( 'hello_theme_thank_you_page_url' );
             $failed_page_id = get_option( 'hello_theme_failed_page_url' );
