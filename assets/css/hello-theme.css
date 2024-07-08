@@ -6,6 +6,105 @@
  *
  * @package HelloTheme
  */
+/* Old Vesion CSS */
+html#ecwid_html body#ecwid_body .ecsp.ecsp-SingleProduct-v2 .ecwid-btn--addToBag {
+    width: 280px;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: inherit;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
+    border-style: solid;
+    color: #00C89C;
+    background-color: #FFFFFF;
+        border-style: solid;
+    border-width: 1.6px 1.6px 1.6px 1.6px;
+    border-color: #00C89C;
+    border-radius: 50px 50px 50px 50px;
+    padding: 20px 50px 20px 50px;
+    font-size: 16px;
+    min-width: 160px;
+    padding: 8px 20px;
+}
+
+html#ecwid_html body#ecwid_body .ecsp.ecsp-SingleProduct-v2 .ecwid-btn--addToBag:hover { color: #FFFFFF;
+    background-color: #00C89C;
+    border-color: #00C89C;
+} 
+
+.bpress-sidebar .widget {
+    margin-bottom: 9em !important;
+}
+.ti-widget[data-layout-id='13'][data-set-id='blue'] .ti-col-4 .ti-footer {
+    -ms-flex: 0 0 25%;
+    flex: 0 0 25%;
+    max-width: 25%;
+    visibility: hidden !important; 
+}
+
+.ti-widget[data-layout-id='13'][data-set-id='blue'] .ti-col-4 .ti-reviews-container {
+    -ms-flex: 0 0 75%;
+    flex: 0 0 75%;
+    max-width: 75%;
+    margin-left: -140px;
+}
+
+/** Start Block Kit CSS: 72-3-34d2cc762876498c8f6be5405a48e6e2 **/
+
+.envato-block__preview{overflow: visible;}
+
+/*Kit 69 Custom Styling for buttons */
+.envato-kit-69-slide-btn .elementor-button,
+.envato-kit-69-cta-btn .elementor-button,
+.envato-kit-69-flip-btn .elementor-button{
+    border-left: 0px !important;
+    border-bottom: 0px !important;
+    border-right: 0px !important;
+    padding: 15px 0 0 !important;
+}
+.envato-kit-69-slide-btn .elementor-slide-button:hover,
+.envato-kit-69-cta-btn .elementor-button:hover,
+.envato-kit-69-flip-btn .elementor-button:hover{
+    margin-bottom: 20px;
+}
+.envato-kit-69-menu .elementor-nav-menu--main a:hover{
+    margin-top: -7px;
+    padding-top: 4px;
+    border-bottom: 1px solid #FFF;
+}
+/* Fix menu dropdown width */
+.envato-kit-69-menu .elementor-nav-menu--dropdown{
+    width: 100% !important;
+}
+
+/** End Block Kit CSS: 72-3-34d2cc762876498c8f6be5405a48e6e2 **/
+
+.skip-link {
+    display: none;
+}
+
+.affwp-form legend {
+    font-size: 120%;
+    margin-bottom: 1em;
+        display: none !important;
+}
+
+
+/** Start Block Kit CSS: 33-3-f2d4515681d0cdeb2a000d0405e47669 **/
+
+.envato-kit-30-phone-overlay {
+    position: absolute !important;
+    display: block !important;
+    top: 0%;
+    left: 0%;
+    right: 0%;
+    margin: auto;
+    z-index: 1;
+}
+.envato-kit-30-div-rotate{
+    transform: rotate(90deg);
+}
+
+/** End Block Kit CSS: 33-3-f2d4515681d0cdeb2a000d0405e47669 **/
 
 /* Add your custom CSS here */
 
