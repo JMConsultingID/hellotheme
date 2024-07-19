@@ -429,7 +429,7 @@ function hello_theme_affiliatewp_enable_redirect_referral_callback() {
 function hello_theme_affiliatewp_redirect_referral_url_callback() {
     $options = get_option( 'hello_theme_affiliatewp_redirect_referral_url' );
     ?>
-    <input type="text" id="hello_theme_affiliatewp_redirect_referral_url" name="hello_theme_affiliatewp_redirect_referral_url" value="<?php  esc_attr($options) ?>" />
+    <input type="text" id="hello_theme_affiliatewp_redirect_referral_url" name="hello_theme_affiliatewp_redirect_referral_url" value="<?php  echo esc_attr($options) ?>" />
     <?php
 }
 
