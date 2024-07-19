@@ -136,4 +136,8 @@ function hello_theme_checkout_fields_order_and_class($fields) {
     $fields['billing'] = $billing_fields_order;
     return $fields;
 }
+function hello_theme_woocommerce_checkout_terms_and_conditions() {
+  remove_action( 'woocommerce_checkout_terms_and_conditions', 'wc_terms_and_conditions_page_content', 30 );
+}
+add_action( 'wp', 'hello_theme_woocommerce_checkout_terms_and_conditions' );
 ?>
