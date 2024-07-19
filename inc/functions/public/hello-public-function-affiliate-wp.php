@@ -55,6 +55,14 @@ function hello_theme_affwp_register_form_script() {
 }
 
 function hello_theme_affiliate_redirect() {
+    $is_enabled_referral_url = get_option( 'hello_theme_affiliatewp_enable_redirect_referral' );
+    $redirect_referral_url = get_option( 'hello_theme_affiliatewp_redirect_referral_url' );
+
+    // If the option is not '1', return early
+    if ($is_enabled_referral_url !== '1') {
+        return;
+    }
+
     // Get the current request URI.
     $request_uri = $_SERVER['REQUEST_URI'];
     // Get the full URL including query string.
@@ -64,7 +72,7 @@ function hello_theme_affiliate_redirect() {
     // Check for the presence of 'ref' as a query parameter.
     if (strpos($full_url, '?ref=') !== false || preg_match('|^/ref/[\w-]+/?|', $_SERVER['REQUEST_URI'])) {
         // Construct the new URL to redirect to the homepage of the main site.
-        $new_url = "https://funded.trade/";
+        $new_url = $redirect_referral_url;
 
         // Perform the redirection to the main site.
         wp_redirect($new_url, 301);
@@ -80,7 +88,7 @@ function hello_theme_affiliate_redirect() {
         $query_string = isset($matches[2]) ? $matches[2] : '';
         
         // Perform the redirection.
-        wp_redirect('https://funded.trade', 301);
+        wp_redirect($redirect_referral_url, 301);
         exit;
     }
     
@@ -90,26 +98,16 @@ function hello_theme_affiliate_redirect() {
         $dynamic_value = $matches[1];
                 
         // Perform the redirection.
-        wp_redirect('https://funded.trade', 301);
+        wp_redirect($redirect_referral_url, 301);
         exit;
     }
 
     // Check if the URL path is just a query string starting with ref.
     if (preg_match('/^\?ref=\d+/', $request_uri)) {
         // Perform the redirection to the main site.
-        wp_redirect('https://funded.trade', 301);
+        wp_redirect($redirect_referral_url, 301);
         exit;
     }
 }
 add_action( 'template_redirect', 'hello_theme_affiliate_redirect',20 );
-
-add_action('wp_footer', 'hello_theme_affwp_register_form_script');
-add_filter( 'affwp_tracking_cookie_compat_mode', '__return_true' );
-add_filter( 'affwp_get_referring_affiliate_id', function( $affiliate_id, $reference, $context ) {
-   if ( 'woocommerce' === $context ) {
-      $affiliate_id = affiliate_wp()->tracking->get_affiliate_id();
-   }
-
-   return $affiliate_id;
-}, 10, 3 );
 ?>

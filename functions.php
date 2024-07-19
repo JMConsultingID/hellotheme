@@ -73,3 +73,14 @@ function hello_theme_add_coupon_form_before_payment() {
     </div>';
 }
 add_action('woocommerce_review_order_before_payment', 'hello_theme_add_coupon_form_before_payment');
+
+
+add_action('wp_footer', 'hello_theme_affwp_register_form_script');
+add_filter( 'affwp_tracking_cookie_compat_mode', '__return_true' );
+add_filter( 'affwp_get_referring_affiliate_id', function( $affiliate_id, $reference, $context ) {
+   if ( 'woocommerce' === $context ) {
+      $affiliate_id = affiliate_wp()->tracking->get_affiliate_id();
+   }
+
+   return $affiliate_id;
+}, 10, 3 );
