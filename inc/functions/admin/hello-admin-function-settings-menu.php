@@ -193,6 +193,8 @@ function hello_theme_register_affiliatewp_settings() {
     register_setting( 'hello_affiliatewp_settings_group', 'hello_theme_affiliatewp_enable' );
     register_setting( 'hello_affiliatewp_settings_group', 'hello_theme_affiliatewp_register_id' );
     register_setting( 'hello_affiliatewp_settings_group', 'hello_theme_affiliatewp_area_id' );
+    register_setting( 'hello_affiliatewp_settings_group', 'hello_theme_affiliatewp_enable_redirect_referral' );
+    register_setting( 'hello_affiliatewp_settings_group', 'hello_theme_affiliatewp_redirect_referral_url' );
 
     add_settings_section(
         'hello_affiliatewp_settings_section',
@@ -221,6 +223,22 @@ function hello_theme_register_affiliatewp_settings() {
         'hello_theme_affiliatewp_area_id',
         'AffiliateWP Area Login Page ID',
         'hello_theme_affiliatewp_area_id_callback',
+        'hello-affiliatewp-settings',
+        'hello_affiliatewp_settings_section'
+    );
+
+    add_settings_field(
+        'hello_theme_affiliatewp_enable_redirect_referral',
+        'Enable AffiliateWP Redirect Referral',
+        'hello_theme_affiliatewp_enable_redirect_referral_callback',
+        'hello-affiliatewp-settings',
+        'hello_affiliatewp_settings_section'
+    );
+
+    add_settings_field(
+        'hello_theme_affiliatewp_redirect_referral_url',
+        'AffiliateWP Redirect Referral Url',
+        'hello_theme_affiliatewp_redirect_referral_url_callback',
         'hello-affiliatewp-settings',
         'hello_affiliatewp_settings_section'
     );
@@ -398,6 +416,20 @@ function hello_theme_affiliatewp_area_id_callback() {
         }
         ?>
     </select>
+    <?php
+}
+
+function hello_theme_affiliatewp_enable_redirect_referral_callback() {
+    $options = get_option( 'hello_theme_affiliatewp_enable_redirect_referral' );
+    ?>
+    <input type="checkbox" name="hello_theme_affiliatewp_enable_redirect_referral" value="1" <?php checked( 1, $options, true ); ?> />
+    <?php
+}
+
+function hello_theme_affiliatewp_redirect_referral_url_callback() {
+    $options = get_option( 'hello_theme_affiliatewp_redirect_referral_url' );
+    ?>
+    <input type="text" id="hello_theme_affiliatewp_redirect_referral_url" name="hello_theme_affiliatewp_redirect_referral_url" value="<?php  esc_attr($options) ?>" />
     <?php
 }
 

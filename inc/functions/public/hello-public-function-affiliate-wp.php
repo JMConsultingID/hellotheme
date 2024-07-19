@@ -54,6 +54,55 @@ function hello_theme_affwp_register_form_script() {
     }
 }
 
+function hello_theme_affiliate_redirect() {
+    // Get the current request URI.
+    $request_uri = $_SERVER['REQUEST_URI'];
+    // Get the full URL including query string.
+    $full_url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+
+    // Check for the presence of 'ref' as a query parameter.
+    if (strpos($full_url, '?ref=') !== false || preg_match('|^/ref/[\w-]+/?|', $_SERVER['REQUEST_URI'])) {
+        // Construct the new URL to redirect to the homepage of the main site.
+        $new_url = "https://funded.trade/";
+
+        // Perform the redirection to the main site.
+        wp_redirect($new_url, 301);
+        exit;
+    }
+
+    // Match the /ref/{string}/ structure (with or without query parameters).
+    if (preg_match('|^/ref/([\w-]+)/?(\?.*)?$|', $request_uri, $matches)) {
+        // Extract the string from the matches.
+        $dynamic_string = $matches[1];
+
+        // Check for query string and extract if it exists.
+        $query_string = isset($matches[2]) ? $matches[2] : '';
+        
+        // Perform the redirection.
+        wp_redirect('https://funded.trade', 301);
+        exit;
+    }
+    
+    // Use a regex pattern to match the /ref/{dynamic_number}/ structure.
+    if ( preg_match('|^/ref/([\d\w]+)/?$|', $request_uri, $matches)) {
+        // Extract the dynamic number from the matches.
+        $dynamic_value = $matches[1];
+                
+        // Perform the redirection.
+        wp_redirect('https://funded.trade', 301);
+        exit;
+    }
+
+    // Check if the URL path is just a query string starting with ref.
+    if (preg_match('/^\?ref=\d+/', $request_uri)) {
+        // Perform the redirection to the main site.
+        wp_redirect('https://funded.trade', 301);
+        exit;
+    }
+}
+add_action( 'template_redirect', 'hello_theme_affiliate_redirect',20 );
+
 add_action('wp_footer', 'hello_theme_affwp_register_form_script');
 add_filter( 'affwp_tracking_cookie_compat_mode', '__return_true' );
 add_filter( 'affwp_get_referring_affiliate_id', function( $affiliate_id, $reference, $context ) {
