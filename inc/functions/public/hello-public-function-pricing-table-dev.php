@@ -58,8 +58,8 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                     <div class="plan-column">
                         <?php if ($sale_price && $sale_price < $regular_price) : ?>
                             <div class="plan-price">
-                                <span class="regular-price" style="text-decoration: line-through;"><?php echo wc_price($regular_price); ?></span>
                                 <?php echo wc_price($sale_price); ?>
+                                <span class="regular-price" style="text-decoration: line-through;"><?php echo wc_price($regular_price); ?></span>                           
                             </div>
                         <?php else : ?>
                             <div class="plan-price"><?php echo wc_price($regular_price); ?></div>
