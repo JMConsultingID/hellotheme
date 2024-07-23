@@ -3,6 +3,10 @@
     // Tab functionality
     let activeSlideIndex = 0; // Variable to store the active slide index
 
+    document.addEventListener("DOMContentLoaded", function() {
+        tippy(".pricing-table-label-tooltips");
+    });
+
     // Function to initialize Swiper for each tab
     const initTabSwiper = (tabContent) => {
         if (window.innerWidth <= 991) {

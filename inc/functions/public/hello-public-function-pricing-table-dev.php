@@ -115,14 +115,6 @@ function hello_pricing_table_multi_product_shortcode($atts) {
 }
 add_shortcode('ypf_pricing_table', 'hello_pricing_table_multi_product_shortcode');
 
-function enqueue_tippy_js() {
-    wp_enqueue_script('tippy-js', 'https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js', array(), null, true);
-    wp_enqueue_script('tippy', 'https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js', array(), null, true);
-    wp_add_inline_script('tippy', 'document.addEventListener("DOMContentLoaded", function() { tippy(".pricing-table-label-tooltips"); });');
-    wp_enqueue_style('tippy-css', 'https://unpkg.com/tippy.js@6/dist/tippy.css', array(), null);
-}
-add_action('wp_enqueue_scripts', 'enqueue_tippy_js');
-
 
 function hello_pricing_table_dev_shortcode() {
     if ( get_option( 'hello_theme_enable_table_pricing' ) == '1' ) {
