@@ -74,7 +74,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                             $regular_price = get_post_meta($product_id, '_regular_price', true);
                             $sale_price = get_post_meta($product_id, '_sale_price', true);                    
                         ?>
-                        <div class="product-detail" id="product-detail-<?php echo $product_id; ?>" style="<?php echo $index === 0 ? '' : 'display:none;'; ?>">
+                        <div class="product-detail <?php echo $category_product; ?>" id="product-detail-<?php echo $product_id; ?>" style="<?php echo $index === 0 ? '' : 'display:none;'; ?>">
                             <div class="pricing-table-row no-border mobile mobile-product-title-wrapper">
                                 <div class="plan-name mobile product-id-<?php echo $product->ID; ?>"><?php echo get_the_title($product_id); ?></div>
                             </div>
