@@ -8,10 +8,8 @@
             theme: 'light',
             placement: 'right-end',
             arrow: false,
-            animation: 'shift-toward-extreme',
+            animation: 'fade',
             allowHTML: false,
-            interactive: true,
-            delay: [100, 100],
         });
     });
 
