@@ -67,7 +67,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                     <img src="<?php echo $spinner_url; ?>" alt="Loading...">
                 </div>
                 
-                <div id="product-details">
+                <div id="product-details" class="product-details-mobile">
                     <?php foreach ($products as $index => $product) : ?>
                         <?php 
                             $product_id = $product->ID;
