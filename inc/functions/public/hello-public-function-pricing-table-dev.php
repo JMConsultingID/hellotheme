@@ -14,6 +14,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
             'mode' => 'multi_product',
             'category' => 'origin',
             'style' => 'style1',
+            'account_price_text' => '',
         ),
         $atts,
         'ypf_pricing_table'
@@ -49,7 +50,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                 <?php endforeach; ?>
             </div>
             <div class="pricing-table-row">
-                <div class="plan-category">Account Price</div>
+                <div class="plan-category">Account Price <span class="discount-tag"><?php echo ucfirst($atts['account_price_text']); ?></span></div>
                 <?php foreach ($products as $product) : 
                     $regular_price = get_post_meta($product->ID, '_regular_price', true);
                     $sale_price = get_post_meta($product->ID, '_sale_price', true);                    
