@@ -10,39 +10,39 @@
 /* Add your custom CSS here */
 
 /* Pricing Plan Style 1 */
-.pricing-table {
+.hello-theme-pricing-plan.pricing-table {
     width: 100%;
     margin: 0 auto;
     border-collapse: collapse;
     font-family: Arial, sans-serif;
 }
 
-.pricing-table-header h2 {
+.hello-theme-pricing-plan .pricing-table-header h2 {
     text-align: center;
     margin-bottom: 20px;
 }
 
-.pricing-table-row {
+.hello-theme-pricing-plan .pricing-table-row {
     display: flex;
     border-bottom: 1px solid #ddd;
 }
 
-.plan-category, .plan-column {
+.hello-theme-pricing-plan .plan-category,
+.hello-theme-pricing-plan .plan-column {
     padding: 10px;
     text-align: center;
     flex: 1;
 }
 
-.header-row .plan-column {
+.hello-theme-pricing-plan .header-row .plan-column {
     font-weight: bold;
-    background-color: #f4f4f4;
 }
 
-.plan-column .plan-button {
+.hello-theme-pricing-plan .plan-column .plan-button {
     margin-top: 10px;
 }
 
-.plan-button .button {
+.hello-theme-pricing-plan .plan-button .button {
     background-color: #28a745;
     color: #fff;
     padding: 10px 20px;
@@ -50,9 +50,21 @@
     border-radius: 5px;
 }
 
-.plan-button .button:hover {
+.hello-theme-pricing-plan .plan-button .button:hover {
     background-color: #218838;
 }
+
+@media (max-width: 768px) {
+    .hello-theme-pricing-plan .pricing-table-row {
+        flex-direction: column;
+    }
+
+    .hello-theme-pricing-plan .plan-category, 
+    .hello-theme-pricing-plan .plan-column {
+        width: 100%;
+    }
+}
+
 
 
 /* Pricing Table Swipper JS */
