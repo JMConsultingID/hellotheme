@@ -51,8 +51,8 @@ function hello_pricing_table_multi_product_shortcode($atts) {
             <div class="pricing-table-row">
                 <div class="plan-category">Account Price</div>
                 <?php foreach ($products as $product) : 
-                    $regular_price = get_post_meta($product_id, '_regular_price', true);
-                    $sale_price = get_post_meta($product_id, '_sale_price', true);                    
+                    $regular_price = get_post_meta($product->ID, '_regular_price', true);
+                    $sale_price = get_post_meta($product->ID, '_sale_price', true);                    
                     ?>
 
                     <div class="plan-column">
