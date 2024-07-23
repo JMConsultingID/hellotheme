@@ -74,11 +74,13 @@
 }
 
 /*Pricing Table Mobile*/
+.hello-theme-pricing-plan .pricing-table-row.mobile{
+	justify-content: center;
+	padding: 5px;
+}
 .hello-theme-pricing-plan .product-details-mobile{
     background: #ffffff;
     color: var(--e-global-color-text);
-    padding-top: 30px;
-    padding-bottom: 30px;
 }
 .hello-theme-pricing-plan .pricing-table-select-option{
 	margin-top: 20px;
@@ -88,10 +90,6 @@
 .hello-theme-pricing-plan .plan-column.mobile {
     text-align: center;
     flex: 0 0 35%;
-}
-
-.hello-theme-pricing-plan .pricing-table-row.mobile{
-	justify-content: center;
 }
 
 /* Pricing Table Swipper JS */
