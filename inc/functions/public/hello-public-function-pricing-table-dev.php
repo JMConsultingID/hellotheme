@@ -37,6 +37,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
     $tooltip_post_id = 28386;
     $acf_group_field = 'fyfx_pricing_table';
     $acf_tooltip_group_field = 'fyfx_pricing_table_tooltips';
+    $spinner_url = get_stylesheet_directory_uri() . '/assets/image/spinner.gif';
 
     ob_start();
     ?>
@@ -61,6 +62,10 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                         <option value="<?php echo $product_id; ?>"><?php echo get_the_title($product_id); ?> - <?php echo $price; ?></option>
                     <?php endforeach; ?>
                 </select>
+
+                <div id="loading-spinner" style="display:none; text-align:center; margin:20px 0;">
+                    <img src="<?php echo $spinner_url; ?>" alt="Loading...">
+                </div>
                 
                 <div id="product-details">
                     <?php foreach ($products as $index => $product) : ?>
@@ -191,10 +196,25 @@ function hello_pricing_table_multi_product_shortcode($atts) {
         function updateProductDetails() {
             const select = document.getElementById('product-select');
             const selectedProduct = select.value;
-            document.querySelectorAll('.product-detail').forEach(detail => {
-                detail.style.display = 'none';
-            });
-            document.getElementById('product-detail-' + selectedProduct).style.display = 'block';
+            const details = document.getElementById('product-details');
+            const spinner = document.getElementById('loading-spinner');
+            
+            // Show the loading spinner
+            spinner.style.display = 'block';
+            details.style.display = 'none';
+            
+            setTimeout(function() {
+                // Hide all product details
+                document.querySelectorAll('.product-detail').forEach(detail => {
+                    detail.style.display = 'none';
+                });
+                // Show the selected product detail
+                document.getElementById('product-detail-' + selectedProduct).style.display = 'block';
+                
+                // Hide the loading spinner and show the details
+                spinner.style.display = 'none';
+                details.style.display = 'block';
+            }, 500); // Simulate a delay for loading effect
         }
     </script>
     <?php
