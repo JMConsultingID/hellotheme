@@ -82,6 +82,10 @@
     flex: 0 0 35%;
 }
 
+.hello-theme-pricing-plan .pricing-table-row.mobile{
+	justify-content: center;
+}
+
 /* Pricing Table Swipper JS */
 .hello-theme-tab-buttons, .hello-theme-sub-tab-buttons {
     display: flex;
