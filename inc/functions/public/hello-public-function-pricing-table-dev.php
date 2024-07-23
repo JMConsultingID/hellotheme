@@ -34,6 +34,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
     }
 
     // ACF field group name
+    $tooltip_post_id = 28386;
     $acf_group_field = 'fyfx_pricing_table';
     $acf_tooltip_group_field = 'fyfx_pricing_table_tooltips';
 
@@ -79,7 +80,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
             $group_field_object = get_field_object($acf_group_field, $products[0]->ID);
             $tooltip_field_object = get_field_object($acf_tooltip_group_field, $products[0]->ID);
             $group_field_values = get_field($acf_group_field, $products[0]->ID);
-            $tooltip_field_values = get_field($acf_tooltip_group_field, $products[0]->ID);
+            $tooltip_field_values = get_field($acf_tooltip_group_field, $tooltip_post_id);
 
             // Loop through the ACF fields dynamically
             if ($group_field_object && isset($group_field_object['sub_fields'])) {
