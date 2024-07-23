@@ -59,19 +59,6 @@
     background-color: #218838;
 }
 
-@media (max-width: 768px) {
-    .hello-theme-pricing-plan .pricing-table-row {
-        flex-direction: column;
-    }
-
-    .hello-theme-pricing-plan .plan-category, 
-    .hello-theme-pricing-plan .plan-column {
-        width: 100%;
-    }
-}
-
-
-
 /* Pricing Table Swipper JS */
 .hello-theme-tab-buttons, .hello-theme-sub-tab-buttons {
     display: flex;
