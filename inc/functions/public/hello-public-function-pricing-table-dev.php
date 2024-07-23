@@ -14,6 +14,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
             'mode' => 'multi_product',
             'category' => 'origin',
             'style' => 'style1',
+            'header' => 'no',
             'account_price_text' => '',
         ),
         $atts,
@@ -37,9 +38,11 @@ function hello_pricing_table_multi_product_shortcode($atts) {
     ob_start();
     ?>
     <div class="hello-theme-pricing-plan pricing-table <?php echo esc_attr($atts['style']); ?>">
+        <?php if ($atts['header'] === 'yes') : ?>
         <div class="pricing-table-header">
             <h2><?php echo ucfirst($atts['category']); ?> Plans</h2>
         </div>
+        <?php endif; ?>
         <div class="pricing-table-content">
             <div class="pricing-table-row header-row">
                 <div class="plan-category">Plan Category</div>
@@ -60,7 +63,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                         <?php if ($sale_price && $sale_price < $regular_price) : ?>
                             <div class="plan-price">
                                 <?php echo wc_price($sale_price); ?>
-                                <span class="regular-price" style="text-decoration: line-through;"><?php echo wc_price($regular_price); ?></span>                           
+                                <span class="regular-price" style="text-decoration: line-through;"><?php echo wc_price($regular_price); ?></span>
                             </div>
                         <?php else : ?>
                             <div class="plan-price"><?php echo wc_price($regular_price); ?></div>
