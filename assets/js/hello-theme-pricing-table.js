@@ -5,7 +5,8 @@
 
     document.addEventListener("DOMContentLoaded", function() {
         tippy(".pricing-table-label-tooltips", {
-            placement: 'right-end'
+            placement: 'right-end',
+            arrow: false,
         });
     });
 
