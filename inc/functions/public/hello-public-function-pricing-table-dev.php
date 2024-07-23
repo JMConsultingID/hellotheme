@@ -214,7 +214,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                 // Hide the loading spinner and show the details
                 spinner.style.display = 'none';
                 details.style.display = 'block';
-            }, 500); // Simulate a delay for loading effect
+            }, 100); // Simulate a delay for loading effect
         }
     </script>
     <?php
