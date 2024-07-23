@@ -51,14 +51,18 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                 <?php endforeach; ?>
             </div>
             <?php 
-            // Get the field group
-            $group_field = get_field($acf_group_field, $products[0]->ID);
+            // Get the first product ID to fetch ACF field group structure
+            $product_id = $products[0]->ID;
+            $group_fields = get_field($acf_group_field, $product_id);
 
-            // Loop through the ACF fields dynamically
-            if ($group_field) {
-                foreach ($group_field as $field_key => $field_value) : ?>
+            // Check if ACF group field exists and is an array
+            if ($group_fields && is_array($group_fields)) {
+                foreach ($group_fields as $field_key => $field_value) : 
+                    // Get field object to retrieve label
+                    $field_object = get_field_object($acf_group_field . '_' . $field_key);
+                    ?>
                     <div class="pricing-table-row">
-                        <div class="plan-category"><?php echo esc_html(get_field_object($acf_group_field . '_' . $field_key)['label']); ?></div>
+                        <div class="plan-category"><?php echo esc_html($field_object['label']); ?></div>
                         <?php foreach ($products as $product) : ?>
                             <div class="plan-column"><?php echo get_field($acf_group_field . '_' . $field_key, $product->ID); ?></div>
                         <?php endforeach; ?>
@@ -72,7 +76,6 @@ function hello_pricing_table_multi_product_shortcode($atts) {
     return ob_get_clean();
 }
 add_shortcode('ypf_pricing_table', 'hello_pricing_table_multi_product_shortcode');
-
 
 
 function hello_pricing_table_dev_shortcode() {
