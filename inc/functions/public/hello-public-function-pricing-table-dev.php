@@ -45,7 +45,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
 
     <!-- Mobile -->
     <?php if (wp_is_mobile()) : ?>
-    <select id="product-select-<?php echo $category_product; ?>" class="pricing-table-select-option" onchange="updateProductDetails('<?php echo $category; ?>')">
+    <select id="product-select-<?php echo $category_product; ?>" class="pricing-table-select-option" onchange="updateProductDetails('<?php echo $category_product; ?>')">
         <?php foreach ($products as $product) : ?>
             <?php 
                 $product_id = $product->ID;
