@@ -41,6 +41,21 @@ function hello_pricing_table_multi_product_shortcode($atts) {
 
     ob_start();
     ?>
+
+    <!-- Mobile -->
+    <?php if (wp_is_mobile()) : ?>
+    <select id="product-select" class="pricing-table-select-option" onchange="updateProductDetails()">
+        <?php foreach ($products as $product) : ?>
+            <?php 
+                $product_id = $product->ID;
+                $regular_price = get_post_meta($product_id, '_regular_price', true);
+                $sale_price = get_post_meta($product_id, '_sale_price', true);
+                $price = $sale_price && $sale_price < $regular_price ? wc_price($sale_price) : wc_price($regular_price);
+            ?>
+            <option value="<?php echo $product_id; ?>"><?php echo get_the_title($product_id); ?> - <?php echo $price; ?></option>
+        <?php endforeach; ?>
+    </select>
+    <?php endif; ?>
     <div class="hello-theme-pricing-plan pricing-table <?php echo esc_attr($atts['style']); ?>">
         <?php if ($atts['header'] === 'yes') : ?>
         <div class="pricing-table-header">
@@ -50,23 +65,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
 
         <!-- Mobile -->
         <?php if (wp_is_mobile()) : ?>
-            <div class="pricing-table-content">
-                <select id="product-select" class="pricing-table-select-option" onchange="updateProductDetails()">
-                    <?php foreach ($products as $product) : ?>
-                        <?php 
-                            $product_id = $product->ID;
-                            $regular_price = get_post_meta($product_id, '_regular_price', true);
-                            $sale_price = get_post_meta($product_id, '_sale_price', true);
-                            $price = $sale_price && $sale_price < $regular_price ? wc_price($sale_price) : wc_price($regular_price);
-                        ?>
-                        <option value="<?php echo $product_id; ?>"><?php echo get_the_title($product_id); ?> - <?php echo $price; ?></option>
-                    <?php endforeach; ?>
-                </select>
-
-                <div id="loading-spinner" style="display:none; text-align:center; margin:20px 0;">
-                    <img src="<?php echo $spinner_url; ?>" alt="Loading...">
-                </div>
-                
+            <div class="pricing-table-content">            
                 <div id="product-details" class="product-details-mobile">
                     <?php foreach ($products as $index => $product) : ?>
                         <?php 
