@@ -43,7 +43,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
             <div class="pricing-table-row header-row">
                 <div class="plan-category">Plan Category</div>
                 <?php foreach ($products as $product) : ?>
-                    <div class="plan-column">
+                    <div class="plan-column product-id-<?php echo $product->ID; ?>">
                         <div class="plan-name"><?php echo get_the_title($product->ID); ?></div>
                     </div>
                 <?php endforeach; ?>
@@ -51,7 +51,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
             <div class="pricing-table-row">
                 <div class="plan-category">Account Price</div>
                 <?php foreach ($products as $product) : ?>
-                    <div class="plan-column">
+                    <div class="plan-column product-id-<?php echo $product->ID; ?>">
                         <div class="plan-price"><?php echo wc_price(get_post_meta($product->ID, '_price', true)); ?></div>
                         <div class="plan-button"><a href="<?php echo site_url('/checkout/?add-to-cart=' . $product->ID); ?>" class="button">Start Now</a></div>
                     </div>
@@ -73,7 +73,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                         <?php 
                             foreach ($products as $product) :
                                 $field_value = get_field($acf_group_field . '_' . $sub_field_name, $product->ID);
-                                echo '<div class="plan-column">' . (!empty($field_value) ? esc_html($field_value) : 'N/A') . '</div>';
+                                echo '<div class="plan-column product-id-<?php echo $product->ID; ?>">' . (!empty($field_value) ? esc_html($field_value) : 'N/A') . '</div>';
                             endforeach;
                         ?>
                     </div>
