@@ -14,8 +14,8 @@
 .hello-theme-pricing-plan.pricing-table {
     background: #ffffff;
     color: var(--e-global-color-text);
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding: 30px;
+    margin: 30px auto;
 }
 
 .hello-theme-pricing-plan .top-border{
