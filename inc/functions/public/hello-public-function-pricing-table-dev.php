@@ -50,7 +50,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
         <!-- Mobile -->
         <?php if (wp_is_mobile()) : ?>
             <div class="pricing-table-content">
-                <select id="product-select" onchange="updateProductDetails()">
+                <select id="product-select" class="pricing-table-select-option" onchange="updateProductDetails()">
                     <?php foreach ($products as $product) : ?>
                         <?php 
                             $product_id = $product->ID;
@@ -93,7 +93,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                                                 </span>
                                             <?php endif; ?>
                                         </div>
-                                        <div class="plan-column value-<?php echo esc_html($sub_field_name); ?>"><?php echo !empty($field_value) ? esc_html($field_value) : 'N/A'; ?></div>
+                                        <div class="plan-column product-id-<?php echo $product->ID; ?>"><?php echo !empty($field_value) ? esc_html($field_value) : 'N/A'; ?></div>
                                     </div>
                                 <?php endforeach;
                             }

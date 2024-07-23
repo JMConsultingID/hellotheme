@@ -59,6 +59,12 @@
     background-color: #218838;
 }
 
+/*Pricing Table Mobile*/
+.hello-theme-pricing-plan .pricing-table-select-option{
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
 /* Pricing Table Swipper JS */
 .hello-theme-tab-buttons, .hello-theme-sub-tab-buttons {
     display: flex;
