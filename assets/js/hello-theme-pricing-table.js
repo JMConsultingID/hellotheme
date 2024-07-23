@@ -4,7 +4,9 @@
     let activeSlideIndex = 0; // Variable to store the active slide index
 
     document.addEventListener("DOMContentLoaded", function() {
-        tippy(".pricing-table-label-tooltips");
+        tippy(".pricing-table-label-tooltips", {
+            placement: 'right-end'
+        });
     });
 
     // Function to initialize Swiper for each tab
