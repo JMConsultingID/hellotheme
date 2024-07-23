@@ -30,10 +30,9 @@ function hello_pricing_table_multi_product_shortcode($atts) {
         return '<p>No products found.</p>';
     }
 
-    // Get ACF fields dynamically
-    $acf_group_id = 'group_669f200f0fde2';
-    $acf_fields = acf_get_fields($acf_group_id);
-    
+    // ACF field group name
+    $acf_group_field = 'fyfx_pricing_table';
+
     ob_start();
     ?>
     <div class="pricing-table <?php echo esc_attr($atts['style']); ?>">
@@ -51,20 +50,29 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                     </div>
                 <?php endforeach; ?>
             </div>
-            <?php foreach ($acf_fields as $field) : ?>
-                <div class="pricing-table-row">
-                    <div class="plan-category"><?php echo esc_html($field['label']); ?></div>
-                    <?php foreach ($products as $product) : ?>
-                        <div class="plan-column"><?php echo get_post_meta($product->ID, $field['name'], true); ?></div>
-                    <?php endforeach; ?>
-                </div>
-            <?php endforeach; ?>
+            <?php 
+            // Get the field group
+            $group_field = get_field($acf_group_field, $products[0]->ID);
+
+            // Loop through the ACF fields dynamically
+            if ($group_field) {
+                foreach ($group_field as $field_key => $field_value) : ?>
+                    <div class="pricing-table-row">
+                        <div class="plan-category"><?php echo esc_html(get_field_object($acf_group_field . '_' . $field_key)['label']); ?></div>
+                        <?php foreach ($products as $product) : ?>
+                            <div class="plan-column"><?php echo get_field($acf_group_field . '_' . $field_key, $product->ID); ?></div>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endforeach;
+            }
+            ?>
         </div>
     </div>
     <?php
     return ob_get_clean();
 }
 add_shortcode('ypf_pricing_table', 'hello_pricing_table_multi_product_shortcode');
+
 
 
 function hello_pricing_table_dev_shortcode() {
