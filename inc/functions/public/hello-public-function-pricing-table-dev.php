@@ -73,7 +73,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                         <?php 
                             foreach ($products as $product) :
                                 $field_value = get_field($acf_group_field . '_' . $sub_field_name, $product->ID);
-                                echo '<div class="plan-column product-id-<?php echo $product->ID; ?>">' . (!empty($field_value) ? esc_html($field_value) : 'N/A') . '</div>';
+                                echo '<div class="plan-column product-id-'.$product->ID.'">' . (!empty($field_value) ? esc_html($field_value) : 'N/A') . '</div>';
                             endforeach;
                         ?>
                     </div>
