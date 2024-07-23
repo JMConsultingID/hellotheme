@@ -70,7 +70,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                             $sale_price = get_post_meta($product_id, '_sale_price', true);                    
                         ?>
                         <div class="product-detail" id="product-detail-<?php echo $product_id; ?>" style="<?php echo $index === 0 ? '' : 'display:none;'; ?>">
-                            <div class="pricing-table-row mobile mobile-product-title-wrapper">
+                            <div class="pricing-table-row no-border mobile mobile-product-title-wrapper">
                                 <div class="plan-name mobile product-id-<?php echo $product->ID; ?>"><?php echo get_the_title($product_id); ?></div>
                             </div>
                             <?php 
@@ -84,7 +84,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                                     $tooltip = isset($tooltip_field_values[$sub_field_name]) ? $tooltip_field_values[$sub_field_name] : '';
                                     $field_value = get_field($acf_group_field . '_' . $sub_field_name, $product_id);
                                     ?>
-                                    <div class="pricing-table-row mobile mobile-acf-wrapper row-<?php echo esc_html($sub_field_name); ?>">
+                                    <div class="pricing-table-row top-border mobile mobile-acf-wrapper row-<?php echo esc_html($sub_field_name); ?>">
                                         <div class="plan-category mobile label-<?php echo esc_html($sub_field_name); ?>">
                                             <?php echo esc_html($sub_field_label); ?>
                                             <?php if ($atts['tooltips'] === 'yes' && !empty($tooltip)) : ?>
@@ -98,7 +98,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                                 <?php endforeach;
                             }
                             ?>
-                            <div class="pricing-table-row mobile mobile-pricing-wrapper">
+                            <div class="pricing-table-row top-border mobile mobile-pricing-wrapper">
                             <div class="plan-category mobile">
                                 Account Price 
                                 <span class="plan-category-price-discount mobile" style="display: block;"><?php echo ucfirst($atts['account_price_text']); ?></span>
@@ -112,7 +112,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                                 <?php endif; ?>
                             </div>
                             </div>
-                            <div class="pricing-table-row mobile mobile-button-wrapper">
+                            <div class="pricing-table-row no-border mobile mobile-button-wrapper">
                                 <div class="plan-button mobile"><a href="<?php echo site_url('/checkout/?add-to-cart=' . $product_id); ?>" class="button">Start Now</a></div>
                             </div>
                         </div>
@@ -131,14 +131,14 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                     </div>
                 <?php endforeach; ?>
             </div>
-            <div class="pricing-table-row">
+            <div class="pricing-table-row top-border">
                 <div class="plan-category">Account Price <span class="plan-category-price-discount" style="display: block;"><?php echo ucfirst($atts['account_price_text']); ?></span></div>
                 <?php foreach ($products as $product) : 
                     $regular_price = get_post_meta($product->ID, '_regular_price', true);
                     $sale_price = get_post_meta($product->ID, '_sale_price', true);                    
                     ?>
 
-                    <div class="plan-column">
+                    <div class="plan-column product-id-<?php echo $product->ID; ?>">
                         <?php if ($sale_price && $sale_price < $regular_price) : ?>
                             <div class="plan-price">
                                 <?php echo wc_price($sale_price); ?>
@@ -165,7 +165,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                     $sub_field_name = $sub_field['name'];
                     $tooltip = isset($tooltip_field_values[$sub_field_name]) ? $tooltip_field_values[$sub_field_name] : '';
                     ?>
-                    <div class="pricing-table-row row-<?php echo esc_html($sub_field_name); ?>">
+                    <div class="pricing-table-row top-border row-<?php echo esc_html($sub_field_name); ?>">
                         <div class="plan-category label-<?php echo esc_html($sub_field_name); ?>">
                             <?php echo esc_html($sub_field_label); ?>
                             <?php if ($atts['tooltips'] === 'yes' & !empty($tooltip)) : ?>
