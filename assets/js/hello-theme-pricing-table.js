@@ -8,7 +8,7 @@
             theme: 'light',
             placement: 'right-end',
             arrow: false,
-            animation: 'fade',
+            animation: 'shift-toward-extreme',
             allowHTML: false,
             interactive: true,
             delay: [100, 100],
