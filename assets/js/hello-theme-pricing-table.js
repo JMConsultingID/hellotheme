@@ -7,7 +7,7 @@
         tippy(".pricing-table-label-tooltips", {
             placement: 'right-end',
             arrow: false,
-            allowHTML: true,
+            allowHTML: false,
             interactive: true,
             delay: [100, 100],
             theme: 'light',
