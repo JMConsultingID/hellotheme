@@ -70,7 +70,9 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                             $sale_price = get_post_meta($product_id, '_sale_price', true);                    
                         ?>
                         <div class="product-detail" id="product-detail-<?php echo $product_id; ?>" style="<?php echo $index === 0 ? '' : 'display:none;'; ?>">
-                            <div class="plan-name"><?php echo get_the_title($product_id); ?></div>
+                            <div class="pricing-table-row mobile-product-title-wrapper">
+                                <div class="plan-name product-id-<?php echo $product->ID; ?>"><?php echo get_the_title($product_id); ?></div>
+                            </div>
                             <?php 
                             // Fetch ACF group field values and object
                             $group_field_object = get_field_object($acf_group_field, $product_id);
@@ -82,8 +84,8 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                                     $tooltip = isset($tooltip_field_values[$sub_field_name]) ? $tooltip_field_values[$sub_field_name] : '';
                                     $field_value = get_field($acf_group_field . '_' . $sub_field_name, $product_id);
                                     ?>
-                                    <div class="pricing-table-row">
-                                        <div class="plan-category">
+                                    <div class="pricing-table-row mobile-acf-wrapper row-<?php echo esc_html($sub_field_name); ?>">
+                                        <div class="plan-category label-<?php echo esc_html($sub_field_name); ?>">
                                             <?php echo esc_html($sub_field_label); ?>
                                             <?php if ($atts['tooltips'] === 'yes' && !empty($tooltip)) : ?>
                                                 <span class="pricing-table-label-tooltips" data-tippy-content="<?php echo esc_html($tooltip); ?>" style="float: right;">
@@ -91,12 +93,12 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                                                 </span>
                                             <?php endif; ?>
                                         </div>
-                                        <div class="plan-column"><?php echo !empty($field_value) ? esc_html($field_value) : 'N/A'; ?></div>
+                                        <div class="plan-column value-<?php echo esc_html($sub_field_name); ?>"><?php echo !empty($field_value) ? esc_html($field_value) : 'N/A'; ?></div>
                                     </div>
                                 <?php endforeach;
                             }
                             ?>
-                            <div class="pricing-table-row">
+                            <div class="pricing-table-row mobile-pricing-wrapper">
                             <div class="plan-category">
                                 Account Price 
                                 <span class="plan-category-price-discount" style="display: block;"><?php echo ucfirst($atts['account_price_text']); ?></span>
@@ -110,7 +112,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                                 <?php endif; ?>
                             </div>
                             </div>
-                            <div class="pricing-table-row">
+                            <div class="pricing-table-row mobile-button-wrapper">
                                 <div class="plan-button"><a href="<?php echo site_url('/checkout/?add-to-cart=' . $product_id); ?>" class="button">Start Now</a></div>
                             </div>
                         </div>
