@@ -81,7 +81,10 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                     $sub_field_name = $sub_field['name'];
                     ?>
                     <div class="pricing-table-row row-<?php echo esc_html($sub_field_name); ?>">
-                        <div class="plan-category label-<?php echo esc_html($sub_field_name); ?>"><?php echo esc_html($sub_field_label); ?></div>
+                        <div class="plan-category label-<?php echo esc_html($sub_field_name); ?>">                            
+                            <?php echo esc_html($sub_field_label); ?>
+                            <span><i aria-hidden="true" class="fas fa-info-circle"></i></span>
+                        </div>
                         <?php 
                             foreach ($products as $product) :
                                 $field_value = get_field($acf_group_field . '_' . $sub_field_name, $product->ID);
