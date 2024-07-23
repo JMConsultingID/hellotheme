@@ -10,6 +10,7 @@
 /* Add your custom CSS here */
 
 /* Pricing Plan Style 1 */
+/* Pricing Plan Desktop */
 .hello-theme-pricing-plan.pricing-table {
     width: 100%;
     margin: 0 auto;
@@ -61,8 +62,8 @@
 
 /*Pricing Table Mobile*/
 .hello-theme-pricing-plan .pricing-table-select-option{
-	padding-top: 20px;
-	padding-bottom: 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
 /* Pricing Table Swipper JS */
