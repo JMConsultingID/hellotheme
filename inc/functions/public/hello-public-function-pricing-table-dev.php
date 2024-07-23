@@ -80,6 +80,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                     $sub_field_label = $sub_field['label'];
                     $sub_field_name = $sub_field['name'];
                     ?>
+                    <div class="pricing-table-row row-<?php echo esc_html($sub_field_name); ?>">
                         <div class="plan-category"><?php echo esc_html($sub_field_label); ?></div>
                         <?php 
                             foreach ($products as $product) :
