@@ -50,7 +50,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                 <?php endforeach; ?>
             </div>
             <div class="pricing-table-row">
-                <div class="plan-category">Account Price <span class="discount-tag" style="display: block;"><?php echo ucfirst($atts['account_price_text']); ?></span></div>
+                <div class="plan-category">Account Price <span class="plan-category-price-discount" style="display: block;"><?php echo ucfirst($atts['account_price_text']); ?></span></div>
                 <?php foreach ($products as $product) : 
                     $regular_price = get_post_meta($product->ID, '_regular_price', true);
                     $sale_price = get_post_meta($product->ID, '_sale_price', true);                    
@@ -80,7 +80,6 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                     $sub_field_label = $sub_field['label'];
                     $sub_field_name = $sub_field['name'];
                     ?>
-                    <div class="pricing-table-row">
                         <div class="plan-category"><?php echo esc_html($sub_field_label); ?></div>
                         <?php 
                             foreach ($products as $product) :
