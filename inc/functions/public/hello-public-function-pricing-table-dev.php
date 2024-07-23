@@ -96,7 +96,12 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                                 <?php endforeach;
                             }
                             ?>
-                            <div class="plan-price">
+                            <div class="pricing-table-row">
+                            <div class="plan-category">
+                                Account Price 
+                                <span class="plan-category-price-discount" style="display: block;"><?php echo ucfirst($atts['account_price_text']); ?></span>
+                            </div>
+                            <div class="plan-column">
                                 <?php if ($sale_price && $sale_price < $regular_price) : ?>
                                     <?php echo wc_price($sale_price); ?>
                                     <span class="regular-price" style="text-decoration: line-through;"><?php echo wc_price($regular_price); ?></span>
@@ -104,13 +109,14 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                                     <?php echo wc_price($regular_price); ?>
                                 <?php endif; ?>
                             </div>
+                            </div>
                             <div class="plan-button"><a href="<?php echo site_url('/checkout/?add-to-cart=' . $product_id); ?>" class="button">Start Now</a></div>
                         </div>
                     <?php endforeach; ?>
                 </div>
             </div>
         <?php else : ?>
-            
+
         <!-- Desktop -->
         <div class="pricing-table-content">
             <div class="pricing-table-row header-row">
