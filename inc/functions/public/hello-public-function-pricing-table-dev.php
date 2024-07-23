@@ -50,7 +50,23 @@ function hello_pricing_table_multi_product_shortcode($atts) {
             </div>
             <div class="pricing-table-row">
                 <div class="plan-category">Account Price</div>
-                <?php foreach ($products as $product) : ?>
+                <?php foreach ($products as $product) : 
+                    $regular_price = get_post_meta($product_id, '_regular_price', true);
+                    $sale_price = get_post_meta($product_id, '_sale_price', true);                    
+                    ?>
+
+                    <div class="plan-column">
+                        <?php if ($sale_price && $sale_price < $regular_price) : ?>
+                            <div class="plan-price">
+                                <span class="regular-price" style="text-decoration: line-through;"><?php echo wc_price($regular_price); ?></span>
+                                <?php echo wc_price($sale_price); ?>
+                            </div>
+                        <?php else : ?>
+                            <div class="plan-price"><?php echo wc_price($regular_price); ?></div>
+                        <?php endif; ?>
+                        <div class="plan-button"><a href="<?php echo site_url('/checkout/?add-to-cart=' . $product->ID); ?>" class="button">Start Now</a></div>
+                    </div>
+
                     <div class="plan-column product-id-<?php echo $product->ID; ?>">
                         <div class="plan-price"><?php echo wc_price(get_post_meta($product->ID, '_price', true)); ?></div>
                         <div class="plan-button"><a href="<?php echo site_url('/checkout/?add-to-cart=' . $product->ID); ?>" class="button">Start Now</a></div>
