@@ -45,6 +45,13 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                 <?php foreach ($products as $product) : ?>
                     <div class="plan-column">
                         <div class="plan-name"><?php echo get_the_title($product->ID); ?></div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <div class="pricing-table-row">
+                <div class="plan-category">Account Price</div>
+                <?php foreach ($products as $product) : ?>
+                    <div class="plan-column">
                         <div class="plan-price"><?php echo wc_price(get_post_meta($product->ID, '_price', true)); ?></div>
                         <div class="plan-button"><a href="<?php echo site_url('/checkout/?add-to-cart=' . $product->ID); ?>" class="button">Start Now</a></div>
                     </div>
