@@ -47,7 +47,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
         </div>
         <?php endif; ?>
 
-        // Mobile
+        <!-- Mobile -->
         <?php if (wp_is_mobile()) : ?>
             <div class="pricing-table-content">
                 <select id="product-select" onchange="updateProductDetails()">
@@ -71,15 +71,6 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                         ?>
                         <div class="product-detail" id="product-detail-<?php echo $product_id; ?>" style="<?php echo $index === 0 ? '' : 'display:none;'; ?>">
                             <div class="plan-name"><?php echo get_the_title($product_id); ?></div>
-                            <div class="plan-price">
-                                <?php if ($sale_price && $sale_price < $regular_price) : ?>
-                                    <?php echo wc_price($sale_price); ?>
-                                    <span class="regular-price" style="text-decoration: line-through;"><?php echo wc_price($regular_price); ?></span>
-                                <?php else : ?>
-                                    <?php echo wc_price($regular_price); ?>
-                                <?php endif; ?>
-                            </div>
-                            <div class="plan-button"><a href="<?php echo site_url('/checkout/?add-to-cart=' . $product_id); ?>" class="button">Start Now</a></div>
                             <?php 
                             // Fetch ACF group field values and object
                             $group_field_object = get_field_object($acf_group_field, $product_id);
@@ -105,12 +96,22 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                                 <?php endforeach;
                             }
                             ?>
+                            <div class="plan-price">
+                                <?php if ($sale_price && $sale_price < $regular_price) : ?>
+                                    <?php echo wc_price($sale_price); ?>
+                                    <span class="regular-price" style="text-decoration: line-through;"><?php echo wc_price($regular_price); ?></span>
+                                <?php else : ?>
+                                    <?php echo wc_price($regular_price); ?>
+                                <?php endif; ?>
+                            </div>
+                            <div class="plan-button"><a href="<?php echo site_url('/checkout/?add-to-cart=' . $product_id); ?>" class="button">Start Now</a></div>
                         </div>
                     <?php endforeach; ?>
                 </div>
             </div>
         <?php else : ?>
-        // Desktop
+            
+        <!-- Desktop -->
         <div class="pricing-table-content">
             <div class="pricing-table-row header-row">
                 <div class="plan-category">Plan Category</div>
