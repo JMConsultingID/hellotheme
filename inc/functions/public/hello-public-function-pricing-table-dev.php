@@ -196,25 +196,10 @@ function hello_pricing_table_multi_product_shortcode($atts) {
         function updateProductDetails() {
             const select = document.getElementById('product-select');
             const selectedProduct = select.value;
-            const details = document.getElementById('product-details');
-            const spinner = document.getElementById('loading-spinner');
-            
-            // Show the loading spinner
-            spinner.style.display = 'block';
-            details.style.display = 'none';
-            
-            setTimeout(function() {
-                // Hide all product details
-                document.querySelectorAll('.product-detail').forEach(detail => {
-                    detail.style.display = 'none';
-                });
-                // Show the selected product detail
-                document.getElementById('product-detail-' + selectedProduct).style.display = 'block';
-                
-                // Hide the loading spinner and show the details
-                spinner.style.display = 'none';
-                details.style.display = 'block';
-            }, 100); // Simulate a delay for loading effect
+            document.querySelectorAll('.product-detail').forEach(detail => {
+                detail.style.display = 'none';
+            });
+            document.getElementById('product-detail-' + selectedProduct).style.display = 'block';
         }
     </script>
     <?php
