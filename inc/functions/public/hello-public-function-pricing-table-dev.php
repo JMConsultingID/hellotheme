@@ -51,16 +51,20 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                 <?php endforeach; ?>
             </div>
             <?php 
-            // Get the field group
-            $group_field = get_field($acf_group_field, $products[0]->ID);
+            // Fetch ACF group field values and object
+            $group_field_object = get_field_object($acf_group_field, $products[0]->ID);
+            $group_field_values = get_field($acf_group_field, $products[0]->ID);
 
             // Loop through the ACF fields dynamically
-            if ($group_field) {
-                foreach ($group_field as $field_key => $field_value) : ?>
+            if ($group_field_object && isset($group_field_object['sub_fields'])) {
+                foreach ($group_field_object['sub_fields'] as $sub_field) : 
+                    $sub_field_label = $sub_field['label'];
+                    $sub_field_name = $sub_field['name'];
+                    ?>
                     <div class="pricing-table-row">
-                        <div class="plan-category"><?php echo esc_html(get_field_object($acf_group_field . '_' . $field_key)['label']); ?></div>
+                        <div class="plan-category"><?php echo esc_html($sub_field_label); ?></div>
                         <?php foreach ($products as $product) : ?>
-                            <div class="plan-column"><?php echo get_field($acf_group_field . '_' . $field_key, $product->ID); ?></div>
+                            <div class="plan-column"><?php echo get_field($acf_group_field . '_' . $sub_field_name, $product->ID); ?></div>
                         <?php endforeach; ?>
                     </div>
                 <?php endforeach;
@@ -72,7 +76,6 @@ function hello_pricing_table_multi_product_shortcode($atts) {
     return ob_get_clean();
 }
 add_shortcode('ypf_pricing_table', 'hello_pricing_table_multi_product_shortcode');
-
 
 
 function hello_pricing_table_dev_shortcode() {
