@@ -30,8 +30,14 @@
 .hello-theme-pricing-plan .plan-category,
 .hello-theme-pricing-plan .plan-column {
     padding: 10px;
-    text-align: center;
     flex: 1;
+}
+.hello-theme-pricing-plan .plan-category{
+	text-align: left;
+}
+.hello-theme-pricing-plan .plan-category
+.hello-theme-pricing-plan .plan-column {
+	text-align: center;
 }
 
 .hello-theme-pricing-plan .header-row .plan-column {
