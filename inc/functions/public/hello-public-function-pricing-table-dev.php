@@ -22,6 +22,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
         'ypf_pricing_table'
     );
 
+    $category_product = $atts['category'];
     // Fetch products by category
     $products = get_posts(array(
         'post_type' => 'product',
@@ -44,7 +45,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
 
     <!-- Mobile -->
     <?php if (wp_is_mobile()) : ?>
-    <select id="product-select" class="pricing-table-select-option" onchange="updateProductDetails()">
+    <select id="product-select-<?php echo $category_product; ?>" class="pricing-table-select-option" onchange="updateProductDetails('<?php echo $category; ?>')">
         <?php foreach ($products as $product) : ?>
             <?php 
                 $product_id = $product->ID;
@@ -56,7 +57,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
         <?php endforeach; ?>
     </select>
     <?php endif; ?>
-    <div class="hello-theme-pricing-plan pricing-table <?php echo esc_attr($atts['style']); ?>">
+    <div class="hello-theme-pricing-plan pricing-table <?php echo $category_product; ?> <?php echo esc_attr($atts['style']); ?>">
         <?php if ($atts['header'] === 'yes') : ?>
         <div class="pricing-table-header">
             <h2><?php echo ucfirst($atts['category']); ?> Plans</h2>
@@ -66,7 +67,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
         <!-- Mobile -->
         <?php if (wp_is_mobile()) : ?>
             <div class="pricing-table-content">            
-                <div id="product-details" class="product-details-mobile">
+                <div id="product-details-<?php echo $category_product; ?>" class="product-details-mobile">
                     <?php foreach ($products as $index => $product) : ?>
                         <?php 
                             $product_id = $product->ID;
@@ -192,10 +193,10 @@ function hello_pricing_table_multi_product_shortcode($atts) {
     <?php endif; ?>
     </div>
     <script>
-        function updateProductDetails() {
-            const select = document.getElementById('product-select');
+        function updateProductDetails(category) {
+            const select = document.getElementById('product-select-'+category);
             const selectedProduct = select.value;
-            document.querySelectorAll('.product-detail').forEach(detail => {
+            document.querySelectorAll('.product-detail'+category).forEach(detail => {
                 detail.style.display = 'none';
             });
             document.getElementById('product-detail-' + selectedProduct).style.display = 'block';
