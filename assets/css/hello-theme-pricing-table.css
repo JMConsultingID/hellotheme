@@ -18,6 +18,18 @@
     font-family: Arial, sans-serif;
 }
 
+.hello-theme-pricing-plan .top-border{
+	border-top: 1px dashed #bcbcfe;
+}
+
+.hello-theme-pricing-plan .bottom-border{
+	border-bottom: 1px dashed #bcbcfe;
+}
+
+.hello-theme-pricing-plan .no-border{
+	border:unset;
+}
+
 .hello-theme-pricing-plan .pricing-table-header h2 {
     text-align: center;
     margin-bottom: 20px;
@@ -25,7 +37,6 @@
 
 .hello-theme-pricing-plan .pricing-table-row {
     display: flex;
-    border-bottom: 1px solid #ddd;
 }
 
 .hello-theme-pricing-plan .plan-category,
