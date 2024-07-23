@@ -110,7 +110,9 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                                 <?php endif; ?>
                             </div>
                             </div>
-                            <div class="plan-button"><a href="<?php echo site_url('/checkout/?add-to-cart=' . $product_id); ?>" class="button">Start Now</a></div>
+                            <div class="pricing-table-row">
+                                <div class="plan-button"><a href="<?php echo site_url('/checkout/?add-to-cart=' . $product_id); ?>" class="button">Start Now</a></div>
+                            </div>
                         </div>
                     <?php endforeach; ?>
                 </div>
