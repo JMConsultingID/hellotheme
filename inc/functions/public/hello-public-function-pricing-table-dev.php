@@ -37,7 +37,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
     $tooltip_post_id = 28386;
     $acf_group_field = 'fyfx_pricing_table';
     $acf_tooltip_group_field = 'fyfx_pricing_table_tooltips';
-    $spinner_url = get_stylesheet_directory_uri() . '/assets/img/spinner.gif';
+    $spinner_url = get_stylesheet_directory_uri() . '/assets/img/spinner.svg';
 
     ob_start();
     ?>
