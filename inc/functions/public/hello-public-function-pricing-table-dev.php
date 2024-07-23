@@ -35,6 +35,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
 
     // ACF field group name
     $acf_group_field = 'fyfx_pricing_table';
+    $acf_tooltip_group_field = 'fyfx_pricing_table_tooltips';
 
     ob_start();
     ?>
@@ -76,26 +77,31 @@ function hello_pricing_table_multi_product_shortcode($atts) {
             <?php 
             // Fetch ACF group field values and object
             $group_field_object = get_field_object($acf_group_field, $products[0]->ID);
+            $tooltip_field_object = get_field_object($acf_tooltip_group_field, $products[0]->ID);
             $group_field_values = get_field($acf_group_field, $products[0]->ID);
+            $tooltip_field_values = get_field($acf_tooltip_group_field, $products[0]->ID);
 
             // Loop through the ACF fields dynamically
             if ($group_field_object && isset($group_field_object['sub_fields'])) {
                 foreach ($group_field_object['sub_fields'] as $sub_field) : 
                     $sub_field_label = $sub_field['label'];
                     $sub_field_name = $sub_field['name'];
+                    $tooltip = isset($tooltip_field_values[$sub_field_name]) ? $tooltip_field_values[$sub_field_name] : '';
                     ?>
                     <div class="pricing-table-row row-<?php echo esc_html($sub_field_name); ?>">
-                        <div class="plan-category label-<?php echo esc_html($sub_field_name); ?>">                            
+                        <div class="plan-category label-<?php echo esc_html($sub_field_name); ?>">
                             <?php echo esc_html($sub_field_label); ?>
-                            <?php if ($atts['tooltips'] === 'yes') : ?>
-                            <span class="pricing-table-label-tooltips" style="float: right;"><i aria-hidden="true" class="fas fa-info-circle"></i></span>
+                            <?php if ($atts['tooltips'] === 'yes' & !empty($tooltip)) : ?>
+                                <span class="pricing-table-label-tooltips" data-tippy-content="<?php echo esc_html($tooltip); ?>">
+                                    <i aria-hidden="true" class="fas fa-info-circle"></i>
+                                </span>
                             <?php endif; ?>
                         </div>
                         <?php 
-                            foreach ($products as $product) :
+                        foreach ($products as $product) : 
                                 $field_value = get_field($acf_group_field . '_' . $sub_field_name, $product->ID);
                                 echo '<div class="plan-column product-id-'.$product->ID.'">' . (!empty($field_value) ? esc_html($field_value) : 'N/A') . '</div>';
-                            endforeach;
+                        endforeach; 
                         ?>
                     </div>
                 <?php endforeach;
@@ -107,6 +113,14 @@ function hello_pricing_table_multi_product_shortcode($atts) {
     return ob_get_clean();
 }
 add_shortcode('ypf_pricing_table', 'hello_pricing_table_multi_product_shortcode');
+
+function enqueue_tippy_js() {
+    wp_enqueue_script('tippy-js', 'https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js', array(), null, true);
+    wp_enqueue_script('tippy', 'https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js', array(), null, true);
+    wp_add_inline_script('tippy', 'document.addEventListener("DOMContentLoaded", function() { tippy(".pricing-table-label-tooltips"); });');
+    wp_enqueue_style('tippy-css', 'https://unpkg.com/tippy.js@6/dist/tippy.css', array(), null);
+}
+add_action('wp_enqueue_scripts', 'enqueue_tippy_js');
 
 
 function hello_pricing_table_dev_shortcode() {
