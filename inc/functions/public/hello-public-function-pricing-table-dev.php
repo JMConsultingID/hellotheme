@@ -7,7 +7,66 @@
  *
  * @package HelloTheme
  */
-// Fungsi untuk menampilkan tabel harga
+
+function hello_pricing_table_multi_product_shortcode($atts) {
+    $atts = shortcode_atts(
+        array(
+            'mode' => 'multi_product',
+            'category' => 'origin',
+            'style' => 'style1',
+        ),
+        $atts,
+        'ypf_pricing_table'
+    );
+
+    // Fetch products by category
+    $products = get_posts(array(
+        'post_type' => 'product',
+        'posts_per_page' => -1,
+        'product_cat' => $atts['category']
+    ));
+
+    if (empty($products)) {
+        return '<p>No products found.</p>';
+    }
+
+    // Get ACF fields dynamically
+    $acf_group_id = 'group_669f200f0fde2';
+    $acf_fields = acf_get_fields($acf_group_id);
+    
+    ob_start();
+    ?>
+    <div class="pricing-table <?php echo esc_attr($atts['style']); ?>">
+        <div class="pricing-table-header">
+            <h2><?php echo ucfirst($atts['category']); ?> Plans</h2>
+        </div>
+        <div class="pricing-table-content">
+            <div class="pricing-table-row header-row">
+                <div class="plan-category">Plan Category</div>
+                <?php foreach ($products as $product) : ?>
+                    <div class="plan-column">
+                        <div class="plan-name"><?php echo get_the_title($product->ID); ?></div>
+                        <div class="plan-price"><?php echo wc_price(get_post_meta($product->ID, '_price', true)); ?></div>
+                        <div class="plan-button"><a href="<?php echo site_url('/checkout/?add-to-cart=' . $product->ID); ?>" class="button">Start Now</a></div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <?php foreach ($acf_fields as $field) : ?>
+                <div class="pricing-table-row">
+                    <div class="plan-category"><?php echo esc_html($field['label']); ?></div>
+                    <?php foreach ($products as $product) : ?>
+                        <div class="plan-column"><?php echo get_post_meta($product->ID, $field['name'], true); ?></div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+    <?php
+    return ob_get_clean();
+}
+add_shortcode('ypf_pricing_table', 'hello_pricing_table_multi_product_shortcode');
+
+
 function hello_pricing_table_dev_shortcode() {
     if ( get_option( 'hello_theme_enable_table_pricing' ) == '1' ) {
         ob_start();
