@@ -93,7 +93,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                         <div class="plan-category label-<?php echo esc_html($sub_field_name); ?>">
                             <?php echo esc_html($sub_field_label); ?>
                             <?php if ($atts['tooltips'] === 'yes' & !empty($tooltip)) : ?>
-                                <span class="pricing-table-label-tooltips" data-tippy-content="<?php echo esc_html($tooltip); ?>">
+                                <span class="pricing-table-label-tooltips" data-tippy-content="<?php echo esc_html($tooltip); ?>" style="float: right;">
                                     <i aria-hidden="true" class="fas fa-info-circle"></i>
                                 </span>
                             <?php endif; ?>
