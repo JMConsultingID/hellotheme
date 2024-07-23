@@ -8,6 +8,54 @@
  */
 
 /* Add your custom CSS here */
+
+/* Pricing Plan Style 1 */
+.pricing-table {
+    width: 100%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+}
+
+.pricing-table-header h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.pricing-table-row {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+}
+
+.plan-category, .plan-column {
+    padding: 10px;
+    text-align: center;
+    flex: 1;
+}
+
+.header-row .plan-column {
+    font-weight: bold;
+    background-color: #f4f4f4;
+}
+
+.plan-column .plan-button {
+    margin-top: 10px;
+}
+
+.plan-button .button {
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.plan-button .button:hover {
+    background-color: #218838;
+}
+
+
+/* Pricing Table Swipper JS */
 .hello-theme-tab-buttons, .hello-theme-sub-tab-buttons {
     display: flex;
     justify-content: center;
