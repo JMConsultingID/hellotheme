@@ -83,7 +83,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                     <div class="pricing-table-row row-<?php echo esc_html($sub_field_name); ?>">
                         <div class="plan-category label-<?php echo esc_html($sub_field_name); ?>">                            
                             <?php echo esc_html($sub_field_label); ?>
-                            <span><i aria-hidden="true" class="fas fa-info-circle"></i></span>
+                            <span class="pricing-table-label-tooltips" style="float: right;"><i aria-hidden="true" class="fas fa-info-circle"></i></span>
                         </div>
                         <?php 
                             foreach ($products as $product) :
