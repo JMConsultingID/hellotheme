@@ -103,12 +103,10 @@
 
 .hello-theme-scalling-plan .scalling-table-row {
     display: flex;
-    border-bottom: 1px solid #ddd;
 }
 
 .hello-theme-scalling-plan .header-row {
     font-weight: bold;
-    background-color: #f4f4f4;
 }
 
 .hello-theme-scalling-plan .scalling-category, .scalling-column {
@@ -119,7 +117,6 @@
 
 .hello-theme-scalling-plan .scalling-category {
     text-align: left;
-    background-color: #f4f4f4;
 }
 
 .hello-theme-scalling-plan .scalling-table-label-tooltips {
