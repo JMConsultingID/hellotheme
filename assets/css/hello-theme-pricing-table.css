@@ -110,18 +110,20 @@
 }
 
 .hello-theme-scalling-plan .scalling-category, .scalling-column {
-    flex: 1;
     padding: 10px;
     text-align: center;
+    flex: 0 0 13.3%;
 }
 
 .hello-theme-scalling-plan .scalling-category {
     text-align: left;
+    flex: 0 0 20%;
 }
 
 .hello-theme-scalling-plan .scalling-table-label-tooltips {
     margin-left: 5px;
     cursor: pointer;
+    float: right;
 }
 
 
