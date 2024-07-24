@@ -9,8 +9,7 @@
 
 /* Add your custom CSS here */
 
-/* Pricing Plan Style 1 */
-/* Pricing Plan Desktop */
+/* Pricing Plan Style 1 Desktop */
 .hello-theme-pricing-plan.pricing-table {
     background: #ffffff;
     color: var(--e-global-color-text);
@@ -73,7 +72,7 @@
     background-color: #218838;
 }
 
-/*Pricing Table Mobile*/
+/* Pricing Plan Style 1 Mobile */
 .hello-theme-pricing-plan .pricing-table-row.mobile{
 	justify-content: center;
 	padding: 5px;
@@ -91,6 +90,45 @@
     text-align: center;
     flex: 0 0 35%;
 }
+
+/*Scalling Plan Table Style 1 Desktop*/
+.hello-theme-scalling-plan {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.hello-theme-scalling-plan .scalling-table-content {
+    width: 100%;
+}
+
+.hello-theme-scalling-plan .scalling-table-row {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+}
+
+.hello-theme-scalling-plan .header-row {
+    font-weight: bold;
+    background-color: #f4f4f4;
+}
+
+.hello-theme-scalling-plan .scalling-category, .scalling-column {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+}
+
+.hello-theme-scalling-plan .scalling-category {
+    text-align: left;
+    background-color: #f4f4f4;
+}
+
+.hello-theme-scalling-plan .scalling-table-label-tooltips {
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+
+/*Scalling Plan Table Style 1 Mobile*/
 
 /* Pricing Table Swipper JS */
 .hello-theme-tab-buttons, .hello-theme-sub-tab-buttons {
