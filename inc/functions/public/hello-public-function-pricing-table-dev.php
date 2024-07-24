@@ -270,7 +270,7 @@ function hello_scalling_table_single_product_shortcode($atts) {
                         <?php foreach ($acf_levels as $level_key => $level_value) : 
                             $field_value = get_field($level_value . '_' . $field_key, $product_id);
                         ?>
-                            <div class="scalling-column"><?php echo !empty($field_value) ? esc_html($field_value) : 'N/A'; ?></div>
+                            <div class="scalling-column <?php echo $level_value; ?>"><?php echo !empty($field_value) ? esc_html($field_value) : 'N/A'; ?></div>
                         <?php endforeach; ?>
                     </div>
                 <?php endif; ?>
