@@ -8,7 +8,17 @@
  */
 
 /* Add your custom CSS here */
+.top-border{
+	border-top: 1px dashed #bcbcfe;
+}
 
+.bottom-border{
+	border-bottom: 1px dashed #bcbcfe;
+}
+
+.no-border{
+	border:unset;
+}
 /* Pricing Plan Style 1 Desktop */
 .hello-theme-pricing-plan.pricing-table {
     background: #ffffff;

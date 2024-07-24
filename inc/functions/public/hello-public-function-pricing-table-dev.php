@@ -245,7 +245,7 @@ function hello_scalling_table_single_product_shortcode($atts) {
 
     ob_start();
     ?>
-    <div class="hello-theme-scalling-plan scalling-table <?php echo esc_attr($atts['style']); ?>">
+    <div class="hello-theme-scalling-plan scalling-table <?php echo esc_attr($atts['style']); ?> product_id-<?php echo $product_id; ?>">
         <div class="scalling-table-content">
             <div class="scalling-table-row header-row">
                 <div class="scalling-category">Scaling Level</div>
@@ -258,7 +258,7 @@ function hello_scalling_table_single_product_shortcode($atts) {
                 if ($field_object) :
                     $field_label = $field_object['label'];
                     ?>
-                    <div class="scalling-table-row">
+                    <div class="scalling-table-row top-border product_id-<?php echo $product_id; ?>">
                         <div class="scalling-category">
                             <?php echo $field_label; ?>
                             <?php if (!empty($tooltip_field_values[$field_key])) : ?>
