@@ -250,7 +250,7 @@ function hello_scalling_table_single_product_shortcode($atts) {
             <div class="scalling-table-row header-row">
                 <div class="scalling-category">Scaling Level</div>
                 <?php foreach ($acf_levels as $level_key => $level_value) : ?>
-                    <div class="scalling-column"><?php echo ucfirst(str_replace('_', ' ', $level_key)); ?></div>
+                    <div class="scalling-column <?php echo $level_value; ?>"><?php echo ucfirst(str_replace('_', ' ', $level_key)); ?></div>
                 <?php endforeach; ?>
             </div>
             <?php foreach ($sample_fields as $field_key => $field_value) : 
