@@ -139,74 +139,52 @@
 
 /*Scalling Plan Table Style 1 Mobile*/
 .hello-theme-scalling-plan-mobile {
-    width: 100%;
-    border-collapse: collapse;
+    background: #ffffff;
+    color: var(--e-global-color-text);
+    padding: 20px;
+    border-radius: 24px;
 }
 
-.scalling-table-content-mobile {
+.hello-theme-scalling-plan-mobile .scalling-table-content {
     width: 100%;
 }
 
-.scalling-table-row-mobile {
+.hello-theme-scalling-plan-mobile .scalling-table-row {
     display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
     border-bottom: 1px solid #ddd;
 }
 
-.header-row {
-    font-weight: bold;
-    background-color: #f4f4f4;
+.hello-theme-scalling-plan-mobile .scalling-category {
+    flex: 0 0 45%;
+    text-align: left;
 }
 
-.scalling-category, .scalling-column {
-    flex: 1;
-    padding: 10px;
+.hello-theme-scalling-plan-mobile .swiper-container {
+    flex: 0 0 55%;
     text-align: center;
 }
 
-.scalling-category {
-    text-align: left;
-    background-color: #f4f4f4;
-}
-
-.scalling-table-label-tooltips {
-    margin-left: 5px;
-    cursor: pointer;
-}
-
-.swiper-container {
-    width: 100%;
-    overflow: hidden;
-}
-
-.swiper-wrapper {
+.hello-theme-scalling-plan-mobile .swiper-wrapper {
     display: flex;
 }
 
-.swiper-slide {
-    flex: 1;
-}
-
-.refund {
-    color: red;
-    font-weight: bold;
-}
-
-.swiper-button-prev, .swiper-button-next {
-    background-color: #ccc;
-    border-radius: 50%;
-    padding: 5px;
-}
-
-.swiper-pagination {
-    bottom: 10px;
+.hello-theme-scalling-plan-mobile .swiper-slide {
+    width: 100%;
     text-align: center;
 }
 
-@media (min-width: 768px) {
-    .hello-theme-scalling-plan-mobile {
-        display: none;
-    }
+.hello-theme-scalling-plan-mobile .swiper-button-next,
+.hello-theme-scalling-plan-mobile .swiper-button-prev {
+    color: #000;
 }
+
+.refund-of-fees {
+    color: #ff0000;
+    font-weight: bold;
+}
+
 
 
 /* Pricing Table Swipper JS */
