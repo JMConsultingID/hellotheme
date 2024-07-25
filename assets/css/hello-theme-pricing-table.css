@@ -138,6 +138,25 @@
 
 
 /*Scalling Plan Table Style 1 Mobile*/
+.swiper-container {
+    width: 100%;
+    overflow: hidden;
+}
+
+.swiper-wrapper {
+    display: flex;
+}
+
+.swiper-slide {
+    flex: 1;
+}
+
+.refund {
+    color: red;
+    font-weight: bold;
+}
+
+
 
 /* Pricing Table Swipper JS */
 .hello-theme-tab-buttons, .hello-theme-sub-tab-buttons {

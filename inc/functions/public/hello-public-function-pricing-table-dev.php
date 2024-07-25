@@ -211,6 +211,7 @@ function hello_scalling_table_single_product_shortcode($atts) {
     $atts = shortcode_atts(
         array(
             'mode' => 'single_product',
+            'category' => 'origin',
             'product_id' => '7132',
             'style' => 'style1',
         ),
@@ -218,11 +219,23 @@ function hello_scalling_table_single_product_shortcode($atts) {
         'ypf_scalling_table'
     );
 
-    if (empty($atts['product_id'])) {
-        return '<p>No product specified.</p>';
+     if (empty($atts['category']) || empty($atts['product_id'])) {
+        return '<p>No category or product specified.</p>';
     }
 
+    $category = $atts['category'];
     $product_id = $atts['product_id'];
+
+    // Fetch products by category
+    $products = get_posts(array(
+        'post_type' => 'product',
+        'posts_per_page' => -1,
+        'product_cat' => $category
+    ));
+
+    if (empty($products)) {
+        return '<p>No products found in this category.</p>';
+    }
 
     // ACF field group names for each level
     $acf_levels = array(
@@ -243,8 +256,75 @@ function hello_scalling_table_single_product_shortcode($atts) {
     $sample_field_group = $acf_levels['level_1'];
     $sample_fields = get_field($sample_field_group, $product_id);
 
+    // Swiper container ID
+    $swiper_container_id = 'swiper-container-' . uniqid();
+
     ob_start();
-    ?>
+    if (wp_is_mobile()) {
+        // Mobile Layout
+        ?>
+        <div class="hello-theme-scalling-plan scalling-table <?php echo esc_attr($atts['style']); ?>">
+            <div class="product-select-wrapper">
+                <select id="product-select" class="pricing-table-select-option" onchange="updateProductDetails()">
+                    <?php foreach ($products as $product) : 
+                        $product_price = get_post_meta($product->ID, '_regular_price', true);
+                    ?>
+                        <option value="<?php echo $product->ID; ?>" <?php selected($product->ID, $product_id); ?>>
+                            <?php echo get_the_title($product->ID) . ' - ' . wc_price($product_price); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            
+            <div class="scalling-table-content">
+                <div class="scalling-table-row header-row">
+                    <div class="scalling-category">Scaling Level</div>
+                </div>
+                <div class="swiper-container" id="<?php echo $swiper_container_id; ?>">
+                    <div class="swiper-wrapper">
+                        <?php foreach ($acf_levels as $level_key => $level_value) : ?>
+                            <div class="swiper-slide">
+                                <div class="scalling-column"><?php echo ucfirst(str_replace('_', ' ', $level_key)); ?></div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                <?php foreach ($sample_fields as $field_key => $field_value) : 
+                    $field_object = get_field_object($sample_field_group . '_' . $field_key, $product_id);
+                    if ($field_object) :
+                        $field_label = $field_object['label'];
+                        ?>
+                        <div class="scalling-table-row">
+                            <div class="scalling-category">
+                                <?php echo $field_label; ?>
+                                <?php if (!empty($tooltip_field_values[$field_key])) : ?>
+                                    <span class="scalling-table-label-tooltips" data-tippy-content="<?php echo esc_html($tooltip_field_values[$field_key]); ?>">
+                                        <i aria-hidden="true" class="fas fa-info-circle"></i>
+                                    </span>
+                                <?php endif; ?>
+                            </div>
+                            <div class="swiper-container" id="<?php echo $swiper_container_id . '-' . $field_key; ?>">
+                                <div class="swiper-wrapper">
+                                    <?php foreach ($acf_levels as $level_key => $level_value) : 
+                                        $field_value = get_field($level_value . '_' . $field_key, $product_id);
+                                        $show_refund = in_array($level_key, ['level_4', 'level_5', 'level_6']) ? '<div class="refund">Refund of Fees</div>' : '';
+                                    ?>
+                                        <div class="swiper-slide">
+                                            <div class="scalling-column"><?php echo !empty($field_value) ? esc_html($field_value) : 'N/A'; ?></div>
+                                            <?php echo $show_refund; ?>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <?php
+    } else {
+        // Desktop Layout
+        ?>
     <div class="hello-theme-scalling-plan scalling-table <?php echo esc_attr($atts['style']); ?> product_id-<?php echo $product_id; ?>">
         <div class="scalling-table-content">
             <div class="scalling-table-row header-row">
@@ -277,12 +357,37 @@ function hello_scalling_table_single_product_shortcode($atts) {
             <?php endforeach; ?>
         </div>
     </div>
+    <?php 
+        }
+    ?>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             tippy(".scalling-table-label-tooltips", {
                 placement: 'right-end'
             });
+
+            const swiperContainers = document.querySelectorAll('.swiper-container');
+            swiperContainers.forEach(function(container) {
+                new Swiper(container, {
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                });
+            });
         });
+
+        function updateProductDetails() {
+            const select = document.getElementById('product-select');
+            const selectedProduct = select.value;
+            const details = document.querySelector('.scalling-table-content');
+
+            // Fetch new details via AJAX or other means, this is just a placeholder
+            // Hide the loading spinner and show the details
+            details.style.display = 'block';
+        }
     </script>
     <?php
     return ob_get_clean();
