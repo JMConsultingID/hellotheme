@@ -264,63 +264,69 @@ function hello_scalling_table_single_product_shortcode($atts) {
         // Mobile Layout
         ?>
         <div class="hello-theme-scalling-plan scalling-table <?php echo esc_attr($atts['style']); ?>">
-            <div class="product-select-wrapper">
-                <select id="product-select" class="pricing-table-select-option" onchange="updateProductDetails()">
-                    <?php foreach ($products as $product) : 
-                        $product_price = get_post_meta($product->ID, '_regular_price', true);
-                    ?>
-                        <option value="<?php echo $product->ID; ?>" <?php selected($product->ID, $product_id); ?>>
-                            <?php echo get_the_title($product->ID) . ' - ' . wc_price($product_price); ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
-            
-            <div class="scalling-table-content">
-                <div class="scalling-table-row header-row">
-                    <div class="scalling-category">Scaling Level</div>
-                </div>
-                <div class="swiper-container" id="<?php echo $swiper_container_id; ?>">
-                    <div class="swiper-wrapper">
-                        <?php foreach ($acf_levels as $level_key => $level_value) : ?>
-                            <div class="swiper-slide">
-                                <div class="scalling-column"><?php echo ucfirst(str_replace('_', ' ', $level_key)); ?></div>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-                <?php foreach ($sample_fields as $field_key => $field_value) : 
-                    $field_object = get_field_object($sample_field_group . '_' . $field_key, $product_id);
-                    if ($field_object) :
-                        $field_label = $field_object['label'];
-                        ?>
-                        <div class="scalling-table-row">
-                            <div class="scalling-category">
-                                <?php echo $field_label; ?>
-                                <?php if (!empty($tooltip_field_values[$field_key])) : ?>
-                                    <span class="scalling-table-label-tooltips" data-tippy-content="<?php echo esc_html($tooltip_field_values[$field_key]); ?>">
-                                        <i aria-hidden="true" class="fas fa-info-circle"></i>
-                                    </span>
-                                <?php endif; ?>
-                            </div>
-                            <div class="swiper-container" id="<?php echo $swiper_container_id . '-' . $field_key; ?>">
-                                <div class="swiper-wrapper">
-                                    <?php foreach ($acf_levels as $level_key => $level_value) : 
-                                        $field_value = get_field($level_value . '_' . $field_key, $product_id);
-                                        $show_refund = in_array($level_key, ['level_4', 'level_5', 'level_6']) ? '<div class="refund">Refund of Fees</div>' : '';
-                                    ?>
-                                        <div class="swiper-slide">
-                                            <div class="scalling-column"><?php echo !empty($field_value) ? esc_html($field_value) : 'N/A'; ?></div>
-                                            <?php echo $show_refund; ?>
-                                        </div>
-                                    <?php endforeach; ?>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endif; ?>
+        <div class="product-select-wrapper">
+            <select id="product-select" class="pricing-table-select-option" onchange="updateProductDetails()">
+                <?php foreach ($products as $product) : 
+                    $product_price = get_post_meta($product->ID, '_regular_price', true);
+                ?>
+                    <option value="<?php echo $product->ID; ?>" <?php selected($product->ID, $product_id); ?>>
+                        <?php echo get_the_title($product->ID) . ' - ' . wc_price($product_price); ?>
+                    </option>
                 <?php endforeach; ?>
-            </div>
+            </select>
         </div>
+        
+        <div class="scalling-table-content">
+            <div class="scalling-table-row header-row">
+                <div class="scalling-category">Scaling Level</div>
+            </div>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <?php foreach ($acf_levels as $level_key => $level_value) : ?>
+                        <div class="swiper-slide">
+                            <div class="scalling-column"><?php echo ucfirst(str_replace('_', ' ', $level_key)); ?></div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+            <?php foreach ($sample_fields as $field_key => $field_value) : 
+                $field_object = get_field_object($sample_field_group . '_' . $field_key, $product_id);
+                if ($field_object) :
+                    $field_label = $field_object['label'];
+                    ?>
+                    <div class="scalling-table-row">
+                        <div class="scalling-category">
+                            <?php echo $field_label; ?>
+                            <?php if (!empty($tooltip_field_values[$field_key])) : ?>
+                                <span class="scalling-table-label-tooltips" data-tippy-content="<?php echo esc_html($tooltip_field_values[$field_key]); ?>">
+                                    <i aria-hidden="true" class="fas fa-info-circle"></i>
+                                </span>
+                            <?php endif; ?>
+                        </div>
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <?php foreach ($acf_levels as $level_key => $level_value) : 
+                                    $field_value = get_field($level_value . '_' . $field_key, $product_id);
+                                    $show_refund = in_array($level_key, ['level_4', 'level_5', 'level_6']) ? '<div class="refund">Refund of Fees</div>' : '';
+                                ?>
+                                    <div class="swiper-slide">
+                                        <div class="scalling-column"><?php echo !empty($field_value) ? esc_html($field_value) : 'N/A'; ?></div>
+                                        <?php echo $show_refund; ?>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+    </div>
         <?php
     } else {
         // Desktop Layout
@@ -371,6 +377,10 @@ function hello_scalling_table_single_product_shortcode($atts) {
                 new Swiper(container, {
                     slidesPerView: 1,
                     spaceBetween: 10,
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
                     pagination: {
                         el: '.swiper-pagination',
                         clickable: true,

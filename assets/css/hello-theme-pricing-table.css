@@ -156,6 +156,23 @@
     font-weight: bold;
 }
 
+.swiper-button-prev, .swiper-button-next {
+    background-color: #ccc;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+.swiper-pagination {
+    bottom: 10px;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .swiper-container {
+        display: none;
+    }
+}
+
 
 
 /* Pricing Table Swipper JS */
