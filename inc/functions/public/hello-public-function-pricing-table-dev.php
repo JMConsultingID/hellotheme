@@ -263,19 +263,19 @@ function hello_scalling_table_single_product_shortcode($atts) {
     if (wp_is_mobile()) {
         // Mobile Layout
         ?>
-        <div class="hello-theme-scalling-plan scalling-table <?php echo esc_attr($atts['style']); ?>">
-        <div class="product-select-wrapper">
-            <select id="product-select" class="pricing-table-select-option" onchange="updateProductDetails()">
-                <?php foreach ($products as $product) : 
-                    $product_price = get_post_meta($product->ID, '_regular_price', true);
-                ?>
-                    <option value="<?php echo $product->ID; ?>" <?php selected($product->ID, $product_id); ?>>
-                        <?php echo get_the_title($product->ID) . ' - ' . wc_price($product_price); ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
-        </div>
-         <div class="scalling-table-content-mobile">
+        <div class="hello-theme-scalling-plan-mobile scalling-table <?php echo esc_attr($atts['style']); ?>">
+            <div class="product-select-wrapper">
+                <select id="product-select" class="pricing-table-select-option" onchange="updateProductDetails()">
+                    <?php foreach ($products as $product) : 
+                        $product_price = get_post_meta($product->ID, '_regular_price', true);
+                    ?>
+                        <option value="<?php echo $product->ID; ?>" <?php selected($product->ID, $product_id); ?>>
+                            <?php echo get_the_title($product->ID) . ' - ' . wc_price($product_price); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <div class="scalling-table-content-mobile">
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
                         <?php foreach ($acf_levels as $level_key => $level_value) : ?>
@@ -292,7 +292,7 @@ function hello_scalling_table_single_product_shortcode($atts) {
                                         $field_label = $field_object['label'];
                                         $field_value = get_field($level_value . '_' . $field_key, $product_id);
                                     ?>
-                                        <div class="scalling-table-row">
+                                        <div class="scalling-table-row-mobile">
                                             <div class="scalling-category"><?php echo $field_label; ?></div>
                                             <div class="scalling-column"><?php echo !empty($field_value) ? esc_html($field_value) : 'N/A'; ?></div>
                                         </div>
@@ -352,18 +352,20 @@ function hello_scalling_table_single_product_shortcode($atts) {
                 placement: 'right-end'
             });
 
-            const swiper = new Swiper('.swiper-container', {
-                slidesPerView: 1,
-                spaceBetween: 10,
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                },
-            });
+            if (document.querySelector('.swiper-container')) {
+                new Swiper('.swiper-container', {
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                });
+            }
         });
 
         function updateProductDetails() {

@@ -138,6 +138,41 @@
 
 
 /*Scalling Plan Table Style 1 Mobile*/
+.hello-theme-scalling-plan-mobile {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.scalling-table-content-mobile {
+    width: 100%;
+}
+
+.scalling-table-row-mobile {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+}
+
+.header-row {
+    font-weight: bold;
+    background-color: #f4f4f4;
+}
+
+.scalling-category, .scalling-column {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+}
+
+.scalling-category {
+    text-align: left;
+    background-color: #f4f4f4;
+}
+
+.scalling-table-label-tooltips {
+    margin-left: 5px;
+    cursor: pointer;
+}
+
 .swiper-container {
     width: 100%;
     overflow: hidden;
@@ -148,6 +183,7 @@
 }
 
 .swiper-slide {
+    flex: 1;
 }
 
 .refund {
@@ -167,7 +203,7 @@
 }
 
 @media (min-width: 768px) {
-    .swiper-container {
+    .hello-theme-scalling-plan-mobile {
         display: none;
     }
 }
