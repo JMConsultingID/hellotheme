@@ -275,58 +275,38 @@ function hello_scalling_table_single_product_shortcode($atts) {
                 <?php endforeach; ?>
             </select>
         </div>
-        
-        <div class="scalling-table-content">
-            <div class="scalling-table-row header-row">
-                <div class="scalling-category">Scaling Level</div>
-            </div>
-            <div class="swiper-container">
-                <div class="swiper-wrapper">
-                    <?php foreach ($acf_levels as $level_key => $level_value) : ?>
-                        <div class="swiper-slide">
-                            <div class="scalling-column"><?php echo ucfirst(str_replace('_', ' ', $level_key)); ?></div>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-                <div class="swiper-pagination"></div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-            </div>
-            <?php foreach ($sample_fields as $field_key => $field_value) : 
-                $field_object = get_field_object($sample_field_group . '_' . $field_key, $product_id);
-                if ($field_object) :
-                    $field_label = $field_object['label'];
-                    ?>
-                    <div class="scalling-table-row">
-                        <div class="scalling-category">
-                            <?php echo $field_label; ?>
-                            <?php if (!empty($tooltip_field_values[$field_key])) : ?>
-                                <span class="scalling-table-label-tooltips" data-tippy-content="<?php echo esc_html($tooltip_field_values[$field_key]); ?>">
-                                    <i aria-hidden="true" class="fas fa-info-circle"></i>
-                                </span>
-                            <?php endif; ?>
-                        </div>
-                        <div class="swiper-container">
-                            <div class="swiper-wrapper">
-                                <?php foreach ($acf_levels as $level_key => $level_value) : 
-                                    $field_value = get_field($level_value . '_' . $field_key, $product_id);
-                                    $show_refund = in_array($level_key, ['level_4', 'level_5', 'level_6']) ? '<div class="refund">Refund of Fees</div>' : '';
-                                ?>
-                                    <div class="swiper-slide">
-                                        <div class="scalling-column"><?php echo !empty($field_value) ? esc_html($field_value) : 'N/A'; ?></div>
-                                        <?php echo $show_refund; ?>
-                                    </div>
+         <div class="scalling-table-content-mobile">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <?php foreach ($acf_levels as $level_key => $level_value) : ?>
+                            <div class="swiper-slide">
+                                <div class="scalling-level-header">
+                                    <?php echo ucfirst(str_replace('_', ' ', $level_key)); ?>
+                                    <?php if (in_array($level_key, ['level_4', 'level_5', 'level_6'])) : ?>
+                                        <span class="refund">Refund of Fees</span>
+                                    <?php endif; ?>
+                                </div>
+                                <?php foreach ($sample_fields as $field_key => $field_value) : 
+                                    $field_object = get_field_object($sample_field_group . '_' . $field_key, $product_id);
+                                    if ($field_object) :
+                                        $field_label = $field_object['label'];
+                                        $field_value = get_field($level_value . '_' . $field_key, $product_id);
+                                    ?>
+                                        <div class="scalling-table-row">
+                                            <div class="scalling-category"><?php echo $field_label; ?></div>
+                                            <div class="scalling-column"><?php echo !empty($field_value) ? esc_html($field_value) : 'N/A'; ?></div>
+                                        </div>
+                                    <?php endif; ?>
                                 <?php endforeach; ?>
                             </div>
-                            <div class="swiper-pagination"></div>
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-button-next"></div>
-                        </div>
+                        <?php endforeach; ?>
                     </div>
-                <?php endif; ?>
-            <?php endforeach; ?>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+            </div>
         </div>
-    </div>
         <?php
     } else {
         // Desktop Layout
@@ -372,20 +352,17 @@ function hello_scalling_table_single_product_shortcode($atts) {
                 placement: 'right-end'
             });
 
-            const swiperContainers = document.querySelectorAll('.swiper-container');
-            swiperContainers.forEach(function(container) {
-                new Swiper(container, {
-                    slidesPerView: 1,
-                    spaceBetween: 10,
-                    navigation: {
-                        nextEl: '.swiper-button-next',
-                        prevEl: '.swiper-button-prev',
-                    },
-                    pagination: {
-                        el: '.swiper-pagination',
-                        clickable: true,
-                    },
-                });
+            const swiper = new Swiper('.swiper-container', {
+                slidesPerView: 1,
+                spaceBetween: 10,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
             });
         });
 
