@@ -207,7 +207,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
 }
 add_shortcode('ypf_pricing_table', 'hello_pricing_table_multi_product_shortcode');
 
-function hello_scalling_table_single_product_shortcode_mobile($atts) {
+function hello_scalling_table_single_product_shortcode($atts)  {
     $atts = shortcode_atts(
         array(
             'mode' => 'single_product',
