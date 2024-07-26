@@ -332,6 +332,10 @@ function hello_scalling_table_single_product_shortcode_mobile($atts) {
         'product_cat' => $category
     ));
 
+    if (empty($products)) {
+        return '<p>No products found in this category.</p>';
+    }
+
     // ACF field group names for each level
     $acf_levels = array(
         'level_1' => 'fyfx_scalling_plan_level_1',
@@ -436,14 +440,16 @@ function hello_scalling_table_single_product_shortcode_mobile($atts) {
                 });
 
                 // Initialize details for the first time if a product is preselected
-                updateProductDetails();
+                const initialSelect = document.getElementById('product-select');
+                if (initialSelect && initialSelect.value) {
+                    updateProductDetails();
+                }
             });
         </script>
     <?php endif;
     return ob_get_clean();
 }
 add_shortcode('ypf_scalling_table_mobile', 'hello_scalling_table_single_product_shortcode_mobile');
-
 
 
 function hello_pricing_table_dev_shortcode() {
