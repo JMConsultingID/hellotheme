@@ -138,6 +138,44 @@
 
 
 /*Scalling Plan Table Style 1 Mobile*/
+.hello-theme-scalling-plan-mobile .scalling-table-container {
+    display: flex;
+}
+
+.hello-theme-scalling-plan-mobile .scalling-table-labels {
+    flex: 1;
+}
+
+.hello-theme-scalling-plan-mobile .swiper-container {
+    flex: 2;
+    position: relative;
+}
+
+.hello-theme-scalling-plan-mobile .swiper-wrapper {
+    display: flex;
+}
+
+.hello-theme-scalling-plan-mobile .swiper-slide {
+    display: flex;
+    flex-direction: column;
+}
+
+.hello-theme-scalling-plan-mobile .swiper-button-next,
+.hello-theme-scalling-plan-mobile .swiper-button-prev {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.hello-theme-scalling-plan-mobile .swiper-button-next {
+    right: 0;
+}
+
+.hello-theme-scalling-plan-mobile .swiper-button-prev {
+    left: 0;
+}
+
 .hello-theme-scalling-plan-mobile {
     display: flex;
     flex-direction: row;
@@ -164,7 +202,6 @@
 
 .header-row {
     font-weight: bold;
-    background-color: #f0f0f0;
     padding: 10px 0;
     text-align: center;
 }
@@ -178,10 +215,6 @@
     cursor: pointer;
 }
 
-.swiper-button-next,
-.swiper-button-prev {
-    color: #007bff;
-}
 
 /* Pricing Table Swipper JS */
 .hello-theme-tab-buttons, .hello-theme-sub-tab-buttons {
