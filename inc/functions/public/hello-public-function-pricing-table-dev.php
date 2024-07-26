@@ -356,8 +356,8 @@ function hello_scalling_table_single_product_shortcode_mobile($atts) {
     // Mobile version
     if (wp_is_mobile()) {
         ?>
-        <div class="hello-theme-scalling-plan-mobile scaling-plan-table <?php echo esc_attr($atts['style']); ?>">
-            <select id="product-select-<?php echo $category; ?>" class="pricing-table-select-option" onchange="updateProductDetailsMobile('<?php echo $category; ?>')">
+        <div class="hello-theme-hello-theme-scalling-plan-select">
+        <select id="product-select-<?php echo $category; ?>" class="pricing-table-select-option" onchange="updateProductDetailsMobile('<?php echo $category; ?>')">
                 <?php foreach ($products as $product) : 
                     $product_id = $product->ID;
                     $regular_price = get_post_meta($product_id, '_regular_price', true);
@@ -367,6 +367,7 @@ function hello_scalling_table_single_product_shortcode_mobile($atts) {
                     <option value="<?php echo $product_id; ?>"><?php echo get_the_title($product_id); ?> - <?php echo $price; ?></option>
                 <?php endforeach; ?>
             </select>
+        </div>
             <div id="product-details-<?php echo $category; ?>" class="product-details-mobile">
                 <?php foreach ($products as $product) : ?>
                     <?php 
@@ -408,7 +409,6 @@ function hello_scalling_table_single_product_shortcode_mobile($atts) {
                     </div>
                 <?php endforeach; ?>
             </div>
-        </div>
 
         <style>
             .hello-theme-scalling-plan-mobile {
