@@ -370,13 +370,14 @@ function hello_scalling_table_single_product_shortcode_mobile($atts) {
             </select>
         </div>
 
-        <div class="hello-theme-scalling-plan-mobile scaling-plan-table <?php echo esc_attr($atts['style']); ?>">
+        
             <div id="product-details-<?php echo $category; ?>" class="product-details-mobile">
                 <?php foreach ($products as $product) : ?>
                     <?php 
                         $product_id = $product->ID;
                     ?>
                     <div class="product-detail <?php echo $category; ?>" id="product-detail-<?php echo $product_id; ?>" style="display: none;">
+                        <div class="hello-theme-scalling-plan-mobile scaling-plan-table <?php echo esc_attr($atts['style']); ?>">
                         <div class="scaling-category-group pt__title">
                             <div class="scaling-category header-row">&nbsp;</div>
                             <?php foreach ($sample_fields as $field_key => $field_value) : 
@@ -407,11 +408,11 @@ function hello_scalling_table_single_product_shortcode_mobile($atts) {
                             <div class="swiper-button-next"></div>
                             <div class="swiper-button-prev"></div>
                         </div>
+                        </div>
                     </div>
                 <?php endforeach; ?>
             </div>
-        </div>
-
+        
         <style>
             .hello-theme-scalling-plan-mobile {
                 display: flex;
