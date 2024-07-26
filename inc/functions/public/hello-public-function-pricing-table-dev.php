@@ -257,12 +257,11 @@ function hello_scalling_table_single_product_shortcode($atts) {
     $sample_fields = get_field($sample_field_group, $product_id);
 
     ob_start();
-    ?>
 
-    <?php if (wp_is_mobile()) : ?>
-    <div class="hello-theme-scalling-plan-mobile scalling-table <?php echo esc_attr($atts['style']); ?> product_id-<?php echo $product_id; ?>">
+    if (wp_is_mobile()) : ?>
+        <div class="hello-theme-scalling-plan-mobile scalling-table <?php echo esc_attr($atts['style']); ?> product_id-<?php echo $product_id; ?>">
             <select id="product-select" class="pricing-table-select-option" onchange="updateProductDetails()">
-                <?php foreach ($products as $product) : 
+                <?php foreach ($products as $product) :
                     $product_id = $product->ID;
                     $regular_price = get_post_meta($product_id, '_regular_price', true);
                     $sale_price = get_post_meta($product_id, '_sale_price', true);
@@ -273,7 +272,7 @@ function hello_scalling_table_single_product_shortcode($atts) {
             </select>
 
             <div id="product-details">
-                <?php foreach ($products as $product) : 
+                <?php foreach ($products as $product) :
                     $product_id = $product->ID;
                     $sample_fields = get_field_objects($acf_levels['level_1'], $product_id);
                 ?>
@@ -282,7 +281,7 @@ function hello_scalling_table_single_product_shortcode($atts) {
                             <?php if ($sample_fields) :
                                 foreach ($sample_fields as $field_key => $field_object) :
                                     $field_label = $field_object['label'];
-                                    ?>
+                            ?>
                                     <div class="scalling-table-row top-border">
                                         <div class="scalling-category">
                                             <?php echo esc_html($field_label); ?>
@@ -294,7 +293,7 @@ function hello_scalling_table_single_product_shortcode($atts) {
                                         </div>
                                         <div class="swiper-container">
                                             <div class="swiper-wrapper">
-                                                <?php foreach ($acf_levels as $level_key => $level_value) : 
+                                                <?php foreach ($acf_levels as $level_key => $level_value) :
                                                     $field_value = get_field($level_value . '_' . $field_key, $product_id);
                                                 ?>
                                                     <div class="swiper-slide scalling-column <?php echo $level_value; ?>">
@@ -349,8 +348,8 @@ function hello_scalling_table_single_product_shortcode($atts) {
                 updateProductDetails();
             });
         </script>
-
     <?php else : ?>
+        <!-- Existing desktop layout -->    
 
     <div class="hello-theme-scalling-plan scalling-table <?php echo esc_attr($atts['style']); ?> product_id-<?php echo $product_id; ?>">
         <div class="scalling-table-content">
@@ -384,8 +383,6 @@ function hello_scalling_table_single_product_shortcode($atts) {
             <?php endforeach; ?>
         </div>
     </div>
-
-    <?php endif; ?>
     
     <script>
             document.addEventListener("DOMContentLoaded", function() {
@@ -395,6 +392,7 @@ function hello_scalling_table_single_product_shortcode($atts) {
             });
         </script>
     <?php
+    endif;
     return ob_get_clean();
 }
 add_shortcode('ypf_scalling_table', 'hello_scalling_table_single_product_shortcode');

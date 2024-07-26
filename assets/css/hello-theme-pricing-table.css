@@ -138,54 +138,6 @@
 
 
 /*Scalling Plan Table Style 1 Mobile*/
-/*Scalling Plan Table Style 1 Mobile*/
-.hello-theme-scalling-plan-mobile {
-    background: #ffffff;
-    color: var(--e-global-color-text);
-    padding: 20px;
-    border-radius: 24px;
-}
-
-.hello-theme-scalling-plan-mobile .scalling-table-content {
-    width: 100%;
-}
-
-.hello-theme-scalling-plan-mobile .scalling-table-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 0;
-    border-bottom: 1px solid #ddd;
-}
-
-.hello-theme-scalling-plan-mobile .scalling-category {
-    flex: 0 0 45%;
-    text-align: left;
-}
-
-.hello-theme-scalling-plan-mobile .swiper-container {
-    flex: 0 0 55%;
-    text-align: center;
-}
-
-.hello-theme-scalling-plan-mobile .swiper-wrapper {
-    display: flex;
-}
-
-.hello-theme-scalling-plan-mobile .swiper-slide {
-    width: 100%;
-    text-align: center;
-}
-
-.hello-theme-scalling-plan-mobile .swiper-button-next,
-.hello-theme-scalling-plan-mobile .swiper-button-prev {
-    color: #000;
-}
-
-.refund-of-fees {
-    color: #ff0000;
-    font-weight: bold;
-}
-
 
 
 /* Pricing Table Swipper JS */
