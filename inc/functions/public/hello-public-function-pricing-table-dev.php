@@ -356,6 +356,7 @@ function hello_scalling_table_single_product_shortcode_mobile($atts) {
     // Mobile version
     if (wp_is_mobile()) {
         ?>
+
         <div class="hello-theme-hello-theme-scalling-plan-select">
         <select id="product-select-<?php echo $category; ?>" class="pricing-table-select-option" onchange="updateProductDetailsMobile('<?php echo $category; ?>')">
                 <?php foreach ($products as $product) : 
@@ -368,36 +369,46 @@ function hello_scalling_table_single_product_shortcode_mobile($atts) {
                 <?php endforeach; ?>
             </select>
         </div>
+
         <div class="hello-theme-scalling-plan-mobile scaling-plan-table <?php echo esc_attr($atts['style']); ?>">
-            <div class="scaling-category-group pt__title">
-                <div class="scaling-category header-row">&nbsp;</div>
-                <?php foreach ($sample_fields as $field_key => $field_value) : 
-                    $field_object = get_field_object($sample_field_group . '_' . $field_key, $product_id);
-                    if ($field_object) :
-                        $field_label = $field_object['label'];
-                ?>
-                    <div class="scaling-category"><?php echo $field_label; ?> <i aria-hidden="true" class="fas fa-info-circle"></i></div>
-                <?php endif; endforeach; ?>
-            </div>
-            <div class="scaling-value-group pt__option swiper-container">
-                <div class="swiper-wrapper">
-                    <?php foreach ($acf_levels as $level_key => $level_value) : 
-                        $level_fields = get_field($level_value, $product_id);
+            <div id="product-details-<?php echo $category; ?>" class="product-details-mobile">
+                <?php foreach ($products as $product) : ?>
+                    <?php 
+                        $product_id = $product->ID;
                     ?>
-                        <div class="swiper-slide">
-                            <div class="scaling-column header-row"><?php echo ucfirst(str_replace('_', ' ', $level_key)); ?>
-                            <?php if (in_array($level_key, ['level_4', 'level_5', 'level_6'])) : ?>
-                                <span class="refund-of-fees">Refund of Fees</span>
-                            <?php endif; ?>
-                            </div>
-                            <?php foreach ($level_fields as $field_key => $field_value) : ?>
-                                <div class="scaling-column"><?php echo !empty($field_value) ? esc_html($field_value) : 'N/A'; ?></div>
-                            <?php endforeach; ?>
+                    <div class="product-detail <?php echo $category; ?>" id="product-detail-<?php echo $product_id; ?>" style="display: none;">
+                        <div class="scaling-category-group pt__title">
+                            <div class="scaling-category header-row">&nbsp;</div>
+                            <?php foreach ($sample_fields as $field_key => $field_value) : 
+                                $field_object = get_field_object($sample_field_group . '_' . $field_key, $product_id);
+                                if ($field_object) :
+                                    $field_label = $field_object['label'];
+                            ?>
+                                <div class="scaling-category"><?php echo $field_label; ?> <i aria-hidden="true" class="fas fa-info-circle"></i></div>
+                            <?php endif; endforeach; ?>
                         </div>
-                    <?php endforeach; ?>
-                </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
+                        <div class="scaling-value-group pt__option swiper-container">
+                            <div class="swiper-wrapper">
+                                <?php foreach ($acf_levels as $level_key => $level_value) : 
+                                    $level_fields = get_field($level_value, $product_id);
+                                ?>
+                                    <div class="swiper-slide">
+                                        <div class="scaling-column header-row"><?php echo ucfirst(str_replace('_', ' ', $level_key)); ?>
+                                        <?php if (in_array($level_key, ['level_4', 'level_5', 'level_6'])) : ?>
+                                            <span class="refund-of-fees">Refund of Fees</span>
+                                        <?php endif; ?>
+                                        </div>
+                                        <?php foreach ($level_fields as $field_key => $field_value) : ?>
+                                            <div class="scaling-column"><?php echo !empty($field_value) ? esc_html($field_value) : 'N/A'; ?></div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </div>
 
@@ -474,6 +485,12 @@ function hello_scalling_table_single_product_shortcode_mobile($atts) {
                         crossFade: true
                     }
                 });
+
+                // Trigger update for the initially selected product
+                const initialSelect = document.getElementById('product-select-<?php echo $category; ?>');
+                if (initialSelect) {
+                    updateProductDetailsMobile('<?php echo $category; ?>');
+                }
             });
         </script>
         <?php
@@ -482,7 +499,6 @@ function hello_scalling_table_single_product_shortcode_mobile($atts) {
     return ob_get_clean();
 }
 add_shortcode('ypf_scalling_table_mobile', 'hello_scalling_table_single_product_shortcode_mobile');
-
 
 
 
