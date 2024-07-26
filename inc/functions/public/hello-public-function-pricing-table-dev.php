@@ -354,7 +354,7 @@ function hello_scalling_table_single_product_shortcode_mobile($atts) {
     ob_start();
     if (wp_is_mobile()) : ?>
         <div class="hello-theme-scalling-plan-mobile scalling-table <?php echo esc_attr($atts['style']); ?> product_id-<?php echo $product_id; ?>">
-            <select id="product-select" class="pricing-table-select-option" onchange="updateProductDetails()">
+            <select id="product-select-<?php echo $category; ?>" class="pricing-table-select-option" onchange="updateProductDetails('<?php echo $category; ?>')">
                 <?php foreach ($products as $product) :
                     $prod_id = $product->ID;
                     $regular_price = get_post_meta($prod_id, '_regular_price', true);
@@ -374,7 +374,7 @@ function hello_scalling_table_single_product_shortcode_mobile($atts) {
                         continue;
                     }
                 ?>
-                    <div class="product-detail" id="product-detail-<?php echo $prod_id; ?>">
+                    <div class="product-detail <?php echo $category; ?>" id="product-detail-<?php echo $prod_id; ?>" style="display: none;">
                         <div class="scalling-table-content">
                             <div class="scalling-table-row header-row">
                                 <div class="scalling-category">Scaling Level</div>
@@ -407,23 +407,17 @@ function hello_scalling_table_single_product_shortcode_mobile($atts) {
             </div>
         </div>
         <script>
-            function updateProductDetails() {
-                const select = document.getElementById('product-select');
+            function updateProductDetails(category) {
+                const select = document.getElementById('product-select-' + category);
                 const selectedProduct = select.value;
-
-                // Hide all product details
-                document.querySelectorAll('.product-detail').forEach(detail => {
+                document.querySelectorAll('.product-detail.' + category).forEach(detail => {
                     detail.style.display = 'none';
                 });
-
-                if (selectedProduct) {
-                    // Show the selected product detail
-                    const selectedDetail = document.getElementById('product-detail-' + selectedProduct);
-                    if (selectedDetail) {
-                        selectedDetail.style.display = 'block';
-                    } else {
-                        console.error('Selected product detail not found for ID:', selectedProduct);
-                    }
+                const selectedDetail = document.getElementById('product-detail-' + selectedProduct);
+                if (selectedDetail) {
+                    selectedDetail.style.display = 'block';
+                } else {
+                    console.error('Selected product detail not found for ID:', selectedProduct);
                 }
             }
 
@@ -433,7 +427,10 @@ function hello_scalling_table_single_product_shortcode_mobile($atts) {
                 });
 
                 // Initialize details for the first time
-                updateProductDetails();
+                const initialSelect = document.getElementById('product-select-<?php echo $category; ?>');
+                if (initialSelect && initialSelect.value) {
+                    updateProductDetails('<?php echo $category; ?>');
+                }
             });
         </script>
     <?php endif;
