@@ -369,16 +369,6 @@ function hello_scalling_table_single_product_shortcode_mobile($atts) {
             </select>
         </div>
         <div class="hello-theme-scalling-plan-mobile scaling-plan-table <?php echo esc_attr($atts['style']); ?>">
-            <select id="product-select-<?php echo $category; ?>" class="pricing-table-select-option" onchange="updateProductDetailsMobile('<?php echo $category; ?>')">
-                <?php foreach ($products as $product) : 
-                    $product_id = $product->ID;
-                    $regular_price = get_post_meta($product_id, '_regular_price', true);
-                    $sale_price = get_post_meta($product_id, '_sale_price', true);
-                    $price = $sale_price && $sale_price < $regular_price ? wc_price($sale_price) : wc_price($regular_price);
-                ?>
-                    <option value="<?php echo $product_id; ?>"><?php echo get_the_title($product_id); ?> - <?php echo $price; ?></option>
-                <?php endforeach; ?>
-            </select>
             <div class="scaling-category-group pt__title">
                 <div class="scaling-category header-row">&nbsp;</div>
                 <?php foreach ($sample_fields as $field_key => $field_value) : 
