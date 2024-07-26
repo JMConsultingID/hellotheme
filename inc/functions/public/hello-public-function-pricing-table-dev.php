@@ -259,24 +259,25 @@ function hello_scalling_table_single_product_shortcode($atts) {
     ob_start();
 
     if (wp_is_mobile()) : ?>
-        <div class="hello-theme-scalling-plan-mobile scalling-table <?php echo esc_attr($atts['style']); ?> product_id-<?php echo $product_id; ?>">
+    <div class="hello-theme-scalling-plan-mobile scalling-table <?php echo esc_attr($atts['style']); ?> product_id-<?php echo $product_id; ?>">
             <select id="product-select" class="pricing-table-select-option" onchange="updateProductDetails()">
+                <option value="">Select a product</option>
                 <?php foreach ($products as $product) :
-                    $product_id = $product->ID;
-                    $regular_price = get_post_meta($product_id, '_regular_price', true);
-                    $sale_price = get_post_meta($product_id, '_sale_price', true);
+                    $prod_id = $product->ID;
+                    $regular_price = get_post_meta($prod_id, '_regular_price', true);
+                    $sale_price = get_post_meta($prod_id, '_sale_price', true);
                     $price = $sale_price && $sale_price < $regular_price ? wc_price($sale_price) : wc_price($regular_price);
                 ?>
-                    <option value="<?php echo $product_id; ?>"><?php echo get_the_title($product_id); ?> - <?php echo $price; ?></option>
+                    <option value="<?php echo $prod_id; ?>"><?php echo get_the_title($prod_id); ?> - <?php echo $price; ?></option>
                 <?php endforeach; ?>
             </select>
 
             <div id="product-details">
                 <?php foreach ($products as $product) :
-                    $product_id = $product->ID;
-                    $sample_fields = get_field_objects($acf_levels['level_1'], $product_id);
+                    $prod_id = $product->ID;
+                    $sample_fields = get_field_objects($acf_levels['level_1'], $prod_id);
                 ?>
-                    <div class="product-detail" id="product-detail-<?php echo $product_id; ?>" style="display: none;">
+                    <div class="product-detail" id="product-detail-<?php echo $prod_id; ?>" style="display: none;">
                         <div class="scalling-table-content">
                             <?php if ($sample_fields) :
                                 foreach ($sample_fields as $field_key => $field_object) :
@@ -294,7 +295,7 @@ function hello_scalling_table_single_product_shortcode($atts) {
                                         <div class="swiper-container">
                                             <div class="swiper-wrapper">
                                                 <?php foreach ($acf_levels as $level_key => $level_value) :
-                                                    $field_value = get_field($level_value . '_' . $field_key, $product_id);
+                                                    $field_value = get_field($level_value . '_' . $field_key, $prod_id);
                                                 ?>
                                                     <div class="swiper-slide scalling-column <?php echo $level_value; ?>">
                                                         <?php echo !empty($field_value) ? esc_html($field_value) : 'N/A'; ?>
@@ -324,19 +325,22 @@ function hello_scalling_table_single_product_shortcode($atts) {
                 document.querySelectorAll('.product-detail').forEach(detail => {
                     detail.style.display = 'none';
                 });
-                // Show the selected product detail
-                document.getElementById('product-detail-' + selectedProduct).style.display = 'block';
 
-                // Initialize Swiper
-                var swiper = new Swiper('.swiper-container', {
-                    slidesPerView: 1,
-                    spaceBetween: 10,
-                    navigation: {
-                        nextEl: '.swiper-button-next',
-                        prevEl: '.swiper-button-prev',
-                    },
-                    allowTouchMove: false
-                });
+                if (selectedProduct) {
+                    // Show the selected product detail
+                    document.getElementById('product-detail-' + selectedProduct).style.display = 'block';
+
+                    // Initialize Swiper
+                    var swiper = new Swiper('.swiper-container', {
+                        slidesPerView: 1,
+                        spaceBetween: 10,
+                        navigation: {
+                            nextEl: '.swiper-button-next',
+                            prevEl: '.swiper-button-prev',
+                        },
+                        allowTouchMove: false
+                    });
+                }
             }
 
             document.addEventListener("DOMContentLoaded", function() {
@@ -344,10 +348,10 @@ function hello_scalling_table_single_product_shortcode($atts) {
                     placement: 'right-end'
                 });
 
-                // Initialize Swiper for the first time
+                // Initialize Swiper for the first time if a product is preselected
                 updateProductDetails();
             });
-        </script>
+        </script>    
     <?php else : ?>
         <!-- Existing desktop layout -->    
 
