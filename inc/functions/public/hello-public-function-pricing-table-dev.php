@@ -389,36 +389,34 @@ function hello_scalling_table_single_product_shortcode_mobile($atts) {
                                                     </div>
                                                 </div>
                                             <?php endforeach; ?>
-                                        </div>
-                                        <div class="swiper-wrapper">
-                                        <?php foreach ($acf_levels as $level_key => $level_value) : ?>                                        
-                                            <div class="swiper-slide">
-                                            <div class="scalling-table-content">
-                                                <?php 
-                                                foreach ($group_field_object['sub_fields'] as $sub_field) : 
-                                                    $sub_field_name = $sub_field['name'];
-                                                    $field_value = get_field($level_value . '_' . $sub_field_name, $prod_id);
-                                                ?>
-                                                    <div class="scalling-table-row top-border mobile mobile-acf-wrapper row-<?php echo esc_html($sub_field_name); ?>">
-                                                        <div class="scalling-column <?php echo $level_value; ?>">
-                                                            <?php echo !empty($field_value) ? esc_html($field_value) : 'N/A'; ?>
-                                                            <?php if (in_array($level_key, array('level_4', 'level_5', 'level_6'))) : ?>
-                                                                <span class="refund-of-fees">Refund of Fees</span>
-                                                            <?php endif; ?>
-                                                        </div>
+                                            <div class="swiper-wrapper">
+                                                <?php foreach ($acf_levels as $level_key => $level_value) : ?>                                        
+                                                    <div class="swiper-slide">
+                                                        <?php 
+                                                        foreach ($group_field_object['sub_fields'] as $sub_field) : 
+                                                            $sub_field_name = $sub_field['name'];
+                                                            $field_value = get_field($level_value . '_' . $sub_field_name, $prod_id);
+                                                        ?>
+                                                            <div class="scalling-table-row top-border mobile mobile-acf-wrapper row-<?php echo esc_html($sub_field_name); ?>">
+                                                                <div class="scalling-column <?php echo $level_value; ?>">
+                                                                    <?php echo !empty($field_value) ? esc_html($field_value) : 'N/A'; ?>
+                                                                    <?php if (in_array($level_key, array('level_4', 'level_5', 'level_6'))) : ?>
+                                                                        <span class="refund-of-fees">Refund of Fees</span>
+                                                                    <?php endif; ?>
+                                                                </div>
+                                                            </div>
+                                                        <?php endforeach; ?>
                                                     </div>
                                                 <?php endforeach; ?>
-                                            </div>
-                                            </div>
-                                        <?php endforeach; ?>
+                                                <div class="swiper-button-next"></div>
+                                                <div class="swiper-button-prev"></div>
+                                            </div>                                            
                                         </div>
-                                            <div class="swiper-button-next"></div>
-                                            <div class="swiper-button-prev"></div>
                             </div>
                         </div>
                     <?php 
                         } endforeach; 
-                    ?>
+                    ?>  
                 </div>
             </div>
         </div>
