@@ -302,6 +302,148 @@ function hello_scalling_table_single_product_shortcode($atts) {
 }
 add_shortcode('ypf_scalling_table', 'hello_scalling_table_single_product_shortcode');
 
+function hello_scalling_table_single_product_shortcode_mobile($atts) {
+    $atts = shortcode_atts(
+        array(
+            'mode' => 'single_product',
+            'category' => 'origin',
+            'product_id' => '7132',
+            'style' => 'style1',
+        ),
+        $atts,
+        'ypf_scalling_table'
+    );
+
+    if (empty($atts['category'])) {
+        return '<p>No category specified.</p>';
+    }
+
+    if (empty($atts['product_id'])) {
+        return '<p>No product specified.</p>';
+    }
+
+    $product_id = $atts['product_id'];
+    $category = $atts['category'];
+
+    // Fetch products by category
+    $products = get_posts(array(
+        'post_type' => 'product',
+        'posts_per_page' => -1,
+        'product_cat' => $category
+    ));
+
+    // ACF field group names for each level
+    $acf_levels = array(
+        'level_1' => 'fyfx_scalling_plan_level_1',
+        'level_2' => 'fyfx_scalling_plan_level_2',
+        'level_3' => 'fyfx_scalling_plan_level_3',
+        'level_4' => 'fyfx_scalling_plan_level_4',
+        'level_5' => 'fyfx_scalling_plan_level_5',
+        'level_6' => 'fyfx_scalling_plan_level_6',
+    );
+
+    // Fetch tooltip values
+    $tooltip_post_id = 28386;
+    $acf_tooltip_group_field = 'fyfx_scalling_plan_tooltips';
+    $tooltip_field_values = get_field($acf_tooltip_group_field, $tooltip_post_id);
+
+    // Get a sample field object to get the labels dynamically
+    $sample_field_group = $acf_levels['level_1'];
+    $sample_fields = get_field($sample_field_group, $product_id);
+
+    ob_start();
+
+    if (wp_is_mobile()) : ?>
+        <div class="hello-theme-scalling-plan-mobile scalling-table <?php echo esc_attr($atts['style']); ?> product_id-<?php echo $product_id; ?>">
+            <select id="product-select" class="pricing-table-select-option" onchange="updateProductDetails()">
+                <option value="">Select a product</option>
+                <?php foreach ($products as $product) :
+                    $prod_id = $product->ID;
+                    $regular_price = get_post_meta($prod_id, '_regular_price', true);
+                    $sale_price = get_post_meta($prod_id, '_sale_price', true);
+                    $price = $sale_price && $sale_price < $regular_price ? wc_price($sale_price) : wc_price($regular_price);
+                ?>
+                    <option value="<?php echo $prod_id; ?>"><?php echo get_the_title($prod_id); ?> - <?php echo $price; ?></option>
+                <?php endforeach; ?>
+            </select>
+
+            <div id="product-details">
+                <?php foreach ($products as $product) :
+                    $prod_id = $product->ID;
+                    $sample_fields = get_field_objects($acf_levels['level_1'], $prod_id);
+
+                    if (!is_array($sample_fields)) {
+                        continue;
+                    }
+                ?>
+                    <div class="product-detail" id="product-detail-<?php echo $prod_id; ?>" style="display: none;">
+                        <div class="scalling-table-content">
+                            <?php foreach ($sample_fields as $field_key => $field_object) :
+                                $field_label = $field_object['label'];
+                            ?>
+                                <div class="scalling-table-row top-border">
+                                    <div class="scalling-category">
+                                        <?php echo esc_html($field_label); ?>
+                                        <?php if (!empty($tooltip_field_values[$field_key])) : ?>
+                                            <span class="scalling-table-label-tooltips" data-tippy-content="<?php echo esc_html($tooltip_field_values[$field_key]); ?>">
+                                                <i aria-hidden="true" class="fas fa-info-circle"></i>
+                                            </span>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div class="scalling-column">
+                                        <?php foreach ($acf_levels as $level_key => $level_value) :
+                                            $field_value = get_field($level_value . '_' . $field_key, $prod_id);
+                                        ?>
+                                            <div class="scalling-level-value <?php echo $level_value; ?>">
+                                                <?php echo !empty($field_value) ? esc_html($field_value) : 'N/A'; ?>
+                                                <?php if (in_array($level_key, array('level_4', 'level_5', 'level_6'))) : ?>
+                                                    <span class="refund-of-fees">Refund of Fees</span>
+                                                <?php endif; ?>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <script>
+            function updateProductDetails() {
+                const select = document.getElementById('product-select');
+                const selectedProduct = select.value;
+
+                // Hide all product details
+                document.querySelectorAll('.product-detail').forEach(detail => {
+                    detail.style.display = 'none';
+                });
+
+                if (selectedProduct) {
+                    // Show the selected product detail
+                    const selectedDetail = document.getElementById('product-detail-' + selectedProduct);
+                    if (selectedDetail) {
+                        selectedDetail.style.display = 'block';
+                    } else {
+                        console.error('Selected product detail not found for ID:', selectedProduct);
+                    }
+                }
+            }
+
+            document.addEventListener("DOMContentLoaded", function() {
+                tippy(".scalling-table-label-tooltips", {
+                    placement: 'right-end'
+                });
+
+                // Initialize details for the first time if a product is preselected
+                updateProductDetails();
+            });
+        </script>
+    <?php endif;
+    return ob_get_clean();
+}
+add_shortcode('ypf_scalling_table_mobile', 'hello_scalling_table_single_product_shortcode_mobile');
+
 
 
 function hello_pricing_table_dev_shortcode() {
