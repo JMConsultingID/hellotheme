@@ -207,7 +207,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
 }
 add_shortcode('ypf_pricing_table', 'hello_pricing_table_multi_product_shortcode');
 
-function hello_scalling_table_single_product_shortcode($atts) {
+function hello_scalling_table_single_product_shortcode_mobile($atts) {
     $atts = shortcode_atts(
         array(
             'mode' => 'single_product',
@@ -254,12 +254,12 @@ function hello_scalling_table_single_product_shortcode($atts) {
 
     // Get a sample field object to get the labels dynamically
     $sample_field_group = $acf_levels['level_1'];
-    $sample_fields = get_field($sample_field_group, $product_id);
+    $sample_fields = get_field_objects($sample_field_group, $product_id);
 
     ob_start();
 
     if (wp_is_mobile()) : ?>
-    <div class="hello-theme-scalling-plan-mobile scalling-table <?php echo esc_attr($atts['style']); ?> product_id-<?php echo $product_id; ?>">
+        <div class="hello-theme-scalling-plan-mobile scalling-table <?php echo esc_attr($atts['style']); ?> product_id-<?php echo $product_id; ?>">
             <select id="product-select" class="pricing-table-select-option" onchange="updateProductDetails()">
                 <option value="">Select a product</option>
                 <?php foreach ($products as $product) :
@@ -276,6 +276,10 @@ function hello_scalling_table_single_product_shortcode($atts) {
                 <?php foreach ($products as $product) :
                     $prod_id = $product->ID;
                     $sample_fields = get_field_objects($acf_levels['level_1'], $prod_id);
+
+                    if (!is_array($sample_fields)) {
+                        continue;
+                    }
                 ?>
                     <div class="product-detail" id="product-detail-<?php echo $prod_id; ?>" style="display: none;">
                         <div class="scalling-table-content">
