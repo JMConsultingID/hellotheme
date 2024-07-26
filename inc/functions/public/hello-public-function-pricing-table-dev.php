@@ -352,47 +352,91 @@ function hello_scalling_table_single_product_shortcode_mobile($atts) {
     $sample_fields = get_field($sample_field_group, $product_id);
 
     ob_start();
-    ?>
-    <div class="hello-theme-scalling-plan scalling-table <?php echo esc_attr($atts['style']); ?> product_id-<?php echo $product_id; ?>">
-        <div class="scalling-table-content">
-            <div class="scalling-table-row header-row">
-                <div class="scalling-category">Scaling Level</div>
-                <?php foreach ($acf_levels as $level_key => $level_value) : ?>
-                    <div class="scalling-column <?php echo $level_value; ?>"><?php echo ucfirst(str_replace('_', ' ', $level_key)); ?></div>
+    if (wp_is_mobile()) : ?>
+        <div class="hello-theme-scalling-plan-mobile scalling-table <?php echo esc_attr($atts['style']); ?> product_id-<?php echo $product_id; ?>">
+            <select id="product-select" class="pricing-table-select-option" onchange="updateProductDetails()">
+                <?php foreach ($products as $product) :
+                    $prod_id = $product->ID;
+                    $regular_price = get_post_meta($prod_id, '_regular_price', true);
+                    $sale_price = get_post_meta($prod_id, '_sale_price', true);
+                    $price = $sale_price && $sale_price < $regular_price ? wc_price($sale_price) : wc_price($regular_price);
+                ?>
+                    <option value="<?php echo $prod_id; ?>"><?php echo get_the_title($prod_id); ?> - <?php echo $price; ?></option>
+                <?php endforeach; ?>
+            </select>
+
+            <div id="product-details">
+                <?php foreach ($products as $product) :
+                    $prod_id = $product->ID;
+                    $sample_fields = get_field_objects($acf_levels['level_1'], $prod_id);
+
+                    if (!is_array($sample_fields)) {
+                        continue;
+                    }
+                ?>
+                    <div class="product-detail" id="product-detail-<?php echo $prod_id; ?>">
+                        <div class="scalling-table-content">
+                            <div class="scalling-table-row header-row">
+                                <div class="scalling-category">Scaling Level</div>
+                                <?php foreach ($acf_levels as $level_key => $level_value) : ?>
+                                    <div class="scalling-column <?php echo $level_value; ?>"><?php echo ucfirst(str_replace('_', ' ', $level_key)); ?></div>
+                                <?php endforeach; ?>
+                            </div>
+                            <?php foreach ($sample_fields as $field_key => $field_object) :
+                                $field_label = $field_object['label'];
+                            ?>
+                                <div class="scalling-table-row top-border">
+                                    <div class="scalling-category">
+                                        <?php echo esc_html($field_label); ?>
+                                        <?php if (!empty($tooltip_field_values[$field_key])) : ?>
+                                            <span class="scalling-table-label-tooltips" data-tippy-content="<?php echo esc_html($tooltip_field_values[$field_key]); ?>">
+                                                <i aria-hidden="true" class="fas fa-info-circle"></i>
+                                            </span>
+                                        <?php endif; ?>
+                                    </div>
+                                    <?php foreach ($acf_levels as $level_key => $level_value) :
+                                        $field_value = get_field($level_value . '_' . $field_key, $prod_id);
+                                    ?>
+                                        <div class="scalling-column <?php echo $level_value; ?>"><?php echo !empty($field_value) ? esc_html($field_value) : 'N/A'; ?></div>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
                 <?php endforeach; ?>
             </div>
-            <?php foreach ($sample_fields as $field_key => $field_value) : 
-                $field_object = get_field_object($sample_field_group . '_' . $field_key, $product_id);
-                if ($field_object) :
-                    $field_label = $field_object['label'];
-                    ?>
-                    <div class="scalling-table-row top-border product_id-<?php echo $product_id; ?>">
-                        <div class="scalling-category">
-                            <?php echo $field_label; ?>
-                            <?php if (!empty($tooltip_field_values[$field_key])) : ?>
-                                <span class="scalling-table-label-tooltips" data-tippy-content="<?php echo esc_html($tooltip_field_values[$field_key]); ?>">
-                                    <i aria-hidden="true" class="fas fa-info-circle"></i>
-                                </span>
-                            <?php endif; ?>
-                        </div>
-                        <?php foreach ($acf_levels as $level_key => $level_value) : 
-                            $field_value = get_field($level_value . '_' . $field_key, $product_id);
-                        ?>
-                            <div class="scalling-column <?php echo $level_value; ?>"><?php echo !empty($field_value) ? esc_html($field_value) : 'N/A'; ?></div>
-                        <?php endforeach; ?>
-                    </div>
-                <?php endif; ?>
-            <?php endforeach; ?>
         </div>
-    </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            tippy(".scalling-table-label-tooltips", {
-                placement: 'right-end'
+        <script>
+            function updateProductDetails() {
+                const select = document.getElementById('product-select');
+                const selectedProduct = select.value;
+
+                // Hide all product details
+                document.querySelectorAll('.product-detail').forEach(detail => {
+                    detail.style.display = 'none';
+                });
+
+                if (selectedProduct) {
+                    // Show the selected product detail
+                    const selectedDetail = document.getElementById('product-detail-' + selectedProduct);
+                    if (selectedDetail) {
+                        selectedDetail.style.display = 'block';
+                    } else {
+                        console.error('Selected product detail not found for ID:', selectedProduct);
+                    }
+                }
+            }
+
+            document.addEventListener("DOMContentLoaded", function() {
+                tippy(".scalling-table-label-tooltips", {
+                    placement: 'right-end'
+                });
+
+                // Initialize details for the first time
+                updateProductDetails();
             });
-        });
-    </script>
-    <?php
+        </script>
+    <?php endif;
     return ob_get_clean();
 }
 add_shortcode('ypf_scalling_table_mobile', 'hello_scalling_table_single_product_shortcode_mobile');
