@@ -347,7 +347,7 @@ function hello_scalling_table_single_product_shortcode_mobile($atts) {
     $acf_tooltip_group_field = 'fyfx_scalling_plan_tooltips';
     $tooltip_field_values = get_field($acf_tooltip_group_field, $tooltip_post_id);
 
-    ob_start();
+    ob_start(); ?>
     <?php if (wp_is_mobile()) : ?>
         <div class="scaling-plan-table">
             <div class="scaling-category-group pt__title">
