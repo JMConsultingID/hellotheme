@@ -257,6 +257,102 @@ function hello_scalling_table_single_product_shortcode($atts)  {
     $sample_fields = get_field_objects($sample_field_group, $product_id);
 
     ob_start();
+    ?>
+    <div class="hello-theme-scalling-plan scalling-table <?php echo esc_attr($atts['style']); ?> product_id-<?php echo $product_id; ?>">
+        <div class="scalling-table-content">
+            <div class="scalling-table-row header-row">
+                <div class="scalling-category">Scaling Level</div>
+                <?php foreach ($acf_levels as $level_key => $level_value) : ?>
+                    <div class="scalling-column <?php echo $level_value; ?>"><?php echo ucfirst(str_replace('_', ' ', $level_key)); ?></div>
+                <?php endforeach; ?>
+            </div>
+            <?php foreach ($sample_fields as $field_key => $field_value) : 
+                $field_object = get_field_object($sample_field_group . '_' . $field_key, $product_id);
+                if ($field_object) :
+                    $field_label = $field_object['label'];
+                    ?>
+                    <div class="scalling-table-row top-border product_id-<?php echo $product_id; ?>">
+                        <div class="scalling-category">
+                            <?php echo $field_label; ?>
+                            <?php if (!empty($tooltip_field_values[$field_key])) : ?>
+                                <span class="scalling-table-label-tooltips" data-tippy-content="<?php echo esc_html($tooltip_field_values[$field_key]); ?>">
+                                    <i aria-hidden="true" class="fas fa-info-circle"></i>
+                                </span>
+                            <?php endif; ?>
+                        </div>
+                        <?php foreach ($acf_levels as $level_key => $level_value) : 
+                            $field_value = get_field($level_value . '_' . $field_key, $product_id);
+                        ?>
+                            <div class="scalling-column <?php echo $level_value; ?>"><?php echo !empty($field_value) ? esc_html($field_value) : 'N/A'; ?></div>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+    </div>
+    
+    <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                tippy(".scalling-table-label-tooltips", {
+                    placement: 'right-end'
+                });
+            });
+        </script>
+    <?php
+    return ob_get_clean();
+}
+add_shortcode('ypf_scalling_table', 'hello_scalling_table_single_product_shortcode');
+
+function hello_scalling_table_single_product_shortcode_mobile($atts) {
+    $atts = shortcode_atts(
+        array(
+            'mode' => 'single_product',
+            'category' => 'origin',
+            'product_id' => '7132',
+            'style' => 'style1',
+        ),
+        $atts,
+        'ypf_scalling_table'
+    );
+
+    if (empty($atts['category'])) {
+        return '<p>No category specified.</p>';
+    }
+
+    if (empty($atts['product_id'])) {
+        return '<p>No product specified.</p>';
+    }
+
+    $product_id = $atts['product_id'];
+    $category = $atts['category'];
+
+    // Fetch products by category
+    $products = get_posts(array(
+        'post_type' => 'product',
+        'posts_per_page' => -1,
+        'product_cat' => $category
+    ));
+
+    // ACF field group names for each level
+    $acf_levels = array(
+        'level_1' => 'fyfx_scalling_plan_level_1',
+        'level_2' => 'fyfx_scalling_plan_level_2',
+        'level_3' => 'fyfx_scalling_plan_level_3',
+        'level_4' => 'fyfx_scalling_plan_level_4',
+        'level_5' => 'fyfx_scalling_plan_level_5',
+        'level_6' => 'fyfx_scalling_plan_level_6',
+    );
+
+    // Fetch tooltip values
+    $tooltip_post_id = 28386;
+    $acf_tooltip_group_field = 'fyfx_scalling_plan_tooltips';
+    $tooltip_field_values = get_field($acf_tooltip_group_field, $tooltip_post_id);
+
+    // Get a sample field object to get the labels dynamically
+    $sample_field_group = $acf_levels['level_1'];
+    $sample_fields = get_field($sample_field_group, $product_id);
+
+    ob_start();
 
     if (wp_is_mobile()) : ?>
         <div class="hello-theme-scalling-plan-mobile scalling-table <?php echo esc_attr($atts['style']); ?> product_id-<?php echo $product_id; ?>">
@@ -326,7 +422,12 @@ function hello_scalling_table_single_product_shortcode($atts)  {
 
                 if (selectedProduct) {
                     // Show the selected product detail
-                    document.getElementById('product-detail-' + selectedProduct).style.display = 'block';
+                    const selectedDetail = document.getElementById('product-detail-' + selectedProduct);
+                    if (selectedDetail) {
+                        selectedDetail.style.display = 'block';
+                    } else {
+                        console.error('Selected product detail not found for ID:', selectedProduct);
+                    }
                 }
             }
 
@@ -339,54 +440,11 @@ function hello_scalling_table_single_product_shortcode($atts)  {
                 updateProductDetails();
             });
         </script>
-    <?php else : ?>
-        <!-- Existing desktop layout -->    
-
-    <div class="hello-theme-scalling-plan scalling-table <?php echo esc_attr($atts['style']); ?> product_id-<?php echo $product_id; ?>">
-        <div class="scalling-table-content">
-            <div class="scalling-table-row header-row">
-                <div class="scalling-category">Scaling Level</div>
-                <?php foreach ($acf_levels as $level_key => $level_value) : ?>
-                    <div class="scalling-column <?php echo $level_value; ?>"><?php echo ucfirst(str_replace('_', ' ', $level_key)); ?></div>
-                <?php endforeach; ?>
-            </div>
-            <?php foreach ($sample_fields as $field_key => $field_value) : 
-                $field_object = get_field_object($sample_field_group . '_' . $field_key, $product_id);
-                if ($field_object) :
-                    $field_label = $field_object['label'];
-                    ?>
-                    <div class="scalling-table-row top-border product_id-<?php echo $product_id; ?>">
-                        <div class="scalling-category">
-                            <?php echo $field_label; ?>
-                            <?php if (!empty($tooltip_field_values[$field_key])) : ?>
-                                <span class="scalling-table-label-tooltips" data-tippy-content="<?php echo esc_html($tooltip_field_values[$field_key]); ?>">
-                                    <i aria-hidden="true" class="fas fa-info-circle"></i>
-                                </span>
-                            <?php endif; ?>
-                        </div>
-                        <?php foreach ($acf_levels as $level_key => $level_value) : 
-                            $field_value = get_field($level_value . '_' . $field_key, $product_id);
-                        ?>
-                            <div class="scalling-column <?php echo $level_value; ?>"><?php echo !empty($field_value) ? esc_html($field_value) : 'N/A'; ?></div>
-                        <?php endforeach; ?>
-                    </div>
-                <?php endif; ?>
-            <?php endforeach; ?>
-        </div>
-    </div>
-    
-    <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                tippy(".scalling-table-label-tooltips", {
-                    placement: 'right-end'
-                });
-            });
-        </script>
-    <?php
-    endif;
+    <?php endif;
     return ob_get_clean();
 }
-add_shortcode('ypf_scalling_table', 'hello_scalling_table_single_product_shortcode');
+add_shortcode('ypf_scalling_table_mobile', 'hello_scalling_table_single_product_shortcode_mobile');
+
 
 
 
