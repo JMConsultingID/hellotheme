@@ -19,6 +19,12 @@
 .no-border{
 	border:unset;
 }
+.scalling-table-label-tooltips {
+    margin-left: 5px;
+    cursor: pointer;
+    float: right;
+}
+
 /* Pricing Plan Style 1 Desktop */
 .hello-theme-pricing-plan.pricing-table {
     background: #ffffff;
@@ -130,13 +136,6 @@
     flex: 0 0 20%;
 }
 
-.hello-theme-scalling-plan .scalling-table-label-tooltips {
-    margin-left: 5px;
-    cursor: pointer;
-    float: right;
-}
-
-
 /*Scalling Plan Table Style 1 Mobile*/
 .hello-theme-scalling-plan-mobile {
     display: flex;
@@ -156,7 +155,11 @@
 .hello-theme-scalling-plan-mobile .scaling-column {
     padding: 10px;
     text-align: left;
-    border-bottom: 1px solid #ccc;
+}
+
+.hello-theme-scalling-plan-mobile .scaling-column {
+    padding: 10px;
+    text-align: center;
 }
 
 .hello-theme-scalling-plan-mobile .scaling-category {
@@ -167,10 +170,6 @@
     font-weight: bold;
     padding: 10px 0;
     text-align: center;
-}
-
-.hello-theme-scalling-plan-mobile .refund-of-fees {
-    color: red;
 }
 
 .hello-theme-scalling-plan-mobile .scaling-category i {
