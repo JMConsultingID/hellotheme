@@ -30,13 +30,13 @@ function hello_theme_pricing_table_live() {
     // Check if the pricing table is enabled
     if ( get_option( 'hello_theme_enable_table_pricing' ) === '1' ) {
         // Enqueue styles        
-        wp_enqueue_style( 'hello-theme-font-awesome-css', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
-        wp_enqueue_style( 'hello-theme-swiper-bundle-css', 'https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css');
+        wp_enqueue_style( 'hello-theme-font-awesome-css', get_stylesheet_directory_uri() . '/assets/css/all.min.css');
+        wp_enqueue_style( 'hello-theme-swiper-bundle-css', get_stylesheet_directory_uri() . '/assets/css/\/swiper-bundle.min.css');
         wp_enqueue_style( 'hello-theme-tippy-css', get_stylesheet_directory_uri() . '/assets/css/tippy.css');
         wp_enqueue_style( 'hello-theme-plugins-css', get_stylesheet_directory_uri() . '/assets/css/hello-theme-pricing-table.css', array('hello-theme-font-awesome-css', 'hello-theme-swiper-bundle-css'), HELLO_THEME_VERSION, 'all' );
 
         // Enqueue scripts        
-        wp_enqueue_script( 'hello-theme-swiper-bundle-js', 'https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js', array('jquery'), null, true );
+        wp_enqueue_script( 'hello-theme-swiper-bundle-js', get_stylesheet_directory_uri() . '/assets/js/swiper-bundle.min.js', array('jquery'), null, true );
         wp_enqueue_script( 'hello-theme-popper-js', get_stylesheet_directory_uri() . '/assets/js/popper.min.js', array(), null, true );
         wp_enqueue_script( 'hello-theme-tippy-js', get_stylesheet_directory_uri() . '/assets/js//tippy-bundle.umd.min.js', array(), null, true );
 
