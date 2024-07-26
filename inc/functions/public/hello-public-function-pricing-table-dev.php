@@ -370,35 +370,52 @@ function hello_scalling_table_single_product_shortcode_mobile($atts) {
                         if ($group_field_object && isset($group_field_object['sub_fields'])) {
                     ?>
                         <div class="product-detail <?php echo $category; ?>" id="product-detail-<?php echo $prod_id; ?>" style="<?php echo $index === 0 ? '' : 'display:none;'; ?>">
-                            <div class="scalling-table-content">
-                                <div class="scalling-table-row header-row">
-                                    <div class="scalling-category">Scaling Level</div>
+                            <div class="swiper-container">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <div class="scalling-table-content">
+                                            <?php 
+                                            foreach ($group_field_object['sub_fields'] as $sub_field) : 
+                                                $sub_field_label = $sub_field['label'];
+                                                $sub_field_name = $sub_field['name'];
+                                                $tooltip = isset($tooltip_field_values[$sub_field_name]) ? $tooltip_field_values[$sub_field_name] : '';
+                                            ?>
+                                                <div class="scalling-table-row top-border mobile mobile-acf-wrapper row-<?php echo esc_html($sub_field_name); ?>">
+                                                    <div class="plan-category mobile label-<?php echo esc_html($sub_field_name); ?>">
+                                                        <?php echo esc_html($sub_field_label); ?>
+                                                        <?php if (!empty($tooltip)) : ?>
+                                                            <span class="scalling-table-label-tooltips" data-tippy-content="<?php echo esc_html($tooltip); ?>" style="float: right;">
+                                                                <i aria-hidden="true" class="fas fa-info-circle"></i>
+                                                            </span>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                </div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    </div>
                                     <?php foreach ($acf_levels as $level_key => $level_value) : ?>
-                                        <div class="scalling-column <?php echo $level_value; ?>"><?php echo ucfirst(str_replace('_', ' ', $level_key)); ?></div>
+                                        <div class="swiper-slide">
+                                            <div class="scalling-table-content">
+                                                <?php 
+                                                foreach ($group_field_object['sub_fields'] as $sub_field) : 
+                                                    $sub_field_name = $sub_field['name'];
+                                                    $field_value = get_field($level_value . '_' . $sub_field_name, $prod_id);
+                                                ?>
+                                                    <div class="scalling-table-row top-border mobile mobile-acf-wrapper row-<?php echo esc_html($sub_field_name); ?>">
+                                                        <div class="scalling-column <?php echo $level_value; ?>">
+                                                            <?php echo !empty($field_value) ? esc_html($field_value) : 'N/A'; ?>
+                                                            <?php if (in_array($level_key, array('level_4', 'level_5', 'level_6'))) : ?>
+                                                                <span class="refund-of-fees">Refund of Fees</span>
+                                                            <?php endif; ?>
+                                                        </div>
+                                                    </div>
+                                                <?php endforeach; ?>
+                                            </div>
+                                        </div>
                                     <?php endforeach; ?>
                                 </div>
-                                <?php 
-                                foreach ($group_field_object['sub_fields'] as $sub_field) : 
-                                    $sub_field_label = $sub_field['label'];
-                                    $sub_field_name = $sub_field['name'];
-                                    $tooltip = isset($tooltip_field_values[$sub_field_name]) ? $tooltip_field_values[$sub_field_name] : '';
-                                    ?>
-                                    <div class="scalling-table-row top-border mobile mobile-acf-wrapper row-<?php echo esc_html($sub_field_name); ?>">
-                                        <div class="plan-category mobile label-<?php echo esc_html($sub_field_name); ?>">
-                                            <?php echo esc_html($sub_field_label); ?>
-                                            <?php if (!empty($tooltip)) : ?>
-                                                <span class="scalling-table-label-tooltips" data-tippy-content="<?php echo esc_html($tooltip); ?>" style="float: right;">
-                                                    <i aria-hidden="true" class="fas fa-info-circle"></i>
-                                                </span>
-                                            <?php endif; ?>
-                                        </div>
-                                        <?php foreach ($acf_levels as $level_key => $level_value) :
-                                            $field_value = get_field($level_value . '_' . $sub_field_name, $prod_id);
-                                        ?>
-                                            <div class="scalling-column <?php echo $level_value; ?>"><?php echo !empty($field_value) ? esc_html($field_value) : 'N/A'; ?></div>
-                                        <?php endforeach; ?>
-                                    </div>
-                                <?php endforeach; ?>
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
                             </div>
                         </div>
                     <?php 
@@ -417,6 +434,13 @@ function hello_scalling_table_single_product_shortcode_mobile($atts) {
                 const selectedDetail = document.getElementById('product-detail-' + selectedProduct);
                 if (selectedDetail) {
                     selectedDetail.style.display = 'block';
+                    const swiper = new Swiper('.swiper-container', {
+                        navigation: {
+                            nextEl: '.swiper-button-next',
+                            prevEl: '.swiper-button-prev',
+                        },
+                        allowTouchMove: false,
+                    });
                 } else {
                     console.error('Selected product detail not found for ID:', selectedProduct);
                 }
