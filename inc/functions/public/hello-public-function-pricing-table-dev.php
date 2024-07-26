@@ -347,10 +347,6 @@ function hello_scalling_table_single_product_shortcode_mobile($atts) {
     $acf_tooltip_group_field = 'fyfx_scalling_plan_tooltips';
     $tooltip_field_values = get_field($acf_tooltip_group_field, $tooltip_post_id);
 
-    // Get a sample field object to get the labels dynamically
-    $sample_field_group = $acf_levels['level_1'];
-    $sample_fields = get_field($sample_field_group, $product_id);
-
     ob_start();
     if (wp_is_mobile()) : ?>
         <div class="hello-theme-scalling-plan-mobile scalling-table <?php echo esc_attr($atts['style']); ?> product_id-<?php echo $product_id; ?>">
@@ -365,45 +361,61 @@ function hello_scalling_table_single_product_shortcode_mobile($atts) {
                 <?php endforeach; ?>
             </select>
 
-            <div id="product-details">
-                <?php foreach ($products as $product) :
-                    $prod_id = $product->ID;
-                    $sample_fields = get_field_objects($acf_levels['level_1'], $prod_id);
-
-                    if (!is_array($sample_fields)) {
-                        continue;
-                    }
-                ?>
-                    <div class="product-detail <?php echo $category; ?>" id="product-detail-<?php echo $prod_id; ?>" style="display: none;">
-                        <div class="scalling-table-content">
-                            <div class="scalling-table-row header-row">
-                                <div class="scalling-category">Scaling Level</div>
-                                <?php foreach ($acf_levels as $level_key => $level_value) : ?>
-                                    <div class="scalling-column <?php echo $level_value; ?>"><?php echo ucfirst(str_replace('_', ' ', $level_key)); ?></div>
-                                <?php endforeach; ?>
+            <div class="pricing-table-content">
+                <div id="product-details-<?php echo $category; ?>" class="product-details-mobile">
+                    <?php foreach ($products as $index => $product) :
+                        $prod_id = $product->ID;
+                        $regular_price = get_post_meta($prod_id, '_regular_price', true);
+                        $sale_price = get_post_meta($prod_id, '_sale_price', true);                    
+                        $group_field_object = get_field_object($acf_levels['level_1'], $prod_id);
+                        $tooltip_field_values = get_field($acf_tooltip_group_field, $tooltip_post_id);
+                        if ($group_field_object && isset($group_field_object['sub_fields'])) {
+                    ?>
+                        <div class="product-detail <?php echo $category; ?>" id="product-detail-<?php echo $prod_id; ?>" style="<?php echo $index === 0 ? '' : 'display:none;'; ?>">
+                            <div class="pricing-table-row no-border mobile mobile-product-title-wrapper">
+                                <div class="plan-name mobile product-id-<?php echo $product->ID; ?>"><?php echo get_the_title($prod_id); ?></div>
                             </div>
-                            <?php foreach ($sample_fields as $field_key => $field_object) :
-                                $field_label = $field_object['label'];
+                            <?php 
+                                foreach ($group_field_object['sub_fields'] as $sub_field) : 
+                                    $sub_field_label = $sub_field['label'];
+                                    $sub_field_name = $sub_field['name'];
+                                    $tooltip = isset($tooltip_field_values[$sub_field_name]) ? $tooltip_field_values[$sub_field_name] : '';
+                                    $field_value = get_field($acf_levels['level_1'] . '_' . $sub_field_name, $prod_id);
                             ?>
-                                <div class="scalling-table-row top-border">
-                                    <div class="scalling-category">
-                                        <?php echo esc_html($field_label); ?>
-                                        <?php if (!empty($tooltip_field_values[$field_key])) : ?>
-                                            <span class="scalling-table-label-tooltips" data-tippy-content="<?php echo esc_html($tooltip_field_values[$field_key]); ?>">
+                                <div class="pricing-table-row top-border mobile mobile-acf-wrapper row-<?php echo esc_html($sub_field_name); ?>">
+                                    <div class="plan-category mobile label-<?php echo esc_html($sub_field_name); ?>">
+                                        <?php echo esc_html($sub_field_label); ?>
+                                        <?php if (!empty($tooltip)) : ?>
+                                            <span class="pricing-table-label-tooltips" data-tippy-content="<?php echo esc_html($tooltip); ?>" style="float: right;">
                                                 <i aria-hidden="true" class="fas fa-info-circle"></i>
                                             </span>
                                         <?php endif; ?>
                                     </div>
-                                    <?php foreach ($acf_levels as $level_key => $level_value) :
-                                        $field_value = get_field($level_value . '_' . $field_key, $prod_id);
-                                    ?>
-                                        <div class="scalling-column <?php echo $level_value; ?>"><?php echo !empty($field_value) ? esc_html($field_value) : 'N/A'; ?></div>
-                                    <?php endforeach; ?>
+                                    <div class="plan-column mobile product-id-<?php echo $product->ID; ?>"><?php echo !empty($field_value) ? esc_html($field_value) : 'N/A'; ?></div>
                                 </div>
                             <?php endforeach; ?>
+                            <div class="pricing-table-row top-border mobile mobile-pricing-wrapper">
+                                <div class="plan-category mobile">
+                                    Account Price 
+                                    <span class="plan-category-price-discount mobile" style="display: block;"><?php echo ucfirst($atts['account_price_text']); ?></span>
+                                </div>
+                                <div class="plan-column mobile">
+                                    <?php if ($sale_price && $sale_price < $regular_price) : ?>
+                                        <?php echo wc_price($sale_price); ?>
+                                        <span class="regular-price mobile" style="text-decoration: line-through;"><?php echo wc_price($regular_price); ?></span>
+                                    <?php else : ?>
+                                        <?php echo wc_price($regular_price); ?>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                            <div class="pricing-table-row no-border mobile mobile-button-wrapper">
+                                <div class="plan-button mobile"><a href="<?php echo site_url('/checkout/?add-to-cart=' . $prod_id); ?>" class="button">Start Now</a></div>
+                            </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>
+                    <?php 
+                        } endforeach; 
+                    ?>
+                </div>
             </div>
         </div>
         <script>
@@ -437,6 +449,7 @@ function hello_scalling_table_single_product_shortcode_mobile($atts) {
     return ob_get_clean();
 }
 add_shortcode('ypf_scalling_table_mobile', 'hello_scalling_table_single_product_shortcode_mobile');
+
 
 
 function hello_pricing_table_dev_shortcode() {
