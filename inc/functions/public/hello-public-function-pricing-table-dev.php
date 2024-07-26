@@ -369,8 +369,7 @@ function hello_scalling_table_single_product_shortcode_mobile($atts) {
                         $tooltip_field_values = get_field($acf_tooltip_group_field, $tooltip_post_id);
                         if ($group_field_object && isset($group_field_object['sub_fields'])) {
                     ?>
-                        <div class="product-detail <?php echo $category; ?>" id="product-detail-<?php echo $prod_id; ?>" style="<?php echo $index === 0 ? '' : 'display:none;'; ?>">
-                            <div class="swiper-container">
+                        <div class="product-detail <?php echo $category; ?>" id="product-detail-<?php echo $prod_id; ?>" style="<?php echo $index === 0 ? '' : 'display:none;'; ?>">                            
                                         <div class="scalling-table-content">
                                             <?php 
                                             foreach ($group_field_object['sub_fields'] as $sub_field) : 
@@ -389,8 +388,9 @@ function hello_scalling_table_single_product_shortcode_mobile($atts) {
                                                     </div>
                                                 </div>
                                             <?php endforeach; ?>
+                                            <div class="swiper-container">
                                             <div class="swiper-wrapper">
-                                                <?php foreach ($acf_levels as $level_key => $level_value) : ?>                                        
+                                                <?php foreach ($acf_levels as $level_key => $level_value) : ?>
                                                     <div class="swiper-slide">
                                                         <?php 
                                                         foreach ($group_field_object['sub_fields'] as $sub_field) : 
