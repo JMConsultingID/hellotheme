@@ -287,7 +287,7 @@ function hello_scalling_table_single_product_shortcode($atts) {
                         if ($field_object) :
                             $field_label = $field_object['label'];
                     ?>
-                        <div class="scalling-category">
+                        <div class="scaling-category">
                             <?php echo $field_label; ?>
                             <?php if (!empty($tooltip_field_values[$field_key])) : ?>
                                 <span class="scalling-table-label-tooltips" data-tippy-content="<?php echo esc_html($tooltip_field_values[$field_key]); ?>">
