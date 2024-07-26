@@ -311,7 +311,7 @@ function hello_scalling_table_single_product_shortcode_mobile($atts) {
             'style' => 'style1',
         ),
         $atts,
-        'ypf_scalling_table'
+        'ypf_scalling_table_mobile'
     );
 
     if (empty($atts['category'])) {
@@ -347,28 +347,48 @@ function hello_scalling_table_single_product_shortcode_mobile($atts) {
     $acf_tooltip_group_field = 'fyfx_scalling_plan_tooltips';
     $tooltip_field_values = get_field($acf_tooltip_group_field, $tooltip_post_id);
 
-    ob_start(); ?>
-    <?php if (wp_is_mobile()) : ?>
-        <div class="scaling-plan-table">
+    // Get a sample field object to get the labels dynamically
+    $sample_field_group = $acf_levels['level_1'];
+    $sample_fields = get_field($sample_field_group, $product_id);
+
+    ob_start();
+
+    // Mobile version
+    if (wp_is_mobile()) {
+        ?>
+        <div class="hello-theme-scalling-plan-mobile scaling-plan-table <?php echo esc_attr($atts['style']); ?>">
+            <select id="product-select-<?php echo $category; ?>" class="pricing-table-select-option" onchange="updateProductDetailsMobile('<?php echo $category; ?>')">
+                <?php foreach ($products as $product) : 
+                    $product_id = $product->ID;
+                    $regular_price = get_post_meta($product_id, '_regular_price', true);
+                    $sale_price = get_post_meta($product_id, '_sale_price', true);
+                    $price = $sale_price && $sale_price < $regular_price ? wc_price($sale_price) : wc_price($regular_price);
+                ?>
+                    <option value="<?php echo $product_id; ?>"><?php echo get_the_title($product_id); ?> - <?php echo $price; ?></option>
+                <?php endforeach; ?>
+            </select>
             <div class="scaling-category-group pt__title">
                 <div class="scaling-category header-row">&nbsp;</div>
-                <?php foreach ($sample_fields as $field_key => $field_value) : ?>
-                    <?php $field_object = get_field_object($sample_field_group . '_' . $field_key, $product_id); ?>
-                    <div class="scaling-category"><?php echo $field_object['label']; ?> <i aria-hidden="true" class="fas fa-info-circle"></i></div>
-                <?php endforeach; ?>
+                <?php foreach ($sample_fields as $field_key => $field_value) : 
+                    $field_object = get_field_object($sample_field_group . '_' . $field_key, $product_id);
+                    if ($field_object) :
+                        $field_label = $field_object['label'];
+                ?>
+                    <div class="scaling-category"><?php echo $field_label; ?> <i aria-hidden="true" class="fas fa-info-circle"></i></div>
+                <?php endif; endforeach; ?>
             </div>
             <div class="scaling-value-group pt__option swiper-container">
                 <div class="swiper-wrapper">
-                    <?php foreach ($acf_levels as $level_key => $level_value) : ?>
+                    <?php foreach ($acf_levels as $level_key => $level_value) : 
+                        $level_fields = get_field($level_value, $product_id);
+                    ?>
                         <div class="swiper-slide">
-                            <div class="scaling-column header-row">
-                                <?php echo ucfirst(str_replace('_', ' ', $level_key)); ?>
-                                <?php if (in_array($level_key, ['level_4', 'level_5', 'level_6'])) : ?>
-                                    <span class="refund-of-fees">Refund of Fees</span>
-                                <?php endif; ?>
+                            <div class="scaling-column header-row"><?php echo ucfirst(str_replace('_', ' ', $level_key)); ?>
+                            <?php if (in_array($level_key, ['level_4', 'level_5', 'level_6'])) : ?>
+                                <span class="refund-of-fees">Refund of Fees</span>
+                            <?php endif; ?>
                             </div>
-                            <?php foreach ($sample_fields as $field_key => $field_value) : ?>
-                                <?php $field_value = get_field($level_value . '_' . $field_key, $product_id); ?>
+                            <?php foreach ($level_fields as $field_key => $field_value) : ?>
                                 <div class="scaling-column"><?php echo !empty($field_value) ? esc_html($field_value) : 'N/A'; ?></div>
                             <?php endforeach; ?>
                         </div>
@@ -378,7 +398,66 @@ function hello_scalling_table_single_product_shortcode_mobile($atts) {
                 <div class="swiper-button-prev"></div>
             </div>
         </div>
+
+        <style>
+            .hello-theme-scalling-plan-mobile {
+                display: flex;
+                flex-direction: row;
+                width: 100%;
+                margin: 20px 0;
+                font-family: Arial, sans-serif;
+            }
+
+            .scaling-category-group, .scaling-value-group {
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .scaling-category,
+            .scaling-column {
+                padding: 10px;
+                text-align: left;
+                border-bottom: 1px solid #ccc;
+            }
+
+            .scaling-category {
+                font-weight: bold;
+            }
+
+            .header-row {
+                font-weight: bold;
+                background-color: #f0f0f0;
+                padding: 10px 0;
+                text-align: center;
+            }
+
+            .refund-of-fees {
+                color: red;
+            }
+
+            .scaling-category i {
+                margin-left: 5px;
+                cursor: pointer;
+            }
+
+            .swiper-button-next,
+            .swiper-button-prev {
+                color: #007bff;
+            }
+        </style>
+
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
         <script>
+            function updateProductDetailsMobile(category) {
+                const select = document.getElementById('product-select-' + category);
+                const selectedProduct = select.value;
+                document.querySelectorAll('.product-detail.' + category).forEach(detail => {
+                    detail.style.display = 'none';
+                });
+                document.getElementById('product-detail-' + selectedProduct).style.display = 'block';
+            }
+
             document.addEventListener("DOMContentLoaded", function() {
                 const swiper = new Swiper('.swiper-container', {
                     slidesPerView: 1,
@@ -395,10 +474,14 @@ function hello_scalling_table_single_product_shortcode_mobile($atts) {
                 });
             });
         </script>
-    <?php endif;
+        <?php
+    }
+
     return ob_get_clean();
 }
 add_shortcode('ypf_scalling_table_mobile', 'hello_scalling_table_single_product_shortcode_mobile');
+
+
 
 
 function hello_pricing_table_dev_shortcode() {
