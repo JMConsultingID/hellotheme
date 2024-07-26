@@ -371,8 +371,6 @@ function hello_scalling_table_single_product_shortcode_mobile($atts) {
                     ?>
                         <div class="product-detail <?php echo $category; ?>" id="product-detail-<?php echo $prod_id; ?>" style="<?php echo $index === 0 ? '' : 'display:none;'; ?>">
                             <div class="swiper-container">
-                                <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
                                         <div class="scalling-table-content">
                                             <?php 
                                             foreach ($group_field_object['sub_fields'] as $sub_field) : 
@@ -392,9 +390,9 @@ function hello_scalling_table_single_product_shortcode_mobile($atts) {
                                                 </div>
                                             <?php endforeach; ?>
                                         </div>
-                                    </div>
-                                    <?php foreach ($acf_levels as $level_key => $level_value) : ?>
-                                        <div class="swiper-slide">
+                                        <div class="swiper-wrapper">
+                                        <?php foreach ($acf_levels as $level_key => $level_value) : ?>                                        
+                                            <div class="swiper-slide">
                                             <div class="scalling-table-content">
                                                 <?php 
                                                 foreach ($group_field_object['sub_fields'] as $sub_field) : 
@@ -411,11 +409,11 @@ function hello_scalling_table_single_product_shortcode_mobile($atts) {
                                                     </div>
                                                 <?php endforeach; ?>
                                             </div>
+                                            </div>
+                                        <?php endforeach; ?>
                                         </div>
-                                    <?php endforeach; ?>
-                                </div>
-                                <div class="swiper-button-next"></div>
-                                <div class="swiper-button-prev"></div>
+                                            <div class="swiper-button-next"></div>
+                                            <div class="swiper-button-prev"></div>
                             </div>
                         </div>
                     <?php 
