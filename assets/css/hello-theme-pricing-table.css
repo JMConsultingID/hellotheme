@@ -177,6 +177,12 @@
     cursor: pointer;
 }
 
+.swiper-button-next,
+.swiper-button-prev {
+    color: #007bff;
+}
+
+
 /* Pricing Table Swipper JS */
 .hello-theme-tab-buttons, .hello-theme-sub-tab-buttons {
     display: flex;

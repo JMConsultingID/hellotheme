@@ -285,8 +285,7 @@ function hello_scalling_table_single_product_shortcode($atts) {
                     <?php foreach ($sample_fields as $field_key => $field_value) : 
                         $field_object = get_field_object($sample_field_group . '_' . $field_key, $product_id);
                         if ($field_object) :
-                            $field_label = $field_object['label'];
-                    ?>
+                            $field_label = $field_object['label'];?>
                         <div class="scaling-category">
                             <?php echo $field_label; ?>
                             <?php if (!empty($tooltip_field_values[$field_key])) : ?>
