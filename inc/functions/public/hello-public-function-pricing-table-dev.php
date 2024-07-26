@@ -279,38 +279,32 @@ function hello_scalling_table_single_product_shortcode($atts) {
                 ?>
                     <div class="product-detail" id="product-detail-<?php echo $prod_id; ?>" style="display: none;">
                         <div class="scalling-table-content">
-                            <?php if ($sample_fields) :
-                                foreach ($sample_fields as $field_key => $field_object) :
-                                    $field_label = $field_object['label'];
+                            <?php foreach ($sample_fields as $field_key => $field_object) :
+                                $field_label = $field_object['label'];
                             ?>
-                                    <div class="scalling-table-row top-border">
-                                        <div class="scalling-category">
-                                            <?php echo esc_html($field_label); ?>
-                                            <?php if (!empty($tooltip_field_values[$field_key])) : ?>
-                                                <span class="scalling-table-label-tooltips" data-tippy-content="<?php echo esc_html($tooltip_field_values[$field_key]); ?>">
-                                                    <i aria-hidden="true" class="fas fa-info-circle"></i>
-                                                </span>
-                                            <?php endif; ?>
-                                        </div>
-                                        <div class="swiper-container">
-                                            <div class="swiper-wrapper">
-                                                <?php foreach ($acf_levels as $level_key => $level_value) :
-                                                    $field_value = get_field($level_value . '_' . $field_key, $prod_id);
-                                                ?>
-                                                    <div class="swiper-slide scalling-column <?php echo $level_value; ?>">
-                                                        <?php echo !empty($field_value) ? esc_html($field_value) : 'N/A'; ?>
-                                                        <?php if (in_array($level_key, array('level_4', 'level_5', 'level_6'))) : ?>
-                                                            <span class="refund-of-fees">Refund of Fees</span>
-                                                        <?php endif; ?>
-                                                    </div>
-                                                <?php endforeach; ?>
-                                            </div>
-                                            <div class="swiper-button-next"></div>
-                                            <div class="swiper-button-prev"></div>
-                                        </div>
+                                <div class="scalling-table-row top-border">
+                                    <div class="scalling-category">
+                                        <?php echo esc_html($field_label); ?>
+                                        <?php if (!empty($tooltip_field_values[$field_key])) : ?>
+                                            <span class="scalling-table-label-tooltips" data-tippy-content="<?php echo esc_html($tooltip_field_values[$field_key]); ?>">
+                                                <i aria-hidden="true" class="fas fa-info-circle"></i>
+                                            </span>
+                                        <?php endif; ?>
                                     </div>
-                                <?php endforeach;
-                            endif; ?>
+                                    <div class="scalling-column">
+                                        <?php foreach ($acf_levels as $level_key => $level_value) :
+                                            $field_value = get_field($level_value . '_' . $field_key, $prod_id);
+                                        ?>
+                                            <div class="scalling-level-value <?php echo $level_value; ?>">
+                                                <?php echo !empty($field_value) ? esc_html($field_value) : 'N/A'; ?>
+                                                <?php if (in_array($level_key, array('level_4', 'level_5', 'level_6'))) : ?>
+                                                    <span class="refund-of-fees">Refund of Fees</span>
+                                                <?php endif; ?>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -329,17 +323,6 @@ function hello_scalling_table_single_product_shortcode($atts) {
                 if (selectedProduct) {
                     // Show the selected product detail
                     document.getElementById('product-detail-' + selectedProduct).style.display = 'block';
-
-                    // Initialize Swiper
-                    var swiper = new Swiper('.swiper-container', {
-                        slidesPerView: 1,
-                        spaceBetween: 10,
-                        navigation: {
-                            nextEl: '.swiper-button-next',
-                            prevEl: '.swiper-button-prev',
-                        },
-                        allowTouchMove: false
-                    });
                 }
             }
 
@@ -348,10 +331,10 @@ function hello_scalling_table_single_product_shortcode($atts) {
                     placement: 'right-end'
                 });
 
-                // Initialize Swiper for the first time if a product is preselected
+                // Initialize details for the first time if a product is preselected
                 updateProductDetails();
             });
-        </script>    
+        </script>
     <?php else : ?>
         <!-- Existing desktop layout -->    
 
