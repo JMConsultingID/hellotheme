@@ -321,6 +321,24 @@ function hello_scalling_table_single_product_shortcode($atts) {
         <?php endforeach; ?>
     </div>
     <script>
+function initSwiperForVisibleTables() {
+    document.querySelectorAll('.product-detail:visible .swiper-container').forEach(container => {
+        new Swiper(container, {
+            slidesPerView: 1,
+            spaceBetween: 10,
+            navigation: {
+                nextEl: container.querySelector('.swiper-button-next'),
+                prevEl: container.querySelector('.swiper-button-prev'),
+            },
+            allowTouchMove: false,
+            effect: 'fade',
+            fadeEffect: {
+                crossFade: true
+            }
+        });
+    });
+}
+
 function updateProductDetailsMobile(category) {
     const select = document.getElementById('product-select-' + category);
     const selectedProduct = select.value;
@@ -331,22 +349,19 @@ function updateProductDetailsMobile(category) {
     if (productDetail) {
         productDetail.style.display = 'block';
         // Initialize swiper for the selected product
-        if (!productDetail.classList.contains('swiper-initialized')) {
-            new Swiper('#swiper-' + selectedProduct, {
-                slidesPerView: 1,
-                spaceBetween: 10,
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-                allowTouchMove: false,
-                effect: 'fade',
-                fadeEffect: {
-                    crossFade: true
-                }
-            });
-            productDetail.classList.add('swiper-initialized');
-        }
+        new Swiper('#swiper-' + selectedProduct, {
+            slidesPerView: 1,
+            spaceBetween: 10,
+            navigation: {
+                nextEl: '#swiper-' + selectedProduct + ' .swiper-button-next',
+                prevEl: '#swiper-' + selectedProduct + ' .swiper-button-prev',
+            },
+            allowTouchMove: false,
+            effect: 'fade',
+            fadeEffect: {
+                crossFade: true
+            }
+        });
     } else {
         console.error('Selected product detail not found for ID:', selectedProduct);
     }
@@ -359,18 +374,15 @@ document.addEventListener("DOMContentLoaded", function() {
         updateProductDetailsMobile('<?php echo $category; ?>');
     }
 
-    // Add event listeners for tab changes
-    jQuery('#e-n-tab-title-2114345631').on('click', function() {
-        setTimeout(function() {
-            updateProductDetailsMobile('origin');
-        }, 100); // Adjust timeout as needed
+    // Ensure Swiper is initialized for visible tables on tab switch
+    document.querySelectorAll('.e-n-tab-title').forEach(tab => {
+        tab.addEventListener('click', function() {
+            setTimeout(initSwiperForVisibleTables, 100); // Adjust timeout as needed
+        });
     });
 
-    jQuery('#e-n-tab-title-2114345632').on('click', function() {
-        setTimeout(function() {
-            updateProductDetailsMobile('evolution');
-        }, 100); // Adjust timeout as needed
-    });
+    // Initialize Swiper for the initially visible tables
+    initSwiperForVisibleTables();
 });
 
 
