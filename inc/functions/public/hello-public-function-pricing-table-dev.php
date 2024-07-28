@@ -350,12 +350,22 @@ function hello_scalling_table_single_product_shortcode($atts) {
         }
 
         document.addEventListener("DOMContentLoaded", function() {
-            // Trigger update for the initially selected product
-            const initialSelect = document.getElementById('product-select-<?php echo $category; ?>');
-            if (initialSelect) {
-                updateProductDetailsMobile('<?php echo $category; ?>');
+            // Trigger update for the initially selected product on page load
+            const initialActiveTab = document.querySelector('.e-n-tab-title[aria-selected="true"]');
+            if (initialActiveTab) {
+                const category = initialActiveTab.getAttribute('aria-controls').split('-').pop();
+                updateProductDetailsMobile(category);
             }
+
+            // Ensure the table appears when the tab is clicked
+            document.querySelectorAll('.e-n-tab-title').forEach(button => {
+                button.addEventListener('click', function() {
+                    const category = this.getAttribute('aria-controls').split('-').pop();
+                    updateProductDetailsMobile(category);
+                });
+            });
         });
+
     </script>
 
     <?php else : ?>

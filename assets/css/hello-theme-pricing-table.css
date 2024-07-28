@@ -25,6 +25,10 @@
     float: right;
 }
 
+.pricing-table-select-option option{
+	background:transparent;
+}
+
 /* Pricing Plan Style 1 Desktop */
 .hello-theme-pricing-plan.pricing-table {
     background: #ffffff;
