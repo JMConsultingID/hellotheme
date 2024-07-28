@@ -321,57 +321,68 @@ function hello_scalling_table_single_product_shortcode($atts) {
         <?php endforeach; ?>
     </div>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-    // Initialize the product details for the initially active tab
-    const activeTabButton = document.querySelector('.e-n-tab-title[aria-selected="true"]');
-    if (activeTabButton) {
-        const activeTabContentId = activeTabButton.getAttribute('aria-controls');
-        const selectElement = document.querySelector('#' + activeTabContentId + ' .pricing-table-select-option');
-        if (selectElement) {
-            updateProductDetailsMobile(selectElement);
-        }
-    }
-
-    // Event listener for tab buttons to update product details on tab click
-    document.querySelectorAll('.e-n-tab-title').forEach(button => {
-        button.addEventListener('click', function() {
-            const targetTabContentId = this.getAttribute('aria-controls');
-            const selectElement = document.querySelector('#' + targetTabContentId + ' .pricing-table-select-option');
-            if (selectElement) {
-                updateProductDetailsMobile(selectElement);
-            }
-        });
-    });
-});
-
 function updateProductDetailsMobile(selectElement) {
-    const category = selectElement.id.replace('product-select-', '');
     const selectedProduct = selectElement.value;
+    const category = selectElement.getAttribute('data-category');
+    
     document.querySelectorAll('.product-detail.' + category).forEach(detail => {
         detail.style.display = 'none';
     });
-    const productDetail = document.getElementById('product-detail-' + selectedProduct);
-    if (productDetail) {
-        productDetail.style.display = 'block';
-        // Initialize swiper for the selected product
-        new Swiper('#swiper-' + selectedProduct, {
-            slidesPerView: 1,
-            spaceBetween: 10,
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            allowTouchMove: false,
-            effect: 'fade',
-            fadeEffect: {
-                crossFade: true
-            }
-        });
+    const selectedDetail = document.getElementById('product-detail-' + selectedProduct);
+    if (selectedDetail) {
+        selectedDetail.style.display = 'block';
+        
+        // Initialize Swiper for the selected product detail
+        const swiperContainer = selectedDetail.querySelector('.swiper-container');
+        if (swiperContainer && !swiperContainer.swiper) { // Check if Swiper is not already initialized
+            new Swiper(swiperContainer, {
+                slidesPerView: 1,
+                spaceBetween: 10,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                allowTouchMove: false,
+                effect: 'fade',
+                fadeEffect: {
+                    crossFade: true
+                }
+            });
+        }
     } else {
         console.error('Selected product detail not found for ID:', selectedProduct);
     }
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+    const tabs = document.querySelectorAll(".e-n-tab-title");
+    
+    tabs.forEach(tab => {
+        tab.addEventListener("click", function() {
+            setTimeout(() => {
+                if (tab.classList.contains("e-n-tab-title-active")) {
+                    const category = tab.id.replace("e-n-tab-title-", "");
+                    const selectElement = document.getElementById('product-select-' + category);
+                    
+                    if (selectElement) {
+                        updateProductDetailsMobile(selectElement);
+                    }
+                }
+            }, 100); // Slight delay to ensure the tab content is fully loaded
+        });
+    });
+
+    // Initialize swiper for the active tab on page load
+    const activeTab = document.querySelector(".e-n-tab-title-active");
+    if (activeTab) {
+        const category = activeTab.id.replace("e-n-tab-title-", "");
+        const selectElement = document.getElementById('product-select-' + category);
+        
+        if (selectElement) {
+            updateProductDetailsMobile(selectElement);
+        }
+    }
+});
 
     </script>
 
