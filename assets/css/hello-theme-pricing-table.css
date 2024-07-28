@@ -453,4 +453,7 @@
 	  max-width: 100px;
 	  width: 100px;
 	}
+	.tippy-box[data-theme~=light]{
+		box-shadow: none;
+	}
 }
