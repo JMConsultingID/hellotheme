@@ -323,32 +323,34 @@ function hello_scalling_table_single_product_shortcode($atts) {
     <script>
         function updateProductDetailsMobile(category) {
             const select = document.getElementById('product-select-' + category);
-            const selectedProduct = select.value;
-            document.querySelectorAll('.product-detail.' + category).forEach(detail => {
-                detail.style.display = 'none';
-            });
-            const productDetail = document.getElementById('product-detail-' + selectedProduct);
-            if (productDetail) {
-                productDetail.style.display = 'block';
-                // Initialize swiper for the selected product
-                new Swiper('#swiper-' + selectedProduct, {
-                    slidesPerView: 1,
-                    spaceBetween: 10,
-                    navigation: {
-                        nextEl: '.swiper-button-next',
-                        prevEl: '.swiper-button-prev',
-                    },
-                    allowTouchMove: false,
-                    effect: 'fade',
-                    fadeEffect: {
-                        crossFade: true
-                    }
+            if (select) {
+                const selectedProduct = select.value;
+                document.querySelectorAll('.product-detail.' + category).forEach(detail => {
+                    detail.style.display = 'none';
                 });
-            } else {
-                console.error('Selected product detail not found for ID:', selectedProduct);
+                const productDetail = document.getElementById('product-detail-' + selectedProduct);
+                if (productDetail) {
+                    productDetail.style.display = 'block';
+                    // Initialize swiper for the selected product
+                    new Swiper('#swiper-' + selectedProduct, {
+                        slidesPerView: 1,
+                        spaceBetween: 10,
+                        navigation: {
+                            nextEl: '.swiper-button-next',
+                            prevEl: '.swiper-button-prev',
+                        },
+                        allowTouchMove: false,
+                        effect: 'fade',
+                        fadeEffect: {
+                            crossFade: true
+                        }
+                    });
+                } else {
+                    console.error('Selected product detail not found for ID:', selectedProduct);
+                }
             }
         }
-
+        
         document.addEventListener("DOMContentLoaded", function() {
             // Trigger update for the initially selected product on page load
             const initialActiveTab = document.querySelector('.e-n-tab-title[aria-selected="true"]');
