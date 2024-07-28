@@ -322,13 +322,13 @@ function hello_scalling_table_single_product_shortcode($atts) {
     </div>
     <script>
 function initSwiperForVisibleTables() {
-    $('.product-detail:visible .swiper-container').each(function() {
+    jQuery('.product-detail:visible .swiper-container').each(function() {
         new Swiper(this, {
             slidesPerView: 1,
             spaceBetween: 10,
             navigation: {
-                nextEl: $(this).find('.swiper-button-next')[0],
-                prevEl: $(this).find('.swiper-button-prev')[0],
+                nextEl: jQuery(this).find('.swiper-button-next')[0],
+                prevEl: jQuery(this).find('.swiper-button-prev')[0],
             },
             allowTouchMove: false,
             effect: 'fade',
@@ -367,7 +367,7 @@ function updateProductDetailsMobile(category) {
     }
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+jQuery(document).ready(function($) {
     // Trigger update for the initially selected product
     const initialSelect = document.getElementById('product-select-<?php echo $category; ?>');
     if (initialSelect) {
