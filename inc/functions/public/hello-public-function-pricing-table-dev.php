@@ -322,13 +322,13 @@ function hello_scalling_table_single_product_shortcode($atts) {
     </div>
     <script>
 function initSwiperForVisibleTables() {
-    document.querySelectorAll('.product-detail:visible .swiper-container').forEach(container => {
-        new Swiper(container, {
+    $('.product-detail:visible .swiper-container').each(function() {
+        new Swiper(this, {
             slidesPerView: 1,
             spaceBetween: 10,
             navigation: {
-                nextEl: container.querySelector('.swiper-button-next'),
-                prevEl: container.querySelector('.swiper-button-prev'),
+                nextEl: $(this).find('.swiper-button-next')[0],
+                prevEl: $(this).find('.swiper-button-prev')[0],
             },
             allowTouchMove: false,
             effect: 'fade',
