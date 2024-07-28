@@ -321,52 +321,50 @@ function hello_scalling_table_single_product_shortcode($atts) {
         <?php endforeach; ?>
     </div>
     <script>
-        function updateProductDetailsMobile(category) {
-            const select = document.getElementById('product-select-' + category);
-            if (select) {
-                const selectedProduct = select.value;
-                document.querySelectorAll('.product-detail.' + category).forEach(detail => {
-                    detail.style.display = 'none';
-                });
-                const productDetail = document.getElementById('product-detail-' + selectedProduct);
-                if (productDetail) {
-                    productDetail.style.display = 'block';
-                    // Initialize swiper for the selected product
-                    new Swiper('#swiper-' + selectedProduct, {
-                        slidesPerView: 1,
-                        spaceBetween: 10,
-                        navigation: {
-                            nextEl: '.swiper-button-next',
-                            prevEl: '.swiper-button-prev',
-                        },
-                        allowTouchMove: false,
-                        effect: 'fade',
-                        fadeEffect: {
-                            crossFade: true
-                        }
-                    });
-                } else {
-                    console.error('Selected product detail not found for ID:', selectedProduct);
-                }
-            }
-        }
-        
         document.addEventListener("DOMContentLoaded", function() {
-            // Trigger update for the initially selected product on page load
-            const initialActiveTab = document.querySelector('.e-n-tab-title[aria-selected="true"]');
-            if (initialActiveTab) {
-                const category = initialActiveTab.getAttribute('aria-controls').split('-').pop();
-                updateProductDetailsMobile(category);
-            }
+    // Initialize the product details for the initially active tab
+    const activeTabButton = document.querySelector('.e-n-tab-title[aria-selected="true"]');
+    if (activeTabButton) {
+        const activeCategory = activeTabButton.getAttribute('id').replace('e-n-tab-title-', '');
+        updateProductDetailsMobile(activeCategory);
+    }
 
-            // Ensure the table appears when the tab is clicked
-            document.querySelectorAll('.e-n-tab-title').forEach(button => {
-                button.addEventListener('click', function() {
-                    const category = this.getAttribute('aria-controls').split('-').pop();
-                    updateProductDetailsMobile(category);
-                });
-            });
+    // Event listener for tab buttons to update product details on tab click
+    document.querySelectorAll('.e-n-tab-title').forEach(button => {
+        button.addEventListener('click', function() {
+            const targetCategory = this.getAttribute('id').replace('e-n-tab-title-', '');
+            updateProductDetailsMobile(targetCategory);
         });
+    });
+});
+
+function updateProductDetailsMobile(category) {
+    const select = document.getElementById('product-select-' + category);
+    const selectedProduct = select.value;
+    document.querySelectorAll('.product-detail.' + category).forEach(detail => {
+        detail.style.display = 'none';
+    });
+    const productDetail = document.getElementById('product-detail-' + selectedProduct);
+    if (productDetail) {
+        productDetail.style.display = 'block';
+        // Initialize swiper for the selected product
+        new Swiper('#swiper-' + selectedProduct, {
+            slidesPerView: 1,
+            spaceBetween: 10,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            allowTouchMove: false,
+            effect: 'fade',
+            fadeEffect: {
+                crossFade: true
+            }
+        });
+    } else {
+        console.error('Selected product detail not found for ID:', selectedProduct);
+    }
+}
 
     </script>
 
