@@ -325,22 +325,28 @@ function hello_scalling_table_single_product_shortcode($atts) {
     // Initialize the product details for the initially active tab
     const activeTabButton = document.querySelector('.e-n-tab-title[aria-selected="true"]');
     if (activeTabButton) {
-        const activeCategory = activeTabButton.getAttribute('id').replace('e-n-tab-title-', '');
-        updateProductDetailsMobile(activeCategory);
+        const activeTabContentId = activeTabButton.getAttribute('aria-controls');
+        const selectElement = document.querySelector('#' + activeTabContentId + ' .pricing-table-select-option');
+        if (selectElement) {
+            updateProductDetailsMobile(selectElement);
+        }
     }
 
     // Event listener for tab buttons to update product details on tab click
     document.querySelectorAll('.e-n-tab-title').forEach(button => {
         button.addEventListener('click', function() {
-            const targetCategory = this.getAttribute('id').replace('e-n-tab-title-', '');
-            updateProductDetailsMobile(targetCategory);
+            const targetTabContentId = this.getAttribute('aria-controls');
+            const selectElement = document.querySelector('#' + targetTabContentId + ' .pricing-table-select-option');
+            if (selectElement) {
+                updateProductDetailsMobile(selectElement);
+            }
         });
     });
 });
 
-function updateProductDetailsMobile(category) {
-    const select = document.getElementById('product-select-' + category);
-    const selectedProduct = select.value;
+function updateProductDetailsMobile(selectElement) {
+    const category = selectElement.id.replace('product-select-', '');
+    const selectedProduct = selectElement.value;
     document.querySelectorAll('.product-detail.' + category).forEach(detail => {
         detail.style.display = 'none';
     });
@@ -365,6 +371,7 @@ function updateProductDetailsMobile(category) {
         console.error('Selected product detail not found for ID:', selectedProduct);
     }
 }
+
 
     </script>
 
