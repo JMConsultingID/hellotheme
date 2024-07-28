@@ -426,7 +426,13 @@ jQuery(document).ready(function($) {
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             tippy(".scalling-table-label-tooltips", {
-                placement: 'right-end'
+                theme: 'light',
+                placement: 'right',
+                arrow: false,
+                animation: 'fade',
+                allowHTML: true,
+                interactive: true,
+                delay: [100, 100],
             });
         });
     </script>
