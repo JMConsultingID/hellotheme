@@ -6,10 +6,12 @@
     document.addEventListener("DOMContentLoaded", function() {
         tippy(".pricing-table-label-tooltips", {
             theme: 'light',
-            placement: 'right-end',
+            placement: 'right',
             arrow: false,
             animation: 'fade',
-            allowHTML: false,
+            allowHTML: true,
+            interactive: true,
+            delay: [100, 100],
         });
     });
 
