@@ -321,21 +321,18 @@ function hello_scalling_table_single_product_shortcode($atts) {
         <?php endforeach; ?>
     </div>
     <script>
-function updateProductDetailsMobile(selectElement) {
-    const selectedProduct = selectElement.value;
-    const category = selectElement.getAttribute('data-category');
-    
+function updateProductDetailsMobile(category) {
+    const select = document.getElementById('product-select-' + category);
+    const selectedProduct = select.value;
     document.querySelectorAll('.product-detail.' + category).forEach(detail => {
         detail.style.display = 'none';
     });
-    const selectedDetail = document.getElementById('product-detail-' + selectedProduct);
-    if (selectedDetail) {
-        selectedDetail.style.display = 'block';
-        
-        // Initialize Swiper for the selected product detail
-        const swiperContainer = selectedDetail.querySelector('.swiper-container');
-        if (swiperContainer && !swiperContainer.swiper) { // Check if Swiper is not already initialized
-            new Swiper(swiperContainer, {
+    const productDetail = document.getElementById('product-detail-' + selectedProduct);
+    if (productDetail) {
+        productDetail.style.display = 'block';
+        // Initialize swiper for the selected product
+        if (!productDetail.classList.contains('swiper-initialized')) {
+            new Swiper('#swiper-' + selectedProduct, {
                 slidesPerView: 1,
                 spaceBetween: 10,
                 navigation: {
@@ -348,6 +345,7 @@ function updateProductDetailsMobile(selectElement) {
                     crossFade: true
                 }
             });
+            productDetail.classList.add('swiper-initialized');
         }
     } else {
         console.error('Selected product detail not found for ID:', selectedProduct);
@@ -355,34 +353,26 @@ function updateProductDetailsMobile(selectElement) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    const tabs = document.querySelectorAll(".e-n-tab-title");
-    
-    tabs.forEach(tab => {
-        tab.addEventListener("click", function() {
-            setTimeout(() => {
-                if (tab.classList.contains("e-n-tab-title-active")) {
-                    const category = tab.id.replace("e-n-tab-title-", "");
-                    const selectElement = document.getElementById('product-select-' + category);
-                    
-                    if (selectElement) {
-                        updateProductDetailsMobile(selectElement);
-                    }
-                }
-            }, 100); // Slight delay to ensure the tab content is fully loaded
-        });
+    // Trigger update for the initially selected product
+    const initialSelect = document.getElementById('product-select-<?php echo $category; ?>');
+    if (initialSelect) {
+        updateProductDetailsMobile('<?php echo $category; ?>');
+    }
+
+    // Add event listeners for tab changes
+    jQuery('#e-n-tab-title-2114345631').on('click', function() {
+        setTimeout(function() {
+            updateProductDetailsMobile('origin');
+        }, 100); // Adjust timeout as needed
     });
 
-    // Initialize swiper for the active tab on page load
-    const activeTab = document.querySelector(".e-n-tab-title-active");
-    if (activeTab) {
-        const category = activeTab.id.replace("e-n-tab-title-", "");
-        const selectElement = document.getElementById('product-select-' + category);
-        
-        if (selectElement) {
-            updateProductDetailsMobile(selectElement);
-        }
-    }
+    jQuery('#e-n-tab-title-2114345632').on('click', function() {
+        setTimeout(function() {
+            updateProductDetailsMobile('evolution');
+        }, 100); // Adjust timeout as needed
+    });
 });
+
 
     </script>
 
