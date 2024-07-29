@@ -55,7 +55,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                 $sale_price = get_post_meta($product_id, '_sale_price', true);
                 $price = $sale_price && $sale_price < $regular_price ? wc_price($sale_price) : wc_price($regular_price);
             ?>
-            <option value="<?php echo $product_id; ?>"><?php echo $product_title; ?> - <?php echo $price; ?></option>
+            <option value="<?php echo $product_id; ?>"><?php echo get_the_title($product->ID); ?> - <?php echo $price; ?></option>
         <?php endforeach; ?>
     </select>
     <?php endif; ?>
@@ -269,7 +269,7 @@ function hello_scalling_table_single_product_shortcode($atts) {
                 $sale_price = get_post_meta($product_id, '_sale_price', true);
                 $price = $sale_price && $sale_price < $regular_price ? wc_price($sale_price) : wc_price($regular_price);
             ?>
-                <option value="<?php echo $product_id; ?>"><?php echo $product_title; ?> - <?php echo $price; ?></option>
+                <option value="<?php echo $product_id; ?>"><?php echo get_the_title($product->ID); ?> - <?php echo $price; ?></option>
             <?php endforeach; ?>
         </select>
     </div>
