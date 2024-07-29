@@ -200,16 +200,6 @@ function hello_pricing_table_multi_product_shortcode($atts) {
         </div>
     <?php endif; ?>
     </div>
-    <script>
-        function updateProductDetails(category) {
-            const select = document.getElementById('product-select-' + category);
-            const selectedProduct = select.value;
-            document.querySelectorAll('.product-detail.' + category).forEach(detail => {
-                detail.style.display = 'none';
-            });
-            document.getElementById('product-detail-' + selectedProduct).style.display = 'block';
-        }
-    </script>
     <?php
     return ob_get_clean();
 }
