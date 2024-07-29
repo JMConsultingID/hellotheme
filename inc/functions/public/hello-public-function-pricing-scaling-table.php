@@ -320,6 +320,15 @@ function hello_scalling_table_single_product_shortcode($atts) {
             </div>
         <?php endforeach; ?>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const initialCategory = '<?php echo $category; ?>';
+            const initialSelect = document.getElementById('product-select-' + initialCategory);
+            if (initialSelect) {
+                updateScalingProductDetailsMobile(initialCategory);
+            }
+        });
+    </script>
 
     <?php else : ?>
     <!-- Desktop -->
