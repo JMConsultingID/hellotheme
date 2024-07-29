@@ -321,12 +321,22 @@ function hello_scalling_table_single_product_shortcode($atts) {
         <?php endforeach; ?>
     </div>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const initialCategory = '<?php echo $category; ?>';
-            const initialSelect = document.getElementById('product-select-' + initialCategory);
+        jQuery(document).ready(function($) {
+            // Trigger update for the initially selected product
+            const initialSelect = document.getElementById('product-select-<?php echo $category; ?>');
             if (initialSelect) {
-                updateScalingProductDetailsMobile(initialCategory);
+                updateProductDetailsMobile('<?php echo $category; ?>');
             }
+
+            // Ensure Swiper is initialized for visible tables on tab switch
+            document.querySelectorAll('.e-n-tab-title').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    setTimeout(initSwiperForVisibleTables, 100); // Adjust timeout as needed
+                });
+            });
+
+            // Initialize Swiper for the initially visible tables
+            initSwiperForVisibleTables();
         });
     </script>
 
