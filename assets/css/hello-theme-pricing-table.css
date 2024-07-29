@@ -132,12 +132,12 @@
 .hello-theme-scalling-plan .scalling-category, .scalling-column {
     padding: 10px;
     text-align: center;
-    flex: 0 0 13.3%;
+    flex: 0 0 12.5%;
 }
 
 .hello-theme-scalling-plan .scalling-category {
     text-align: left;
-    flex: 0 0 20%;
+    flex: 0 0 25%;
 }
 
 /*Scalling Plan Table Style 1 Mobile*/
