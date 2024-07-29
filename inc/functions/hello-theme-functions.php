@@ -24,51 +24,32 @@ require_once get_stylesheet_directory() . '/inc/functions/public/hello-public-fu
 // require_once get_stylesheet_directory() . '/inc/functions/public/hello-public-function-pricing-table-level-2.php';
 
 function hello_theme_pricing_table_live() {
+    // Check if the pricing table is enabled
     if ( get_option( 'hello_theme_enable_table_pricing' ) !== '1' ) {
         wp_add_inline_script( 'jquery', 'console.log("Pricing table is not enabled");' );
         return;
     }
 
-    $shortcode_found = false;
+    // Array of page IDs where we want to load the scripts and styles
+    $target_page_ids = array(20602, 15544);
 
-    if ( is_singular() ) {
-        global $post;
+    // Check if we're on one of the target pages
+    if ( is_page($target_page_ids) ) {
+        wp_add_inline_script( 'jquery', 'console.log("On a target pricing table page. Enqueuing scripts and styles.");' );
 
-        if ( class_exists( '\Elementor\Plugin' ) && \Elementor\Plugin::$instance->db->is_built_with_elementor( $post->ID ) ) {
-            wp_add_inline_script( 'jquery', 'console.log("Page is built with Elementor");' );
-            
-            $elementor_data = get_post_meta( $post->ID, '_elementor_data', true );
-            if ( $elementor_data ) {
-                wp_add_inline_script( 'jquery', 'console.log("Elementor data:", ' . json_encode($elementor_data) . ');' );
-                
-                // Check for shortcode in Elementor data
-                if ( strpos( $elementor_data, 'ypf_pricing_table' ) !== false || 
-                     strpos( $elementor_data, 'ypf_scalling_table' ) !== false ) {
-                    $shortcode_found = true;
-                    wp_add_inline_script( 'jquery', 'console.log("Pricing table shortcode found in Elementor data");' );
-                } else {
-                    wp_add_inline_script( 'jquery', 'console.log("Shortcode not found in Elementor data");' );
-                }
-            } else {
-                wp_add_inline_script( 'jquery', 'console.log("No Elementor data found");' );
-            }
-        } else {
-            wp_add_inline_script( 'jquery', 'console.log("Page is not built with Elementor");' );
-            // Check for shortcode in regular post content
-            if ( preg_match( '/\[(ypf_pricing_table|ypf_scalling_table)(?:\s|])/i', $post->post_content ) ) {
-                $shortcode_found = true;
-                wp_add_inline_script( 'jquery', 'console.log("Pricing table shortcode found in post content");' );
-            }
-        }
+        // Enqueue styles
+        wp_enqueue_style( 'hello-theme-swiper-bundle-css', get_stylesheet_directory_uri() . '/assets/css/swiper-bundle.min.css');
+        wp_enqueue_style( 'hello-theme-tippy-css', get_stylesheet_directory_uri() . '/assets/css/tippy.css');
+        wp_enqueue_style( 'hello-theme-tippy-light-css', get_stylesheet_directory_uri() . '/assets/css/tippy-light.css');
+        wp_enqueue_style( 'hello-theme-pricing-scaling-table-css', get_stylesheet_directory_uri() . '/assets/css/hello-theme-pricing-table.css', array('hello-theme-swiper-bundle-css'), HELLO_THEME_VERSION, 'all' );
+
+        // Enqueue scripts        
+        wp_enqueue_script( 'hello-theme-swiper-bundle-js', get_stylesheet_directory_uri() . '/assets/js/swiper-bundle.min.js', array('jquery'), null, true );
+        wp_enqueue_script( 'hello-theme-popper-js', get_stylesheet_directory_uri() . '/assets/js/popper.min.js', array(), null, true );
+        wp_enqueue_script( 'hello-theme-tippy-js', get_stylesheet_directory_uri() . '/assets/js/tippy-bundle.umd.min.js', array(), null, true );
+        wp_enqueue_script( 'hello-theme-pricing-scaling-table-js', get_stylesheet_directory_uri() . '/assets/js/hello-theme-pricing-table.js', array('jquery', 'hello-theme-swiper-bundle-js','hello-theme-popper-js', 'hello-theme-tippy-js'), HELLO_THEME_VERSION, true );
     } else {
-        wp_add_inline_script( 'jquery', 'console.log("Not a singular page");' );
-    }
-
-    if ( $shortcode_found ) {
-        // Enqueue your styles and scripts here
-        wp_add_inline_script( 'jquery', 'console.log("Scripts and styles enqueued for pricing table");' );
-    } else {
-        wp_add_inline_script( 'jquery', 'console.log("No pricing table shortcode found");' );
+        wp_add_inline_script( 'jquery', 'console.log("Not on a target pricing table page.");' );
     }
 }
 add_action( 'wp_enqueue_scripts', 'hello_theme_pricing_table_live', 20);
