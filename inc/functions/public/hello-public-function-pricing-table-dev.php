@@ -281,7 +281,7 @@ function hello_scalling_table_single_product_shortcode($atts) {
             <div class="product-detail <?php echo $category; ?>" id="product-detail-<?php echo $product_id; ?>" style="display: none;">
                 <div class="hello-theme-scalling-plan-mobile scaling-plan-table <?php echo esc_attr($atts['style']); ?>">
                 <div class="scaling-category-group pt__title">
-                    <div class="scaling-category header-row">&nbsp;</div>
+                    <div class="scaling-category header-row"><?php echo ucfirst($category); ?> Plans</div>
                     <?php foreach ($sample_fields as $field_key => $field_value) : 
                         $field_object = get_field_object($sample_field_group . '_' . $field_key, $product_id);
                         if ($field_object) :
