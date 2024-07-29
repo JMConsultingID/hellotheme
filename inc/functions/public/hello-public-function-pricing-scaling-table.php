@@ -321,6 +321,24 @@ function hello_scalling_table_single_product_shortcode($atts) {
         <?php endforeach; ?>
     </div>
     <script>
+        // Function to initialize Swiper for visible tables
+        function initSwiperForVisibleTables() {
+            jQuery('.product-detail:visible .swiper-container').each(function() {
+                new Swiper(this, {
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                    navigation: {
+                        nextEl: jQuery(this).find('.swiper-button-next')[0],
+                        prevEl: jQuery(this).find('.swiper-button-prev')[0],
+                    },
+                    allowTouchMove: false,
+                    effect: 'fade',
+                    fadeEffect: {
+                        crossFade: true
+                    }
+                });
+            });
+        }
         jQuery(document).ready(function($) {
             // Trigger update for the initially selected product
             const initialSelect = document.getElementById('product-select-<?php echo $category; ?>');
@@ -331,6 +349,7 @@ function hello_scalling_table_single_product_shortcode($atts) {
             // Ensure Swiper is initialized for visible tables on tab switch
             document.querySelectorAll('.e-n-tab-title').forEach(tab => {
                 tab.addEventListener('click', function() {
+                    setTimeout(initSwiperForVisibleTables, 100); // Adjust timeout as needed
                 });
             });
 

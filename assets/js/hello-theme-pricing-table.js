@@ -41,25 +41,6 @@
         }
     }
 
-    // Function to initialize Swiper for visible tables
-    function initSwiperForVisibleTables() {
-        jQuery('.product-detail:visible .swiper-container').each(function() {
-            new Swiper(this, {
-                slidesPerView: 1,
-                spaceBetween: 10,
-                navigation: {
-                    nextEl: jQuery(this).find('.swiper-button-next')[0],
-                    prevEl: jQuery(this).find('.swiper-button-prev')[0],
-                },
-                allowTouchMove: false,
-                effect: 'fade',
-                fadeEffect: {
-                    crossFade: true
-                }
-            });
-        });
-    }
-
     // Export the function to global scope
     window.updateScalingProductDetailsMobile = updateScalingProductDetailsMobile;
 
