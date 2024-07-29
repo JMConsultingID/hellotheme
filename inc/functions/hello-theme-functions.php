@@ -35,8 +35,6 @@ function hello_theme_pricing_table_live() {
 
     // Check if we're on one of the target pages
     if ( is_page($target_page_ids) ) {
-        wp_add_inline_script( 'jquery', 'console.log("On a target pricing table page. Enqueuing scripts and styles.");' );
-
         // Enqueue styles
         wp_enqueue_style( 'hello-theme-swiper-bundle-css', get_stylesheet_directory_uri() . '/assets/css/swiper-bundle.min.css');
         wp_enqueue_style( 'hello-theme-tippy-css', get_stylesheet_directory_uri() . '/assets/css/tippy.css');
@@ -48,8 +46,6 @@ function hello_theme_pricing_table_live() {
         wp_enqueue_script( 'hello-theme-popper-js', get_stylesheet_directory_uri() . '/assets/js/popper.min.js', array(), null, true );
         wp_enqueue_script( 'hello-theme-tippy-js', get_stylesheet_directory_uri() . '/assets/js/tippy-bundle.umd.min.js', array(), null, true );
         wp_enqueue_script( 'hello-theme-pricing-scaling-table-js', get_stylesheet_directory_uri() . '/assets/js/hello-theme-pricing-table.js', array('jquery', 'hello-theme-swiper-bundle-js','hello-theme-popper-js', 'hello-theme-tippy-js'), HELLO_THEME_VERSION, true );
-    } else {
-        wp_add_inline_script( 'jquery', 'console.log("Not on a target pricing table page.");' );
     }
 }
 add_action( 'wp_enqueue_scripts', 'hello_theme_pricing_table_live', 20);
