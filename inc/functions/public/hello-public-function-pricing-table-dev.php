@@ -80,7 +80,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                         ?>
                         <div class="product-detail <?php echo $category_product; ?>" id="product-detail-<?php echo $product_id; ?>" style="<?php echo $index === 0 ? '' : 'display:none;'; ?>">
                             <div class="pricing-table-row no-border mobile mobile-product-title-wrapper">
-                                <div class="plan-name mobile product-id-<?php echo $product->ID; ?>"><?php echo $product_title; ?></div>
+                                <div class="plan-name mobile product-id-<?php echo $product->ID; ?>"><?php echo get_the_title($product->ID); ?></div>
                             </div>
                             <?php 
                             // Fetch ACF group field values and object
