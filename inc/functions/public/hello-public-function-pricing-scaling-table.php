@@ -423,52 +423,7 @@ jQuery(document).ready(function($) {
         </div>
     </div>
     <?php endif; ?>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            tippy(".scalling-table-label-tooltips", {
-                theme: 'light',
-                placement: 'right',
-                arrow: false,
-                animation: 'fade',
-                allowHTML: true,
-                interactive: true,
-                delay: [100, 100],
-            });
-        });
-    </script>
     <?php
     return ob_get_clean();
 }
 add_shortcode('ypf_scalling_table', 'hello_scalling_table_single_product_shortcode');
-
-function hello_pricing_table_dev_shortcode() {
-    if ( get_option( 'hello_theme_enable_table_pricing' ) == '1' ) {
-        ob_start();
-        ?>
-        <table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse; width: 100%;">
-            <thead>
-                <tr>
-                    <th>Feature</th>
-                    <th>Basic</th>
-                    <th>Standard</th>
-                    <th>Premium</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php for ( $i = 1; $i <= 9; $i++ ) : ?>
-                    <tr>
-                        <td>Feature <?php echo $i; ?></td>
-                        <td>Basic Feature <?php echo $i; ?></td>
-                        <td>Standard Feature <?php echo $i; ?></td>
-                        <td>Premium Feature <?php echo $i; ?></td>
-                    </tr>
-                <?php endfor; ?>
-            </tbody>
-        </table>
-        <?php
-        return ob_get_clean();
-    } else {
-        return '<p>Table pricing is not enabled.</p>';
-    }
-}
-add_shortcode( 'hello_pricing_table_dev', 'hello_pricing_table_dev_shortcode' );
