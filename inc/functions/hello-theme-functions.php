@@ -33,24 +33,38 @@ function hello_theme_pricing_table_live() {
         return;
     }
 
-    global $post;
-    
-    // Check if we're in a singular post/page context
-    if ( !is_singular() ) {
-        wp_add_inline_script( 'jquery', 'console.log("Not a singular post/page");' );
-        return;
+    $shortcode_found = false;
+
+    // Check if we're on a singular page
+    if ( is_singular() ) {
+        global $post;
+
+        // Check if Elementor is active on this page
+        if ( \Elementor\Plugin::$instance->db->is_built_with_elementor( $post->ID ) ) {
+            wp_add_inline_script( 'jquery', 'console.log("Page is built with Elementor");' );
+            
+            // Get Elementor data
+            $elementor_data = get_post_meta( $post->ID, '_elementor_data', true );
+            if ( $elementor_data ) {
+                // Check for shortcode in Elementor data
+                if ( strpos( $elementor_data, 'ypf_pricing_table' ) !== false || strpos( $elementor_data, 'ypf_scalling_table' ) !== false ) {
+                    $shortcode_found = true;
+                    wp_add_inline_script( 'jquery', 'console.log("Pricing table shortcode found in Elementor data");' );
+                }
+            }
+        } else {
+            wp_add_inline_script( 'jquery', 'console.log("Page is not built with Elementor");' );
+            // Check for shortcode in regular post content
+            if ( preg_match( '/\[(ypf_pricing_table|ypf_scalling_table)(?:\s|])/i', $post->post_content ) ) {
+                $shortcode_found = true;
+                wp_add_inline_script( 'jquery', 'console.log("Pricing table shortcode found in post content");' );
+            }
+        }
+    } else {
+        wp_add_inline_script( 'jquery', 'console.log("Not a singular page");' );
     }
 
-    // Check if $post is available
-    if ( !is_a($post, 'WP_Post') ) {
-        wp_add_inline_script( 'jquery', 'console.log("$post is not available");' );
-        return;
-    }
-
-    // Check for shortcodes using regex
-    if ( preg_match( '/\[(ypf_pricing_table|ypf_scalling_table)(?:\s|])/i', $post->post_content ) ) {
-        wp_add_inline_script( 'jquery', 'console.log("Pricing table shortcode found. Enqueuing scripts and styles.");' );
-
+    if ( $shortcode_found ) {
         // Enqueue styles
         wp_enqueue_style( 'hello-theme-swiper-bundle-css', get_stylesheet_directory_uri() . '/assets/css/swiper-bundle.min.css');
         wp_enqueue_style( 'hello-theme-tippy-css', get_stylesheet_directory_uri() . '/assets/css/tippy.css');
@@ -61,9 +75,11 @@ function hello_theme_pricing_table_live() {
         wp_enqueue_script( 'hello-theme-swiper-bundle-js', get_stylesheet_directory_uri() . '/assets/js/swiper-bundle.min.js', array('jquery'), null, true );
         wp_enqueue_script( 'hello-theme-popper-js', get_stylesheet_directory_uri() . '/assets/js/popper.min.js', array(), null, true );
         wp_enqueue_script( 'hello-theme-tippy-js', get_stylesheet_directory_uri() . '/assets/js/tippy-bundle.umd.min.js', array(), null, true );
-        wp_enqueue_script( 'hello-theme-pricing-scaling-table-js', get_stylesheet_directory_uri() . '/assets/js/hello-theme-pricing-table.js', array('jquery', 'hello-theme-swiper-bundle-js','hello-theme-popper-js', 'hello-theme-tippy-js'), HELLO_THEME_VERSION, true );
+        wp_enqueue_script( 'hello-theme-pricing-scaling-table-js', get_stylesheet_directory_uri() . '/assets/css/hello-theme-pricing-table.js', array('jquery', 'hello-theme-swiper-bundle-js','hello-theme-popper-js', 'hello-theme-tippy-js'), HELLO_THEME_VERSION, true );
+
+        wp_add_inline_script( 'jquery', 'console.log("Scripts and styles enqueued for pricing table");' );
     } else {
-        wp_add_inline_script( 'jquery', 'console.log("No pricing table shortcode found in content.");' );
+        wp_add_inline_script( 'jquery', 'console.log("No pricing table shortcode found");' );
     }
 }
 add_action( 'wp_enqueue_scripts', 'hello_theme_pricing_table_live', 20);
