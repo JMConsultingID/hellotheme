@@ -73,12 +73,6 @@
             delay: [100, 100],
         });
 
-        // Trigger update for the initially selected product
-        const initialSelect = document.getElementById('product-select-' + initialCategory);
-        if (initialSelect) {
-            updateScalingProductDetailsMobile(initialCategory);
-        }
-
         // Ensure Swiper is initialized for visible tables on tab switch
         document.querySelectorAll('.e-n-tab-title').forEach(tab => {
             tab.addEventListener('click', function() {
