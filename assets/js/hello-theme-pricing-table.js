@@ -1,5 +1,6 @@
 (function( $ ) {
-	'use strict';
+    'use strict';
+    
     function updateProductDetails(category) {
         const select = document.getElementById('product-select-' + category);
         const selectedProduct = select.value;
@@ -9,6 +10,7 @@
         document.getElementById('product-detail-' + selectedProduct).style.display = 'block';
     }
 
+    window.updateProductDetails = updateProductDetails;
 
     document.addEventListener("DOMContentLoaded", function() {
         tippy(".pricing-table-label-tooltips", {
