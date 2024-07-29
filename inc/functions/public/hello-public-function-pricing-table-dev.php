@@ -47,13 +47,15 @@ function hello_pricing_table_multi_product_shortcode($atts) {
     <?php if (wp_is_mobile()) : ?>
     <select id="product-select-<?php echo $category_product; ?>" class="pricing-table-select-option" onchange="updateProductDetails('<?php echo $category_product; ?>')">
         <?php foreach ($products as $product) : ?>
-            <?php 
+            <?php
+                $product_title = get_the_title($product->ID);
+                $product_title = str_replace(['Origin-', 'Evolution-', 'Origin ', 'Evolution '], '', $product_title);
                 $product_id = $product->ID;
                 $regular_price = get_post_meta($product_id, '_regular_price', true);
                 $sale_price = get_post_meta($product_id, '_sale_price', true);
                 $price = $sale_price && $sale_price < $regular_price ? wc_price($sale_price) : wc_price($regular_price);
             ?>
-            <option value="<?php echo $product_id; ?>"><?php echo get_the_title($product_id); ?> - <?php echo $price; ?></option>
+            <option value="<?php echo $product_id; ?>"><?php echo $product_title; ?> - <?php echo $price; ?></option>
         <?php endforeach; ?>
     </select>
     <?php endif; ?>
@@ -69,14 +71,16 @@ function hello_pricing_table_multi_product_shortcode($atts) {
             <div class="pricing-table-content">            
                 <div id="product-details-<?php echo $category_product; ?>" class="product-details-mobile">
                     <?php foreach ($products as $index => $product) : ?>
-                        <?php 
+                        <?php
+                            $product_title = get_the_title($product->ID);
+                            $product_title = str_replace(['Origin-', 'Evolution-', 'Origin ', 'Evolution '], '', $product_title);
                             $product_id = $product->ID;
                             $regular_price = get_post_meta($product_id, '_regular_price', true);
                             $sale_price = get_post_meta($product_id, '_sale_price', true);                    
                         ?>
                         <div class="product-detail <?php echo $category_product; ?>" id="product-detail-<?php echo $product_id; ?>" style="<?php echo $index === 0 ? '' : 'display:none;'; ?>">
                             <div class="pricing-table-row no-border mobile mobile-product-title-wrapper">
-                                <div class="plan-name mobile product-id-<?php echo $product->ID; ?>"><?php echo get_the_title($product_id); ?></div>
+                                <div class="plan-name mobile product-id-<?php echo $product->ID; ?>"><?php echo $product_title; ?></div>
                             </div>
                             <?php 
                             // Fetch ACF group field values and object
@@ -133,7 +137,6 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                 <?php foreach ($products as $product) : ?>
                     <?php 
                         $product_title = get_the_title($product->ID);
-                        // Mengganti 'Origin-' dan 'Evolution-' dengan string kosong
                         $product_title = str_replace(['Origin-', 'Evolution-', 'Origin ', 'Evolution '], '', $product_title);
                     ?>
                     <div class="plan-column product-id-<?php echo $product->ID; ?>">
@@ -268,13 +271,15 @@ function hello_scalling_table_single_product_shortcode($atts) {
 
     <div class="hello-theme-hello-theme-scalling-plan-select">
         <select id="product-select-<?php echo $category; ?>" class="pricing-table-select-option" onchange="updateProductDetailsMobile('<?php echo $category; ?>')">
-            <?php foreach ($products as $product) : 
+            <?php foreach ($products as $product) :
+                $product_title = get_the_title($product->ID);
+                $product_title = str_replace(['Origin-', 'Evolution-', 'Origin ', 'Evolution '], '', $product_title);
                 $product_id = $product->ID;
                 $regular_price = get_post_meta($product_id, '_regular_price', true);
                 $sale_price = get_post_meta($product_id, '_sale_price', true);
                 $price = $sale_price && $sale_price < $regular_price ? wc_price($sale_price) : wc_price($regular_price);
             ?>
-                <option value="<?php echo $product_id; ?>"><?php echo get_the_title($product_id); ?> - <?php echo $price; ?></option>
+                <option value="<?php echo $product_id; ?>"><?php echo $product_title; ?> - <?php echo $price; ?></option>
             <?php endforeach; ?>
         </select>
     </div>
