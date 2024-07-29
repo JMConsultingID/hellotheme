@@ -134,7 +134,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                     <?php 
                         $product_title = get_the_title($product->ID);
                         // Mengganti 'Origin-' dan 'Evolution-' dengan string kosong
-                        $product_title = str_replace(['Origin-', 'Evolution-'], '', $product_title);
+                        $product_title = str_replace(['Origin-', 'Evolution-', 'Origin ', 'Evolution '], '', $product_title);
                     ?>
                     <div class="plan-column product-id-<?php echo $product->ID; ?>">
                         <div class="plan-name"><?php echo $product_title; ?></div>
