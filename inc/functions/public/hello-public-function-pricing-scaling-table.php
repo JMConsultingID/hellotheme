@@ -68,7 +68,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
 
         <!-- Mobile -->
         <?php if (wp_is_mobile()) : ?>
-            <div class="pricing-table-content">            
+            <div class="pricing-table-content pricing-table-mobile">            
                 <div id="product-details-<?php echo $category_product; ?>" class="product-details-mobile">
                     <?php foreach ($products as $index => $product) : ?>
                         <?php
@@ -131,7 +131,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
         <?php else : ?>
 
         <!-- Desktop -->
-        <div class="pricing-table-content">
+        <div class="pricing-table-content pricing-table-desktop">
             <div class="pricing-table-row header-row">
                 <div class="plan-category">Plan Category</div>
                 <?php foreach ($products as $product) : ?>

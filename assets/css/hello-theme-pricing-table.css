@@ -471,10 +471,11 @@
 }
 
 @media (max-width: 640px) {
-	.pricing-table-content {
+	.pricing-table-content.pricing-table-desktop {
 	    overflow: scroll;
 	}
-	.hello-theme-pricing-plan .plan-category, .hello-theme-pricing-plan .plan-column {
+	.hello-theme-pricing-plan .pricing-table-desktop .plan-category, 
+	.hello-theme-pricing-plan .pricing-table-desktop .plan-column {
 	    flex: 0 0 40%;
 	}
 	.hello-theme-scalling-plan .scalling-table-content {
