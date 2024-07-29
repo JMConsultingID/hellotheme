@@ -1,13 +1,14 @@
 (function( $ ) {
 	'use strict';
     function updateProductDetails(category) {
-            const select = document.getElementById('product-select-' + category);
-            const selectedProduct = select.value;
-            document.querySelectorAll('.product-detail.' + category).forEach(detail => {
-                detail.style.display = 'none';
-            });
-            document.getElementById('product-detail-' + selectedProduct).style.display = 'block';
-        }
+        const select = document.getElementById('product-select-' + category);
+        const selectedProduct = select.value;
+        document.querySelectorAll('.product-detail.' + category).forEach(detail => {
+            detail.style.display = 'none';
+        });
+        document.getElementById('product-detail-' + selectedProduct).style.display = 'block';
+    }
+
 
     document.addEventListener("DOMContentLoaded", function() {
         tippy(".pricing-table-label-tooltips", {
@@ -20,8 +21,5 @@
             delay: [100, 100],
         });
     });
-
-    
-
 
 })( jQuery );
