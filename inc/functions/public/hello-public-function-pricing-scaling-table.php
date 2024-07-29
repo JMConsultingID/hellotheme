@@ -260,7 +260,7 @@ function hello_scalling_table_single_product_shortcode($atts) {
     if (wp_is_mobile()) : ?>
 
     <div class="hello-theme-hello-theme-scalling-plan-select">
-        <select id="product-select-<?php echo $category; ?>" class="pricing-table-select-option" onchange="updateProductDetailsMobile('<?php echo $category; ?>')">
+        <select id="product-select-<?php echo $category; ?>" class="pricing-table-select-option" onchange="updateScalingProductDetailsMobile('<?php echo $category; ?>')">
             <?php foreach ($products as $product) :
                 $product_title = get_the_title($product->ID);
                 $product_title = str_replace(['Origin-', 'Evolution-', 'Origin ', 'Evolution '], '', $product_title);
@@ -320,73 +320,6 @@ function hello_scalling_table_single_product_shortcode($atts) {
             </div>
         <?php endforeach; ?>
     </div>
-    <script>
-function initSwiperForVisibleTables() {
-    jQuery('.product-detail:visible .swiper-container').each(function() {
-        new Swiper(this, {
-            slidesPerView: 1,
-            spaceBetween: 10,
-            navigation: {
-                nextEl: jQuery(this).find('.swiper-button-next')[0],
-                prevEl: jQuery(this).find('.swiper-button-prev')[0],
-            },
-            allowTouchMove: false,
-            effect: 'fade',
-            fadeEffect: {
-                crossFade: true
-            }
-        });
-    });
-}
-
-function updateProductDetailsMobile(category) {
-    const select = document.getElementById('product-select-' + category);
-    const selectedProduct = select.value;
-    document.querySelectorAll('.product-detail.' + category).forEach(detail => {
-        detail.style.display = 'none';
-    });
-    const productDetail = document.getElementById('product-detail-' + selectedProduct);
-    if (productDetail) {
-        productDetail.style.display = 'block';
-        // Initialize swiper for the selected product
-        new Swiper('#swiper-' + selectedProduct, {
-            slidesPerView: 1,
-            spaceBetween: 10,
-            navigation: {
-                nextEl: '#swiper-' + selectedProduct + ' .swiper-button-next',
-                prevEl: '#swiper-' + selectedProduct + ' .swiper-button-prev',
-            },
-            allowTouchMove: false,
-            effect: 'fade',
-            fadeEffect: {
-                crossFade: true
-            }
-        });
-    } else {
-        console.error('Selected product detail not found for ID:', selectedProduct);
-    }
-}
-
-jQuery(document).ready(function($) {
-    // Trigger update for the initially selected product
-    const initialSelect = document.getElementById('product-select-<?php echo $category; ?>');
-    if (initialSelect) {
-        updateProductDetailsMobile('<?php echo $category; ?>');
-    }
-
-    // Ensure Swiper is initialized for visible tables on tab switch
-    document.querySelectorAll('.e-n-tab-title').forEach(tab => {
-        tab.addEventListener('click', function() {
-            setTimeout(initSwiperForVisibleTables, 100); // Adjust timeout as needed
-        });
-    });
-
-    // Initialize Swiper for the initially visible tables
-    initSwiperForVisibleTables();
-});
-
-
-    </script>
 
     <?php else : ?>
     <!-- Desktop -->
