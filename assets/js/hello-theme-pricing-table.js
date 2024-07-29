@@ -9,6 +9,9 @@
         document.getElementById('product-detail-' + selectedProduct).style.display = 'block';
     }
 
+    // Export the function to global scope
+    window.updateProductDetails = updateProductDetails;
+
     // Function to update scaling product details for mobile
     function updateScalingProductDetailsMobile(category) {
         const select = document.getElementById('product-select-' + category);
@@ -58,7 +61,6 @@
     }
 
     // Export the function to global scope
-    window.updateProductDetails = updateProductDetails;
     window.updateScalingProductDetailsMobile = updateScalingProductDetailsMobile;
 
     // Initialize tippy tooltips
