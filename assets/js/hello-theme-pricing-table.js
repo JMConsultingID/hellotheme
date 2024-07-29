@@ -72,16 +72,6 @@
             interactive: true,
             delay: [100, 100],
         });
-
-        // Ensure Swiper is initialized for visible tables on tab switch
-        document.querySelectorAll('.e-n-tab-title').forEach(tab => {
-            tab.addEventListener('click', function() {
-                setTimeout(initSwiperForVisibleTables, 100); // Adjust timeout as needed
-            });
-        });
-
-        // Initialize Swiper for the initially visible tables
-        initSwiperForVisibleTables();
     });
 
 
