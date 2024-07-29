@@ -28,7 +28,7 @@ require_once get_stylesheet_directory() . '/inc/functions/public/hello-public-fu
  */
 function hello_theme_pricing_table_live() {
     // Check if the pricing table is enabled
-    if ( get_option( 'hello_theme_enable_table_pricing' ) === '1' && ( has_shortcode( get_post()->post_content, 'ypf_pricing_table' ) || has_shortcode( get_post()->post_content, 'ypf_scalling_table' ) ) ) {
+    if ( get_option( 'hello_theme_enable_table_pricing' ) === '1' ) {
         wp_enqueue_style( 'hello-theme-swiper-bundle-css', get_stylesheet_directory_uri() . '/assets/css/swiper-bundle.min.css');
         wp_enqueue_style( 'hello-theme-tippy-css', get_stylesheet_directory_uri() . '/assets/css/tippy.css');
         wp_enqueue_style( 'hello-theme-tippy-light-css', get_stylesheet_directory_uri() . '/assets/css/tippy-light.css');
@@ -43,3 +43,4 @@ function hello_theme_pricing_table_live() {
     }
 }
 add_action( 'wp_enqueue_scripts', 'hello_theme_pricing_table_live', 20);
+
