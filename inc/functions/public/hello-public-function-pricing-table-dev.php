@@ -131,8 +131,13 @@ function hello_pricing_table_multi_product_shortcode($atts) {
             <div class="pricing-table-row header-row">
                 <div class="plan-category">Plan Category</div>
                 <?php foreach ($products as $product) : ?>
+                    <?php 
+                        $product_title = get_the_title($product->ID);
+                        // Mengganti 'Origin-' dan 'Evolution-' dengan string kosong
+                        $product_title = str_replace(['Origin-', 'Evolution-'], '', $product_title);
+                    ?>
                     <div class="plan-column product-id-<?php echo $product->ID; ?>">
-                        <div class="plan-name"><?php echo str_replace(['Origin–', 'Evolution–'], '', get_the_title($product->ID)); ?></div>
+                        <div class="plan-name"><?php echo $product_title; ?></div>
                     </div>
                 <?php endforeach; ?>
             </div>
