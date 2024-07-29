@@ -479,8 +479,11 @@
 	    flex: 0 0 40%;
 	}
 	.hello-theme-pricing-plan .pricing-table-mobile .plan-category.mobile{
-		padding: 8px;
+		padding: 8px 8px 8px 20px;
 		flex: 0 0 70%;
+	}
+	.hello-theme-pricing-plan .pricing-table-mobile .plan-column.mobile{
+		padding: 8px;
 	}
 	.hello-theme-scalling-plan .scalling-table-content {
 	    overflow-x: scroll;
