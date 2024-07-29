@@ -13,7 +13,7 @@
     window.updateProductDetails = updateProductDetails;
 
     document.addEventListener("DOMContentLoaded", function() {
-        tippy(".pricing-table-label-tooltips", {
+        tippy(".pricing-table-label-tooltips, .scalling-table-label-tooltips", {
             theme: 'light',
             placement: 'right',
             arrow: false,
@@ -23,5 +23,6 @@
             delay: [100, 100],
         });
     });
+
 
 })( jQuery );
