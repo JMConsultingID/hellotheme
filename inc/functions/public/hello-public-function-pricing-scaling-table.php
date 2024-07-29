@@ -325,7 +325,7 @@ function hello_scalling_table_single_product_shortcode($atts) {
             // Trigger update for the initially selected product
             const initialSelect = document.getElementById('product-select-<?php echo $category; ?>');
             if (initialSelect) {
-                updateProductDetailsMobile('<?php echo $category; ?>');
+                updateScalingProductDetailsMobile('<?php echo $category; ?>');
             }
 
             // Ensure Swiper is initialized for visible tables on tab switch
