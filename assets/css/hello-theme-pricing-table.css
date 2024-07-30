@@ -350,7 +350,7 @@
 }
 @media (min-width: 641px) and (max-width: 1024px) {
     .pricing-table-content {
-        overflow: scroll;
+        overflow-x: scroll;
     }
     .hello-theme-pricing-plan .plan-category,
     .hello-theme-pricing-plan .plan-column,
@@ -366,7 +366,7 @@
 }
 @media (min-width: 641px) and (max-width: 1024px) and (orientation: landscape) {
     .pricing-table-content {
-        overflow: scroll;
+        overflow-x: scroll;
     }
     .hello-theme-pricing-plan .plan-category,
     .hello-theme-pricing-plan .plan-column,
@@ -382,7 +382,7 @@
 }
 @media (max-width: 640px) {
     .pricing-table-content.pricing-table-desktop {
-        overflow: scroll;
+        overflow-x: scroll;
     }
     .hello-theme-pricing-plan .pricing-table-desktop .plan-category,
     .hello-theme-pricing-plan .pricing-table-desktop .plan-column,
