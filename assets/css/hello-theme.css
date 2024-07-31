@@ -453,6 +453,9 @@ li.select2-results__option {
 .woocommerce-account .site-main form .form-row {
     margin: 20px auto;
 }
+.woocommerce-account .site-main form .form-row-first{
+    float: unset;
+}
 .pricing-table-content,
 .scalling-table-content {
     border-radius: 24px;
