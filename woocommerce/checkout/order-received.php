@@ -20,7 +20,7 @@
 defined( 'ABSPATH' ) || exit;
 ?>
 
-<p class="woocommerce-notice woocommerce-notice--success woocommerce-thankyou-order-received">
+<p class="woocommerce-notice woocommerce-notice--success woocommerce-thankyou-order-received hello-theme-woocommerce-thank-you">
 	<?php
 	/**
 	 * Filter the message shown after a checkout is complete.
