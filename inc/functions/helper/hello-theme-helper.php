@@ -7,6 +7,11 @@
  *
  * @package HelloTheme
  */
+function hello_theme_copyright_year() {
+     return '&copy; ' . date('Y');
+}
+add_shortcode('ht_copyright_year', 'hello_theme_copyright_year');
+
 add_filter( 'oembed_response_data', 'hello_theme_hide_author_filter_oembed_response_data' );
 function hello_theme_hide_author_filter_oembed_response_data( $data ) {
     unset($data['author_url']);
