@@ -92,7 +92,7 @@ function hello_theme_enqueue_scripts() {
     if ($is_enabled_referral_url !== '1') {
         return;
     }
-    wp_enqueue_script( 'affiliatewp-redirect', , get_stylesheet_directory_uri() . 'assets/js/affiliate-redirect.js', array(), null, true );
+    wp_enqueue_script( 'affiliatewp-redirect', get_stylesheet_directory_uri() . 'assets/js/affiliate-redirect.js', array(), null, true );
 }
 add_action( 'wp_enqueue_scripts', 'hello_theme_enqueue_scripts' );
 
