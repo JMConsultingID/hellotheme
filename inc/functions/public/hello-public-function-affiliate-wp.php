@@ -56,7 +56,7 @@ function hello_theme_affwp_register_form_script() {
 
 function hello_theme_affiliate_redirect() {
     $is_enabled_referral_url = get_option( 'hello_theme_affiliatewp_enable_redirect_referral' );
-    $redirect_referral_url = get_option( 'hello_theme_affiliatewp_redirect_referral_url' );
+    $redirect_referral_url = "https://google.com";
 
     // If the option is not '1', return early
     if ($is_enabled_referral_url !== '1') {
