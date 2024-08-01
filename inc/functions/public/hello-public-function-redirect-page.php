@@ -11,6 +11,7 @@ function hello_theme_redirect_after_purchase( $order_id ) {
     if ( get_option( 'enable_thank_you_redirect' ) == '1' ) {
         $order = wc_get_order( $order_id );
         $status = $order->get_status();
+        $order_key = $order->get_order_key();
 
         $thank_you_page_id = get_option( 'hello_theme_thank_you_page_url' );
         $failed_page_id = get_option( 'hello_theme_failed_page_url' );
@@ -20,8 +21,34 @@ function hello_theme_redirect_after_purchase( $order_id ) {
         $failed_page_url = $failed_page_id ? get_permalink( $failed_page_id ) : home_url();
         $on_hold_page_url = $on_hold_page_id ? get_permalink( $on_hold_page_id ) : home_url();
 
+        // Append order_id and order_key to the thank_you_page_url
+        $thank_you_page_url = add_query_arg( array(
+            'order_id' => $order_id,
+            'order_key' => $order_key,
+        ), $thank_you_page_url );
+
         switch ( $status ) {
             case 'completed':
+                ?>
+                <script>
+                    gtag('event', 'purchase', {
+                        "transaction_id": "<?php echo $order->get_order_number(); ?>",
+                        "value": <?php echo $order->get_total(); ?>,
+                        "currency": "<?php echo get_woocommerce_currency(); ?>",
+                        "items": <?php echo json_encode($order->get_items()); ?>
+                    });
+                </script>
+                <script>
+                    window.dataLayer = window.dataLayer || [];
+                    window.dataLayer.push({
+                        'event': 'purchase',
+                        'transactionId': '<?php echo $order->get_order_number(); ?>',
+                        'transactionTotal': <?php echo $order->get_total(); ?>,
+                        'transactionCurrency': '<?php echo get_woocommerce_currency(); ?>',
+                        'transactionProducts': <?php echo json_encode($order->get_items(), JSON_HEX_TAG); ?>
+                    });
+                </script>
+                <?php
                 wp_safe_redirect( $thank_you_page_url );
                 exit;
             case 'failed':
