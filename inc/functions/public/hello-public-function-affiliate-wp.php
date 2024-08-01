@@ -73,10 +73,12 @@ function hello_theme_affiliate_redirect() {
     if (preg_match('|^/ref/.*|', $request_uri)) {
         // Debug output to check matching
         error_log('Matched /ref/ in URI: ' . $request_uri);
-        // Remove any additional path or query string
-        $new_url = strtok($redirect_referral_url, '?');
+        // Ensure the redirect URL is correct
+        $new_url = 'https://www.fastforexfunding.com/';
+        // Debug output to check the redirect URL
+        error_log('Redirecting to URL: ' . $new_url);
         // Perform the redirection to the main site without any additional path.
-        wp_redirect($new_url, 301);
+        wp_safe_redirect($new_url, 301);
         exit;
     }
 
@@ -84,13 +86,16 @@ function hello_theme_affiliate_redirect() {
     if (strpos($request_uri, '?ref=') !== false) {
         // Debug output to check matching
         error_log('Matched ?ref= in URI: ' . $request_uri);
-        // Remove any additional path or query string
-        $new_url = strtok($redirect_referral_url, '?');
+        // Ensure the redirect URL is correct
+        $new_url = 'https://www.fastforexfunding.com/';
+        // Debug output to check the redirect URL
+        error_log('Redirecting to URL: ' . $new_url);
         // Perform the redirection to the main site without any additional path.
-        wp_redirect($new_url, 301);
+        wp_safe_redirect($new_url, 301);
         exit;
     }
 }
 add_action('template_redirect', 'hello_theme_affiliate_redirect', 20);
+
 
 ?>
