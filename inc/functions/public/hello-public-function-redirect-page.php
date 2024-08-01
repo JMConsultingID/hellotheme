@@ -44,10 +44,12 @@ function hello_theme_redirect_after_purchase( $order_id ) {
 }
 add_action( 'woocommerce_thankyou', 'hello_theme_redirect_after_purchase' );
 
+add_action('wp_footer', 'hello_theme_add_ga_gtm_script_to_thank_you_page', 10);
+
 function hello_theme_add_ga_gtm_script_to_thank_you_page() {
     $thank_you_page_id = get_option( 'hello_theme_thank_you_page_url' );
 
-    if (is_page(120) && isset($_GET['order_id']) && isset($_GET['order_key'])) {
+    if (is_page($thank_you_page_id) && isset($_GET['order_id']) && isset($_GET['order_key'])) {
         $order_id = sanitize_text_field($_GET['order_id']);
         $order = wc_get_order($order_id);
 
