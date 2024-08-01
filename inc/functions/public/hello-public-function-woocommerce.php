@@ -140,4 +140,22 @@ function hello_theme_woocommerce_checkout_terms_and_conditions() {
   remove_action( 'woocommerce_checkout_terms_and_conditions', 'wc_terms_and_conditions_page_content', 30 );
 }
 add_action( 'wp', 'hello_theme_woocommerce_checkout_terms_and_conditions' );
+
+// Function to hide specific countries on WooCommerce checkout
+function hello_theme_woocommerce_checkout_hide_countries_on_checkout($countries) {
+    // Array of country codes to hide
+    $countries_to_hide = array('US', 'UM'); // Add the country codes you want to hide
+
+    foreach ($countries_to_hide as $country_code) {
+        if (isset($countries[$country_code])) {
+            unset($countries[$country_code]);
+        }
+    }
+
+    return $countries;
+}
+
+// Hook the function to the WooCommerce checkout fields filter
+add_filter('woocommerce_countries', 'hello_theme_woocommerce_checkout_hide_countries_on_checkout', 10, 1);
+
 ?>
