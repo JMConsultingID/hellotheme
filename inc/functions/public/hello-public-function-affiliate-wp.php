@@ -60,14 +60,17 @@ function hello_theme_affiliate_redirect() {
 
     // If the option is not '1', return early
     if ($is_enabled_referral_url !== '1') {
+        echo '<script>console.log("Referral redirect is disabled.");</script>';
         return;
     }
 
     // Get the current request URI.
     $request_uri = $_SERVER['REQUEST_URI'];
+    echo '<script>console.log("Current request URI: ' . $request_uri . '");</script>';
 
     // Match any URL that starts with /ref/ followed by any characters.
     if (preg_match('|^/ref/.*|', $request_uri)) {
+        echo '<script>console.log("Matched /ref/ pattern, redirecting to: ' . $redirect_referral_url . '");</script>';
         // Perform the redirection to the main site without any additional path.
         wp_redirect($redirect_referral_url, 301);
         exit;
@@ -75,12 +78,24 @@ function hello_theme_affiliate_redirect() {
 
     // Check for the presence of 'ref' as a query parameter.
     if (strpos($request_uri, '?ref=') !== false) {
+        echo '<script>console.log("Matched ?ref= pattern, redirecting to: ' . $redirect_referral_url . '");</script>';
         // Perform the redirection to the main site without any additional path.
         wp_redirect($redirect_referral_url, 301);
         exit;
     }
 }
 add_action( 'template_redirect', 'hello_theme_affiliate_redirect', 20 );
+
+function hello_theme_enqueue_scripts() {
+    $is_enabled_referral_url = get_option( 'hello_theme_affiliatewp_enable_redirect_referral' );
+    // If the option is not '1', return early
+    if ($is_enabled_referral_url !== '1') {
+        return;
+    }
+    wp_enqueue_script( 'affiliatewp-redirect', , get_stylesheet_directory_uri() . 'assets/js/affiliate-redirect.js', array(), null, true );
+}
+add_action( 'wp_enqueue_scripts', 'hello_theme_enqueue_scripts' );
+
 
 
 ?>
