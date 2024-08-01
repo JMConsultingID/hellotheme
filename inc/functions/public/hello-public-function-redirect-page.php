@@ -39,26 +39,29 @@ function hello_theme_redirect_after_purchase( $order_id ) {
 add_action( 'woocommerce_thankyou', 'hello_theme_redirect_after_purchase' );
 
 function hello_theme_redirect_cart_to_home() {
-    if ( get_option( 'enable_thank_you_redirect' ) == '1' ) {
-        if ( get_option( 'skip_cart_page' ) == '1' && ( is_page( 'cart' ) || ( isset( $_GET['cancel_order'] ) && $_GET['cancel_order'] === 'true' ) ) ) {
+    // Check if WooCommerce is installed and active
+    if ( class_exists( 'WooCommerce' ) ) {
+        if ( get_option( 'enable_thank_you_redirect' ) == '1' ) {
+            if ( get_option( 'skip_cart_page' ) == '1' && ( is_page( 'cart' ) || ( isset( $_GET['cancel_order'] ) && $_GET['cancel_order'] === 'true' ) ) ) {
+                $home_page_url = home_url();
+                wp_safe_redirect( $home_page_url );
+                exit;
+            }
+        }
+
+        // Check if shop page is disabled
+        if ( is_shop() && get_option( 'disable_shop_page' ) == '1' ) {
             $home_page_url = home_url();
             wp_safe_redirect( $home_page_url );
             exit;
         }
-    }
 
-    // Check if shop page is disabled
-    if ( is_shop() && get_option( 'disable_shop_page' ) == '1' ) {
-        $home_page_url = home_url();
-        wp_safe_redirect( $home_page_url );
-        exit;
-    }
-
-    // Check if product page is disabled
-    if ( is_product() && get_option( 'disable_product_page' ) == '1' ) {
-        $home_page_url = home_url();
+        // Check if product page is disabled
+        if ( is_product() && get_option( 'disable_product_page' ) == '1' ) {
+            $home_page_url = home_url();
             wp_safe_redirect( $home_page_url );
-        exit;
+            exit;
+        }
     }
 }
 add_action( 'template_redirect', 'hello_theme_redirect_cart_to_home' );
