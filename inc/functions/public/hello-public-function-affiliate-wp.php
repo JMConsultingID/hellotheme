@@ -65,23 +65,22 @@ function hello_theme_affiliate_redirect() {
 
     // Get the current request URI.
     $request_uri = $_SERVER['REQUEST_URI'];
-    // Get the full URL including query string.
-    $full_url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
     // Match any URL that starts with /ref/ followed by any characters.
     if (preg_match('|^/ref/.*|', $request_uri)) {
-        // Perform the redirection to the main site.
+        // Perform the redirection to the main site without any additional path.
         wp_redirect($redirect_referral_url, 301);
         exit;
     }
 
     // Check for the presence of 'ref' as a query parameter.
-    if (strpos($full_url, '?ref=') !== false) {
-        // Perform the redirection to the main site.
+    if (strpos($request_uri, '?ref=') !== false) {
+        // Perform the redirection to the main site without any additional path.
         wp_redirect($redirect_referral_url, 301);
         exit;
     }
 }
 add_action( 'template_redirect', 'hello_theme_affiliate_redirect', 20 );
+
 
 ?>
