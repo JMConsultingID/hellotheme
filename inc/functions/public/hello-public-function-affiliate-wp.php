@@ -73,8 +73,10 @@ function hello_theme_affiliate_redirect() {
     if (preg_match('|^/ref/.*|', $request_uri)) {
         // Debug output to check matching
         error_log('Matched /ref/ in URI: ' . $request_uri);
+        // Remove any additional path or query string
+        $new_url = strtok($redirect_referral_url, '?');
         // Perform the redirection to the main site without any additional path.
-        wp_safe_redirect($redirect_referral_url, 301);
+        wp_redirect($new_url, 301);
         exit;
     }
 
@@ -82,8 +84,10 @@ function hello_theme_affiliate_redirect() {
     if (strpos($request_uri, '?ref=') !== false) {
         // Debug output to check matching
         error_log('Matched ?ref= in URI: ' . $request_uri);
+        // Remove any additional path or query string
+        $new_url = strtok($redirect_referral_url, '?');
         // Perform the redirection to the main site without any additional path.
-        wp_safe_redirect($redirect_referral_url, 301);
+        wp_redirect($new_url, 301);
         exit;
     }
 }
