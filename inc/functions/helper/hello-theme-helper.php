@@ -7,7 +7,13 @@
  *
  * @package HelloTheme
  */
-//Theme Activation
+add_filter( 'oembed_response_data', 'hello_theme_hide_author_filter_oembed_response_data' );
+function hello_theme_hide_author_filter_oembed_response_data( $data ) {
+    unset($data['author_url']);
+    unset($data['author_name']);
+    return $data;
+}
+
 function hello_theme_display_swiper_navigation_buttons($left_button_id, $right_button_id) {
     ?>
     <div class="pt__option__mobile__nav">
