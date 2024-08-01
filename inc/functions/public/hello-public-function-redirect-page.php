@@ -97,14 +97,14 @@ function hello_theme_add_ga_gtm_script_to_thank_you_page() {
                 ?>
                 <script>
                     // GA4 Event
-                    gtag('event', 'view_cart', {
+                    gtag('event', 'page_view', {
                         "items": <?php echo $products_json; ?>
                     });
 
                     // GTM Event
                     window.dataLayer = window.dataLayer || [];
                     window.dataLayer.push({
-                        'event': 'view_cart',
+                        'event': 'page_view',
                         'transactionProducts': <?php echo $products_json; ?>
                     });
                 </script>
