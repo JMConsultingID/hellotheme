@@ -47,7 +47,13 @@ add_action( 'woocommerce_thankyou', 'hello_theme_redirect_after_purchase' );
 add_action('wp_footer', 'hello_theme_add_ga_gtm_script_to_thank_you_page', 10);
 
 function hello_theme_add_ga_gtm_script_to_thank_you_page() {
+    $enable_ecommerce_tracking = get_option( 'enable_ecommerce_tracking' );
     $thank_you_page_id = get_option( 'hello_theme_thank_you_page_url' );
+
+    // If the $enable_ecommerce_tracking is not '1', return early
+    if ($enable_ecommerce_tracking !== '1') {
+        return;
+    }
 
     if (is_page($thank_you_page_id) && isset($_GET['order_id']) && isset($_GET['order_key'])) {
         $order_id = sanitize_text_field($_GET['order_id']);
