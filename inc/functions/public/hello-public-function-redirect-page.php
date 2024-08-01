@@ -78,7 +78,7 @@ function hello_theme_add_ga_gtm_script_to_thank_you_page() {
                     gtag('event', 'purchase', {
                         "transaction_id": "<?php echo $transaction_id; ?>",
                         "value": <?php echo $transaction_total; ?>,
-                        "currency": "<?php echo $currency; ?>,
+                        "currency": "<?php echo $currency; ?>",
                         "items": <?php echo $products_json; ?>
                     });
 
@@ -87,7 +87,7 @@ function hello_theme_add_ga_gtm_script_to_thank_you_page() {
                     window.dataLayer.push({
                         'event': 'purchase',
                         'transactionId': '<?php echo $transaction_id; ?>',
-                        'transactionTotal': <?php echo $transaction_total; ?>',
+                        'transactionTotal': '<?php echo $transaction_total; ?>',
                         'transactionCurrency': '<?php echo $currency; ?>',
                         'transactionProducts': <?php echo $products_json; ?>
                     });
