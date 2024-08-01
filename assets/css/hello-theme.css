@@ -98,6 +98,20 @@ li.select2-results__option {
 .woocommerce-checkout form.checkout_coupon .form-row-first {
     max-width: 300px;
 }
+.woocommerce-lost-password .site-main{
+    text-align: center;
+}
+.woocommerce-lost-password .site-main{
+    text-align: center;
+}
+.woocommerce-lost-password .woocommerce form .form-row {
+    padding: 3px;
+    margin: 0 auto;
+}
+.woocommerce-lost-password .woocommerce form .form-row-first, 
+.woocommerce-lost-password .woocommerce form .form-row-first {
+    float: none;
+}
 @media (max-width: 767px) {
     .woocommerce-checkout .site-main {
         padding-top: 40px;
