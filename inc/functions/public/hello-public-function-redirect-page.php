@@ -29,26 +29,6 @@ function hello_theme_redirect_after_purchase( $order_id ) {
 
         switch ( $status ) {
             case 'completed':
-                ?>
-                <script>
-                    gtag('event', 'purchase', {
-                        "transaction_id": "<?php echo $order->get_order_number(); ?>",
-                        "value": <?php echo $order->get_total(); ?>,
-                        "currency": "<?php echo get_woocommerce_currency(); ?>",
-                        "items": <?php echo json_encode($order->get_items()); ?>
-                    });
-                </script>
-                <script>
-                    window.dataLayer = window.dataLayer || [];
-                    window.dataLayer.push({
-                        'event': 'purchase',
-                        'transactionId': '<?php echo $order->get_order_number(); ?>',
-                        'transactionTotal': <?php echo $order->get_total(); ?>,
-                        'transactionCurrency': '<?php echo get_woocommerce_currency(); ?>',
-                        'transactionProducts': <?php echo json_encode($order->get_items(), JSON_HEX_TAG); ?>
-                    });
-                </script>
-                <?php
                 wp_safe_redirect( $thank_you_page_url );
                 exit;
             case 'failed':
@@ -64,6 +44,76 @@ function hello_theme_redirect_after_purchase( $order_id ) {
     }
 }
 add_action( 'woocommerce_thankyou', 'hello_theme_redirect_after_purchase' );
+
+add_action('wp_footer', 'hello_theme_add_ga_gtm_script_to_thank_you_page', 10);
+
+function hello_theme_add_ga_gtm_script_to_thank_you_page() {
+    if (is_page(2662) && isset($_GET['order_id']) && isset($_GET['order_key'])) {
+        $order_id = sanitize_text_field($_GET['order_id']);
+        $order = wc_get_order($order_id);
+
+        if ($order) {
+            $status = $order->get_status();
+            $transaction_id = $order->get_order_number();
+            $transaction_total = $order->get_total();
+            $currency = get_woocommerce_currency();
+            $items = $order->get_items();
+            $products = [];
+
+            foreach ($items as $item) {
+                $products[] = [
+                    'name' => $item->get_name(),
+                    'id' => $item->get_product_id(),
+                    'price' => $item->get_total(),
+                    'quantity' => $item->get_quantity(),
+                ];
+            }
+
+            $products_json = json_encode($products, JSON_HEX_TAG);
+
+            if ($status === 'completed') {
+                ?>
+                <script>
+                    // GA4 Event
+                    gtag('event', 'purchase', {
+                        "transaction_id": "<?php echo $transaction_id; ?>",
+                        "value": <?php echo $transaction_total; ?>,
+                        "currency": "<?php echo $currency; ?>,
+                        "items": <?php echo $products_json; ?>
+                    });
+
+                    // GTM Event
+                    window.dataLayer = window.dataLayer || [];
+                    window.dataLayer.push({
+                        'event': 'purchase',
+                        'transactionId': '<?php echo $transaction_id; ?>',
+                        'transactionTotal': <?php echo $transaction_total; ?>',
+                        'transactionCurrency': '<?php echo $currency; ?>',
+                        'transactionProducts': <?php echo $products_json; ?>
+                    });
+                </script>
+                <?php
+            } else {
+                ?>
+                <script>
+                    // GA4 Event
+                    gtag('event', 'view_cart', {
+                        "items": <?php echo $products_json; ?>
+                    });
+
+                    // GTM Event
+                    window.dataLayer = window.dataLayer || [];
+                    window.dataLayer.push({
+                        'event': 'view_cart',
+                        'transactionProducts': <?php echo $products_json; ?>
+                    });
+                </script>
+                <?php
+            }
+        }
+    }
+}
+
 
 function hello_theme_redirect_cart_to_home() {
     if ( get_option( 'enable_thank_you_redirect' ) == '1' ) {
