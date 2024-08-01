@@ -80,6 +80,16 @@ function hello_theme_add_ga_gtm_script_to_thank_you_page() {
                         "currency": "<?php echo $currency; ?>",
                         "items": <?php echo $products_json; ?>
                     });
+
+                    // GTM Event
+                    window.dataLayer = window.dataLayer || [];
+                    window.dataLayer.push({
+                        'event': 'purchase',
+                        'transaction_id': '<?php echo $transaction_id; ?>',
+                        'value': <?php echo $transaction_total; ?>,
+                        'currency': '<?php echo $currency; ?>',
+                        'items': <?php echo $products_json; ?>
+                    });
                 </script>
                 <?php
             } else {
@@ -106,6 +116,12 @@ function hello_theme_add_ga_gtm_script_to_thank_you_page() {
             // GA4 Event
             gtag('event', 'page_view', {
                 "page_id": <?php echo $thank_you_page_id; ?>
+            });
+            // GTM Event
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'page_view',
+                'page_id': <?php echo $thank_you_page_id; ?>
             });
         </script>
         <?php
