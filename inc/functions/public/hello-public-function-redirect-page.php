@@ -46,11 +46,9 @@ add_action( 'woocommerce_thankyou', 'hello_theme_redirect_after_purchase' );
 
 function hello_theme_add_ga_gtm_script_to_thank_you_page() {
     $thank_you_page_id = get_option( 'hello_theme_thank_you_page_url' );
-
+    $order_id = sanitize_text_field($_GET['order_id']);
     if (is_page($thank_you_page_id ) && isset($_GET['order_id']) && isset($_GET['order_key'])) {
-        $order_id = sanitize_text_field($_GET['order_id']);
         $order = wc_get_order($order_id);
-
         if ($order) {
             $status = $order->get_status();
             $transaction_id = $order->get_order_number();
@@ -100,6 +98,15 @@ function hello_theme_add_ga_gtm_script_to_thank_you_page() {
                 <?php
             }
         }
+    } else {
+        ?>
+        <script>
+            // GA4 Event
+            gtag('event', 'not_completed', {
+                "order_id": <?php echo  $order_id; ?>
+            });
+        </script>
+        <?php
     }
 }
 
