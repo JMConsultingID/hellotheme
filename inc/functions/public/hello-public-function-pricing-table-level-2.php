@@ -62,7 +62,7 @@ function hello_pricing_table_level_2_shortcode() {
                                 $sample_fields = get_field($sample_field_group, $product_id);
                             ?>
 
-                            <div class="pricing__table hello-theme-product-id">
+                            <div class="pricing__table hello-theme-product product-id-<?php echo $product_id; ?>">
                                 <div class="pt__title">
                                     <div class="pt__title__wrap">
 
@@ -109,8 +109,7 @@ function hello_pricing_table_level_2_shortcode() {
                                             }
 
                                             // Only render the div if there is at least one non-empty field
-                                            if ($has_value) :
-                                        ?>
+                                            if ($has_value) : ?>
                                             <div class="swiper-slide pt__option__item <?php echo esc_html($level_value); ?>">
                                                 <div class="pt__item">
                                                     <div class="pt__item__wrap">
