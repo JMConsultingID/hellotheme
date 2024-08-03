@@ -41,8 +41,6 @@ function hello_pricing_table_level_2_shortcode() {
                         <div id="subtab-<?php echo $product->get_id(); ?>" class="hello-theme-sub-tab-content pricing__table hello-theme-product-id <?php echo $productIndex == 0 ? 'active' : ''; ?>" data-sub-tab-id="subtab-<?php echo $product->get_id(); ?>">
 
                             <?php
-                                hello_theme_display_swiper_navigation_buttons('navBtnLeft', 'navBtnRight');
-                                $navigationButtons = ob_get_clean();
                                 $product_id = $product->get_id();
                                 $product_price = wc_price($product->get_price()); // Get product price with currency symbol
                                 $checkout_url = "/checkout/?add-to-cart={$product_id}"; // Generate checkout URL
