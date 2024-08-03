@@ -54,7 +54,7 @@ function hello_pricing_table_level_2_shortcode() {
 
                                 // Fetch tooltip values
                                 $tooltip_post_id = 16787;
-                                $acf_tooltip_group_field = 'fyfx_scalling_plan_tooltips';
+                                $acf_tooltip_group_field = 'hello_pricing_plan_tooltips';
                                 $tooltip_field_values = get_field($acf_tooltip_group_field, $tooltip_post_id);
 
                                 // Get a sample field object to get the labels dynamically
