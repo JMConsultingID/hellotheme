@@ -71,6 +71,58 @@ function hello_pricing_table_level_2_shortcode() {
 
                             <div class="pt__option">
                                 <?php hello_theme_display_swiper_navigation_buttons('navBtnLeft', 'navBtnRight'); ?>
+                                <div class='pt__option__slider swiper' id='pricingTableSlider'>
+                                  <div class='swiper-wrapper'>
+                                    <div class='swiper-slide pt__option__item'>
+                                      <div class='pt__item'>
+                                        <div class='pt__item__wrap'>
+                                          <div class='pt__row'>Origin Funded Stater</div>
+                                          <div class='pt__row'>150,000</div>
+                                          <div class='pt__row'>Unlimited</div>
+                                          <div class='pt__row'>Unlimited</div>
+                                          <div class='pt__row'>Phone & Priority Support</div>
+                                          <div class='pt__row'><i class='fa-solid fa-check'></i></div>
+                                          <div class='pt__row'><i class='fa-solid fa-check'></i></div>
+                                          <div class='pt__row'><i class='fa-solid fa-check'></i></div>
+                                          <div class='pt__row'><i class='fa-solid fa-check'></i></div>
+                                          <div class='pt__row'><i class='fa-solid fa-check'></i></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class='swiper-slide pt__option__item'>
+                                      <div class='pt__item'>
+                                        <div class='pt__item__wrap'>
+                                          <div class='pt__row'>Origin Funded Standard</div>
+                                          <div class='pt__row'>16,000</div>
+                                          <div class='pt__row'>5 Seats</div>
+                                          <div class='pt__row'>5 Audiences</div>
+                                          <div class='pt__row'>24/7 Email & Chat Support</div>
+                                          <div class='pt__row'><i class='fa-solid fa-check'></i></div>
+                                          <div class='pt__row'><i class='fa-solid fa-check'></i></div>
+                                          <div class='pt__row'><i class='fa-solid fa-check'></i></div>
+                                          <div class='pt__row'><i class='fa-solid fa-check'></i></div>
+                                          <div class='pt__row'><i class='fa-solid fa-check'></i></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class='swiper-slide pt__option__item'>
+                                      <div class='pt__item'>
+                                        <div class='pt__item__wrap'>
+                                          <div class='pt__row'>Origin Funded Profesional</div>
+                                          <div class='pt__row'>5,000</div>
+                                          <div class='pt__row'>3 Seats</div>
+                                          <div class='pt__row'>3 Audiences</div>
+                                          <div class='pt__row'>24/7 Email & Chat Support</div>
+                                          <div class='pt__row'><i class='fa-solid fa-check'></i></div>
+                                          <div class='pt__row'><i class='fa-solid fa-check'></i></div>
+                                          <div class='pt__row'>Limited</div>
+                                          <div class='pt__row'><i class='fa-solid fa-check'></i></div>
+                                          <div class='pt__row'>Limited</div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
                             </div>
 
                         </div>
