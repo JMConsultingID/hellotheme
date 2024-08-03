@@ -80,12 +80,37 @@ function hello_pricing_table_level_2_shortcode() {
                                             </div>
                                         <?php endif; 
                                         endforeach; ?>
-
-
                                     </div>
                                 </div>
-                                <div class="pt__option">
-                                </div>
+                                
+                                <div class="hello-theme-pricing-table-row pt__option">
+
+                                    <?php hello_theme_display_swiper_navigation_buttons('navBtnLeft', 'navBtnRight'); ?>
+
+                                    <div class="hello-theme-pricing-table-option pt__option__slider swiper" id="pricingTableSlider">
+                                      <div class="swiper-wrapper">
+
+                                        <?php foreach ($acf_levels as $level_key => $level_value) : 
+                                            $level_fields = get_field($level_value, $product_id);
+                                        ?>
+                                            <div class="swiper-slide pt__option__item <?php echo esc_html($level_value); ?>">
+                                                <div class="pt__item">
+                                                    <div class="pt__item__wrap">
+                                                        <?php foreach ($level_fields as $field_key => $field_value) : ?>
+                                                            <div class="pt__row <?php echo esc_html($field_key); ?>">
+                                                                <?php echo !empty($field_value) ? esc_html($field_value) : 'N/A'; ?>
+                                                            </div>
+                                                        <?php endforeach; ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php endforeach; ?>
+
+                                      </div>
+                                    </div>
+                                    
+                                  </div>
+
                             </div>
                         </div>
                     <?php endforeach; ?>
