@@ -60,7 +60,7 @@ function hello_pricing_table_level_2_shortcode() {
 
                                         <?php
                                         // Loop through the ACF fields dynamically
-                                        if ($group_field_object && isset($group_field_object['sub_fields'])) {
+                                        if ($group_field_object && isset($group_field_object['sub_fields'])) :
                                             foreach ($group_field_object['sub_fields'] as $sub_field) : 
                                                 $sub_field_label = $sub_field['label'];
                                                 $sub_field_name = $sub_field['name'];
