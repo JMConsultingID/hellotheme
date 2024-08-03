@@ -54,22 +54,22 @@ function hello_pricing_table_level_2_shortcode() {
                                 $sale_price = get_post_meta($product_id, '_sale_price', true);
                             ?>
 
-                            <div class='pricing__table hello-theme-product-id'>
-                                <div class='pt__title'>
-                                    <div class='pt__title__wrap'>
-                                      <div class='pt__row'><?php $product->get_name()?></div>
-                                      <div class='pt__row'>Monthly Email Sends</div>
-                                      <div class='pt__row'>Users</div>
-                                      <div class='pt__row'>Audiences</div>
-                                      <div class='pt__row'>24/7 Email & Chat Support</div>
-                                      <div class='pt__row'>Pre-built Email Templates</div>
-                                      <div class='pt__row'>300+ Integrations</div>
-                                      <div class='pt__row'>Reporting & Analytics</div>
-                                      <div class='pt__row'>Forms & Landing Pages</div>
-                                      <div class='pt__row'>Creative Assistant</div>
+                            <div class="pricing__table hello-theme-product-id">
+                                <div class="pt__title">
+                                    <div class="pt__title__wrap">
+                                      <div class="pt__row"><?php $product->get_name(); ?></div>
+                                      <div class="pt__row">Monthly Email Sends</div>
+                                      <div class="pt__row">Users</div>
+                                      <div class="pt__row">Audiences</div>
+                                      <div class="pt__row">24/7 Email & Chat Support</div>
+                                      <div class="pt__row">Pre-built Email Templates</div>
+                                      <div class="pt__row">300+ Integrations</div>
+                                      <div class="pt__row">Reporting & Analytics</div>
+                                      <div class="pt__row">Forms & Landing Pages</div>
+                                      <div class="pt__row">Creative Assistant</div>
                                     </div>
                                 </div>
-                                <div class='pt__option'>
+                                <div class="pt__option">
                                 </div>
                             </div>
                         </div>
