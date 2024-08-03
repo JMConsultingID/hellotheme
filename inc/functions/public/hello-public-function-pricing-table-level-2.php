@@ -96,6 +96,20 @@ function hello_pricing_table_level_2_shortcode() {
 
                                         <?php foreach ($acf_levels as $level_key => $level_value) : 
                                             $level_fields = get_field($level_value, $product_id);
+                                            $has_value = false;
+
+                                            if (!is_null($level_fields) && is_array($level_fields)) {
+                                                // Check if at least one field has a value
+                                                foreach ($level_fields as $field_key => $field_value) {
+                                                    if (!empty($field_value)) {
+                                                        $has_value = true;
+                                                        break;
+                                                    }
+                                                }
+                                            }
+
+                                            // Only render the div if there is at least one non-empty field
+                                            if ($has_value) :
                                         ?>
                                             <div class="swiper-slide pt__option__item <?php echo esc_html($level_value); ?>">
                                                 <div class="pt__item">
@@ -111,6 +125,7 @@ function hello_pricing_table_level_2_shortcode() {
                                                     </div>
                                                 </div>
                                             </div>
+                                           <?php endif; ?>
                                         <?php endforeach; ?>
 
                                       </div>
@@ -119,7 +134,11 @@ function hello_pricing_table_level_2_shortcode() {
                                   </div>
 
                             </div>
+                            <div class="hello-theme-checkout-button">
+                                <a href="<?php echo $checkout_url; ?>">Purchase Now (<?php echo $product_price;?></a>
+                            </div>
                         </div>
+
                     <?php endforeach; ?>
                 <?php else: ?>
                     <p>No products found in this category.</p>
