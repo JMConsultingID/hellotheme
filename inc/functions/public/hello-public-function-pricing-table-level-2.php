@@ -59,7 +59,7 @@ function hello_pricing_table_level_2_shortcode() {
                             <div class='pricing__table hello-theme-product-id'>
                                 <div class='pt__title'>
                                     <div class='pt__title__wrap'>
-                                      <div class='pt__row'>{$product->get_name()}</div>
+                                      <div class='pt__row'><?php $product->get_name()?></div>
                                       <div class='pt__row'>Monthly Email Sends</div>
                                       <div class='pt__row'>Users</div>
                                       <div class='pt__row'>Audiences</div>
