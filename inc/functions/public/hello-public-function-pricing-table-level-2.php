@@ -69,6 +69,10 @@ function hello_pricing_table_level_2_shortcode() {
                                 </div>
                               </div>
 
+                            <div class="pt__option">
+                                <?php hello_theme_display_swiper_navigation_buttons('navBtnLeft', 'navBtnRight'); ?>
+                            </div>
+
                         </div>
                     <?php endforeach; ?>
                 <?php else: ?>
