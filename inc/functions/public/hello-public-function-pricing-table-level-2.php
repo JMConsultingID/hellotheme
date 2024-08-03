@@ -46,9 +46,9 @@ function hello_pricing_table_level_2_shortcode() {
                                 $checkout_url = "/checkout/?add-to-cart={$product_id}"; // Generate checkout URL
 
                                 // ACF field group name
-                                $tooltip_post_id = 28386;
-                                $acf_group_field = 'fyfx_pricing_table';
-                                $acf_tooltip_group_field = 'fyfx_pricing_table_tooltips';
+                                $tooltip_post_id = 16787;
+                                $acf_group_field = 'hello_pricing_plans';
+                                $acf_tooltip_group_field = 'hello_pricing_plan_tooltips';
 
                                 $regular_price = get_post_meta($product_id, '_regular_price', true);
                                 $sale_price = get_post_meta($product_id, '_sale_price', true);
@@ -57,16 +57,26 @@ function hello_pricing_table_level_2_shortcode() {
                             <div class="pricing__table hello-theme-product-id">
                                 <div class="pt__title">
                                     <div class="pt__title__wrap">
-                                      <div class="pt__row"><?php echo $product->get_name(); ?></div>
-                                      <div class="pt__row">Monthly Email Sends</div>
-                                      <div class="pt__row">Users</div>
-                                      <div class="pt__row">Audiences</div>
-                                      <div class="pt__row">24/7 Email & Chat Support</div>
-                                      <div class="pt__row">Pre-built Email Templates</div>
-                                      <div class="pt__row">300+ Integrations</div>
-                                      <div class="pt__row">Reporting & Analytics</div>
-                                      <div class="pt__row">Forms & Landing Pages</div>
-                                      <div class="pt__row">Creative Assistant</div>
+
+                                        <?php
+                                        // Loop through the ACF fields dynamically
+                                        if ($group_field_object && isset($group_field_object['sub_fields'])) {
+                                            foreach ($group_field_object['sub_fields'] as $sub_field) : 
+                                                $sub_field_label = $sub_field['label'];
+                                                $sub_field_name = $sub_field['name'];
+                                                $tooltip = isset($tooltip_field_values[$sub_field_name]) ? $tooltip_field_values[$sub_field_name] : '';?>
+                                                <div class="hello-theme-pricing-table-row pt__row label-<?php echo esc_html($sub_field_name); ?>">
+                                                    <?php echo esc_html($sub_field_label); ?>
+                                                    <?php if ($atts['tooltips'] === 'yes' & !empty($tooltip)) : ?>
+                                                        <span class="hello-theme-label-tooltips" data-tippy-content="<?php echo esc_html($tooltip); ?>" style="float: right;">
+                                                            <i aria-hidden="true" class="fas fa-info-circle"></i>
+                                                        </span>
+                                                    <?php endif; ?>
+                                                </div>
+
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
+
                                     </div>
                                 </div>
                                 <div class="pt__option">
