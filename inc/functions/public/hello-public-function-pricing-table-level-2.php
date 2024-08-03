@@ -59,6 +59,9 @@ function hello_pricing_table_level_2_shortcode() {
                                     <div class="pt__title__wrap">
 
                                         <?php
+                                        // Fetch ACF group field values and object
+                                        $group_field_object = get_field_object($acf_group_field, $product_id);
+                                        $tooltip_field_values = get_field($acf_tooltip_group_field, $tooltip_post_id);
                                         // Loop through the ACF fields dynamically
                                         if ($group_field_object && isset($group_field_object['sub_fields'])) :
                                             foreach ($group_field_object['sub_fields'] as $sub_field) : 
