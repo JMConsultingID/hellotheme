@@ -45,40 +45,42 @@ function hello_pricing_table_level_2_shortcode() {
                                 $product_price = wc_price($product->get_price()); // Get product price with currency symbol
                                 $checkout_url = "/checkout/?add-to-cart={$product_id}"; // Generate checkout URL
 
-                                // ACF field group name
-                                $tooltip_post_id = 16787;
-                                $acf_group_field = 'hello_pricing_plans';
-                                $acf_tooltip_group_field = 'hello_pricing_plan_tooltips';
+                                // ACF field group names for each level
+                                $acf_levels = array(
+                                    'level_1' => 'hello_pricing_plan_step_1',
+                                    'level_2' => 'hello_pricing_plan_step_2',
+                                    'level_3' => 'hello_pricing_plan_step_3',
+                                );
 
-                                $regular_price = get_post_meta($product_id, '_regular_price', true);
-                                $sale_price = get_post_meta($product_id, '_sale_price', true);
+                                // Fetch tooltip values
+                                $tooltip_post_id = 16787;
+                                $acf_tooltip_group_field = 'fyfx_scalling_plan_tooltips';
+                                $tooltip_field_values = get_field($acf_tooltip_group_field, $tooltip_post_id);
+
+                                // Get a sample field object to get the labels dynamically
+                                $sample_field_group = $acf_levels['level_1'];
+                                $sample_fields = get_field($sample_field_group, $product_id);
                             ?>
 
                             <div class="pricing__table hello-theme-product-id">
                                 <div class="pt__title">
                                     <div class="pt__title__wrap">
 
-                                        <?php
-                                        // Fetch ACF group field values and object
-                                        $group_field_object = get_field_object($acf_group_field, $product_id);
-                                        $tooltip_field_values = get_field($acf_tooltip_group_field, $tooltip_post_id);
-                                        // Loop through the ACF fields dynamically
-                                        if ($group_field_object && isset($group_field_object['sub_fields'])) :
-                                            foreach ($group_field_object['sub_fields'] as $sub_field) : 
-                                                $sub_field_label = $sub_field['label'];
-                                                $sub_field_name = $sub_field['name'];
-                                                $tooltip = isset($tooltip_field_values[$sub_field_name]) ? $tooltip_field_values[$sub_field_name] : '';?>
-                                                <div class="hello-theme-pricing-table-row pt__row label-<?php echo esc_html($sub_field_name); ?>">
-                                                    <?php echo esc_html($sub_field_label); ?>
-                                                    <?php if ($atts['tooltips'] === 'yes' & !empty($tooltip)) : ?>
-                                                        <span class="hello-theme-label-tooltips" data-tippy-content="<?php echo esc_html($tooltip); ?>" style="float: right;">
-                                                            <i aria-hidden="true" class="fas fa-info-circle"></i>
-                                                        </span>
-                                                    <?php endif; ?>
-                                                </div>
+                                        <?php foreach ($sample_fields as $field_key => $field_value) : 
+                                            $field_object = get_field_object($sample_field_group . '_' . $field_key, $product_id);
+                                            if ($field_object) :
+                                                $field_label = $field_object['label'];?>
+                                                   <div class="hello-theme-pricing-table-row pt__row label-<?php echo esc_html($field_key); ?>">
+                                                <?php echo $field_label; ?>
+                                                <?php if (!empty($tooltip_field_values[$field_key])) : ?>
+                                                    <span class="hello-theme-label-tooltips" data-tippy-content="<?php echo esc_html($tooltip_field_values[$field_key]); ?>">
+                                                        <i aria-hidden="true" class="fas fa-info-circle"></i>
+                                                    </span>
+                                                <?php endif; ?>
+                                            </div>
+                                        <?php endif; 
+                                        endforeach; ?>
 
-                                            <?php endforeach; ?>
-                                        <?php endif; ?>
 
                                     </div>
                                 </div>
