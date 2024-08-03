@@ -66,20 +66,24 @@ function hello_pricing_table_level_2_shortcode() {
                                 <div class="pt__title">
                                     <div class="pt__title__wrap">
 
-                                        <?php foreach ($sample_fields as $field_key => $field_value) : 
-                                            $field_object = get_field_object($sample_field_group . '_' . $field_key, $product_id);
-                                            if ($field_object) :
-                                                $field_label = $field_object['label'];?>
-                                                   <div class="hello-theme-pricing-table-row pt__row label-<?php echo esc_html($field_key); ?>">
-                                                <?php echo $field_label; ?>
-                                                <?php if (!empty($tooltip_field_values[$field_key])) : ?>
-                                                    <span class="hello-theme-label-tooltips" data-tippy-content="<?php echo esc_html($tooltip_field_values[$field_key]); ?>">
-                                                        <i aria-hidden="true" class="fas fa-info-circle"></i>
-                                                    </span>
-                                                <?php endif; ?>
-                                            </div>
-                                        <?php endif; 
-                                        endforeach; ?>
+                                        <?php 
+                                            if (!is_null($sample_fields) && is_array($sample_fields)) :
+                                                foreach ($sample_fields as $field_key => $field_value) : 
+                                                $field_object = get_field_object($sample_field_group . '_' . $field_key, $product_id);
+                                                if ($field_object) :
+                                                    $field_label = $field_object['label'];?>
+                                                       <div class="hello-theme-pricing-table-row pt__row label-<?php echo esc_html($field_key); ?>">
+                                                    <?php echo $field_label; ?>
+                                                    <?php if (!empty($tooltip_field_values[$field_key])) : ?>
+                                                        <span class="hello-theme-label-tooltips" data-tippy-content="<?php echo esc_html($tooltip_field_values[$field_key]); ?>">
+                                                            <i aria-hidden="true" class="fas fa-info-circle"></i>
+                                                        </span>
+                                                    <?php endif; ?>
+                                                </div>
+                                                <?php endif; 
+                                                endforeach;
+                                            endif; 
+                                        ?>
                                     </div>
                                 </div>
                                 
@@ -96,11 +100,14 @@ function hello_pricing_table_level_2_shortcode() {
                                             <div class="swiper-slide pt__option__item <?php echo esc_html($level_value); ?>">
                                                 <div class="pt__item">
                                                     <div class="pt__item__wrap">
-                                                        <?php foreach ($level_fields as $field_key => $field_value) : ?>
+                                                        <?php
+                                                        if (!is_null($level_fields) && is_array($level_fields)) :
+                                                            foreach ($level_fields as $field_key => $field_value) : ?>
                                                             <div class="pt__row <?php echo esc_html($field_key); ?>">
                                                                 <?php echo !empty($field_value) ? esc_html($field_value) : 'N/A'; ?>
                                                             </div>
-                                                        <?php endforeach; ?>
+                                                            <?php endforeach; ?>
+                                                        <?php endif; ?>
                                                     </div>
                                                 </div>
                                             </div>
