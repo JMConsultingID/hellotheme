@@ -63,14 +63,14 @@ function hello_pricing_table_level_1_shortcode() {
                                                 $field_object = get_field_object($sample_field_group . '_' . $field_key, $product_id);
                                                 if ($field_object) :
                                                     $field_label = $field_object['label'];?>
-                                                    <div class="hello-theme-pricing-table-row pt__row label-<?php echo esc_html($field_key); ?>">
-                                                      <?php echo $field_label; ?>                                                    
-                                                    </div>
+                                                       <div class="hello-theme-pricing-table-row pt__row label-<?php echo esc_html($field_key); ?>">
+                                                    <?php echo $field_label; ?>
                                                     <?php if (!empty($tooltip_field_values[$field_key])) : ?>
                                                         <span class="hello-theme-label-tooltips" data-tippy-content="<?php echo esc_html($tooltip_field_values[$field_key]); ?>" style="float: right;">
                                                             <i aria-hidden="true" class="fas fa-info-circle"></i>
                                                         </span>
                                                     <?php endif; ?>
+                                                        </div>
                                                 <?php endif; 
                                                 endforeach;
                                             endif; 
