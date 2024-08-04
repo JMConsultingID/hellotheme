@@ -53,7 +53,9 @@ function hello_pricing_table_level_2_shortcode($atts) {
                 <?php
                 $products = wc_get_products(array(
                     'category' => array($category->slug),
-                    'status' => 'publish'
+                    'status' => 'publish',
+                    'orderby' => 'menu_order',
+                    'order' => 'ASC'
                 ));
                 if ($products): ?>
                     <div class="hello-theme-sub-tab-buttons">

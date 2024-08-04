@@ -45,7 +45,9 @@ function hello_pricing_table_level_1_shortcode($atts) {
     // Fetch products from these categories
     $products = wc_get_products(array(
         'category' => $category_slugs,
-        'status' => 'publish'
+        'status' => 'publish',
+        'orderby' => 'menu_order',
+        'order' => 'ASC'
     ));
 
 
