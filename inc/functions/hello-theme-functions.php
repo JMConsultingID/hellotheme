@@ -41,7 +41,7 @@ function hello_theme_pricing_table_live() {
 
         wp_enqueue_script( 'hello-theme-pricing-table-level-1-js', get_stylesheet_directory_uri() . '/assets/js/hello-theme-pricing-table-level-1.js', array('jquery', 'hello-theme-swiper-bundle-js','hello-theme-popper-js', 'hello-theme-tippy-js'), HELLO_THEME_VERSION, true );
         wp_enqueue_script( 'hello-theme-pricing-table-level-2-js', get_stylesheet_directory_uri() . '/assets/js/hello-theme-pricing-table-level-2.js', array('jquery', 'hello-theme-swiper-bundle-js','hello-theme-popper-js', 'hello-theme-tippy-js'), HELLO_THEME_VERSION, true );
-        wp_enqueue_script( 'hello-theme-pricing-table-group-level-1-js', get_stylesheet_directory_uri() . '/assets/js/hello-theme-pricing-table.js', array('jquery', 'hello-theme-swiper-bundle-js','hello-theme-popper-js', 'hello-theme-tippy-js'), HELLO_THEME_VERSION, true );
+        // wp_enqueue_script( 'hello-theme-pricing-table-group-level-1-js', get_stylesheet_directory_uri() . '/assets/js/hello-theme-pricing-table.js', array('jquery', 'hello-theme-swiper-bundle-js','hello-theme-popper-js', 'hello-theme-tippy-js'), HELLO_THEME_VERSION, true );
 
     }
 }
