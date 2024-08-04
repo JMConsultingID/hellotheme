@@ -8,6 +8,7 @@
  * @package HelloTheme
  */
 // Helper
+$enabled_pricing_table = get_option('hello_theme_enable_table_pricing');
 require_once get_stylesheet_directory() . '/inc/functions/helper/hello-theme-helper.php';
 
 // Admin Settings
@@ -23,12 +24,17 @@ require_once get_stylesheet_directory() . '/inc/functions/public/hello-public-fu
 require_once get_stylesheet_directory() . '/inc/functions/public/hello-public-function-pricing-table-dev.php';
 require_once get_stylesheet_directory() . '/inc/functions/public/hello-public-function-woocommerce.php';
 
+if ($enabled_pricing_table === '1') {
+    require_once get_stylesheet_directory() . '/inc/functions/helper/hello-theme-helper.php';
+}
+
+
 /**
  * Enqueue scripts and styles for Table Pricing Live Version.
  */
 function hello_theme_pricing_table_live() {
     // Check if the pricing table is enabled
-    if ( get_option( 'hello_theme_enable_table_pricing' ) === '1' ) {
+    if ($enabled_pricing_table === '1') {
         // Enqueue styles        
         wp_enqueue_style( 'hello-theme-font-awesome-css', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
         wp_enqueue_style( 'hello-theme-swiper-bundle-css', 'https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css');
