@@ -63,7 +63,6 @@
 	justify-content: flex-start;
 	align-items: flex-start;
 	padding: 24px 0;
-	font-size: 1.375rem;
 	line-height: 1.4;
 	text-align: center;
 }
@@ -72,7 +71,6 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	font-size: 18px;
 	font-weight: 500;
 	min-height: 70px;
 	padding-left: 16px;
@@ -159,7 +157,6 @@
 	align-items: flex-start;
 	text-align: center;
 	padding: 24px 0 0 0;
-	font-size: 1.375rem;
 	line-height: 1.4;
 	position: relative;
 }
@@ -171,14 +168,12 @@
 	min-height: 70px;
 	padding-left: 16px;
 	padding-right: 16px;
-	font-size: 16px;
 	font-weight: 300;
 	border-bottom: 1px solid rgba(73, 72, 74, .1);
 }
 
 .pricing__table .pt__option .pt__option__item .pt__item .pt__row:first-child {
 	border-bottom: 0;
-	font-size: 20px;
 	font-weight: 600;
 }
 
@@ -209,9 +204,9 @@
 	.pricing__table .pt__title {
 		max-width: 50%;
 	}
-	.pricing__table .pt__title .pt__title__wrap {
+/*	.pricing__table .pt__title .pt__title__wrap {
 		font-size: 1.3rem;
-	}
+	}*/
 	.pricing__table .pt__title .pt__title__wrap .pt__row {
 		padding-left: 32px;
 		padding-right: 32px;
@@ -241,9 +236,9 @@
 		border: 1px solid #ddd;
 		background-color: #fafafa;
 	}
-	.pricing__table .pt__option .pt__option__item .pt__item .pt__item__wrap {
+/*	.pricing__table .pt__option .pt__option__item .pt__item .pt__item__wrap {
 		font-size: 1.3rem;
-	}
+	}*/
 }
 
 @media (max-width: 640px) {
@@ -253,10 +248,8 @@
 	.pricing__table .pt__title .pt__title__wrap .pt__row {
 		padding-left: 0;
 		padding-right: 15px;
-		font-size: 14px;
 	}
 	.pricing__table .pt__option .pt__option__item .pt__item .pt__row {
-		font-size: 14px;
 		font-weight: 400;
 	}
 }
