@@ -182,7 +182,7 @@
 	font-weight: 600;
 }
 
-.pricing__table .pt__option .pt__option__item .pt__item .pt__row:last-child {
+/*.pricing__table .pt__option .pt__option__item .pt__item .pt__row:last-child {
 	display: inline-flex;
 	padding: 20px 15px;
 	align-items: center;
@@ -202,7 +202,7 @@
 
 .pricing__table .pt__option .pt__option__item .pt__item .pt__row:last-child a:hover {
 	background-color: #0057e6;
-}
+}*/
 
 /* Media Queries */
 @media (max-width: 991px) {
