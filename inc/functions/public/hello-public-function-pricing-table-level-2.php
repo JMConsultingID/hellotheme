@@ -8,11 +8,35 @@
  * @package HelloTheme
  */
 function hello_pricing_table_level_2_shortcode() {
-     // Get all product categories
-    $categories = get_terms('product_cat');
+    $enabled_pricing_table = get_option('hello_theme_enable_table_pricing');
+    $atts = shortcode_atts(
+        array(
+            'tab_mode' => 'level-2',
+            'category' => '1-phase-challenge',
+            'tooltips' => 'yes',
+        ),
+        $atts,
+        'hello_pricing_table_level_2'
+    );
+
+    if ($enabled_pricing_table !== '1') {
+        return;
+    }
+
+    $tab_mode = $atts['tab_mode'];
+    $tooltips = $atts['tooltips'];
+
+    // Parse the categories from the shortcode attribute
+    $category_slugs = explode(',', $atts['category']);
+    $categories = get_terms(array(
+        'taxonomy' => 'product_cat',
+        'slug' => $category_slugs,
+        'hide_empty' => false,
+    ));
+
     ob_start();
     ?>
-    <div class="hello-theme-container hello-theme-table-pricing hello-theme-with-tab hello-theme-table-level-2">
+    <div class="hello-theme-container hello-theme-table-pricing hello-theme-with-tab hello-theme-table-<?php echo $tab_mode; ?>">
         <div class="hello-theme-tab-buttons">
             <?php foreach ($categories as $index => $category): ?>
                 <div class="hello-theme-tab-button <?php echo $index == 0 ? 'active' : ''; ?>" data-tab-id="tab-<?php echo $category->term_id; ?>">
@@ -22,7 +46,7 @@ function hello_pricing_table_level_2_shortcode() {
         </div>
 
         <?php foreach ($categories as $index => $category): ?>
-            <div id="tab-<?php echo $category->term_id; ?>" class="hello-theme-tab-content <?php echo $index == 0 ? 'active' : ''; ?>" data-tab-id="tab-<?php echo $category->term_id; ?>">
+            <div id="tab-<?php echo $category->term_id; ?>" class="hello-theme-tab-content category-<?php echo $category->slug; ?> <?php echo $index == 0 ? 'active' : ''; ?>" data-tab-id="tab-<?php echo $category->term_id; ?>">
                 <?php
                 $products = wc_get_products(array(
                     'category' => array($category->slug),
@@ -74,7 +98,7 @@ function hello_pricing_table_level_2_shortcode() {
                                                     $field_label = $field_object['label'];?>
                                                        <div class="hello-theme-pricing-table-row pt__row label-<?php echo esc_html($field_key); ?>">
                                                     <?php echo $field_label; ?>
-                                                    <?php if (!empty($tooltip_field_values[$field_key])) : ?>
+                                                     <?php if ($tooltips === 'yes' && !empty($tooltip_field_values[$field_key])) : ?>
                                                         <span class="hello-theme-label-tooltips" data-tippy-content="<?php echo esc_html($tooltip_field_values[$field_key]); ?>">
                                                             <i aria-hidden="true" class="fas fa-info-circle"></i>
                                                         </span>

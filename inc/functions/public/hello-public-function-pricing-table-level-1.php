@@ -12,8 +12,8 @@ function hello_pricing_table_level_1_shortcode($atts) {
     $enabled_pricing_table = get_option('hello_theme_enable_table_pricing');
     $atts = shortcode_atts(
         array(
-            'tab_mode' => 'level_1',
-            'category' => 'origin',
+            'tab_mode' => 'level-1',
+            'category' => '1-phase-challenge',
             'tooltips' => 'yes',
         ),
         $atts,
@@ -31,7 +31,7 @@ function hello_pricing_table_level_1_shortcode($atts) {
 
     ob_start();
     ?>
-    <div class="hello-theme-container hello-theme-table-pricing hello-theme-with-tab hello-theme-table-level-1 category-<?php echo $category_product; ?>">
+    <div class="hello-theme-container hello-theme-table-pricing hello-theme-with-tab hello-theme-table-<?php echo $tab_mode; ?> category-<?php echo $category_product; ?>">
                 <?php
                 // Fetch products by category
                 $products = wc_get_products(array(
