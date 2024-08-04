@@ -122,6 +122,12 @@
             activeTabContent.swiperInstance = initTabSwiper(activeTabContent);
             activeTabContent.swiperInstance.slideTo(activeSlideIndex, 0);
         }
+
+        // Activate the first tab on initial load
+        const firstTabButton = document.querySelector('.hello-theme-table-level-2 .hello-theme-tab-button');
+        if (firstTabButton) {
+            firstTabButton.click();
+        }
     }
 
     // Initialize sub-tabs for the active main tab
