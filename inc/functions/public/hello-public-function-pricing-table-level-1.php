@@ -30,16 +30,28 @@ function hello_pricing_table_level_1_shortcode($atts) {
     $tooltips = $atts['tooltips'];
     $tooltips_post_id = $atts['tooltips_post_id'];
 
+    // Parse the categories from the shortcode attribute
+    $category_slugs = array_map('trim', explode(',', $atts['category']));
+    $categories = get_terms(array(
+        'taxonomy' => 'product_cat',
+        'slug' => $category_slugs,
+        'hide_empty' => false,
+    ));
+
+    // Extract slugs from category objects
+    $category_slugs = wp_list_pluck($categories, 'slug');
+
+    // Fetch products from these categories
+    $products = wc_get_products(array(
+        'category' => $category_slugs,
+        'status' => 'publish'
+    ));
+
 
     ob_start();
     ?>
-    <div class="hello-theme-container hello-theme-table-pricing hello-theme-with-tab hello-theme-table-<?php echo $tab_mode; ?> category-<?php echo $category_product; ?>">
+    <div class="hello-theme-container hello-theme-table-pricing hello-theme-with-tab hello-theme-table-<?php echo $tab_mode; ?> category-<?php echo $category_slugs; ?>">
                 <?php
-                // Fetch products by category
-                $products = wc_get_products(array(
-                    'category' => $category_product,
-                    'status' => 'publish'
-                ));
                 if ($products): ?>
                     <div class="hello-theme-tab-buttons">
                         <?php foreach ($products as $productIndex => $product): ?>
