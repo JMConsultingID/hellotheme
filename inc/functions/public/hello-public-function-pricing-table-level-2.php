@@ -12,7 +12,7 @@ function hello_pricing_table_level_2_shortcode() {
     $categories = get_terms('product_cat');
     ob_start();
     ?>
-    <div class="hello-theme-container hello-theme-table-pricing hello-theme-with-tab">
+    <div class="hello-theme-container hello-theme-table-pricing hello-theme-with-tab hello-theme-table-level-2">
         <div class="hello-theme-tab-buttons">
             <?php foreach ($categories as $index => $category): ?>
                 <div class="hello-theme-tab-button <?php echo $index == 0 ? 'active' : ''; ?>" data-tab-id="tab-<?php echo $category->term_id; ?>">
