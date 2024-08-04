@@ -110,6 +110,9 @@
                     activeTabContent.swiperInstance = initTabSwiper(activeTabContent);
                     activeTabContent.swiperInstance.slideTo(activeSlideIndex, 0);
                 }
+
+                // Initialize sub-tabs for the active main tab
+                initSubTabs(activeTabContent);
             });
         });
 
@@ -118,6 +121,45 @@
         if (activeTabContent && !activeTabContent.swiperInstance && window.innerWidth <= 991) {
             activeTabContent.swiperInstance = initTabSwiper(activeTabContent);
             activeTabContent.swiperInstance.slideTo(activeSlideIndex, 0);
+        }
+    }
+
+    // Initialize sub-tabs for the active main tab
+    const initSubTabs = (mainTab) => {
+        if (!mainTab) return;
+
+        const subTabButtons = mainTab.querySelectorAll('.hello-theme-sub-tab-button');
+        const subTabContents = mainTab.querySelectorAll('.hello-theme-sub-tab-content');
+
+        if (!subTabButtons.length || !subTabContents.length) {
+            return;
+        }
+
+        subTabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                subTabButtons.forEach(btn => btn.classList.remove('active'));
+                subTabContents.forEach(content => content.classList.remove('active'));
+
+                button.classList.add('active');
+                const subTabId = button.dataset.subTabId;
+                const activeSubTabContent = mainTab.querySelector(`.hello-theme-sub-tab-content[data-sub-tab-id="${subTabId}"]`);
+                activeSubTabContent.classList.add('active');
+
+                // Set the active slide index for the new sub-tab
+                if (activeSubTabContent.swiperInstance) {
+                    activeSubTabContent.swiperInstance.slideTo(activeSlideIndex, 0); // Use slideTo with no animation
+                } else if (window.innerWidth <= 991) {
+                    activeSubTabContent.swiperInstance = initTabSwiper(activeSubTabContent);
+                    activeSubTabContent.swiperInstance.slideTo(activeSlideIndex, 0);
+                }
+            });
+        });
+
+        // Initialize swiper for the active sub-tab
+        const activeSubTabContent = mainTab.querySelector('.hello-theme-sub-tab-content.active');
+        if (activeSubTabContent && !activeSubTabContent.swiperInstance && window.innerWidth <= 991) {
+            activeSubTabContent.swiperInstance = initTabSwiper(activeSubTabContent);
+            activeSubTabContent.swiperInstance.slideTo(activeSlideIndex, 0);
         }
     }
 
