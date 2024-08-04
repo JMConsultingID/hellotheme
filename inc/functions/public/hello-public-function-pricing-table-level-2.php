@@ -13,6 +13,7 @@ function hello_pricing_table_level_2_shortcode($atts) {
         array(
             'tab_mode' => 'level-2',
             'category' => '1-phase-challenge',
+            'category_active' => '1-phase-challenge',
             'tooltips' => 'yes',
             'tooltips_post_id' => '16787',
         ),
