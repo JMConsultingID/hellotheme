@@ -14,6 +14,7 @@ function hello_pricing_table_level_2_shortcode($atts) {
             'tab_mode' => 'level-2',
             'category' => '1-phase-challenge',
             'tooltips' => 'yes',
+            'tooltips_post_id' => '16787',
         ),
         $atts,
         'hello_pricing_table_level_2'
@@ -25,6 +26,7 @@ function hello_pricing_table_level_2_shortcode($atts) {
 
     $tab_mode = $atts['tab_mode'];
     $tooltips = $atts['tooltips'];
+    $tooltips_post_id = $atts['tooltips_post_id'];
 
     // Parse the categories from the shortcode attribute
     $category_slugs = explode(',', $atts['category']);
@@ -77,7 +79,7 @@ function hello_pricing_table_level_2_shortcode($atts) {
                                 );
 
                                 // Fetch tooltip values
-                                $tooltip_post_id = 16787;
+                                $tooltip_post_id = $tooltips_post_id;
                                 $acf_tooltip_group_field = 'hello_pricing_plan_tooltips';
                                 $tooltip_field_values = get_field($acf_tooltip_group_field, $tooltip_post_id);
 

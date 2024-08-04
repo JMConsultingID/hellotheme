@@ -15,6 +15,7 @@ function hello_pricing_table_level_1_shortcode($atts) {
             'tab_mode' => 'level-1',
             'category' => '1-phase-challenge',
             'tooltips' => 'yes',
+            'tooltips_post_id' => '16787',
         ),
         $atts,
         'hello_pricing_table_level_1'
@@ -27,6 +28,7 @@ function hello_pricing_table_level_1_shortcode($atts) {
     $tab_mode = $atts['tab_mode'];
     $category_product = $atts['category'];
     $tooltips = $atts['tooltips'];
+    $tooltips_post_id = $atts['tooltips_post_id'];
 
 
     ob_start();
@@ -63,7 +65,7 @@ function hello_pricing_table_level_1_shortcode($atts) {
                                 );
 
                                 // Fetch tooltip values
-                                $tooltip_post_id = 16787;
+                                $tooltip_post_id = $tooltips_post_id;
                                 $acf_tooltip_group_field = 'hello_pricing_plan_tooltips';
                                 $tooltip_field_values = get_field($acf_tooltip_group_field, $tooltip_post_id);
 
