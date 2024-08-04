@@ -137,7 +137,7 @@ function hello_pricing_table_level_1_shortcode() {
     <?php
     return ob_get_clean();
 }
-add_shortcode( 'hello_pricing_table_level_2', 'hello_pricing_table_level_2_shortcode' );
+add_shortcode( 'hello_pricing_table_level_1', 'hello_pricing_table_level_1_shortcode' );
 
 
 function hello_pricing_table_sample_level_1_shortcode() {
