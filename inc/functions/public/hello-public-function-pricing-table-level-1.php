@@ -9,15 +9,33 @@
  */
 
 function hello_pricing_table_level_1_shortcode() {
-     // Get all product categories
-    $categories = get_terms('product_cat');
+    $enabled_pricing_table = get_option('hello_theme_enable_table_pricing');
+    $atts = shortcode_atts(
+        array(
+            'mode' => 'level_1',
+            'category' => 'origin',
+            'tooltips' => 'yes',
+        ),
+        $atts,
+        'hello_pricing_table_level_1'
+    );
+
+    if ($enabled_pricing_table !== '1') {
+        return;
+    }
+    
+    $category_product = $atts['category'];
+
+
     ob_start();
     ?>
-    <div class="hello-theme-container hello-theme-table-pricing hello-theme-with-tab hello-theme-table-level-1">
+    <div class="hello-theme-container hello-theme-table-pricing hello-theme-with-tab hello-theme-table-level-1 category-<?php echo $category_product; ?>">
                 <?php
-                $products = wc_get_products(array(
-                    'category' => '1-phase-challenge',
-                    'status' => 'publish'
+                // Fetch products by category
+                $products = get_posts(array(
+                    'post_type' => 'product',
+                    'posts_per_page' => -1,
+                    'product_cat' => $category_product
                 ));
                 if ($products): ?>
                     <div class="hello-theme-tab-buttons">
