@@ -7,7 +7,7 @@
  *
  * @package HelloTheme
  */
-function hello_pricing_table_level_2_shortcode() {
+function hello_pricing_table_level_2_shortcode($atts) {
     $enabled_pricing_table = get_option('hello_theme_enable_table_pricing');
     $atts = shortcode_atts(
         array(
