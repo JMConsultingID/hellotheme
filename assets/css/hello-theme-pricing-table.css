@@ -68,14 +68,14 @@
 
 .pricing__table .pt__title .pt__title__wrap .pt__row {
 	display: flex;
-	flex-direction: column;
-	justify-content: center;
+	flex-direction: row;
+	justify-content: space-between;
 	min-height: 70px;
 	padding-left: 16px;
 	padding-right: 16px;
 	border-bottom: 1px solid rgba(73, 72, 74, .1);
 	text-align: left;
-	align-items: flex-start;
+	align-items: center;
 }
 
 .pricing__table .pt__title .pt__title__wrap .pt__row:first-child {
