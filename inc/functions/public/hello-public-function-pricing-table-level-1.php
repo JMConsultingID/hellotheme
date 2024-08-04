@@ -8,11 +8,11 @@
  * @package HelloTheme
  */
 
-function hello_pricing_table_level_1_shortcode() {
+function hello_pricing_table_level_1_shortcode($atts) {
     $enabled_pricing_table = get_option('hello_theme_enable_table_pricing');
     $atts = shortcode_atts(
         array(
-            'mode' => 'level_1',
+            'tab_mode' => 'level_1',
             'category' => 'origin',
             'tooltips' => 'yes',
         ),
@@ -24,7 +24,9 @@ function hello_pricing_table_level_1_shortcode() {
         return;
     }
     
+    $tab_mode = $atts['tab_mode'];
     $category_product = $atts['category'];
+    $tooltips = $atts['tooltips'];
 
 
     ob_start();
@@ -83,7 +85,7 @@ function hello_pricing_table_level_1_shortcode() {
                                                     $field_label = $field_object['label'];?>
                                                        <div class="hello-theme-pricing-table-row pt__row label-<?php echo esc_html($field_key); ?>">
                                                     <?php echo $field_label; ?>
-                                                    <?php if (!empty($tooltip_field_values[$field_key])) : ?>
+                                                    <?php if ($tooltips === 'yes' && !empty($tooltip_field_values[$field_key])) : ?>
                                                         <span class="hello-theme-label-tooltips" data-tippy-content="<?php echo esc_html($tooltip_field_values[$field_key]); ?>">
                                                             <i aria-hidden="true" class="fas fa-info-circle"></i>
                                                         </span>
