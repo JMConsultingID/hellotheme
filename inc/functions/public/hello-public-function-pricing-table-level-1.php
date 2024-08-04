@@ -34,10 +34,9 @@ function hello_pricing_table_level_1_shortcode($atts) {
     <div class="hello-theme-container hello-theme-table-pricing hello-theme-with-tab hello-theme-table-level-1 category-<?php echo $category_product; ?>">
                 <?php
                 // Fetch products by category
-                $products = get_posts(array(
-                    'post_type' => 'product',
-                    'posts_per_page' => -1,
-                    'product_cat' => $category_product
+                $products = wc_get_products(array(
+                    'category' => $category_product,
+                    'status' => 'publish'
                 ));
                 if ($products): ?>
                     <div class="hello-theme-tab-buttons">
