@@ -40,6 +40,7 @@ function hello_pricing_table_level_1_shortcode($atts) {
 
     // Extract slugs from category objects
     $category_slugs = wp_list_pluck($categories, 'slug');
+    $category_slugs_string = implode(' ', $category_slugs); // Convert array to string
 
     // Fetch products from these categories
     $products = wc_get_products(array(
@@ -50,7 +51,7 @@ function hello_pricing_table_level_1_shortcode($atts) {
 
     ob_start();
     ?>
-    <div class="hello-theme-container hello-theme-table-pricing hello-theme-with-tab hello-theme-table-<?php echo $tab_mode; ?> category-<?php echo $category_slugs; ?>">
+    <div class="hello-theme-container hello-theme-table-pricing hello-theme-with-tab hello-theme-table-<?php echo $tab_mode; ?> category-<?php echo esc_attr($category_slugs_string); ?>">
                 <?php
                 if ($products): ?>
                     <div class="hello-theme-tab-buttons">
