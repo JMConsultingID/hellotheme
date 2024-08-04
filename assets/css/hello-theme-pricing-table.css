@@ -144,7 +144,7 @@
 	justify-content: flex-start;
 	margin-bottom: 1em;
 	overflow: hidden;
-	border-radius: 24px;
+/*	border-radius: 24px;*/
 }
 
 .pricing__table .pt__option .pt__option__item .pt__item.recommend {
