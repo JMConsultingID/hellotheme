@@ -33,6 +33,7 @@ if ($enabled_pricing_table === '1') {
  * Enqueue scripts and styles for Table Pricing Live Version.
  */
 function hello_theme_pricing_table_live() {
+    $enabled_pricing_table = get_option('hello_theme_enable_table_pricing');
     // Check if the pricing table is enabled
     if ($enabled_pricing_table === '1') {
         // Enqueue styles        
