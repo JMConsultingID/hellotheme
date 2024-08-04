@@ -62,7 +62,7 @@ function hello_pricing_table_level_2_shortcode($atts) {
                     </div>
 
                     <?php foreach ($products as $productIndex => $product): ?>
-                        <div id="subtab-<?php echo $product->get_id(); ?>" class="hello-theme-sub-tab-content <?php echo $productIndex == 0 ? 'active' : ''; ?>" data-sub-tab-id="subtab-<?php echo $product->get_id(); ?>">
+                        <div id="subtab-<?php echo $product->get_id(); ?>" class="hello-theme-sub-tab-content category-<?php echo $category->slug; ?> <?php echo $productIndex == 0 ? 'active' : ''; ?>" data-sub-tab-id="subtab-<?php echo $product->get_id(); ?>">
 
                             <?php
                                 $product_id = $product->get_id();
