@@ -48,7 +48,7 @@ function hello_pricing_table_level_1_shortcode($atts) {
                     </div>
 
                     <?php foreach ($products as $productIndex => $product): ?>
-                        <div id="tab-<?php echo $product->get_id(); ?>" class="hello-theme-tab-content <?php echo $productIndex == 0 ? 'active' : ''; ?>" data-tab-id="tab-<?php echo $product->get_id(); ?>">
+                        <div id="tab-<?php echo $product->get_id(); ?>" class="hello-theme-tab-content product-<?php echo $product->get_slug(); ?> <?php echo $productIndex == 0 ? 'active' : ''; ?>" data-tab-id="tab-<?php echo $product->get_id(); ?>">
 
                             <?php
                                 $product_id = $product->get_id();
