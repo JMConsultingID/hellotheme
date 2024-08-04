@@ -13,23 +13,23 @@ function hello_pricing_table_level_1_shortcode() {
     $categories = get_terms('product_cat');
     ob_start();
     ?>
-    <div class="hello-theme-container hello-theme-table-pricing hello-theme-with-tab">
+    <div class="hello-theme-container hello-theme-table-pricing hello-theme-with-tab hello-theme-table-level-1">
                 <?php
                 $products = wc_get_products(array(
                     'category' => '1-phase-challenge',
                     'status' => 'publish'
                 ));
                 if ($products): ?>
-                    <div class="hello-theme-sub-tab-buttons">
+                    <div class="hello-theme-tab-buttons">
                         <?php foreach ($products as $productIndex => $product): ?>
-                            <div class="hello-theme-sub-tab-button <?php echo $productIndex == 0 ? 'active' : ''; ?>" data-sub-tab-id="subtab-<?php echo $product->get_id(); ?>">
+                            <div class="hello-theme-tab-button <?php echo $productIndex == 0 ? 'active' : ''; ?>" data-tab-id="tab-<?php echo $product->get_id(); ?>">
                                 <?php echo $product->get_name(); ?>
                             </div>
                         <?php endforeach; ?>
                     </div>
 
                     <?php foreach ($products as $productIndex => $product): ?>
-                        <div id="subtab-<?php echo $product->get_id(); ?>" class="hello-theme-sub-tab-content <?php echo $productIndex == 0 ? 'active' : ''; ?>" data-sub-tab-id="subtab-<?php echo $product->get_id(); ?>">
+                        <div id="tab-<?php echo $product->get_id(); ?>" class="hello-theme-tab-content <?php echo $productIndex == 0 ? 'active' : ''; ?>" data-tab-id="tab-<?php echo $product->get_id(); ?>">
 
                             <?php
                                 $product_id = $product->get_id();

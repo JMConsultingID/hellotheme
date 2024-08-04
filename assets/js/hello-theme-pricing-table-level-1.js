@@ -2,8 +2,8 @@
     'use strict';
     let activeSlideIndex = 0; // Variable to store the active slide index
 
-    // Function to initialize Swiper for each product tab
-    const initProductSwiper = (tabContent) => {
+    // Function to initialize Swiper for each main tab
+    const initTabSwiper = (tabContent) => {
         if (window.innerWidth <= 991) {
             const swiperInstance = new Swiper(tabContent.querySelector('.swiper'), {
                 slidesPerView: "auto",
@@ -47,48 +47,48 @@
         }
     }
 
-    // Initialize product tabs
-    const initProductTabs = () => {
-        const productTabButtons = document.querySelectorAll('.hello-theme-sub-tab-button');
-        const productTabContents = document.querySelectorAll('.hello-theme-sub-tab-content');
+    // Initialize main tabs
+    const initMainTabs = () => {
+        const tabButtons = document.querySelectorAll('.hello-theme-tab-button');
+        const tabContents = document.querySelectorAll('.hello-theme-tab-content');
 
-        if (!productTabButtons.length || !productTabContents.length) {
+        if (!tabButtons.length || !tabContents.length) {
             return;
         }
 
-        productTabButtons.forEach(button => {
+        tabButtons.forEach(button => {
             button.addEventListener('click', () => {
-                productTabButtons.forEach(btn => btn.classList.remove('active'));
-                productTabContents.forEach(content => content.classList.remove('active'));
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
 
                 button.classList.add('active');
-                const subTabId = button.dataset.subTabId;
-                const activeProductTabContent = document.querySelector(`.hello-theme-sub-tab-content[data-sub-tab-id="${subTabId}"]`);
-                activeProductTabContent.classList.add('active');
+                const tabId = button.dataset.tabId;
+                const activeTabContent = document.querySelector(`.hello-theme-tab-content[data-tab-id="${tabId}"]`);
+                activeTabContent.classList.add('active');
 
-                // Set the active slide index for the new sub-tab
-                if (activeProductTabContent.swiperInstance) {
-                    activeProductTabContent.swiperInstance.slideTo(activeSlideIndex, 0); // Use slideTo with no animation
+                // Set the active slide index for the new tab
+                if (activeTabContent.swiperInstance) {
+                    activeTabContent.swiperInstance.slideTo(activeSlideIndex, 0); // Use slideTo with no animation
                 } else if (window.innerWidth <= 991) {
-                    activeProductTabContent.swiperInstance = initProductSwiper(activeProductTabContent);
-                    activeProductTabContent.swiperInstance.slideTo(activeSlideIndex, 0);
+                    activeTabContent.swiperInstance = initTabSwiper(activeTabContent);
+                    activeTabContent.swiperInstance.slideTo(activeSlideIndex, 0);
                 }
             });
         });
 
-        // Initialize swiper for the active product tab
-        const activeProductTabContent = document.querySelector('.hello-theme-sub-tab-content.active');
-        if (activeProductTabContent && !activeProductTabContent.swiperInstance && window.innerWidth <= 991) {
-            activeProductTabContent.swiperInstance = initProductSwiper(activeProductTabContent);
-            activeProductTabContent.swiperInstance.slideTo(activeSlideIndex, 0);
+        // Initialize swiper for the active main tab
+        const activeTabContent = document.querySelector('.hello-theme-tab-content.active');
+        if (activeTabContent && !activeTabContent.swiperInstance && window.innerWidth <= 991) {
+            activeTabContent.swiperInstance = initTabSwiper(activeTabContent);
+            activeTabContent.swiperInstance.slideTo(activeSlideIndex, 0);
         }
     }
 
     const initAllSwipers = () => {
-        document.querySelectorAll('.hello-theme-sub-tab-content').forEach(tabContent => {
+        document.querySelectorAll('.hello-theme-tab-content').forEach(tabContent => {
             if (tabContent.classList.contains('active')) {
                 if (!tabContent.swiperInstance && window.innerWidth <= 991) {
-                    tabContent.swiperInstance = initProductSwiper(tabContent);
+                    tabContent.swiperInstance = initTabSwiper(tabContent);
                     tabContent.swiperInstance.slideTo(activeSlideIndex, 0);
                 }
             } else if (tabContent.swiperInstance) {
@@ -100,10 +100,10 @@
 
     initAllSwipers();
     window.addEventListener('resize', initAllSwipers);
-    document.querySelectorAll('.hello-theme-sub-tab-button').forEach(button => {
+    document.querySelectorAll('.hello-theme-tab-button').forEach(button => {
         button.addEventListener('click', initAllSwipers);
     });
 
-    // Initialize product tabs
-    initProductTabs();
+    // Initialize main tabs
+    initMainTabs();
 })( jQuery );
