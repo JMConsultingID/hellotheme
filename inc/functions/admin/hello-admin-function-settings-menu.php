@@ -495,7 +495,7 @@ function hello_theme_enable_table_pricing_callback() {
 
 function hello_theme_table_pricing_title_generate_callback() {
     ?>
-    <h3>Generate Shortcode on your Front-End or Table Pricing Page</h3>
+    <p>Generate Shortcode on your Front-End or Table Pricing Page</p>
     <?php
 }
 
