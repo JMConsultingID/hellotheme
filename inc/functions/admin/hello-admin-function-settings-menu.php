@@ -260,6 +260,9 @@ function hello_theme_register_table_pricing_settings() {
     register_setting( 'hello_table_pricing_settings_group', 'hello_theme_enable_table_pricing' );
     register_setting( 'hello_table_pricing_settings_group', 'hello_theme_table_mode' );
     register_setting( 'hello_table_pricing_settings_group', 'hello_theme_table_style' );
+    register_setting( 'hello_table_pricing_settings_group', 'hello_theme_table_category' );
+    register_setting( 'hello_table_pricing_settings_group', 'hello_theme_table_tooltips' );
+    register_setting( 'hello_table_pricing_settings_group', 'hello_theme_table_tooltip_post_id' );
 
     add_settings_section(
         'hello_table_pricing_settings_section',
@@ -278,7 +281,7 @@ function hello_theme_register_table_pricing_settings() {
 
     add_settings_field(
         'hello_theme_table_mode',
-        'Table Mode',
+        'Tab Mode',
         'hello_theme_table_mode_callback',
         'hello-table-pricing-settings',
         'hello_table_pricing_settings_section'
@@ -288,6 +291,30 @@ function hello_theme_register_table_pricing_settings() {
         'hello_theme_table_style',
         'Select Table Style',
         'hello_theme_table_style_callback',
+        'hello-table-pricing-settings',
+        'hello_table_pricing_settings_section'
+    );
+
+    add_settings_field(
+        'hello_theme_table_category',
+        'Select Product Categories',
+        'hello_theme_table_category_callback',
+        'hello-table-pricing-settings',
+        'hello_table_pricing_settings_section'
+    );
+
+    add_settings_field(
+        'hello_theme_table_tooltips',
+        'Enable Tooltips Table',
+        'hello_theme_table_tooltips_callback',
+        'hello-table-pricing-settings',
+        'hello_table_pricing_settings_section'
+    );
+
+    add_settings_field(
+        'hello_theme_table_tooltip_post_id',
+        'Tooltips Post-Id',
+        'hello_theme_table_tooltip_post_id_callback',
         'hello-table-pricing-settings',
         'hello_table_pricing_settings_section'
     );
@@ -311,7 +338,7 @@ function hello_affiliatewp_settings_section_callback() {
 }
 
 function hello_table_pricing_settings_section_callback() {
-    echo '<p>Configure your Pricing Table settings below.</p>';
+    echo '<p>Configure & Generate your Pricing Table settings below.</p>';
 }
 
 function hello_theme_checkout_mode_callback() {
@@ -462,10 +489,8 @@ function hello_theme_table_mode_callback() {
     $options = get_option( 'hello_theme_table_mode' );
     ?>
     <select name="hello_theme_table_mode">
-        <option value="single" <?php selected( $options, 'single' ); ?>>Single Table</option>
-        <option value="one_tab" <?php selected( $options, 'one_tab' ); ?>>1 Tab Heading</option>
-        <option value="two_tabs" <?php selected( $options, 'two_tabs' ); ?>>2 Tabs Heading</option>
-        <option value="three_tabs" <?php selected( $options, 'three_tabs' ); ?>>3 Tabs Heading</option>
+        <option value="level-1" <?php selected( $options, 'level-1' ); ?>>Tab Level 1</option>
+        <option value="level-2" <?php selected( $options, 'level-2' ); ?>>Tab Level 2</option>
     </select>
     <?php
 }
@@ -475,20 +500,51 @@ function hello_theme_table_style_callback() {
     ?>
     <select name="hello_theme_table_style">
         <option value="style1" <?php selected( $options, 'style1' ); ?>>Table Style 1</option>
-        <option value="style2" <?php selected( $options, 'style2' ); ?>>Tabel Style 2</option>
-        <option value="style3" <?php selected( $options, 'style3' ); ?>>Table Style 3</option>
     </select>
     <?php
 }
 
-function hello_theme_table_pricing_description_callback() {
-    $mode = get_option( 'hello_theme_table_mode', 'single' ); // Default to 'single' if not set
-    $style = get_option( 'hello_theme_table_style', 'style1' ); // Default to 'style1' if not set
+function hello_theme_table_category_callback() {
+    $options = get_option( 'hello_theme_table_category' );
     ?>
-    <p>Use this shortcode on your front-end page :
+    <input type="text" id="hello_theme_table_category" name="hello_theme_table_category" value="<?php  echo esc_attr($options) ?>" />
+    <?php
+}
+
+function hello_theme_table_tooltips_callback() {
+    $options = get_option( 'hello_theme_table_tooltips' );
+    ?>
+    <select name="hello_theme_table_tooltips">
+        <option value="yes" <?php selected( $options, 'yes' ); ?>>Yes</option>
+        <option value="no" <?php selected( $options, 'no' ); ?>>No</option>
+    </select>
+    <?php
+}
+
+function hello_theme_table_tooltip_post_id_callback() {
+    $options = get_option( 'hello_theme_table_tooltip_post_id' );
+    ?>
+    <input type="text" id="hello_theme_table_tooltip_post_id" name="hello_theme_table_tooltip_post_id" value="<?php  echo esc_attr($options) ?>" />
+    <?php
+}
+
+function hello_theme_table_pricing_description_callback() {
+    $mode = get_option( 'hello_theme_table_mode', 'level-1' );
+    $style = get_option( 'hello_theme_table_style', 'style1' );
+    $categories = get_option( 'hello_theme_table_category', 'origin' ); 
+    $tooltips = get_option( 'hello_theme_table_tooltips', 'no' ); 
+    $tooltips_post_id = get_option( 'hello_theme_table_tooltip_post_id', '16787' ); 
+
+
+    if ($mode === 'level-1'){
+        $shortcode_tag = 'hello_pricing_table_level_1';
+    } else {
+        $shortcode_tag = 'hello_pricing_table_level_2';
+    }
+    ?>
+    <p>Use this shortcode on your Front-End or Table Pricing Page :
         <ol>
-            <li><code>[hello_pricing_table mode='<?php echo esc_attr( $mode ); ?>' style='<?php echo esc_attr( $style ); ?>']</code> for live version</li>
-            <li>or using <code>[hello_pricing_table_dev]</code> for development version</li>
+            <li><code>[<?php echo esc_attr( $shortcode_tag ); ?>' tab_mode='<?php echo esc_attr( $mode ); ?>' style='<?php echo esc_attr( $style ); ?>' category='<?php echo esc_attr( $categories ); ?>' tooltips='<?php echo esc_attr( $tooltips ); ?>' tooltips_post_id='<?php echo esc_attr( $tooltips_post_id ); ?>']</code> for live version</li>
         </ol>
     </p>
     <?php
