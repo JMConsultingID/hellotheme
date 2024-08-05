@@ -280,6 +280,14 @@ function hello_theme_register_table_pricing_settings() {
     );
 
     add_settings_field(
+        'hello_theme_table_pricing_title_generate',
+        'Generate Shortcode',
+        'hello_theme_table_pricing_title_generate_callback',
+        'hello-table-pricing-settings',
+        'hello_table_pricing_settings_section'
+    );
+
+    add_settings_field(
         'hello_theme_table_mode',
         'Tab Mode',
         'hello_theme_table_mode_callback',
@@ -482,6 +490,12 @@ function hello_theme_enable_table_pricing_callback() {
     $options = get_option( 'hello_theme_enable_table_pricing' );
     ?>
     <input type="checkbox" name="hello_theme_enable_table_pricing" value="1" <?php checked( 1, $options, true ); ?> />
+    <?php
+}
+
+function hello_theme_table_pricing_title_generate_callback() {
+    ?>
+    <h3>Generate Shortcode on your Front-End or Table Pricing Page</h3>
     <?php
 }
 
