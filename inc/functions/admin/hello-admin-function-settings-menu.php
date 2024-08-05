@@ -556,7 +556,7 @@ function hello_theme_table_pricing_description_callback() {
         $shortcode_tag = 'hello_pricing_table_level_2';
     }
     ?>
-    <p>Use this shortcode on your Front-End or Table Pricing Page :
+    <p>Use this shortcode on your Front-End or Table Pricing Page : <br/>
     <code>
         [<?php echo esc_attr( $shortcode_tag ); ?>' tab_mode='<?php echo esc_attr( $mode ); ?>' style='<?php echo esc_attr( $style ); ?>' category='<?php echo esc_attr( $categories ); ?>' tooltips='<?php echo esc_attr( $tooltips ); ?>' tooltips_post_id='<?php echo esc_attr( $tooltips_post_id ); ?>']
     </code>
