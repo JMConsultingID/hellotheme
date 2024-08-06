@@ -116,7 +116,7 @@ function hello_theme_affiliate_redirect() {
 add_action( 'template_redirect', 'hello_theme_affiliate_redirect',20 );
 
 function hello_theme_affiliate_redirect_by_page_id() {
-    if (is_page(16)) {
+    if (is_front_page() || is_home()) {
         ?>
         <script type="text/javascript">
             document.addEventListener("DOMContentLoaded", function() {
