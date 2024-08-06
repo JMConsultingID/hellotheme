@@ -83,12 +83,11 @@ function hello_theme_affiliate_redirect() {
     // Match the /ref/{string}/ structure (with or without query parameters).
     if (preg_match('|^/ref/([\w-]+)/?(\?.*)?$|', $request_uri, $matches)) {
         // Extract the string from the matches.
-        $dynamic_string = $matches[1];
-        // Delay the redirection by 3 seconds
-        sleep(3);
+        $dynamic_string = $matches[1];        
         // Check for query string and extract if it exists.
         $query_string = isset($matches[2]) ? $matches[2] : '';
-        
+        // Delay the redirection by 3 seconds
+        sleep(3);
         // Perform the redirection.
         wp_redirect($redirect_referral_url, 301);
         exit;
