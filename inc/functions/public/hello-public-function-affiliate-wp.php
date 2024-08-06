@@ -56,10 +56,11 @@ function hello_theme_affwp_register_form_script() {
 
 function hello_theme_affiliate_redirect() {
     $is_enabled_referral_url = get_option( 'hello_theme_affiliatewp_enable_redirect_referral' );
+    $redirect_method = get_option( 'hello_theme_affiliatewp_enable_redirect_method' );
     $redirect_referral_url = get_option( 'hello_theme_affiliatewp_redirect_referral_url' );
 
     // If the option is not '1', return early
-    if ($is_enabled_referral_url !== '1') {
+    if ($is_enabled_referral_url !== '1' && $redirect_method !=='php') {
         return;
     }
 
@@ -73,8 +74,6 @@ function hello_theme_affiliate_redirect() {
     if (strpos($full_url, '?ref=') !== false || preg_match('|^/ref/[\w-]+/?|', $_SERVER['REQUEST_URI'])) {
         // Construct the new URL to redirect to the homepage of the main site.
         $new_url = $redirect_referral_url;
-        // Delay the redirection by 3 seconds
-        sleep(3);
         // Perform the redirection to the main site.
         wp_redirect($new_url, 301);
         exit;
@@ -86,8 +85,6 @@ function hello_theme_affiliate_redirect() {
         $dynamic_string = $matches[1];        
         // Check for query string and extract if it exists.
         $query_string = isset($matches[2]) ? $matches[2] : '';
-        // Delay the redirection by 3 seconds
-        sleep(3);
         // Perform the redirection.
         wp_redirect($redirect_referral_url, 301);
         exit;
@@ -96,9 +93,7 @@ function hello_theme_affiliate_redirect() {
     // Use a regex pattern to match the /ref/{dynamic_number}/ structure.
     if ( preg_match('|^/ref/([\d\w]+)/?$|', $request_uri, $matches)) {
         // Extract the dynamic number from the matches.
-        $dynamic_value = $matches[1];
-        // Delay the redirection by 3 seconds
-        sleep(3);                
+        $dynamic_value = $matches[1];            
         // Perform the redirection.
         wp_redirect($redirect_referral_url, 301);
         exit;
@@ -107,26 +102,34 @@ function hello_theme_affiliate_redirect() {
     // Check if the URL path is just a query string starting with ref.
     if (preg_match('/^\?ref=\d+/', $request_uri)) {
         // Perform the redirection to the main site.
-        // Delay the redirection by 3 seconds
-        sleep(3);
         wp_redirect($redirect_referral_url, 301);
         exit;
     }
 }
-add_action( 'template_redirect', 'hello_theme_affiliate_redirect',20 );
+add_action( 'template_redirect', 'hello_theme_affiliate_redirect',999 );
 
 function hello_theme_affiliate_redirect_by_page_id() {
+    $is_enabled_referral_url = get_option('hello_theme_affiliatewp_enable_redirect_referral');
+    $redirect_method = get_option( 'hello_theme_affiliatewp_enable_redirect_method' );
+    $redirect_referral_url = get_option('hello_theme_affiliatewp_redirect_referral_url');
+
+    // If the option is not '1', return early
+    if ($is_enabled_referral_url !== '1' && $redirect_method !=='js') {
+        return;
+    }
+
     if (is_front_page() || is_home()) {
         ?>
         <script type="text/javascript">
             document.addEventListener("DOMContentLoaded", function() {
-                    var urlParams = new URLSearchParams(window.location.search);
-                    var refParam = urlParams.get('ref');
-                    if (refParam) {
-                        window.location.href = "https://www.finpropfunding.com/?ref=" + refParam;
-                    } else {
-                        window.location.href = "https://www.finpropfunding.com/";
-                    }
+                var urlParams = new URLSearchParams(window.location.search);
+                var refParam = urlParams.get('ref');
+                var redirectUrl = "<?php echo esc_js($redirect_referral_url); ?>";
+                if (refParam) {
+                    window.location.href = redirectUrl + "?ref=" + refParam;
+                } else {
+                    window.location.href = redirectUrl;
+                }
             });
         </script>
         <?php

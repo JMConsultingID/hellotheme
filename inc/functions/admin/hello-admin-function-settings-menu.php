@@ -204,6 +204,7 @@ function hello_theme_register_affiliatewp_settings() {
     register_setting( 'hello_affiliatewp_settings_group', 'hello_theme_affiliatewp_register_id' );
     register_setting( 'hello_affiliatewp_settings_group', 'hello_theme_affiliatewp_area_id' );
     register_setting( 'hello_affiliatewp_settings_group', 'hello_theme_affiliatewp_enable_redirect_referral' );
+    register_setting( 'hello_affiliatewp_settings_group', 'hello_theme_affiliatewp_enable_redirect_method' );
     register_setting( 'hello_affiliatewp_settings_group', 'hello_theme_affiliatewp_redirect_referral_url' );
 
     add_settings_section(
@@ -241,6 +242,14 @@ function hello_theme_register_affiliatewp_settings() {
         'hello_theme_affiliatewp_enable_redirect_referral',
         'Enable AffiliateWP Redirect Referral',
         'hello_theme_affiliatewp_enable_redirect_referral_callback',
+        'hello-affiliatewp-settings',
+        'hello_affiliatewp_settings_section'
+    );
+
+    add_settings_field(
+        'hello_theme_affiliatewp_enable_redirect_method',
+        'AffiliateWP Redirect Referral Method',
+        'hello_theme_affiliatewp_enable_redirect_method_callback',
         'hello-affiliatewp-settings',
         'hello_affiliatewp_settings_section'
     );
@@ -476,6 +485,16 @@ function hello_theme_affiliatewp_enable_redirect_referral_callback() {
     $options = get_option( 'hello_theme_affiliatewp_enable_redirect_referral' );
     ?>
     <input type="checkbox" name="hello_theme_affiliatewp_enable_redirect_referral" value="1" <?php checked( 1, $options, true ); ?> />
+    <?php
+}
+
+function hello_theme_affiliatewp_enable_redirect_method_callback() {
+    $options = get_option( 'hello_theme_affiliatewp_enable_redirect_method' );
+    ?>
+    <select name="hello_theme_affiliatewp_enable_redirect_method">
+        <option value="php" <?php selected( $options, 'php' ); ?>>PHP Redirect</option>
+        <option value="js" <?php selected( $options, 'js' ); ?>>JS Redirect</option>
+    </select>
     <?php
 }
 
