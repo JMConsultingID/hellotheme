@@ -76,7 +76,7 @@ function hello_theme_affiliate_redirect() {
         // Delay the redirection by 3 seconds
         sleep(3);
         // Perform the redirection to the main site.
-        wp_redirect($new_url, 301);
+        wp_redirect($new_url, 302);
         exit;
     }
 
@@ -85,12 +85,12 @@ function hello_theme_affiliate_redirect() {
         // Extract the string from the matches.
         $dynamic_string = $matches[1];
         // Delay the redirection by 3 seconds
-        sleep(3);
+        
         // Check for query string and extract if it exists.
         $query_string = isset($matches[2]) ? $matches[2] : '';
-        
+        sleep(3);
         // Perform the redirection.
-        wp_redirect($redirect_referral_url, 301);
+        wp_redirect($redirect_referral_url, 302);
         exit;
     }
     
@@ -101,7 +101,7 @@ function hello_theme_affiliate_redirect() {
         // Delay the redirection by 3 seconds
         sleep(3);                
         // Perform the redirection.
-        wp_redirect($redirect_referral_url, 301);
+        wp_redirect($redirect_referral_url, 302);
         exit;
     }
 
@@ -110,7 +110,7 @@ function hello_theme_affiliate_redirect() {
         // Perform the redirection to the main site.
         // Delay the redirection by 3 seconds
         sleep(3);
-        wp_redirect($redirect_referral_url, 301);
+        wp_redirect($redirect_referral_url, 302);
         exit;
     }
 }
