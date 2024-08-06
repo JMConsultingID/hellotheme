@@ -125,16 +125,14 @@ function hello_theme_affiliate_redirect_by_page_id() {
         ?>
         <script type="text/javascript">
             document.addEventListener("DOMContentLoaded", function() {
-                setTimeout(function() {
-                    var urlParams = new URLSearchParams(window.location.search);
-                    var refParam = urlParams.get('ref');
-                    var redirectUrl = "<?php echo esc_js($redirect_referral_url); ?>";
-                    if (refParam) {
-                        window.location.href = redirectUrl + "?ref=" + refParam;
-                    } else {
-                        window.location.href = redirectUrl;
-                    }
-                }, 5000); // 5000 milliseconds = 5 seconds
+                var urlParams = new URLSearchParams(window.location.search);
+                var refParam = urlParams.get('ref');
+                var redirectUrl = "<?php echo esc_js($redirect_referral_url); ?>";
+                if (refParam) {
+                    window.location.href = redirectUrl + "?ref=" + refParam;
+                } else {
+                    window.location.href = redirectUrl;
+                }
             });
         </script>
         <?php
