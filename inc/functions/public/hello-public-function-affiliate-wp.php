@@ -114,4 +114,20 @@ function hello_theme_affiliate_redirect() {
     }
 }
 add_action( 'template_redirect', 'hello_theme_affiliate_redirect',20 );
+
+function hello_theme_affiliate_redirect_by_page_id() {
+    if (is_page(16)) {
+        ?>
+        <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function() {
+                setTimeout(function() {
+                    window.location.href = "https://www.finpropfunding.com/";
+                }, 5000); // 5000 milliseconds = 5 seconds
+            });
+        </script>
+        <?php
+    }
+}
+add_action('wp_footer', 'hello_theme_affiliate_redirect_by_page_id', 999);
+
 ?>
