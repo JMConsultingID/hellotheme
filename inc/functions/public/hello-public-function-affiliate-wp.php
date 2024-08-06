@@ -73,7 +73,8 @@ function hello_theme_affiliate_redirect() {
     if (strpos($full_url, '?ref=') !== false || preg_match('|^/ref/[\w-]+/?|', $_SERVER['REQUEST_URI'])) {
         // Construct the new URL to redirect to the homepage of the main site.
         $new_url = $redirect_referral_url;
-
+        // Delay the redirection by 3 seconds
+        sleep(3);
         // Perform the redirection to the main site.
         wp_redirect($new_url, 301);
         exit;
@@ -83,7 +84,8 @@ function hello_theme_affiliate_redirect() {
     if (preg_match('|^/ref/([\w-]+)/?(\?.*)?$|', $request_uri, $matches)) {
         // Extract the string from the matches.
         $dynamic_string = $matches[1];
-
+        // Delay the redirection by 3 seconds
+        sleep(3);
         // Check for query string and extract if it exists.
         $query_string = isset($matches[2]) ? $matches[2] : '';
         
@@ -96,7 +98,8 @@ function hello_theme_affiliate_redirect() {
     if ( preg_match('|^/ref/([\d\w]+)/?$|', $request_uri, $matches)) {
         // Extract the dynamic number from the matches.
         $dynamic_value = $matches[1];
-                
+        // Delay the redirection by 3 seconds
+        sleep(3);                
         // Perform the redirection.
         wp_redirect($redirect_referral_url, 301);
         exit;
@@ -105,9 +108,11 @@ function hello_theme_affiliate_redirect() {
     // Check if the URL path is just a query string starting with ref.
     if (preg_match('/^\?ref=\d+/', $request_uri)) {
         // Perform the redirection to the main site.
+        // Delay the redirection by 3 seconds
+        sleep(3);
         wp_redirect($redirect_referral_url, 301);
         exit;
     }
 }
-add_action( 'template_redirect', 'hello_theme_affiliate_redirect',20 );
+add_action( 'template_redirect', 'hello_theme_affiliate_redirect',90 );
 ?>
