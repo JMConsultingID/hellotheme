@@ -121,8 +121,14 @@ function hello_theme_affiliate_redirect_by_page_id() {
         <script type="text/javascript">
             document.addEventListener("DOMContentLoaded", function() {
                 setTimeout(function() {
-                    window.location.href = "https://www.finpropfunding.com/";
-                }, 5000); // 5000 milliseconds = 5 seconds
+                    var urlParams = new URLSearchParams(window.location.search);
+                    var refParam = urlParams.get('ref');
+                    if (refParam) {
+                        window.location.href = "https://www.finpropfunding.com/?ref=" + refParam;
+                    } else {
+                        window.location.href = "https://www.finpropfunding.com/";
+                    }
+                }, 1000); // 5000 milliseconds = 5 seconds
             });
         </script>
         <?php
