@@ -1,9 +1,9 @@
 (function( $ ) {
-	'use strict';
+    'use strict';
     function changeBillingAddressLabel() {
         var addressField = $('#billing_address_1_field label');
-        if (addressField.length && addressField.text().trim() !== 'Address') {
-            addressField.text('Address');
+        if (addressField.length) {
+            addressField.html('Address <abbr class="required" title="required">*</abbr>');
         }
     }
     // Change label on page load
@@ -13,6 +13,5 @@
     $(document.body).on('updated_checkout', function() {
         changeBillingAddressLabel();
     });
-
 
 })( jQuery );
