@@ -131,6 +131,9 @@ li.select2-results__option {
 .woocommerce-lost-password .woocommerce form .form-row-first {
     float: none;
 }
+.woocommerce-checkout-payment fieldset {
+    border: unset;
+}
 @media (max-width: 767px) {
     .woocommerce-checkout .site-main {
         padding-top: 40px;
