@@ -108,7 +108,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                             }
                             ?>
                             <div class="pricing-table-row top-border mobile mobile-pricing-wrapper">
-                            <div class="plan-category mobile">
+                            <div class="plan-category mobile" style="justify-content: center!important;">
                                 Account Price 
                                 <?php if (!empty($atts['account_price_text'])) { ?>
                                 <span class="plan-category-price-discount mobile" style="display: block;"><?php echo ucfirst($atts['account_price_text']); ?></span>
@@ -147,7 +147,7 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                 <?php endforeach; ?>
             </div>
             <div class="pricing-table-row top-border">
-                <div class="plan-category">
+                <div class="plan-category" style="justify-content: <?php echo !empty($atts['account_price_text']) ? 'flex-start' : 'center'; ?> !important;">
                     Account Price
                     <?php if (!empty($atts['account_price_text'])) { ?>
                     <span class="plan-category-price-discount" style="display: block;">
