@@ -110,7 +110,9 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                             <div class="pricing-table-row top-border mobile mobile-pricing-wrapper">
                             <div class="plan-category mobile">
                                 Account Price 
+                                <?php if (!empty($atts['account_price_text'])) { ?>
                                 <span class="plan-category-price-discount mobile" style="display: block;"><?php echo ucfirst($atts['account_price_text']); ?></span>
+                                <?php } ?>
                             </div>
                             <div class="plan-column mobile">
                                 <?php if ($sale_price && $sale_price < $regular_price) : ?>
@@ -145,7 +147,14 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                 <?php endforeach; ?>
             </div>
             <div class="pricing-table-row top-border">
-                <div class="plan-category">Account Price <span class="plan-category-price-discount" style="display: block;"><?php echo ucfirst($atts['account_price_text']); ?></span></div>
+                <div class="plan-category">
+                    Account Price
+                    <?php if (!empty($atts['account_price_text'])) { ?>
+                    <span class="plan-category-price-discount" style="display: block;">
+                        <?php echo ucfirst($atts['account_price_text']); ?>                            
+                        </span>
+                    </div>
+                    <?php } ?>
                 <?php foreach ($products as $product) : 
                     $regular_price = get_post_meta($product->ID, '_regular_price', true);
                     $sale_price = get_post_meta($product->ID, '_sale_price', true);                    

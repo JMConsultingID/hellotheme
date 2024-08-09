@@ -37,9 +37,6 @@ function hello_theme_pricing_table_live() {
 
     // Array of page IDs where we want to load the scripts and styles
     $target_page_ids = array(20602, 15544, 28106, 7428, 7423, 7193, 6880);
-
-    // Check if we're on one of the target pages
-    if ( is_page($target_page_ids) || is_page_url('https://fundyourfx.com/reset/') ) {
         // Enqueue styles
         wp_enqueue_style( 'hello-theme-swiper-bundle-css', get_stylesheet_directory_uri() . '/assets/css/swiper-bundle.min.css');
         wp_enqueue_style( 'hello-theme-tippy-css', get_stylesheet_directory_uri() . '/assets/css/tippy.css');
@@ -51,7 +48,6 @@ function hello_theme_pricing_table_live() {
         wp_enqueue_script( 'hello-theme-popper-js', get_stylesheet_directory_uri() . '/assets/js/popper.min.js', array(), null, true );
         wp_enqueue_script( 'hello-theme-tippy-js', get_stylesheet_directory_uri() . '/assets/js/tippy-bundle.umd.min.js', array(), null, true );
         wp_enqueue_script( 'hello-theme-pricing-scaling-table-js', get_stylesheet_directory_uri() . '/assets/js/hello-theme-pricing-table.js', array('jquery', 'hello-theme-swiper-bundle-js','hello-theme-popper-js', 'hello-theme-tippy-js'), HELLO_THEME_VERSION, true );
-    }
 }
 add_action( 'wp_enqueue_scripts', 'hello_theme_pricing_table_live', 20);
 
