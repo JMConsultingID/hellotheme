@@ -153,8 +153,8 @@ function hello_pricing_table_multi_product_shortcode($atts) {
                     <span class="plan-category-price-discount" style="display: block;">
                         <?php echo ucfirst($atts['account_price_text']); ?>                            
                         </span>
-                    </div>
                     <?php } ?>
+                    </div>
                 <?php foreach ($products as $product) : 
                     $regular_price = get_post_meta($product->ID, '_regular_price', true);
                     $sale_price = get_post_meta($product->ID, '_sale_price', true);                    
