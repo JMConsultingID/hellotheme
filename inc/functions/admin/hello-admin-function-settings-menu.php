@@ -112,6 +112,7 @@ function hello_theme_register_settings() {
     register_setting( 'hello_woocommerce_settings_group', 'disable_shop_page' );
     register_setting( 'hello_woocommerce_settings_group', 'disable_product_page' );
     register_setting( 'hello_woocommerce_settings_group', 'enable_ecommerce_tracking' );
+    register_setting( 'hello_woocommerce_settings_group', 'enable_yrt_functions' );
     register_setting( 'hello_woocommerce_settings_group', 'hello_theme_thank_you_page_url' );
     register_setting( 'hello_woocommerce_settings_group', 'hello_theme_failed_page_url' );
     register_setting( 'hello_woocommerce_settings_group', 'hello_theme_on_hold_page_url' );
@@ -167,6 +168,14 @@ function hello_theme_register_settings() {
         'enable_ecommerce_tracking',
         'Enable E-Commerce Tracking',
         'hello_theme_enable_ecommerce_tracking_callback',
+        'hello-woocommerce-settings',
+        'hello_woocommerce_settings_section'
+    );
+
+    add_settings_field(
+        'enable_yrt_functions',
+        'Enable YRT Function',
+        'hello_theme_enable_yrt_functions_callback',
         'hello-woocommerce-settings',
         'hello_woocommerce_settings_section'
     );
@@ -403,6 +412,12 @@ function hello_theme_enable_ecommerce_tracking_callback() {
     <?php
 }
 
+function hello_theme_enable_yrt_functions_callback() {
+    $options = get_option( 'enable_yrt_functions' );
+    ?>
+    <input type="checkbox" name="enable_yrt_functions" value="1" <?php checked( 1, $options, true ); ?> />
+    <?php
+}
 
 function hello_theme_thank_you_page_url_callback() {
     $options = get_option( 'hello_theme_thank_you_page_url' );
