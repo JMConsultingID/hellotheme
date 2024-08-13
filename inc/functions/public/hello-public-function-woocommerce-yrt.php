@@ -10,8 +10,8 @@
 
 // Yourrobotrader Functions
 // Add a custom field to the WooCommerce checkout page for the account number
-add_action('woocommerce_after_order_notes', 'account_number_custom_checkout_field');
-function account_number_custom_checkout_field($checkout) {
+add_action('woocommerce_after_checkout_billing_form', 'yrt_account_number_checkout_field');
+function yrt_account_number_checkout_field($checkout) {
     woocommerce_form_field('account_number', array(
         'type' => 'text',
         'class' => array('account-number-field form-row-wide'),
@@ -21,16 +21,16 @@ function account_number_custom_checkout_field($checkout) {
     ), $checkout->get_value('account_number'));
 }
 // Save the custom field value when the order is processed
-add_action('woocommerce_checkout_update_order_meta', 'save_account_number_checkout_field');
-function save_account_number_checkout_field($order_id) {
+add_action('woocommerce_checkout_update_order_meta', 'yrt_save_account_number_checkout_field');
+function yrt_save_account_number_checkout_field($order_id) {
     if (!empty($_POST['account_number'])) {
         update_post_meta($order_id, 'account_number', sanitize_text_field($_POST['account_number']));
     }
 }
 
 // Display the account number in the order details (admin side)
-add_action('woocommerce_admin_order_data_after_billing_address', 'display_account_number_admin_order_meta', 10, 1);
-function display_account_number_admin_order_meta($order) {
+add_action('woocommerce_admin_order_data_after_billing_address', 'yrt_display_account_number_admin_order_meta', 10, 1);
+function yrt_display_account_number_admin_order_meta($order) {
     $account_number = get_post_meta($order->get_id(), 'account_number', true);
     if ($account_number) {
         echo '<p><strong>' . __('MetaTrader Account Number') . ':</strong> ' . $account_number . '</p>';
