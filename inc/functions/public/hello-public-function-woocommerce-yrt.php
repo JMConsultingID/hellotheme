@@ -25,30 +25,47 @@ add_action('woocommerce_checkout_update_order_meta', 'yrt_save_account_number_ch
 function yrt_save_account_number_checkout_field($order_id) {
     if (!empty($_POST['account_number'])) {
         update_post_meta($order_id, 'account_number', sanitize_text_field($_POST['account_number']));
+        update_post_meta($order_id, 'account_status', 'activated');
     }
 }
+
+// Function to handle status change
+function yrt_account_status_order_status_change($order_id, $old_status, $new_status, $order) {
+    if ($new_status === 'completed') {
+        // Update account status to 'activated' when order is completed
+        update_post_meta($order_id, 'account_status', 'activated');
+    }
+}
+
+add_action('woocommerce_order_status_changed', 'yrt_account_status_order_status_change', 10, 4);
+
 
 // Display the account number in the order details (admin side)
 add_action('woocommerce_admin_order_data_after_billing_address', 'yrt_display_account_number_admin_order_meta', 10, 1);
 function yrt_display_account_number_admin_order_meta($order) {
-    $account_number = get_post_meta($order->get_id(), 'account_number', true);
-    if ($account_number) {
-        echo '<p><strong>' . __('MetaTrader Account Number') . ':</strong> ' . $account_number . '</p>';
+    $yrt_account_number = get_post_meta($order->get_id(), 'account_number', true);
+    $yrt_account_status = get_post_meta($order->get_id(), 'account_status', true);
+    if ($yrt_account_number) {
+        echo '<p><strong>' . __('MetaTrader Account Number') . ':</strong> ' . $yrt_account_number . '</p>';
+        echo '<p><strong>' . __('MetaTrader Account Status') . ':</strong> ' . $yrt_account_status . '</p>';
     }
 }
 
 // Hook into the license generation process
-add_action('lmfwc_license_generated', 'associate_account_number_with_license', 10, 2);
-function associate_account_number_with_license($license_key, $order) {
+add_action('lmfwc_license_generated', 'yrt_associate_account_number_with_license', 10, 2);
+function yrt_associate_account_number_with_license($license_key, $order) {
     // Get the account number from the order meta
-    $account_number = get_post_meta($order->get_id(), 'account_number', true);
-    if ($account_number) {
+    $yrt_account_number = get_post_meta($order->get_id(), 'account_number', true);
+    $yrt_account_status = get_post_meta($order->get_id(), 'account_status', true);
+
+    if ($yrt_account_number) {
         // Store the account number in the license meta
-        update_post_meta($license_key->get_id(), 'account_number', $account_number);
+        update_post_meta($license_key->get_id(), 'account_number', $yrt_account_number);
+        update_post_meta($license_key->get_id(), 'account_status', $yrt_account_status);
     }
 }
 
-function validate_license(WP_REST_Request $request) {
+function yrt_validate_license(WP_REST_Request $request) {
     $license_key = $request->get_param('license_key');
     $account_id = $request->get_param('account_id');
     global $wpdb;
