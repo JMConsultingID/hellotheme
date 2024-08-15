@@ -582,7 +582,7 @@ function hello_theme_table_tooltips_callback() {
 function hello_theme_table_tooltip_post_id_callback() {
     $options = get_option( 'hello_theme_table_tooltip_post_id' );
     ?>
-    <input type="text" id="hello_theme_table_tooltip_post_id" name="hello_theme_table_tooltip_post_id" value="<?php  echo esc_attr($options) ?>" />
+    <input type="text" id="hello_theme_table_tooltip_post_id" name="hello_theme_table_tooltip_post_id" value="<?php  echo esc_attr($options) ?>" placeholder="Tooltips Post ID" />
     <?php
 }
 
