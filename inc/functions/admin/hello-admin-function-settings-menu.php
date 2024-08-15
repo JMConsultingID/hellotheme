@@ -356,7 +356,7 @@ function hello_affiliatewp_settings_section_callback() {
 
 function hello_table_pricing_settings_section_callback() {
     // Assuming this is within the main theme; use get_stylesheet_directory_uri() for child themes
-    $theme_url = get_template_directory_uri() . '/inc/functions/import/acf-export-ypf-default-2024.json';
+    $theme_url = get_stylesheet_directory() . '/inc/functions/import/acf-export-ypf-default-2024.json';
     echo '<p>Configure & Generate your Pricing Table settings below.</p>';
     echo '<p><strong>Download ACF Template:</strong> If you want to use a pre-built ACF template for your pricing table, you can download the JSON file from the link below and import it into your ACF settings.</p>';
     echo '<a href="' . esc_url($theme_url) . '" download>Download ACF Template JSON File</a>';
