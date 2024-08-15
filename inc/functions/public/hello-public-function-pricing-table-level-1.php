@@ -95,19 +95,28 @@ function hello_pricing_table_level_1_shortcode($atts) {
 
                                         <?php 
                                             if (!is_null($sample_fields) && is_array($sample_fields)) :
+                                                $is_first_label = true;
                                                 foreach ($sample_fields as $field_key => $field_value) : 
                                                 $field_object = get_field_object($sample_field_group . '_' . $field_key, $product_id);
                                                 if ($field_object) :
                                                     $field_label = $field_object['label'];?>
                                                        <div class="hello-theme-pricing-table-row pt__row label-<?php echo esc_html($field_key); ?>">
-                                                    <?php echo $field_label; ?>
+                                                    <?php 
+                                                        if ($is_first_label && !empty($atts['logo_url'])) {
+                                                            echo '<img src="' . esc_url($atts['logo_url']) . '" width="172" alt="' . esc_attr(get_bloginfo('name')) . '">';
+                                                        } else {
+                                                            echo esc_html($field_label);
+                                                        }
+                                                    ?>
                                                     <?php if ($tooltips === 'yes' && !empty($tooltip_field_values[$field_key])) : ?>
                                                         <span class="hello-theme-label-tooltips" data-tippy-content="<?php echo esc_html($tooltip_field_values[$field_key]); ?>">
                                                             <i aria-hidden="true" class="fas fa-info-circle"></i>
                                                         </span>
                                                     <?php endif; ?>
                                                         </div>
-                                                <?php endif; 
+                                                <?php 
+                                                $is_first_label = false; // Ensure that only the first label is replaced with the logo
+                                                endif;
                                                 endforeach;
                                             endif; 
                                         ?>
