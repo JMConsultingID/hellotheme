@@ -177,10 +177,10 @@ function hello_pricing_table_level_2_shortcode($atts) {
                                     
                                   </div>
 
-                            </div>                            
-                        </div>
-                        <div class="hello-theme-checkout-button">
-                            <a href="<?php echo $checkout_url; ?>">Purchase Now (<?php echo $product_price;?>)</a>
+                            </div>
+                            <div class="hello-theme-checkout-button">
+                                <a href="<?php echo $checkout_url; ?>">Purchase Now (<?php echo $product_price;?>)</a>
+                            </div>
                         </div>
 
                     <?php endforeach; ?>
