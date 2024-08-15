@@ -96,6 +96,7 @@ function hello_pricing_table_level_2_shortcode($atts) {
                             ?>
 
                             <div class="pricing__table hello-theme-product product-id-<?php echo $product_id; ?>">
+                                <div class="pricing__table-wraping product-id-<?php echo $product_id; ?>">
                                 <div class="pt__title">
                                     <div class="pt__title__wrap">
 
@@ -176,7 +177,7 @@ function hello_pricing_table_level_2_shortcode($atts) {
                                     </div>
                                     
                                   </div>
-
+                            </div>
                             </div>
                             <div class="hello-theme-checkout-button">
                                 <a href="<?php echo $checkout_url; ?>">Purchase Now (<?php echo $product_price;?>)</a>
