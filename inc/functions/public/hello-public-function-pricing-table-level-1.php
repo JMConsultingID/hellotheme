@@ -51,7 +51,7 @@ function hello_pricing_table_level_1_shortcode($atts) {
         'orderby' => 'menu_order',
         'order' => 'ASC'
     ));
-    
+
     $html_value = $atts['html_value'];
 
 
@@ -92,7 +92,7 @@ function hello_pricing_table_level_1_shortcode($atts) {
                                 $sample_field_group = $acf_levels['level_1'];
                                 $sample_fields = get_field($sample_field_group, $product_id);
                             ?>
-
+                            <div class="pricing__table-wrap single-tabs product-id-<?php echo $product_id; ?>">
                             <div class="pricing__table hello-theme-product product-id-<?php echo $product_id; ?>">
                                 <div class="pt__title">
                                     <div class="pt__title__wrap">
@@ -175,6 +175,7 @@ function hello_pricing_table_level_1_shortcode($atts) {
                                     
                                   </div>
 
+                            </div>
                             </div>
                             <div class="hello-theme-checkout-button">
                                 <a href="<?php echo $checkout_url; ?>">Purchase Now (<?php echo $product_price;?>)</a>
