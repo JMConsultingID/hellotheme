@@ -323,7 +323,7 @@ function hello_theme_register_table_pricing_settings() {
 
     add_settings_field(
         'hello_theme_table_category_active',
-        'Category Active Tab (for Level 2)',
+        'Category Active Tab (Level 2)',
         'hello_theme_table_category_active_callback',
         'hello-table-pricing-settings',
         'hello_table_pricing_settings_section'
