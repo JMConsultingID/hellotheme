@@ -25,7 +25,7 @@ require_once get_stylesheet_directory() . '/inc/functions/public/hello-public-fu
 require_once get_stylesheet_directory() . '/inc/functions/public/hello-public-function-woocommerce.php';
 
 if ($enabled_pricing_table === '1') {
-    require_once get_stylesheet_directory() . '/inc/functions/helper/hello-theme-helper.php';
+    require_once get_stylesheet_directory() . '/inc/functions/helper/hello-theme-acf-import-field.php';
 }
 
 
