@@ -270,6 +270,7 @@ function hello_theme_register_table_pricing_settings() {
     register_setting( 'hello_table_pricing_settings_group', 'hello_theme_table_mode' );
     register_setting( 'hello_table_pricing_settings_group', 'hello_theme_table_style' );
     register_setting( 'hello_table_pricing_settings_group', 'hello_theme_table_category' );
+    register_setting( 'hello_table_pricing_settings_group', 'hello_theme_table_category_active' );
     register_setting( 'hello_table_pricing_settings_group', 'hello_theme_table_tooltips' );
     register_setting( 'hello_table_pricing_settings_group', 'hello_theme_table_tooltip_post_id' );
 
@@ -316,6 +317,14 @@ function hello_theme_register_table_pricing_settings() {
         'hello_theme_table_category',
         'Select Product Categories',
         'hello_theme_table_category_callback',
+        'hello-table-pricing-settings',
+        'hello_table_pricing_settings_section'
+    );
+
+    add_settings_field(
+        'hello_theme_table_category',
+        'Product Category Active Tab',
+        'hello_theme_table_category_active_callback',
         'hello-table-pricing-settings',
         'hello_table_pricing_settings_section'
     );
@@ -549,7 +558,14 @@ function hello_theme_table_style_callback() {
 function hello_theme_table_category_callback() {
     $options = get_option( 'hello_theme_table_category' );
     ?>
-    <input type="text" id="hello_theme_table_category" name="hello_theme_table_category" value="<?php  echo esc_attr($options) ?>" />
+    <input type="text" id="hello_theme_table_category" name="hello_theme_table_category" value="<?php  echo esc_attr($options) ?>" placeholder="Categories slug url : 1-phase-challenge, 2-phase-challenge" />
+    <?php
+}
+
+function hello_theme_table_category_active_callback() {
+    $options = get_option( 'hello_theme_table_category_active' );
+    ?>
+    <input type="text" id="hello_theme_table_category_active" name="hello_theme_table_category_active" value="<?php  echo esc_attr($options) ?>" placeholder="Category slug url : 1-phase-challenge" />
     <?php
 }
 
@@ -574,6 +590,7 @@ function hello_theme_table_pricing_description_callback() {
     $mode = get_option( 'hello_theme_table_mode', 'level-1' );
     $style = get_option( 'hello_theme_table_style', 'style1' );
     $categories = get_option( 'hello_theme_table_category', 'origin' ); 
+    $categories = get_option( 'hello_theme_table_category_active', '' ); 
     $tooltips = get_option( 'hello_theme_table_tooltips', 'no' ); 
     $tooltips_post_id = get_option( 'hello_theme_table_tooltip_post_id', '16787' ); 
 
