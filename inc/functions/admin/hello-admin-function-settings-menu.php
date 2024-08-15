@@ -222,21 +222,21 @@ function hello_theme_register_affiliatewp_settings() {
         'hello_affiliatewp_settings_section'
     );
 
-    add_settings_field(
-        'hello_theme_affiliatewp_register_id',
-        'AffiliateWP Register Page ID',
-        'hello_theme_affiliatewp_register_id_callback',
-        'hello-affiliatewp-settings',
-        'hello_affiliatewp_settings_section'
-    );
+    // add_settings_field(
+    //     'hello_theme_affiliatewp_register_id',
+    //     'AffiliateWP Register Page ID',
+    //     'hello_theme_affiliatewp_register_id_callback',
+    //     'hello-affiliatewp-settings',
+    //     'hello_affiliatewp_settings_section'
+    // );
 
-    add_settings_field(
-        'hello_theme_affiliatewp_area_id',
-        'AffiliateWP Area Login Page ID',
-        'hello_theme_affiliatewp_area_id_callback',
-        'hello-affiliatewp-settings',
-        'hello_affiliatewp_settings_section'
-    );
+    // add_settings_field(
+    //     'hello_theme_affiliatewp_area_id',
+    //     'AffiliateWP Area Login Page ID',
+    //     'hello_theme_affiliatewp_area_id_callback',
+    //     'hello-affiliatewp-settings',
+    //     'hello_affiliatewp_settings_section'
+    // );
 
     add_settings_field(
         'hello_theme_affiliatewp_enable_redirect_referral',
