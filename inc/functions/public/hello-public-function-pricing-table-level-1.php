@@ -144,7 +144,10 @@ function hello_pricing_table_level_1_shortcode($atts) {
                                                         if (!is_null($level_fields) && is_array($level_fields)) :
                                                             foreach ($level_fields as $field_key => $field_value) : ?>
                                                             <div class="pt__row <?php echo esc_html($field_key); ?>">
-                                                                <?php echo !empty($field_value) ? esc_html($field_value) : 'N/A'; ?>
+                                                                <?php
+                                                                $table_field_value = ($atts['html_value'] === 'yes') ? $field_value : esc_html($field_value);
+                                                                    echo !empty($table_field_value) ? $table_field_value : 'N/A';
+                                                                ?>
                                                             </div>
                                                             <?php endforeach; ?>
                                                         <?php endif; ?>

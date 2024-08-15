@@ -271,6 +271,7 @@ function hello_theme_register_table_pricing_settings() {
     register_setting( 'hello_table_pricing_settings_group', 'hello_theme_table_style' );
     register_setting( 'hello_table_pricing_settings_group', 'hello_theme_table_category' );
     register_setting( 'hello_table_pricing_settings_group', 'hello_theme_table_category_active' );
+    register_setting( 'hello_table_pricing_settings_group', 'hello_theme_table_enable_html_value' );
     register_setting( 'hello_table_pricing_settings_group', 'hello_theme_table_tooltips' );
     register_setting( 'hello_table_pricing_settings_group', 'hello_theme_table_tooltip_post_id' );
 
@@ -325,6 +326,14 @@ function hello_theme_register_table_pricing_settings() {
         'hello_theme_table_category_active',
         'Category Active Tab (Level 2)',
         'hello_theme_table_category_active_callback',
+        'hello-table-pricing-settings',
+        'hello_table_pricing_settings_section'
+    );
+
+    add_settings_field(
+        'hello_theme_table_enable_html_value',
+        'Enable HTML value',
+        'hello_theme_table_enable_html_value_callback',
         'hello-table-pricing-settings',
         'hello_table_pricing_settings_section'
     );
@@ -569,6 +578,16 @@ function hello_theme_table_category_active_callback() {
     <?php
 }
 
+function hello_theme_table_enable_html_value_callback() {
+    $options = get_option( 'hello_theme_table_enable_html_value' );
+    ?>
+    <select name="hello_theme_table_enable_html_value">
+        <option value="yes" <?php selected( $options, 'yes' ); ?>>Yes</option>
+        <option value="no" <?php selected( $options, 'no' ); ?>>No</option>
+    </select>
+    <?php
+}
+
 function hello_theme_table_tooltips_callback() {
     $options = get_option( 'hello_theme_table_tooltips' );
     ?>
@@ -591,6 +610,7 @@ function hello_theme_table_pricing_description_callback() {
     $style = get_option( 'hello_theme_table_style', 'style1' );
     $categories = get_option( 'hello_theme_table_category', 'origin' ); 
     $category_active = get_option( 'hello_theme_table_category_active', '' ); 
+    $html_value = get_option( 'hello_theme_table_enable_html_value', 'yes' ); 
     $tooltips = get_option( 'hello_theme_table_tooltips', 'no' ); 
     $tooltips_post_id = get_option( 'hello_theme_table_tooltip_post_id', '16787' ); 
 
@@ -603,7 +623,7 @@ function hello_theme_table_pricing_description_callback() {
     ?>
     <p>Use this shortcode on your Front-End or Table Pricing Page : <br/>
     <code>
-        [<?php echo esc_attr( $shortcode_tag ); ?> tab_mode='<?php echo esc_attr( $mode ); ?>' style='<?php echo esc_attr( $style ); ?>' category='<?php echo esc_attr( $categories ); ?>' category_active='<?php echo esc_attr( $category_active ); ?>' tooltips='<?php echo esc_attr( $tooltips ); ?>' tooltips_post_id='<?php echo esc_attr( $tooltips_post_id ); ?>']
+        [<?php echo esc_attr( $shortcode_tag ); ?> tab_mode='<?php echo esc_attr( $mode ); ?>' style='<?php echo esc_attr( $style ); ?>' category='<?php echo esc_attr( $categories ); ?>' category_active='<?php echo esc_attr( $category_active ); ?>' html_value='<?php echo esc_attr( $html_value ); ?>' tooltips='<?php echo esc_attr( $tooltips ); ?>' tooltips_post_id='<?php echo esc_attr( $tooltips_post_id ); ?>']
     </code>
     </p>
     <?php
