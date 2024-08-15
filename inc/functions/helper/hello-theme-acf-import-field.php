@@ -871,3 +871,4 @@ add_action( 'init', function() {
 	'delete_with_user' => false,
 ) );
 } );
+?>
