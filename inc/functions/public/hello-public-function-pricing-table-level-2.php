@@ -107,7 +107,6 @@ function hello_pricing_table_level_2_shortcode($atts) {
                                                 if ($field_object) :
                                                     $field_label = $field_object['label'];?>
                                                        <div class="hello-theme-pricing-table-row pt__row label-<?php echo esc_html($field_key); ?>">
-                                                    <?php echo $field_label; ?>
                                                     <?php 
                                                         if ($is_first_label && !empty($atts['logo_url'])) {
                                                             echo '<img src="' . esc_url($atts['logo_url']) . '" width="172" alt="' . esc_attr(get_bloginfo('name')) . '">';
