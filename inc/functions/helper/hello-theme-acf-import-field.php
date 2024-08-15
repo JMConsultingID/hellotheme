@@ -46,8 +46,8 @@ add_action( 'acf/include_fields', function() {
 				),
 				array(
 					'key' => 'field_66ae675956cc2',
-					'label' => 'Starting Funded Balance',
-					'name' => 'pt_starting_funded balance',
+					'label' => 'Starting Funded Balance',
+					'name' => 'pt_starting_funded balance',
 					'aria-label' => '',
 					'type' => 'text',
 					'instructions' => '',
@@ -244,8 +244,8 @@ add_action( 'acf/include_fields', function() {
 				),
 				array(
 					'key' => 'field_66ae675960c81',
-					'label' => 'Starting Funded Balance',
-					'name' => 'pt_starting_funded balance',
+					'label' => 'Starting Funded Balance',
+					'name' => 'pt_starting_funded balance',
 					'aria-label' => '',
 					'type' => 'text',
 					'instructions' => '',
@@ -442,8 +442,8 @@ add_action( 'acf/include_fields', function() {
 				),
 				array(
 					'key' => 'field_66ae675967bc5',
-					'label' => 'Starting Funded Balance',
-					'name' => 'pt_starting_funded balance',
+					'label' => 'Starting Funded Balance',
+					'name' => 'pt_starting_funded balance',
 					'aria-label' => '',
 					'type' => 'text',
 					'instructions' => '',
@@ -645,8 +645,8 @@ add_action( 'acf/include_fields', function() {
 			'sub_fields' => array(
 				array(
 					'key' => 'field_669f6e7b6d9a7',
-					'label' => 'Starting Funded Balance',
-					'name' => 'pt_starting_funded balance',
+					'label' => 'Starting Funded Balance',
+					'name' => 'pt_starting_funded balance',
 					'aria-label' => '',
 					'type' => 'text',
 					'instructions' => '',
