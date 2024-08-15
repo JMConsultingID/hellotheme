@@ -322,7 +322,7 @@ function hello_theme_register_table_pricing_settings() {
     );
 
     add_settings_field(
-        'hello_theme_table_category',
+        'hello_theme_table_category_active',
         'Product Category Active Tab',
         'hello_theme_table_category_active_callback',
         'hello-table-pricing-settings',
