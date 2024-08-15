@@ -14,6 +14,8 @@ function hello_pricing_table_level_1_shortcode($atts) {
         array(
             'tab_mode' => 'level-1',
             'category' => '1-phase-challenge',
+            'html_value' => 'yes',
+            'logo_url' => '',
             'tooltips' => 'yes',
             'tooltips_post_id' => '16787',
         ),
@@ -49,6 +51,8 @@ function hello_pricing_table_level_1_shortcode($atts) {
         'orderby' => 'menu_order',
         'order' => 'ASC'
     ));
+    
+    $html_value = $atts['html_value'];
 
 
     ob_start();
