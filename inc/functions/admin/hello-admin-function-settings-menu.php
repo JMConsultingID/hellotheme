@@ -81,7 +81,7 @@ function hello_theme_table_pricing_settings_page() {
             <?php
             settings_fields( 'hello_table_pricing_settings_group' );
             do_settings_sections( 'hello-table-pricing-settings' );
-            submit_button();
+            submit_button( 'Generate Shortcode' );
             ?>
         </form>
     </div>
