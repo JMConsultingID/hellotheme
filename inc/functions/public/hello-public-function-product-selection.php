@@ -16,7 +16,7 @@ function hello_theme_challenge_selection_shortcode() {
             'category' => '',
         ),
         $atts,
-        'challenge_selection'
+        'hello_challenge_selection'
     );
 
     if ($enabled_pricing_table !== '1') {
@@ -31,4 +31,4 @@ function hello_theme_challenge_selection_shortcode() {
     <?php
     return ob_get_clean();
 }
-add_shortcode('challenge_selection', 'hello_theme_challenge_selection_shortcode');
+add_shortcode('hello_challenge_selection', 'hello_theme_challenge_selection_shortcode');
