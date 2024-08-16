@@ -117,14 +117,14 @@
         });
 
         // Initialize swiper for the active main tab
-        const activeTabContent = document.querySelector('.hello-theme-table-level-2 .hello-theme-tab-content.active');
+        const activeTabContent = document.querySelector('.hello-theme-table-level-2 .hello-theme-tab-content.active, .hello-theme-table-mode-1 .hello-theme-tab-content.active');
         if (activeTabContent && !activeTabContent.swiperInstance && window.innerWidth <= 991) {
             activeTabContent.swiperInstance = initTabSwiper(activeTabContent);
             activeTabContent.swiperInstance.slideTo(activeSlideIndex, 0);
         }
 
         // Activate the first tab on initial load
-        const firstTabButton = document.querySelector('.hello-theme-table-level-2 .hello-theme-tab-button');
+        const firstTabButton = tabButtons;
         if (firstTabButton) {
             firstTabButton.click();
         }
