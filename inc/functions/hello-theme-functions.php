@@ -23,6 +23,7 @@ require_once get_stylesheet_directory() . '/inc/functions/public/hello-public-fu
 require_once get_stylesheet_directory() . '/inc/functions/public/hello-public-function-pricing-table-level-2.php';
 require_once get_stylesheet_directory() . '/inc/functions/public/hello-public-function-pricing-table-dev.php';
 require_once get_stylesheet_directory() . '/inc/functions/public/hello-public-function-woocommerce.php';
+require_once get_stylesheet_directory() . '/inc/functions/public/hello-public-function-product-selection.php';
 
 // if ($enabled_pricing_table === '1') {
 //     require_once get_stylesheet_directory() . '/inc/functions/helper/hello-theme-acf-import-field.php';
