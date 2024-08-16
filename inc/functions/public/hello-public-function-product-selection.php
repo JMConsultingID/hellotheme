@@ -66,7 +66,7 @@ function hello_theme_challenge_selection_shortcode($atts) {
 
                     <?php foreach ($products as $productIndex => $product): ?>
                         <div id="subtab-<?php echo $product->get_id(); ?>" class="hello-theme-sub-tab-content product-<?php echo $product->get_slug(); ?> <?php echo $productIndex == 0 ? 'active' : ''; ?>" data-sub-tab-id="subtab-<?php echo $product->get_id(); ?>">
-                            <p><?php echo <?php echo $product->get_name(); ?></p>
+                            <p><?php echo $product->get_name(); ?></p>
                         </div>
                     <?php endforeach; ?>
                 <?php else : ?>
