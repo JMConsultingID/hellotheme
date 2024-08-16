@@ -35,7 +35,6 @@ function hello_theme_challenge_selection_shortcode($atts) {
 
     ob_start();
     ?>
-    <div class="hello-theme-product selection product-selection-container product-id">
         <!-- Add your HTML here as per the uploaded design -->
         <div class="hello-theme-container hello-theme-table-pricing hello-theme-with-tab hello-theme-table-<?php echo $tab_mode; ?>">
             <div class="hello-theme-tab-buttons">
@@ -77,7 +76,6 @@ function hello_theme_challenge_selection_shortcode($atts) {
             </div>
             <?php endforeach; ?>
         </div>
-    </div>
     <?php
     return ob_get_clean();
 }
