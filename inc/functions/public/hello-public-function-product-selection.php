@@ -13,7 +13,7 @@ function hello_theme_challenge_selection_shortcode($atts) {
     $atts = shortcode_atts(
         array(
             'tab_mode' => 'mode-1',
-            'category' => '1-phase-challenge',
+            'category' => '',
         ),
         $atts,
         'hello_challenge_selection'
