@@ -9,10 +9,24 @@
  */
 
 function hello_theme_challenge_selection_shortcode() {
+    $enabled_pricing_table = get_option('hello_theme_enable_table_pricing');
+    $atts = shortcode_atts(
+        array(
+            'mode' => 'mode-1',
+            'category' => '',
+        ),
+        $atts,
+        'challenge_selection'
+    );
+
+    if ($enabled_pricing_table !== '1') {
+        return;
+    }
     ob_start();
     ?>
-    <div class="product-selection-container">
+    <div class="hello-theme-product selection product-selection-container product-id">
         <!-- Add your HTML here as per the uploaded design -->
+        <p>No products found in this category.</p>
     </div>
     <?php
     return ob_get_clean();
