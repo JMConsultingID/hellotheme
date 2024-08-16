@@ -100,7 +100,7 @@
 
                 button.classList.add('active');
                 const tabId = button.dataset.tabId;
-                const activeTabContent = document.querySelector(`.hello-theme-table-level-2 .hello-theme-tab-content[data-tab-id="${tabId}"]`);
+                const activeTabContent = document.querySelector(`.hello-theme-table-level-2 .hello-theme-tab-content[data-tab-id="${tabId}"], .hello-theme-table-mode-1 .hello-theme-tab-content[data-tab-id="${tabId}"]`);
                 activeTabContent.classList.add('active');
 
                 // Set the active slide index for the new tab
@@ -124,7 +124,7 @@
         }
 
         // Activate the first tab on initial load
-        const firstTabButton = tabButtons;
+        const firstTabButton = document.querySelector('.hello-theme-table-level-2 .hello-theme-tab-button, .hello-theme-table-mode-1 .hello-theme-tab-button');
         if (firstTabButton) {
             firstTabButton.click();
         }
