@@ -38,11 +38,10 @@ function hello_theme_pricing_table_live() {
     // Check if the pricing table is enabled
     if ($enabled_pricing_table === '1') {
         // Enqueue styles        
-        wp_enqueue_style( 'hello-theme-font-awesome-css', get_stylesheet_directory_uri() . '/assets/css/font-awesome-all.min.css');
         wp_enqueue_style( 'hello-theme-swiper-bundle-css', get_stylesheet_directory_uri() . '/assets/css/swiper-bundle.min.css');
         wp_enqueue_style( 'hello-theme-tippy-css', get_stylesheet_directory_uri() . '/assets/css/tippy.css');
         wp_enqueue_style( 'hello-theme-tippy-light-css', get_stylesheet_directory_uri() . '/assets/css/tippy-light.css');
-        wp_enqueue_style( 'hello-theme-plugins-css', get_stylesheet_directory_uri() . '/assets/css/hello-theme-pricing-table.css', array('hello-theme-font-awesome-css', 'hello-theme-swiper-bundle-css', 'hello-theme-tippy-css', 'hello-theme-tippy-light-css'), HELLO_THEME_VERSION, 'all' );
+        wp_enqueue_style( 'hello-theme-plugins-css', get_stylesheet_directory_uri() . '/assets/css/hello-theme-pricing-table.css', array('hello-theme-swiper-bundle-css', 'hello-theme-tippy-css', 'hello-theme-tippy-light-css'), HELLO_THEME_VERSION, 'all' );
 
         // Enqueue scripts        
         wp_enqueue_script( 'hello-theme-swiper-bundle-js', get_stylesheet_directory_uri() . '/assets/js/swiper-bundle.min.js', array('jquery'), null, true );
