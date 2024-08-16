@@ -8,7 +8,7 @@
  * @package HelloTheme
  */
 
-function hello_theme_challenge_selection_shortcode() {
+function hello_theme_challenge_selection_shortcode($atts) {
     $enabled_pricing_table = get_option('hello_theme_enable_table_pricing');
     $atts = shortcode_atts(
         array(
