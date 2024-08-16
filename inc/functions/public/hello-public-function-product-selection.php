@@ -12,7 +12,7 @@ function hello_theme_challenge_selection_shortcode($atts) {
     $enabled_pricing_table = get_option('hello_theme_enable_table_pricing');
     $atts = shortcode_atts(
         array(
-            'tab_mode' => 'level-2',
+            'tab_mode' => 'mode-1',
             'category' => '',
         ),
         $atts,

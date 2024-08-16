@@ -86,8 +86,8 @@
 
     // Initialize tabs for Level 2
     const initLevel2Tabs = () => {
-        const tabButtons = document.querySelectorAll('.hello-theme-table-level-2 .hello-theme-tab-button');
-        const tabContents = document.querySelectorAll('.hello-theme-table-level-2 .hello-theme-tab-content');
+        const tabButtons = document.querySelectorAll('.hello-theme-table-level-2 .hello-theme-tab-button, .hello-theme-table-mode-1 .hello-theme-tab-button');
+        const tabContents = document.querySelectorAll('.hello-theme-table-level-2 .hello-theme-tab-content, .hello-theme-table-mode-1 .hello-theme-tab-content');
 
         if (!tabButtons.length || !tabContents.length) {
             return;
