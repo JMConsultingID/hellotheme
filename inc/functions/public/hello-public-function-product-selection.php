@@ -86,8 +86,8 @@ function custom_product_selection_shortcode() {
     
     // Kategori Produk
     $categories = array(
-        'base-camp' => 'Base Camp',
-        'the-peak' => 'The Peak'
+        '1-phase-challenge' => 'Base Camp',
+        '2-phase-challenge' => 'The Peak'
     );
     
     // Bagian Pilihan Kategori
