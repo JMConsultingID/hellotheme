@@ -24,6 +24,17 @@ function _empty_cart( $cart_item_data ) {
     return $cart_item_data;
 }
 
+add_filter( 'woocommerce_add_cart_item_data', 'woo_hello_theme_add_to_cart' );
+
+function woo_hello_theme_add_to_cart( $cart_item_data ) {
+
+    global $woocommerce;
+    $woocommerce->cart->empty_cart();
+
+    // Do nothing with the data and return
+    return $cart_item_data;
+}
+
 // Redirect to checkout page after adding an item to the cart
 add_filter('woocommerce_add_to_cart_redirect', 'hello_theme_add_to_cart_redirect');
 function hello_theme_add_to_cart_redirect() {
