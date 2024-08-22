@@ -89,15 +89,23 @@ function hello_theme_add_ga_gtm_script_to_thank_you_page() {
                         "currency": "<?php echo $currency; ?>",
                         "items": <?php echo $products_json; ?>
                     });
-                </script>
-                <script>
+
+                    // GTM Event
                     window.dataLayer = window.dataLayer || [];
                     window.dataLayer.push({
                         'event': 'purchase',
-                        'transaction_id': '<?php echo $order->get_order_number(); ?>',
-                        'transaction_total': <?php echo $order->get_total(); ?>,
-                        'transaction_currency': '<?php echo get_woocommerce_currency(); ?>',
-                        'transaction_products': <?php echo json_encode($order->get_items(), JSON_HEX_TAG); ?>
+                        'transaction_id': '<?php echo $transaction_id; ?>',
+                        'value': <?php echo $transaction_total; ?>,
+                        'currency': '<?php echo $currency; ?>',
+                        'items': <?php echo $products_json; ?>
+                    });
+
+                    // Facebook Meta Pixel Purchase Event
+                    fbq('track', 'Purchase', {
+                        value: <?php echo $transaction_total; ?>,
+                        currency: '<?php echo $currency; ?>',
+                        contents: <?php echo $products_json; ?>,
+                        content_type: 'product'
                     });
                 </script>
                 <?php
