@@ -123,6 +123,12 @@ function hello_theme_add_ga_gtm_script_to_thank_you_page() {
                         'event': 'not_completed',
                         'transactionProducts': <?php echo $products_json; ?>
                     });
+
+                    // Facebook Meta Pixel Not Completed Event
+                    fbq('track', 'NotCompleted', {
+                        contents: <?php echo $products_json; ?>,
+                        content_type: 'product'
+                    });
                 </script>
                 <?php
             }
@@ -140,6 +146,8 @@ function hello_theme_add_ga_gtm_script_to_thank_you_page() {
                 'event': 'page_view',
                 'page_id': <?php echo $thank_you_page_id; ?>
             });
+            // Facebook Meta Pixel PageView Event
+            fbq('track', 'PageView');
         </script>
         <?php
     }
