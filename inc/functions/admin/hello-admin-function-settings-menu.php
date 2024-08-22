@@ -111,6 +111,7 @@ function hello_theme_register_settings() {
     register_setting( 'hello_woocommerce_settings_group', 'skip_cart_page' );
     register_setting( 'hello_woocommerce_settings_group', 'disable_shop_page' );
     register_setting( 'hello_woocommerce_settings_group', 'disable_product_page' );
+    register_setting( 'hello_woocommerce_settings_group', 'enable_ecommerce_tracking' );
     register_setting( 'hello_woocommerce_settings_group', 'hello_theme_thank_you_page_url' );
     register_setting( 'hello_woocommerce_settings_group', 'hello_theme_failed_page_url' );
     register_setting( 'hello_woocommerce_settings_group', 'hello_theme_on_hold_page_url' );
@@ -158,6 +159,14 @@ function hello_theme_register_settings() {
         'disable_product_page',
         'Disable Product Page',
         'hello_theme_disable_product_page_callback',
+        'hello-woocommerce-settings',
+        'hello_woocommerce_settings_section'
+    );
+
+    add_settings_field(
+        'enable_ecommerce_tracking',
+        'Enable E-Commerce Tracking',
+        'hello_theme_enable_ecommerce_tracking_callback',
         'hello-woocommerce-settings',
         'hello_woocommerce_settings_section'
     );
@@ -321,6 +330,13 @@ function hello_theme_disable_product_page_callback() {
     $options = get_option( 'disable_product_page' );
     ?>
     <input type="checkbox" name="disable_product_page" value="1" <?php checked( 1, $options, true ); ?> />
+    <?php
+}
+
+function hello_theme_enable_ecommerce_tracking_callback() {
+    $options = get_option( 'enable_ecommerce_tracking' );
+    ?>
+    <input type="checkbox" name="enable_ecommerce_tracking" value="1" <?php checked( 1, $options, true ); ?> />
     <?php
 }
 
