@@ -8,7 +8,7 @@
  * @package HelloTheme
  */
 
-function hello_theme_challenge_selection_shortcode($atts) {
+function hello_theme_challenge_selection_shortcodes($atts) {
     $enabled_pricing_table = get_option('hello_theme_enable_table_pricing');
     $atts = shortcode_atts(
         array(
@@ -79,7 +79,7 @@ function hello_theme_challenge_selection_shortcode($atts) {
     <?php
     return ob_get_clean();
 }
-add_shortcode('hello_challenge_selection', 'hello_theme_challenge_selection_shortcode');
+add_shortcode('hello_challenge_selection', 'hello_theme_challenge_selection_shortcodes');
 
 function custom_product_selection_shortcode() {
     ob_start(); // Memulai output buffering untuk menampung output shortcode
@@ -269,6 +269,185 @@ function hello_theme_save_addon_product_fields_checkbox_fields($post_id) {
 add_action('woocommerce_process_product_meta', 'hello_theme_save_addon_product_fields_checkbox_fields');
 
 
+function hello_theme_challenge_selection_shortcode($atts) {
+    // Extract shortcode attributes
+    $atts = shortcode_atts(
+        array(
+            'category'      => '',
+            'type_account'  => 'yes',
+            'addons'        => 'yes',
+        ), 
+        $atts, 
+        'hello_challenge_selection'
+    );
 
+    // Convert categories to array
+    $categories = explode(',', $atts['category']);
 
+    // Start output buffering
+    ob_start();
+    ?>
+
+    <div id="challenge-selection-container">
+        <div class="selection-left">
+            <!-- Category Selection -->
+            <h3>Category</h3>
+            <div id="category-selection">
+                <?php foreach($categories as $category) : ?>
+                    <button class="category-btn" data-category="<?php echo trim($category); ?>"><?php echo ucfirst(trim($category)); ?></button>
+                <?php endforeach; ?>
+            </div>
+
+            <!-- Product Selection (Slider or Range) -->
+            <h3>Balance</h3>
+            <div id="product-selection">
+                <!-- Product selection bar will be dynamically loaded based on selected category -->
+            </div>
+
+            <!-- Type of Account -->
+            <?php if($atts['type_account'] === 'yes'): ?>
+                <h3>Type of Account</h3>
+                <div id="type-account-selection">
+                    <input type="radio" id="standard" name="account_type" value="standard" checked>
+                    <label for="standard">Standard Account</label><br>
+                    <input type="radio" id="swing" name="account_type" value="swing">
+                    <label for="swing">Swing Account</label>
+                </div>
+            <?php endif; ?>
+
+            <!-- Addons -->
+            <?php if($atts['addons'] === 'yes'): ?>
+                <h3>Add-ons</h3>
+                <div id="addons-selection">
+                    <!-- Add-ons will be dynamically loaded based on selected category -->
+                </div>
+            <?php endif; ?>
+        </div>
+
+        <div class="selection-right">
+            <!-- Display product image -->
+            <img id="product-image" src="" alt="Product Image">
+            <!-- Display product price -->
+            <p id="product-price"></p>
+            <!-- Checkout Button -->
+            <a id="checkout-button" href="#">Continue</a>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            // Handle category selection
+            $('.category-btn').click(function() {
+                var category = $(this).data('category');
+                loadProducts(category);
+                loadAddons(category);
+            });
+
+            // Handle product and addon selection, update the checkout button
+            $(document).on('change', '#product-selection input, #type-account-selection input, #addons-selection input', function() {
+                updateCheckoutLink();
+            });
+
+            function loadProducts(category) {
+                // Implement AJAX request to load products based on the selected category
+                $.ajax({
+                    url: ajaxurl, // WordPress AJAX URL
+                    type: 'POST',
+                    data: {
+                        action: 'load_products',
+                        category: category
+                    },
+                    success: function(response) {
+                        $('#product-selection').html(response);
+                    }
+                });
+            }
+
+            function loadAddons(category) {
+                // Implement AJAX request to load addons based on the selected category
+                $.ajax({
+                    url: ajaxurl,
+                    type: 'POST',
+                    data: {
+                        action: 'load_addons',
+                        category: category
+                    },
+                    success: function(response) {
+                        $('#addons-selection').html(response);
+                    }
+                });
+            }
+
+            function updateCheckoutLink() {
+                // Collect selected values
+                var product_id = $('#product-selection input:checked').val();
+                var account_type = $('#type-account-selection input:checked').val();
+                var addons = [];
+                $('#addons-selection input:checked').each(function() {
+                    addons.push($(this).val());
+                });
+
+                // Generate the final checkout URL
+                var checkout_url = '/checkout/?add-to-cart=' + product_id;
+                if (addons.length > 0) {
+                    checkout_url += '+' + addons.join('+');
+                }
+
+                // Update the checkout button
+                $('#checkout-button').attr('href', checkout_url);
+            }
+        });
+    </script>
+
+    <?php
+    return ob_get_clean();
+}
+add_shortcode('hello_challenge_selection', 'hello_theme_challenge_selection_shortcode');
+
+// AJAX handler to load products based on category
+function load_products() {
+    $category = $_POST['category'];
+    
+    // Query products based on category
+    $args = array(
+        'post_type' => 'product',
+        'posts_per_page' => -1,
+        'product_cat' => $category
+    );
+
+    $products = new WP_Query($args);
+
+    if($products->have_posts()) {
+        while($products->have_posts()) : $products->the_post();
+            $product_id = get_the_ID();
+            $product_name = get_the_title();
+            $product_price = wc_get_price_to_display(wc_get_product($product_id));
+
+            // Display products in a radio button style or selection bar
+            echo '<input type="radio" name="product_id" value="'.esc_attr($product_id).'" data-price="'.esc_attr($product_price).'" data-image="'.esc_attr(get_the_post_thumbnail_url()).'">'.esc_html($product_name).' ($'.esc_html($product_price).')<br>';
+        endwhile;
+    }
+
+    wp_die();
+}
+add_action('wp_ajax_load_products', 'load_products');
+add_action('wp_ajax_nopriv_load_products', 'load_products');
+
+// AJAX handler to load addons based on category
+function load_addons() {
+    $category = $_POST['category'];
+
+    // Display add-ons based on category
+    if($category == 'base-camp') {
+        echo '<input type="checkbox" name="addon" value="active-days"> Active Days: 21 Days<br>';
+        echo '<input type="checkbox" name="addon" value="profit-split"> Profit Split<br>';
+    } elseif($category == 'the-peak') {
+        echo '<input type="checkbox" name="addon" value="active-days-bi-weekly"> Active Days: Bi-weekly<br>';
+        echo '<input type="checkbox" name="addon" value="no-minimum-trading-days"> Trading Days: No minimum trading days<br>';
+    }
+
+    wp_die();
+}
+add_action('wp_ajax_load_addons', 'load_addons');
+add_action('wp_ajax_nopriv_load_addons', 'load_addons');
 
