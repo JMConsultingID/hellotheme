@@ -181,7 +181,8 @@ function hello_theme_add_account_type_field() {
             'options'     => array(
                 'standard' => __('Standard Account', 'woocommerce'),
                 'swing'    => __('Swing Account', 'woocommerce')
-            )
+            ),
+            'default'     => 'standard' // Set "Standard Account" as default
         )
     );
 
