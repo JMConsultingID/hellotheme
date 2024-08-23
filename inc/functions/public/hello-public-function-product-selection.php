@@ -167,56 +167,71 @@ add_action('wp_ajax_nopriv_load_products_by_category', 'load_products_by_categor
 
 
 // Add custom fields for Base Camp and The Peak categories
-function hello_theme_adding_addon_product_fields() {
+function hello_theme_add_addon_product_fields() {
     global $post;
 
     echo '<div class="options_group">';
 
-    // Custom fields for Base Camp category
+    // Custom checkbox fields for Base Camp category
     if (has_term('base-camp', 'product_cat', $post)) {
-        woocommerce_wp_text_input(
+        woocommerce_wp_checkbox(
             array(
                 'id'          => '_basecamp_active_days',
                 'label'       => __('Active Days: 21 Days', 'woocommerce'),
-                'placeholder' => '',
-                'desc_tip'    => 'true',
-                'description' => __('Add the active days for Base Camp category.', 'woocommerce')
+                'description' => __('Check this if Active Days is 21 Days for Base Camp category.', 'woocommerce'),
+                'desc_tip'    => 'true'
             )
         );
-        woocommerce_wp_text_input(
+        woocommerce_wp_checkbox(
             array(
                 'id'          => '_basecamp_profit_split',
                 'label'       => __('Profit Split', 'woocommerce'),
-                'placeholder' => '50%/70%/80%',
-                'desc_tip'    => 'true',
-                'description' => __('Add the profit split percentage for Base Camp category.', 'woocommerce')
+                'description' => __('Check this if Profit Split is available for Base Camp category.', 'woocommerce'),
+                'desc_tip'    => 'true'
             )
         );
     }
 
-    // Custom fields for The Peak category
+    // Custom checkbox fields for The Peak category
     if (has_term('the-peak', 'product_cat', $post)) {
-        woocommerce_wp_text_input(
+        woocommerce_wp_checkbox(
             array(
                 'id'          => '_thepeak_active_days',
                 'label'       => __('Active Days: Bi-weekly', 'woocommerce'),
-                'placeholder' => '',
-                'desc_tip'    => 'true',
-                'description' => __('Add the active days for The Peak category.', 'woocommerce')
+                'description' => __('Check this if Active Days is Bi-weekly for The Peak category.', 'woocommerce'),
+                'desc_tip'    => 'true'
             )
         );
-        woocommerce_wp_text_input(
+        woocommerce_wp_checkbox(
             array(
                 'id'          => '_thepeak_trading_days',
                 'label'       => __('Trading Days: No minimum trading days', 'woocommerce'),
-                'placeholder' => '',
-                'desc_tip'    => 'true',
-                'description' => __('Add the trading days for The Peak category.', 'woocommerce')
+                'description' => __('Check this if Trading Days has no minimum days for The Peak category.', 'woocommerce'),
+                'desc_tip'    => 'true'
             )
         );
     }
 
     echo '</div>';
 }
-add_action('woocommerce_product_options_pricing', 'hello_theme_adding_addon_product_fields');
+add_action('woocommerce_product_options_pricing', 'hello_theme_add_addon_product_fields');
+
+// Save the custom checkbox fields data
+function hello_theme_save_addon_product_fields_checkbox_fields($post_id) {
+    // Save Base Camp checkbox fields
+    $basecamp_active_days = isset($_POST['_basecamp_active_days']) ? 'yes' : 'no';
+    update_post_meta($post_id, '_basecamp_active_days', $basecamp_active_days);
+
+    $basecamp_profit_split = isset($_POST['_basecamp_profit_split']) ? 'yes' : 'no';
+    update_post_meta($post_id, '_basecamp_profit_split', $basecamp_profit_split);
+
+    // Save The Peak checkbox fields
+    $thepeak_active_days = isset($_POST['_thepeak_active_days']) ? 'yes' : 'no';
+    update_post_meta($post_id, '_thepeak_active_days', $thepeak_active_days);
+
+    $thepeak_trading_days = isset($_POST['_thepeak_trading_days']) ? 'yes' : 'no';
+    update_post_meta($post_id, '_thepeak_trading_days', $thepeak_trading_days);
+}
+add_action('woocommerce_process_product_meta', 'hello_theme_save_addon_product_fields_checkbox_fields');
+
 
