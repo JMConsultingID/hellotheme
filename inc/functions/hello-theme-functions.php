@@ -54,7 +54,6 @@ function hello_theme_pricing_table_live() {
         wp_enqueue_script( 'hello-theme-tippy-js', get_stylesheet_directory_uri() . '/assets/js/tippy-bundle.umd.min.js', array(), null, true );
 
         wp_enqueue_script( 'hello-theme-pricing-table-level-all-js', get_stylesheet_directory_uri() . '/assets/js/hello-theme-pricing-table-level-all.js', array('jquery', 'hello-theme-swiper-bundle-js','hello-theme-popper-js', 'hello-theme-tippy-js'), HELLO_THEME_VERSION, true );
-
         // wp_enqueue_script( 'hello-theme-pricing-table-level-1-js', get_stylesheet_directory_uri() . '/assets/js/hello-theme-pricing-table-level-1.js', array('jquery', 'hello-theme-swiper-bundle-js','hello-theme-popper-js', 'hello-theme-tippy-js'), HELLO_THEME_VERSION, true );
         // wp_enqueue_script( 'hello-theme-pricing-table-level-2-js', get_stylesheet_directory_uri() . '/assets/js/hello-theme-pricing-table-level-2.js', array('jquery', 'hello-theme-swiper-bundle-js','hello-theme-popper-js', 'hello-theme-tippy-js'), HELLO_THEME_VERSION, true );
         // wp_enqueue_script( 'hello-theme-pricing-table-group-level-1-js', get_stylesheet_directory_uri() . '/assets/js/hello-theme-pricing-table.js', array('jquery', 'hello-theme-swiper-bundle-js','hello-theme-popper-js', 'hello-theme-tippy-js'), HELLO_THEME_VERSION, true );
@@ -62,3 +61,12 @@ function hello_theme_pricing_table_live() {
     }
 }
 add_action( 'wp_enqueue_scripts', 'hello_theme_pricing_table_live', 20);
+
+function hello_theme_enqueue_product_selection() {
+    $enabled_product_selection = get_option('enable_product_selection_pages');
+    if ($enabled_product_selection === '1') {
+        wp_enqueue_script('hello-theme-product-selection-js', get_stylesheet_directory_uri() . '/assets/js/products-selection-challenge.js', array('jquery'), null, true);
+        wp_localize_script('hello-theme-product-selection-js', 'ajax_object', array('ajaxurl' => admin_url('admin-ajax.php')));
+    }
+}
+add_action('wp_enqueue_scripts', 'hello_theme_enqueue_product_selection', 21);
