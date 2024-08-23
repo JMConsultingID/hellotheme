@@ -164,3 +164,59 @@ function load_products_by_category() {
 }
 add_action('wp_ajax_load_products_by_category', 'load_products_by_category');
 add_action('wp_ajax_nopriv_load_products_by_category', 'load_products_by_category');
+
+
+// Add custom fields for Base Camp and The Peak categories
+function hello_theme_adding_addon_product_fields() {
+    global $post;
+
+    echo '<div class="options_group">';
+
+    // Custom fields for Base Camp category
+    if (has_term('base-camp', 'product_cat', $post)) {
+        woocommerce_wp_text_input(
+            array(
+                'id'          => '_basecamp_active_days',
+                'label'       => __('Active Days: 21 Days', 'woocommerce'),
+                'placeholder' => '',
+                'desc_tip'    => 'true',
+                'description' => __('Add the active days for Base Camp category.', 'woocommerce')
+            )
+        );
+        woocommerce_wp_text_input(
+            array(
+                'id'          => '_basecamp_profit_split',
+                'label'       => __('Profit Split', 'woocommerce'),
+                'placeholder' => '50%/70%/80%',
+                'desc_tip'    => 'true',
+                'description' => __('Add the profit split percentage for Base Camp category.', 'woocommerce')
+            )
+        );
+    }
+
+    // Custom fields for The Peak category
+    if (has_term('the-peak', 'product_cat', $post)) {
+        woocommerce_wp_text_input(
+            array(
+                'id'          => '_thepeak_active_days',
+                'label'       => __('Active Days: Bi-weekly', 'woocommerce'),
+                'placeholder' => '',
+                'desc_tip'    => 'true',
+                'description' => __('Add the active days for The Peak category.', 'woocommerce')
+            )
+        );
+        woocommerce_wp_text_input(
+            array(
+                'id'          => '_thepeak_trading_days',
+                'label'       => __('Trading Days: No minimum trading days', 'woocommerce'),
+                'placeholder' => '',
+                'desc_tip'    => 'true',
+                'description' => __('Add the trading days for The Peak category.', 'woocommerce')
+            )
+        );
+    }
+
+    echo '</div>';
+}
+add_action('woocommerce_product_options_pricing', 'hello_theme_adding_addon_product_fields');
+

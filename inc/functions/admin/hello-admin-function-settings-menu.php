@@ -47,6 +47,15 @@ function hello_theme_add_menu_page() {
         'hello_theme_woocommerce_settings_page'
     );   
 
+    add_submenu_page(
+        'hello-theme-panel',
+        'Hello Products',
+        'Hello Products',
+        'manage_options',
+        'hello-product-selection-settings',
+        'hello_theme_product_selection_settings_page'
+    );  
+
 }
 add_action( 'admin_menu', 'hello_theme_add_menu_page' );
 
@@ -65,6 +74,21 @@ function hello_theme_woocommerce_settings_page() {
             <?php
             settings_fields( 'hello_woocommerce_settings_group' );
             do_settings_sections( 'hello-woocommerce-settings' );
+            submit_button();
+            ?>
+        </form>
+    </div>
+    <?php
+}
+
+function hello_theme_product_selection_settings_page() {
+    ?>
+    <div class="wrap">
+        <h1>Hello Product Selection Settings</h1>
+        <form method="post" action="options.php">
+            <?php
+            settings_fields( 'hello_product_selection_settings_group' );
+            do_settings_sections( 'hello-product-selection-settings' );
             submit_button();
             ?>
         </form>
@@ -197,6 +221,28 @@ function hello_theme_register_settings() {
     );
 }
 add_action( 'admin_init', 'hello_theme_register_settings' );
+
+// Mendaftarkan pengaturan dan bagian pengaturan untuk WooCommerce
+function hello_theme_register_product_selection_settings() {
+    register_setting( 'hello_product_selection_settings_group', 'enable_product_selection_pages' );
+
+    add_settings_section(
+        'hello_product_selection_settings_section',
+        'Hello Theme Product Selection Settings',
+        'hello_table_product_selection_section_callback',
+        'hello-product-selection-settings'
+    );
+
+    add_settings_field(
+        'enable_product_selection_pages',
+        'Enable Thank You Page Redirect',
+        'hello_theme_enable_product_selection_pages_callback',
+        'hello-product-selection-settings',
+        'hello_product_selection_settings_section'
+    );
+
+}
+add_action( 'admin_init', 'hello_theme_register_product_selection_settings' );
 
 // Mendaftarkan pengaturan dan bagian pengaturan untuk Affiliate WP
 function hello_theme_register_affiliatewp_settings() {
@@ -381,6 +427,10 @@ function hello_affiliatewp_settings_section_callback() {
     echo '<p>Configure your AffiliateWP settings below.</p>';
 }
 
+function hello_product_selection_settings_section_callback() {
+    echo '<p>Configure your Product Selections below.</p>';
+}
+
 function hello_table_pricing_settings_section_callback() {
     // Get the base URL of the site
     $site_url = home_url();
@@ -479,6 +529,13 @@ function hello_theme_on_hold_page_url_callback() {
         }
         ?>
     </select>
+    <?php
+}
+
+function hello_theme_enable_product_selection_pages_callback() {
+    $options = get_option( 'enable_product_selection_pages' );
+    ?>
+    <input type="checkbox" name="enable_product_selection_pages" value="1" <?php checked( 1, $options, true ); ?> />
     <?php
 }
 
