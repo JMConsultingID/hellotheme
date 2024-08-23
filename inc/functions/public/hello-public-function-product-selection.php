@@ -79,7 +79,7 @@ function hello_theme_challenge_selection_shortcodes($atts) {
     <?php
     return ob_get_clean();
 }
-add_shortcode('hello_challenge_selection', 'hello_theme_challenge_selection_shortcodes');
+add_shortcode('hello_challenge_selections', 'hello_theme_challenge_selection_shortcodes');
 
 function custom_product_selection_shortcode() {
     ob_start(); // Memulai output buffering untuk menampung output shortcode
