@@ -9,6 +9,7 @@
  */
 // Helper
 $enabled_pricing_table = get_option('hello_theme_enable_table_pricing');
+$enabled_product_selection = get_option('enable_product_selection_pages');
 require_once get_stylesheet_directory() . '/inc/functions/helper/hello-theme-helper.php';
 
 // Admin Settings
@@ -23,7 +24,10 @@ require_once get_stylesheet_directory() . '/inc/functions/public/hello-public-fu
 require_once get_stylesheet_directory() . '/inc/functions/public/hello-public-function-pricing-table-level-2.php';
 require_once get_stylesheet_directory() . '/inc/functions/public/hello-public-function-pricing-table-dev.php';
 require_once get_stylesheet_directory() . '/inc/functions/public/hello-public-function-woocommerce.php';
-require_once get_stylesheet_directory() . '/inc/functions/public/hello-public-function-product-selection.php';
+
+if ($enabled_product_selection === '1') {
+    require_once get_stylesheet_directory() . '/inc/functions/public/hello-public-function-product-selection.php';
+}
 
 // if ($enabled_pricing_table === '1') {
 //     require_once get_stylesheet_directory() . '/inc/functions/helper/hello-theme-acf-import-field.php';
