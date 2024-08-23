@@ -235,7 +235,7 @@ function hello_theme_register_product_selection_settings() {
 
     add_settings_field(
         'enable_product_selection_pages',
-        'Enable Thank You Page Redirect',
+        'Enable Product Selection',
         'hello_theme_enable_product_selection_pages_callback',
         'hello-product-selection-settings',
         'hello_product_selection_settings_section'
