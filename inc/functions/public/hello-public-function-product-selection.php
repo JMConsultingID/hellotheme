@@ -165,6 +165,30 @@ function load_products_by_category() {
 add_action('wp_ajax_load_products_by_category', 'load_products_by_category');
 add_action('wp_ajax_nopriv_load_products_by_category', 'load_products_by_category');
 
+// Add custom radio buttons for Account Type
+function hello_theme_add_account_type_field() {
+    global $post;
+
+    echo '<div class="options_group">';
+
+    // Custom radio buttons for Account Type
+    woocommerce_wp_radio(
+        array(
+            'id'          => '_account_type',
+            'label'       => __('Account Type', 'woocommerce'),
+            'description' => __('Select the account type for this product.', 'woocommerce'),
+            'desc_tip'    => 'true',
+            'options'     => array(
+                'standard' => __('Standard Account', 'woocommerce'),
+                'swing'    => __('Swing Account', 'woocommerce')
+            )
+        )
+    );
+
+    echo '</div>';
+}
+add_action('woocommerce_product_options_pricing', 'hello_theme_add_account_type_field');
+
 
 // Add custom fields for Base Camp and The Peak categories
 function hello_theme_add_addon_product_fields() {
@@ -216,6 +240,15 @@ function hello_theme_add_addon_product_fields() {
 }
 add_action('woocommerce_product_options_pricing', 'hello_theme_add_addon_product_fields');
 
+// Save the custom radio button field data
+function hello_theme_save_account_type_field($post_id) {
+    if (isset($_POST['_account_type'])) {
+        update_post_meta($post_id, '_account_type', sanitize_text_field($_POST['_account_type']));
+    }
+}
+add_action('woocommerce_process_product_meta', 'hello_theme_save_account_type_field');
+
+
 // Save the custom checkbox fields data
 function hello_theme_save_addon_product_fields_checkbox_fields($post_id) {
     // Save Base Camp checkbox fields
@@ -233,5 +266,8 @@ function hello_theme_save_addon_product_fields_checkbox_fields($post_id) {
     update_post_meta($post_id, '_thepeak_trading_days', $thepeak_trading_days);
 }
 add_action('woocommerce_process_product_meta', 'hello_theme_save_addon_product_fields_checkbox_fields');
+
+
+
 
 
