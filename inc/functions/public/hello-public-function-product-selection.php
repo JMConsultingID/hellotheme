@@ -202,7 +202,7 @@ function hello_theme_add_addon_product_fields() {
         woocommerce_wp_checkbox(
             array(
                 'id'          => '_basecamp_active_days',
-                'label'       => __('Active Days: 21 Days', 'woocommerce'),
+                'label'       => __('active days: 21 days', 'woocommerce'),
                 'description' => __('Check this if Active Days is 21 Days for Base Camp category.', 'woocommerce'),
                 'desc_tip'    => 'true'
             )
@@ -210,7 +210,7 @@ function hello_theme_add_addon_product_fields() {
         woocommerce_wp_checkbox(
             array(
                 'id'          => '_basecamp_profit_split',
-                'label'       => __('Profit Split', 'woocommerce'),
+                'label'       => __('profit split: 50%/70%/80%', 'woocommerce'),
                 'description' => __('Check this if Profit Split is available for Base Camp category.', 'woocommerce'),
                 'desc_tip'    => 'true'
             )
