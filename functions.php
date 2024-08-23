@@ -84,3 +84,50 @@ add_filter( 'affwp_get_referring_affiliate_id', function( $affiliate_id, $refere
 
    return $affiliate_id;
 }, 10, 3 );
+
+// AJAX handler to load products based on category
+function load_products() {
+    $category = $_POST['category'];
+    
+    // Query products based on category
+    $args = array(
+        'post_type' => 'product',
+        'posts_per_page' => -1,
+        'product_cat' => $category
+    );
+
+    $products = new WP_Query($args);
+
+    if($products->have_posts()) {
+        while($products->have_posts()) : $products->the_post();
+            $product_id = get_the_ID();
+            $product_name = get_the_title();
+            $product_price = wc_get_price_to_display(wc_get_product($product_id));
+
+            // Display products in a radio button style or selection bar
+            echo '<input type="radio" name="product_id" value="'.esc_attr($product_id).'" data-price="'.esc_attr($product_price).'" data-image="'.esc_attr(get_the_post_thumbnail_url()).'">'.esc_html($product_name).' ($'.esc_html($product_price).')<br>';
+        endwhile;
+    }
+
+    wp_die();
+}
+add_action('wp_ajax_load_products', 'load_products');
+add_action('wp_ajax_nopriv_load_products', 'load_products');
+
+// AJAX handler to load addons based on category
+function load_addons() {
+    $category = $_POST['category'];
+
+    // Display add-ons based on category
+    if($category == 'base-camp') {
+        echo '<input type="checkbox" name="addon" value="active-days"> Active Days: 21 Days<br>';
+        echo '<input type="checkbox" name="addon" value="profit-split"> Profit Split<br>';
+    } elseif($category == 'the-peak') {
+        echo '<input type="checkbox" name="addon" value="active-days-bi-weekly"> Active Days: Bi-weekly<br>';
+        echo '<input type="checkbox" name="addon" value="no-minimum-trading-days"> Trading Days: No minimum trading days<br>';
+    }
+
+    wp_die();
+}
+add_action('wp_ajax_load_addons', 'load_addons');
+add_action('wp_ajax_nopriv_load_addons', 'load_addons');
