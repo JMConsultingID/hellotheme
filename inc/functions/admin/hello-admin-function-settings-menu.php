@@ -229,7 +229,7 @@ function hello_theme_register_product_selection_settings() {
     add_settings_section(
         'hello_product_selection_settings_section',
         'Hello Theme Product Selection Settings',
-        'hello_table_product_selection_section_callback',
+        'hello_product_selection_settings_section_callback',
         'hello-product-selection-settings'
     );
 
