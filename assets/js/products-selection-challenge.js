@@ -1,28 +1,45 @@
 jQuery(document).ready(function($) {
-    // Handle category selection
-    $('input[name="product-category"]').change(function() {
-        var selectedCategory = $(this).val();
+    function updateProductSelection() {
+        // Get selected category
+        var category = $('#category-select').val();
+        // Get selected account type
+        var accountType = $('input[name="account_type"]:checked').val();
+        // Get selected add-ons
+        var activeDays = $('#addon-active-days').is(':checked') ? 'yes' : 'no';
+        var profitSplit = $('#addon-profit-split').is(':checked') ? 'yes' : 'no';
+        var tradingDays = $('#addon-trading-days').is(':checked') ? 'yes' : 'no';
 
-        // Make AJAX request to fetch products based on selected category
+        // AJAX call to get the product ID based on the selections
         $.ajax({
             url: ajax_object.ajaxurl,
             type: 'POST',
             data: {
-                action: 'fetch_products_by_category',
-                category: selectedCategory
+                action: 'get_product_id_based_on_selection',
+                category: category,
+                account_type: accountType,
+                active_days: activeDays,
+                profit_split: profitSplit,
+                trading_days: tradingDays
             },
             success: function(response) {
-                // Update the product options section with the response data
-                $('#product-options').html(response);
-                
-                // Re-enable the checkout button if products are available
-                $('#checkout-button').prop('disabled', false);
-            },
-            error: function(xhr, status, error) {
-                console.error('AJAX Error:', status, error);
+                if (response.success) {
+                    // Update the checkout button href
+                    $('#checkout-button').attr('href', '/checkout/?add-to-cart=' + response.data.product_id);
+                    $('#checkout-button').removeAttr('disabled');
+                } else {
+                    // Disable the checkout button if no product is found
+                    $('#checkout-button').attr('href', '#');
+                    $('#checkout-button').attr('disabled', true);
+                }
             }
         });
+    }
+
+    // Event listeners
+    $('#category-select, input[name="account_type"], #addon-active-days, #addon-profit-split, #addon-trading-days').on('change', function() {
+        updateProductSelection();
     });
 
-    // Handle product selection and add-ons logic here (to be added later)
+    // Initial call to set up the form
+    updateProductSelection();
 });

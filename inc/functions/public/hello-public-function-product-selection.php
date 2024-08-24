@@ -269,181 +269,140 @@ function hello_theme_save_addon_product_fields_checkbox_fields($post_id) {
 add_action('woocommerce_process_product_meta', 'hello_theme_save_addon_product_fields_checkbox_fields');
 
 
-function hello_theme_challenge_selection_shortcode($atts) {
-    // Default attributes
-    $atts = shortcode_atts(array(
-        'category' => 'base-camp, the-peak',
-        'type_account' => 'yes',
-        'addons' => 'yes'
-    ), $atts, 'hello_challenge_selection');
+function hello_challenge_selection_shortcode($atts) {
+    // Get shortcode attributes
+    $atts = shortcode_atts(
+        array(
+            'category' => 'base-camp,the-peak'
+        ),
+        $atts,
+        'hello_challenge_selection'
+    );
 
-    // Explode categories
+    // Convert category attribute to array
     $categories = explode(',', $atts['category']);
-    $categories = array_map('trim', $categories);
 
-    // Generate HTML for form
+    // Start output buffering
     ob_start();
     ?>
-    <div id="challenge-selection-form">
+    <div id="product-selection-form">
         <!-- Category Selection -->
-        <h3>Select Category</h3>
+        <label for="category-select">Pilih Kategori:</label>
         <select id="category-select">
-            <?php foreach ($categories as $category): ?>
-                <option value="<?php echo esc_attr($category); ?>"><?php echo ucfirst(trim($category)); ?></option>
+            <?php foreach ($categories as $category) : ?>
+                <option value="<?php echo esc_attr($category); ?>"><?php echo ucfirst($category); ?></option>
             <?php endforeach; ?>
         </select>
 
-        <!-- Account Type Selection -->
-        <?php if ($atts['type_account'] == 'yes'): ?>
-            <h3>Select Account Type</h3>
-            <input type="radio" id="standard_account" name="account_type" value="standard">
-            <label for="standard_account">Standard Account</label>
-            <input type="radio" id="swing_account" name="account_type" value="swing">
-            <label for="swing_account">Swing Account</label>
-        <?php endif; ?>
+        <!-- Product Bar Selection -->
+        <div id="product-bar">
+            <!-- Produk akan dimuat di sini berdasarkan kategori yang dipilih -->
+        </div>
 
-        <!-- Add-ons Selection -->
-        <?php if ($atts['addons'] == 'yes'): ?>
-            <h3>Select Add-ons</h3>
-            <input type="checkbox" id="active_days" name="addon" value="active_days">
-            <label for="active_days">Active Days</label>
-            <input type="checkbox" id="profit_split" name="addon" value="profit_split">
-            <label for="profit_split">Profit Split</label>
-            <input type="checkbox" id="trading_days" name="addon" value="trading_days" style="display: none;">
-            <label for="trading_days" style="display: none;">Trading Days</label>
-        <?php endif; ?>
+        <!-- Type of Account (Radio Buttons) -->
+        <div id="account-type">
+            <label><input type="radio" name="account_type" value="standard" checked> Standard Account</label>
+            <label><input type="radio" name="account_type" value="swing"> Swing Account</label>
+        </div>
 
-        <!-- Product Selection -->
-        <h3>Select Product</h3>
-        <select id="product-select">
-            <!-- Options will be dynamically loaded here -->
-        </select>
+        <!-- Add-ons (Checkboxes) -->
+        <div id="addons">
+            <!-- Add-ons akan dimuat di sini berdasarkan kategori yang dipilih -->
+        </div>
 
-        <!-- Checkout Button -->
-        <div id="checkout-button-container">
-            <a id="checkout-button" href="#" class="button disabled">Continue</a>
+        <!-- Display product price and checkout button -->
+        <div id="product-summary">
+            <p id="product-price">Harga: <span id="selected-product-price"></span></p>
+            <a id="checkout-button" href="#" class="button" disabled>Continue to Checkout</a>
         </div>
     </div>
-
-    <script>
-        jQuery(document).ready(function($) {
-            function updateProductOptions() {
-                var category = $('#category-select').val();
-                var accountType = $('input[name="account_type"]:checked').val();
-
-                // Fetch products dynamically based on selected category and account type
-                $.ajax({
-                    url: ajax_object.ajaxurl,
-                    type: 'POST',
-                    data: {
-                        action: 'get_products_by_selection',
-                        category: category,
-                        accountType: accountType
-                    },
-                    success: function(response) {
-                        $('#product-select').html(response);
-                        updateCheckoutButton();
-                    }
-                });
-            }
-
-            function updateCheckoutButton() {
-                var category = $('#category-select').val();
-                var accountType = $('input[name="account_type"]:checked').val();
-                var productId = $('#product-select').val();
-                var addons = [];
-                $('input[name="addon"]:checked').each(function() {
-                    addons.push($(this).val());
-                });
-
-                // AJAX request to get the correct product ID dynamically
-                $.ajax({
-                    url: ajax_object.ajaxurl,
-                    type: 'POST',
-                    data: {
-                        action: 'get_dynamic_product_id',
-                        category: category,
-                        accountType: accountType,
-                        productId: productId,
-                        addons: addons
-                    },
-                    success: function(response) {
-                        if (response) {
-                            $('#checkout-button').attr('href', '/checkout/?add-to-cart=' + response);
-                            $('#checkout-button').removeClass('disabled');
-                        } else {
-                            $('#checkout-button').attr('href', '#');
-                            $('#checkout-button').addClass('disabled');
-                        }
-                    }
-                });
-            }
-
-            // Update products on selection change
-            $('#category-select, input[name="account_type"]').change(function() {
-                updateProductOptions();
-            });
-
-            // Update button on product or addon change
-            $('#product-select, input[name="addon"]').change(function() {
-                updateCheckoutButton();
-            });
-
-            // Initial call to populate products
-            updateProductOptions();
-        });
-    </script>
     <?php
-
     return ob_get_clean();
 }
-add_shortcode('hello_challenge_selection', 'hello_theme_challenge_selection_shortcode');
+add_shortcode('hello_challenge_selection', 'hello_challenge_selection_shortcode');
 
-function get_products_by_selection() {
+function get_product_id_based_on_selection() {
+    // Validasi request AJAX
+    if (!isset($_POST['category']) || !isset($_POST['account_type'])) {
+        wp_send_json_error(array('message' => 'Invalid request.'));
+        return;
+    }
+
+    // Ambil data dari AJAX request dan sanitasi input
     $category = sanitize_text_field($_POST['category']);
-    $accountType = sanitize_text_field($_POST['accountType']);
+    $account_type = sanitize_text_field($_POST['account_type']);
+    $active_days = isset($_POST['active_days']) && $_POST['active_days'] === 'yes';
+    $profit_split = isset($_POST['profit_split']) && $_POST['profit_split'] === 'yes';
+    $trading_days = isset($_POST['trading_days']) && $_POST['trading_days'] === 'yes';
 
-    // Query to fetch products dynamically
+    // Siapkan argumen untuk WP_Query
+    $meta_query = array(
+        'relation' => 'AND',  // Menggunakan 'AND' karena kita ingin semua kondisi sesuai
+        array(
+            'key' => 'product_category',
+            'value' => $category,
+            'compare' => '='
+        ),
+        array(
+            'key' => 'account_type',
+            'value' => $account_type,
+            'compare' => '='
+        )
+    );
+
+    // Tambahkan kondisi add-ons ke dalam query
+    if ($category === 'base-camp') {
+        if ($active_days) {
+            $meta_query[] = array(
+                'key' => 'addon_active_days',
+                'value' => 'yes',
+                'compare' => '='
+            );
+        }
+        if ($profit_split) {
+            $meta_query[] = array(
+                'key' => 'addon_profit_split',
+                'value' => 'yes',
+                'compare' => '='
+            );
+        }
+    } elseif ($category === 'the-peak') {
+        if ($active_days) {
+            $meta_query[] = array(
+                'key' => 'addon_active_days',
+                'value' => 'yes',
+                'compare' => '='
+            );
+        }
+        if ($trading_days) {
+            $meta_query[] = array(
+                'key' => 'addon_trading_days',
+                'value' => 'yes',
+                'compare' => '='
+            );
+        }
+    }
+
+    // WP_Query untuk mencari produk berdasarkan meta query
     $args = array(
         'post_type' => 'product',
-        'posts_per_page' => -1,
-        'tax_query' => array(
-            array(
-                'taxonomy' => 'product_cat',
-                'field' => 'slug',
-                'terms' => $category,
-            ),
-        ),
-        'meta_query' => array(
-            array(
-                'key' => '_account_type',
-                'value' => $accountType,
-                'compare' => '=',
-            ),
-        ),
+        'posts_per_page' => 1,
+        'meta_query' => $meta_query,
+        'fields' => 'ids'  // Mengambil hanya ID produk untuk efisiensi
     );
 
     $query = new WP_Query($args);
 
-    $output = '';
-
+    // Cek apakah produk ditemukan
     if ($query->have_posts()) {
-        while ($query->have_posts()) {
-            $query->the_post();
-            $product_id = get_the_ID();
-            $product_name = get_the_title();
-            $product_price = get_post_meta($product_id, '_price', true); // Get the product price
-
-            $output .= '<option value="' . esc_attr($product_id) . '">' . esc_html($product_name) . ' ($' . esc_html($product_price) . ')</option>';
-        }
+        $product_id = $query->posts[0];  // Mengambil ID produk pertama dari hasil query
+        wp_send_json_success(array('product_id' => $product_id));
     } else {
-        $output = '<option value="">No products available</option>';
+        wp_send_json_error(array('message' => 'No product found.'));
     }
 
-    wp_reset_postdata();
-    echo $output;
-    wp_die();
+    wp_die();  // Menghentikan eksekusi lebih lanjut
 }
-add_action('wp_ajax_get_products_by_selection', 'get_products_by_selection');
-add_action('wp_ajax_nopriv_get_products_by_selection', 'get_products_by_selection');
+add_action('wp_ajax_get_product_id_based_on_selection', 'get_product_id_based_on_selection');
+add_action('wp_ajax_nopriv_get_product_id_based_on_selection', 'get_product_id_based_on_selection');
 
