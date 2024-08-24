@@ -107,4 +107,4 @@ function hello_theme_product_combinations() {
     dbDelta($sql);
 }
 
-register_activation_hook(__FILE__, 'hello_theme_product_combinations');
+add_action('after_switch_theme', 'hello_theme_product_combinations');
