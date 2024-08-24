@@ -270,89 +270,180 @@ add_action('woocommerce_process_product_meta', 'hello_theme_save_addon_product_f
 
 
 function hello_theme_challenge_selection_shortcode($atts) {
-    // Parse the attributes
-    $atts = shortcode_atts(
-        array(
-            'category' => 'base-camp, the-peak',
-            'type_account' => 'yes',
-            'addons' => 'yes',
-        ), 
-        $atts, 
-        'hello_challenge_selection'
-    );
+    // Default attributes
+    $atts = shortcode_atts(array(
+        'category' => 'base-camp, the-peak',
+        'type_account' => 'yes',
+        'addons' => 'yes'
+    ), $atts, 'hello_challenge_selection');
 
-    // Convert categories to an array
+    // Explode categories
     $categories = explode(',', $atts['category']);
+    $categories = array_map('trim', $categories);
 
-    // Start output buffering
+    // Generate HTML for form
     ob_start();
     ?>
-
-    <div id="product-selection-form">
+    <div id="challenge-selection-form">
         <!-- Category Selection -->
-        <div class="category-selection">
-            <h3>Category</h3>
-            <?php foreach ($categories as $category) : ?>
-                <input type="radio" name="product-category" value="<?php echo trim($category); ?>" id="<?php echo trim($category); ?>">
-                <label for="<?php echo trim($category); ?>"><?php echo ucwords(trim($category)); ?></label>
+        <h3>Select Category</h3>
+        <select id="category-select">
+            <?php foreach ($categories as $category): ?>
+                <option value="<?php echo esc_attr($category); ?>"><?php echo ucfirst(trim($category)); ?></option>
             <?php endforeach; ?>
-        </div>
+        </select>
 
-        <!-- Placeholder for product and account type selection -->
-        <div id="product-options">
-            <!-- This will be populated by AJAX -->
-        </div>
+        <!-- Account Type Selection -->
+        <?php if ($atts['type_account'] == 'yes'): ?>
+            <h3>Select Account Type</h3>
+            <input type="radio" id="standard_account" name="account_type" value="standard">
+            <label for="standard_account">Standard Account</label>
+            <input type="radio" id="swing_account" name="account_type" value="swing">
+            <label for="swing_account">Swing Account</label>
+        <?php endif; ?>
 
-        <!-- Button for checkout -->
-        <div id="checkout-section">
-            <button id="checkout-button" disabled>Continue</button>
+        <!-- Add-ons Selection -->
+        <?php if ($atts['addons'] == 'yes'): ?>
+            <h3>Select Add-ons</h3>
+            <input type="checkbox" id="active_days" name="addon" value="active_days">
+            <label for="active_days">Active Days</label>
+            <input type="checkbox" id="profit_split" name="addon" value="profit_split">
+            <label for="profit_split">Profit Split</label>
+            <input type="checkbox" id="trading_days" name="addon" value="trading_days" style="display: none;">
+            <label for="trading_days" style="display: none;">Trading Days</label>
+        <?php endif; ?>
+
+        <!-- Product Selection -->
+        <h3>Select Product</h3>
+        <select id="product-select">
+            <!-- Options will be dynamically loaded here -->
+        </select>
+
+        <!-- Checkout Button -->
+        <div id="checkout-button-container">
+            <a id="checkout-button" href="#" class="button disabled">Continue</a>
         </div>
     </div>
 
+    <script>
+        jQuery(document).ready(function($) {
+            function updateProductOptions() {
+                var category = $('#category-select').val();
+                var accountType = $('input[name="account_type"]:checked').val();
+
+                // Fetch products dynamically based on selected category and account type
+                $.ajax({
+                    url: ajax_object.ajaxurl,
+                    type: 'POST',
+                    data: {
+                        action: 'get_products_by_selection',
+                        category: category,
+                        accountType: accountType
+                    },
+                    success: function(response) {
+                        $('#product-select').html(response);
+                        updateCheckoutButton();
+                    }
+                });
+            }
+
+            function updateCheckoutButton() {
+                var category = $('#category-select').val();
+                var accountType = $('input[name="account_type"]:checked').val();
+                var productId = $('#product-select').val();
+                var addons = [];
+                $('input[name="addon"]:checked').each(function() {
+                    addons.push($(this).val());
+                });
+
+                // AJAX request to get the correct product ID dynamically
+                $.ajax({
+                    url: ajax_object.ajaxurl,
+                    type: 'POST',
+                    data: {
+                        action: 'get_dynamic_product_id',
+                        category: category,
+                        accountType: accountType,
+                        productId: productId,
+                        addons: addons
+                    },
+                    success: function(response) {
+                        if (response) {
+                            $('#checkout-button').attr('href', '/checkout/?add-to-cart=' + response);
+                            $('#checkout-button').removeClass('disabled');
+                        } else {
+                            $('#checkout-button').attr('href', '#');
+                            $('#checkout-button').addClass('disabled');
+                        }
+                    }
+                });
+            }
+
+            // Update products on selection change
+            $('#category-select, input[name="account_type"]').change(function() {
+                updateProductOptions();
+            });
+
+            // Update button on product or addon change
+            $('#product-select, input[name="addon"]').change(function() {
+                updateCheckoutButton();
+            });
+
+            // Initial call to populate products
+            updateProductOptions();
+        });
+    </script>
     <?php
-    // End output buffering and return the content
+
     return ob_get_clean();
 }
 add_shortcode('hello_challenge_selection', 'hello_theme_challenge_selection_shortcode');
 
-function hello_theme_fetch_products_by_category() {
-    // Get the category from AJAX request
+function get_products_by_selection() {
     $category = sanitize_text_field($_POST['category']);
+    $accountType = sanitize_text_field($_POST['accountType']);
 
-    // Query products based on category
+    // Query to fetch products dynamically
     $args = array(
         'post_type' => 'product',
         'posts_per_page' => -1,
         'tax_query' => array(
             array(
                 'taxonomy' => 'product_cat',
-                'field'    => 'slug',
-                'terms'    => $category,
+                'field' => 'slug',
+                'terms' => $category,
+            ),
+        ),
+        'meta_query' => array(
+            array(
+                'key' => '_account_type',
+                'value' => $accountType,
+                'compare' => '=',
             ),
         ),
     );
 
-    $products = new WP_Query($args);
+    $query = new WP_Query($args);
 
-    if ($products->have_posts()) {
-        echo '<h3>Select a Product</h3>';
-        echo '<div class="product-selection">';
+    $output = '';
 
-        while ($products->have_posts()) {
-            $products->the_post();
-            $product = wc_get_product(get_the_ID());
+    if ($query->have_posts()) {
+        while ($query->have_posts()) {
+            $query->the_post();
+            $product_id = get_the_ID();
+            $product_name = get_the_title();
+            $product_price = get_post_meta($product_id, '_price', true); // Get the product price
 
-            // Output radio buttons for each product
-            echo '<input type="radio" name="product-id" value="' . $product->get_id() . '" id="product-' . $product->get_id() . '">';
-            echo '<label for="product-' . $product->get_id() . '">' . $product->get_name() . ' - ' . $product->get_price_html() . '</label><br>';
+            $output .= '<option value="' . esc_attr($product_id) . '">' . esc_html($product_name) . ' ($' . esc_html($product_price) . ')</option>';
         }
-
-        echo '</div>';
     } else {
-        echo '<p>No products available in this category.</p>';
+        $output = '<option value="">No products available</option>';
     }
 
-    wp_die(); // this is required to terminate immediately and return a proper response
+    wp_reset_postdata();
+    echo $output;
+    wp_die();
 }
-add_action('wp_ajax_fetch_products_by_category', 'hello_theme_fetch_products_by_category');
-add_action('wp_ajax_nopriv_fetch_products_by_category', 'hello_theme_fetch_products_by_category');
+add_action('wp_ajax_get_products_by_selection', 'get_products_by_selection');
+add_action('wp_ajax_nopriv_get_products_by_selection', 'get_products_by_selection');
+
