@@ -270,49 +270,89 @@ add_action('woocommerce_process_product_meta', 'hello_theme_save_addon_product_f
 
 
 function hello_theme_challenge_selection_shortcode($atts) {
-    // Extract shortcode attributes
+    // Parse the attributes
     $atts = shortcode_atts(
         array(
-            'category' => 'base-camp,the-peak',  // default categories
-            'type_account' => 'yes',  // show type account options by default
-            'addons' => 'yes'  // show addons options by default
-        ),
-        $atts,
+            'category' => 'base-camp, the-peak',
+            'type_account' => 'yes',
+            'addons' => 'yes',
+        ), 
+        $atts, 
         'hello_challenge_selection'
     );
 
     // Convert categories to an array
     $categories = explode(',', $atts['category']);
 
-    // Start output buffering to capture HTML output
+    // Start output buffering
     ob_start();
+    ?>
 
-    // Display category selection using radio buttons
-    echo '<div id="challenge-category-selection">';
-    echo '<h3>Select Category</h3>';
-    
-    foreach ($categories as $category) {
-        // Trim and convert category to lowercase
-        $category = trim($category);
-        $category_slug = strtolower(str_replace(' ', '-', $category));
+    <div id="product-selection-form">
+        <!-- Category Selection -->
+        <div class="category-selection">
+            <h3>Category</h3>
+            <?php foreach ($categories as $category) : ?>
+                <input type="radio" name="product-category" value="<?php echo trim($category); ?>" id="<?php echo trim($category); ?>">
+                <label for="<?php echo trim($category); ?>"><?php echo ucwords(trim($category)); ?></label>
+            <?php endforeach; ?>
+        </div>
 
-        // Output radio button for each category
-        echo '<label>';
-        echo '<input type="radio" name="challenge_category" value="' . esc_attr($category_slug) . '"> ';
-        echo esc_html(ucwords(str_replace('-', ' ', $category)));
-        echo '</label><br>';
-    }
-    
-    echo '</div>';
+        <!-- Placeholder for product and account type selection -->
+        <div id="product-options">
+            <!-- This will be populated by AJAX -->
+        </div>
 
-    // Placeholder for product and other selections
-    echo '<div id="challenge-product-selection">';
-    echo '<!-- Product selection will be loaded here based on category selection -->';
-    echo '</div>';
+        <!-- Button for checkout -->
+        <div id="checkout-section">
+            <button id="checkout-button" disabled>Continue</button>
+        </div>
+    </div>
 
-    // Remove inline JavaScript, it's now in the external file
-
-    // Get output buffer contents and clean buffer
+    <?php
+    // End output buffering and return the content
     return ob_get_clean();
 }
 add_shortcode('hello_challenge_selection', 'hello_theme_challenge_selection_shortcode');
+
+function hello_theme_fetch_products_by_category() {
+    // Get the category from AJAX request
+    $category = sanitize_text_field($_POST['category']);
+
+    // Query products based on category
+    $args = array(
+        'post_type' => 'product',
+        'posts_per_page' => -1,
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'product_cat',
+                'field'    => 'slug',
+                'terms'    => $category,
+            ),
+        ),
+    );
+
+    $products = new WP_Query($args);
+
+    if ($products->have_posts()) {
+        echo '<h3>Select a Product</h3>';
+        echo '<div class="product-selection">';
+
+        while ($products->have_posts()) {
+            $products->the_post();
+            $product = wc_get_product(get_the_ID());
+
+            // Output radio buttons for each product
+            echo '<input type="radio" name="product-id" value="' . $product->get_id() . '" id="product-' . $product->get_id() . '">';
+            echo '<label for="product-' . $product->get_id() . '">' . $product->get_name() . ' - ' . $product->get_price_html() . '</label><br>';
+        }
+
+        echo '</div>';
+    } else {
+        echo '<p>No products available in this category.</p>';
+    }
+
+    wp_die(); // this is required to terminate immediately and return a proper response
+}
+add_action('wp_ajax_fetch_products_by_category', 'hello_theme_fetch_products_by_category');
+add_action('wp_ajax_nopriv_fetch_products_by_category', 'hello_theme_fetch_products_by_category');
