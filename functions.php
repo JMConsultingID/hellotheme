@@ -84,3 +84,27 @@ add_filter( 'affwp_get_referring_affiliate_id', function( $affiliate_id, $refere
 
    return $affiliate_id;
 }, 10, 3 );
+
+function hello_theme_product_combinations() {
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'hello_theme_product_combinations';
+    
+    $charset_collate = $wpdb->get_charset_collate();
+    
+    $sql = "CREATE TABLE $table_name (
+        id mediumint(9) NOT NULL AUTO_INCREMENT,
+        category varchar(55) NOT NULL,
+        account_type varchar(55) NOT NULL,
+        challenge varchar(55) NOT NULL,
+        addon_active_days varchar(3) NOT NULL,
+        addon_profitsplit varchar(3) NOT NULL,
+        addon_trading_days varchar(3) NOT NULL,
+        product_id bigint(20) NOT NULL,
+        PRIMARY KEY  (id)
+    ) $charset_collate;";
+    
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+    dbDelta($sql);
+}
+
+register_activation_hook(__FILE__, 'hello_theme_product_combinations');

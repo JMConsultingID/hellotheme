@@ -54,7 +54,16 @@ function hello_theme_add_menu_page() {
         'manage_options',
         'hello-product-selection-settings',
         'hello_theme_product_selection_settings_page'
-    );  
+    );
+
+    add_submenu_page(
+        'hello-theme-panel',
+        'Manage Product Combinations',
+        'Product Combinations',
+        'manage_options',
+        'hello-product-combinations',
+        'hello_theme_manage_product_combinations_page'
+    );
 
 }
 add_action( 'admin_menu', 'hello_theme_add_menu_page' );
@@ -243,6 +252,92 @@ function hello_theme_register_product_selection_settings() {
 
 }
 add_action( 'admin_init', 'hello_theme_register_product_selection_settings' );
+
+function hello_theme_manage_product_combinations_page() {
+    global $wpdb;
+
+    if (isset($_POST['save_product_combination'])) {
+        // Proses penyimpanan data
+        $category = sanitize_text_field($_POST['category']);
+        $account_type = sanitize_text_field($_POST['account_type']);
+        $challenge = sanitize_text_field($_POST['challenge']);
+        $addon_active_days = isset($_POST['addon_active_days']) ? 'yes' : 'no';
+        $addon_profitsplit = isset($_POST['addon_profitsplit']) ? 'yes' : 'no';
+        $addon_trading_days = isset($_POST['addon_trading_days']) ? 'yes' : 'no';
+        $product_id = intval($_POST['product_id']);
+
+        $wpdb->insert(
+            $wpdb->prefix . 'hello_theme_product_combinations',
+            array(
+                'category' => $category,
+                'account_type' => $account_type,
+                'challenge' => $challenge,
+                'addon_active_days' => $addon_active_days,
+                'addon_profitsplit' => $addon_profitsplit,
+                'addon_trading_days' => $addon_trading_days,
+                'product_id' => $product_id
+            )
+        );
+        echo '<div class="updated"><p>Product combination saved successfully!</p></div>';
+    }
+
+    ?>
+    <div class="wrap">
+        <h1>Manage Product Combinations</h1>
+        <form method="post">
+            <table class="form-table">
+                <tr valign="top">
+                    <th scope="row">Category</th>
+                    <td>
+                        <input type="text" name="category" value="" required />
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">Type Of Account</th>
+                    <td>
+                        <select name="account_type">
+                            <option value="standard">Standard Account</option>
+                            <option value="swing">Swing Account</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">Challenge</th>
+                    <td>
+                        <input type="text" name="challenge" value="" required />
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">Add-On: Active Days</th>
+                    <td>
+                        <input type="checkbox" name="addon_active_days" value="yes" />
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">Add-On: Profit Split</th>
+                    <td>
+                        <input type="checkbox" name="addon_profitsplit" value="yes" />
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">Add-On: Trading Days</th>
+                    <td>
+                        <input type="checkbox" name="addon_trading_days" value="yes" />
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">Product ID</th>
+                    <td>
+                        <input type="number" name="product_id" value="" required />
+                    </td>
+                </tr>
+            </table>
+            <?php submit_button('Save Product Combination', 'primary', 'save_product_combination'); ?>
+        </form>
+    </div>
+    <?php
+}
+
 
 // Mendaftarkan pengaturan dan bagian pengaturan untuk Affiliate WP
 function hello_theme_register_affiliatewp_settings() {
