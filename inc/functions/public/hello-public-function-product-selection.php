@@ -273,68 +273,46 @@ function hello_theme_challenge_selection_shortcode($atts) {
     // Extract shortcode attributes
     $atts = shortcode_atts(
         array(
-            'category'      => '',
-            'type_account'  => 'yes',
-            'addons'        => 'yes',
-        ), 
-        $atts, 
+            'category' => 'base-camp,the-peak',  // default categories
+            'type_account' => 'yes',  // show type account options by default
+            'addons' => 'yes'  // show addons options by default
+        ),
+        $atts,
         'hello_challenge_selection'
     );
 
-    // Convert categories to array
+    // Convert categories to an array
     $categories = explode(',', $atts['category']);
 
-    // Start output buffering
+    // Start output buffering to capture HTML output
     ob_start();
-    ?>
 
-    <div id="challenge-selection-container">
-        <div class="selection-left">
-            <!-- Category Selection -->
-            <h3>Category</h3>
-            <div id="category-selection">
-                <?php foreach($categories as $category) : ?>
-                    <button class="category-btn" data-category="<?php echo trim($category); ?>"><?php echo ucfirst(trim($category)); ?></button>
-                <?php endforeach; ?>
-            </div>
+    // Display category selection using radio buttons
+    echo '<div id="challenge-category-selection">';
+    echo '<h3>Select Category</h3>';
+    
+    foreach ($categories as $category) {
+        // Trim and convert category to lowercase
+        $category = trim($category);
+        $category_slug = strtolower(str_replace(' ', '-', $category));
 
-            <!-- Product Selection (Slider or Range) -->
-            <h3>Balance</h3>
-            <div id="product-selection">
-                <!-- Product selection bar will be dynamically loaded based on selected category -->
-            </div>
+        // Output radio button for each category
+        echo '<label>';
+        echo '<input type="radio" name="challenge_category" value="' . esc_attr($category_slug) . '"> ';
+        echo esc_html(ucwords(str_replace('-', ' ', $category)));
+        echo '</label><br>';
+    }
+    
+    echo '</div>';
 
-            <!-- Type of Account -->
-            <?php if($atts['type_account'] === 'yes'): ?>
-                <h3>Type of Account</h3>
-                <div id="type-account-selection">
-                    <input type="radio" id="standard" name="account_type" value="standard" checked>
-                    <label for="standard">Standard Account</label><br>
-                    <input type="radio" id="swing" name="account_type" value="swing">
-                    <label for="swing">Swing Account</label>
-                </div>
-            <?php endif; ?>
+    // Placeholder for product and other selections
+    echo '<div id="challenge-product-selection">';
+    echo '<!-- Product selection will be loaded here based on category selection -->';
+    echo '</div>';
 
-            <!-- Addons -->
-            <?php if($atts['addons'] === 'yes'): ?>
-                <h3>Add-ons</h3>
-                <div id="addons-selection">
-                    <!-- Add-ons will be dynamically loaded based on selected category -->
-                </div>
-            <?php endif; ?>
-        </div>
+    // Remove inline JavaScript, it's now in the external file
 
-        <div class="selection-right">
-            <!-- Display product image -->
-            <img id="product-image" src="" alt="Product Image">
-            <!-- Display product price -->
-            <p id="product-price"></p>
-            <!-- Checkout Button -->
-            <a id="checkout-button" href="#">Continue</a>
-        </div>
-    </div>
-
-    <?php
+    // Get output buffer contents and clean buffer
     return ob_get_clean();
 }
 add_shortcode('hello_challenge_selection', 'hello_theme_challenge_selection_shortcode');
