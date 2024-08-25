@@ -339,7 +339,7 @@ function get_custom_product_id() {
     $tradingdays = sanitize_text_field($_POST['tradingdays']);
 
     $query = $wpdb->prepare(
-        "SELECT product_id FROM {$wpdb->prefix}hello_theme_product_combinations 
+        "SELECT product_id FROM {$wpdb->prefix}custom_product_combinations 
         WHERE category = %s AND account_type = %s AND challenge = %s 
         AND addon_active_days = %s AND addon_profitsplit = %s AND addon_trading_days = %s",
         $category, $account_type, $challenge, $active_days, $profitsplit, $tradingdays
@@ -350,15 +350,21 @@ function get_custom_product_id() {
     if ($product_id) {
         // Get product details
         $product = wc_get_product($product_id);
-        $product_image = wp_get_attachment_image_url($product->get_image_id(), 'medium');
-        $product_price = $product->get_price_html(); // Mengambil harga produk dalam format HTML
 
-        // Kirim respon dengan ID produk, gambar produk, dan harga produk
-        wp_send_json_success(array(
-            'product_id' => $product_id,
-            'product_image' => $product_image,
-            'product_price' => $product_price
-        ));
+        // Check if $product is valid
+        if ($product) {
+            $product_image = wp_get_attachment_image_url($product->get_image_id(), 'medium');
+            $product_price = $product->get_price_html(); // Get product price in HTML format
+
+            // Send response with product details
+            wp_send_json_success(array(
+                'product_id' => $product_id,
+                'product_image' => $product_image,
+                'product_price' => $product_price
+            ));
+        } else {
+            wp_send_json_error(array('message' => 'Product not found.'));
+        }
     } else {
         wp_send_json_error(array('message' => 'No product found.'));
     }
@@ -367,4 +373,3 @@ function get_custom_product_id() {
 }
 add_action('wp_ajax_get_custom_product_id', 'get_custom_product_id');
 add_action('wp_ajax_nopriv_get_custom_product_id', 'get_custom_product_id');
-
