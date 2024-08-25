@@ -129,11 +129,15 @@ jQuery(document).ready(function($) {
 
                 // Update product image and price
                 productImage.innerHTML = `<img src="${response.data.product_image}" alt="Product Image" />`;
+                productTitle.innerHTML = `Title: ${response.data.product_title}`;
+                productDescription.innerHTML = `Description: ${response.data.product_description}`;
                 productPrice.innerHTML = `Price: ${response.data.product_price}`;
             } else {
                 checkoutButton.href = '#';
                 checkoutButton.setAttribute('disabled', 'disabled');
                 productImage.innerHTML = '';
+                productTitle.innerHTML = '';
+                productDescription.innerHTML = '';
                 productPrice.innerHTML = '';
             }
         });

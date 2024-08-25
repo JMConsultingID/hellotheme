@@ -341,6 +341,12 @@ function hello_theme_challenge_selection_shortcode($atts) {
             <div id="product-image">
                 <!-- Gambar produk akan ditampilkan di sini -->
             </div>
+            <div id="product-title">
+                <!-- Judul produk akan ditampilkan di sini -->
+            </div>
+            <div id="product-description">
+                <!-- Deskripsi produk akan ditampilkan di sini -->
+            </div>
             <div id="product-price">
                 <!-- Harga produk akan ditampilkan di sini -->
             </div>
@@ -383,12 +389,16 @@ function get_custom_product_id() {
         // Check if $product is valid
         if ($product) {
             $product_image = wp_get_attachment_image_url($product->get_image_id(), 'medium');
+            $product_title = $product->get_name();
+            $product_description = $product->get_description();
             $product_price = $product->get_price_html(); // Get product price in HTML format
 
             // Send response with product details
             wp_send_json_success(array(
                 'product_id' => $product_id,
                 'product_image' => $product_image,
+                'product_title' => $product_title,
+                'product_description' => $product_description,
                 'product_price' => $product_price
             ));
         } else {
