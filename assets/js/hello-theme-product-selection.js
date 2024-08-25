@@ -19,12 +19,36 @@
         let selectedAccountType = form.dataset.accountType;
         let selectedAddons = [];
 
-        // Apply preselect based on URL parameters or defaults
-        function applyPreselect() {
-            // Set category selection
-            document.querySelector(`input[name="category"][value="${selectedCategory}"]`).checked = true;
+        // Fungsi untuk menyimpan pilihan ke Local Storage
+        function saveSelections() {
+            const selections = {
+                category: selectedCategory,
+                challenge: selectedChallenge,
+                accountType: selectedAccountType,
+                addons: selectedAddons
+            };
+            localStorage.setItem('productSelections', JSON.stringify(selections));
+        }
 
-            // Set challenge button
+        // Fungsi untuk memuat pilihan dari Local Storage
+        function loadSelections() {
+            const selections = JSON.parse(localStorage.getItem('productSelections'));
+            if (selections) {
+                selectedCategory = selections.category;
+                selectedChallenge = selections.challenge;
+                selectedAccountType = selections.accountType;
+                selectedAddons = selections.addons || [];
+
+                applyPreselect();
+            }
+        }
+
+        // Apply preselect based on URL parameters, defaults, or local storage
+        function applyPreselect() {
+            if (selectedCategory) {
+                document.querySelector(`input[name="category"][value="${selectedCategory}"]`).checked = true;
+            }
+
             challengeButtons.forEach(btn => {
                 btn.classList.remove('selected');
                 if (btn.dataset.value === selectedChallenge) {
@@ -32,12 +56,10 @@
                 }
             });
 
-            // Set account type selection
             document.querySelectorAll('input[name="account_type"]').forEach(function(radio) {
                 radio.checked = radio.value === selectedAccountType;
             });
 
-            // Set addons selection
             updateAddonsSelection();
         }
 
@@ -60,9 +82,10 @@
             // Reset addons selection
             selectedAddons = [];
             document.querySelectorAll('input[name="addons"]').forEach(function(checkbox) {
-                checkbox.checked = form.dataset[checkbox.value] === 'yes'; // Check based on URL parameter or default
+                checkbox.checked = selectedAddons.includes(checkbox.value); // Load from local storage
                 checkbox.addEventListener('change', function() {
                     selectedAddons = Array.from(document.querySelectorAll('input[name="addons"]:checked')).map(el => el.value);
+                    saveSelections(); // Save selections to local storage
                     updateCheckoutButton();
                 });
             });
@@ -73,21 +96,8 @@
         // Event listener for category selection change
         categorySelection.addEventListener('change', function(e) {
             selectedCategory = e.target.value;
-
-            // Reset preselect to default when category changes
-            if (selectedCategory === 'base-camp' || selectedCategory === 'the-peak') {
-                selectedChallenge = '10k';
-                selectedAccountType = 'standard';
-
-                // Set default selections
-                applyPreselect();
-            }
-
-            // Reset addons
+            saveSelections(); // Save selections after change
             updateAddonsSelection();
-            
-            // Update checkout button state
-            updateCheckoutButton();
         });
 
         // Event listeners for challenge buttons
@@ -96,6 +106,7 @@
                 selectedChallenge = button.getAttribute('data-value');
                 challengeButtons.forEach(btn => btn.classList.remove('selected'));
                 button.classList.add('selected');
+                saveSelections(); // Save selections after change
                 updateCheckoutButton();
             });
         });
@@ -103,6 +114,7 @@
         // Event listener for account type selection change
         accountTypeSelection.addEventListener('change', function(e) {
             selectedAccountType = e.target.value;
+            saveSelections(); // Save selections after change
             updateCheckoutButton();
         });
 
@@ -151,8 +163,8 @@
             });
         }
 
-        // Initialize addons and checkout button
-        applyPreselect();
+        // Load selections when the page loads
+        loadSelections();
     });
 
 })( jQuery );
