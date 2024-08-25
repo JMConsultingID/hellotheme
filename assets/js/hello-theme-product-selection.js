@@ -17,9 +17,9 @@
         let selectedCategory = form.dataset.category;
         let selectedChallenge = form.dataset.challenge;
         let selectedAccountType = form.dataset.accountType;
+        
         let selectedAddons = JSON.parse(localStorage.getItem('productSelections'))?.addons || [];
 
-        // Fungsi untuk menyimpan pilihan ke Local Storage
         function saveSelections() {
             const selections = {
                 category: selectedCategory,
@@ -37,7 +37,7 @@
                 selectedCategory = selections.category;
                 selectedChallenge = selections.challenge;
                 selectedAccountType = selections.accountType;
-                selectedAddons = selections.addons || [];
+                selectedAddons = selections.addons || []; // Memuat addons yang tersimpan
 
                 applyPreselect();
             }
@@ -79,10 +79,9 @@
                 `;
             }
 
-            // Reset addons selection
-            selectedAddons = [];
+            // Set selected addons based on loaded selections
             document.querySelectorAll('input[name="addons"]').forEach(function(checkbox) {
-                checkbox.checked = selectedAddons.includes(checkbox.value); // Load from local storage
+                checkbox.checked = selectedAddons.includes(checkbox.value); // Memuat pilihan addons dari Local Storage
                 checkbox.addEventListener('change', function() {
                     selectedAddons = Array.from(document.querySelectorAll('input[name="addons"]:checked')).map(el => el.value);
                     saveSelections(); // Save selections to local storage
