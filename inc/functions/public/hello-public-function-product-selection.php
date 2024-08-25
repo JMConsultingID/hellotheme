@@ -92,14 +92,6 @@ function hello_theme_challenge_selection_shortcode($atts) {
                             <div id="addons-selection" class="addon">
                               <h5 class="sub-title">Addon</h5>
                               <ul>
-                                <li>
-                                  <input type="checkbox" class="input-checkbox" name="active-days" id="active-days"/>
-                                  <label for="active-days" class="">Active Days: 21</label>
-                                </li>
-                                <li>
-                                  <input type="checkbox" class="input-checkbox" name="profit-split" id="profit-split"/>
-                                  <label for="profit-split" class="">Profit Split: 100%</label>
-                                </li>
                               </ul>
                             </div>
                         </div>
