@@ -467,9 +467,10 @@ function import_product_combinations($file) {
     // Membuka file CSV
     $handle = fopen($file, 'r');
     if ($handle !== false) {
-        $header = fgetcsv($handle, 1000, ','); 
+        $header = fgetcsv($handle, 1000, ','); // Baca header dan abaikan
         while (($row = fgetcsv($handle, 1000, ',')) !== false) {
             // Ambil data dari setiap baris
+            $id = intval($row[0]); // ID berada di kolom pertama
             $category = sanitize_text_field($row[1]);
             $account_type = sanitize_text_field($row[2]);
             $challenge = sanitize_text_field($row[3]);
@@ -479,14 +480,16 @@ function import_product_combinations($file) {
             $addon_trading_days = sanitize_text_field($row[7]);
             $product_id = intval($row[8]);
 
+            // Periksa apakah kombinasi produk sudah ada di database berdasarkan ID
             $existing_entry = $wpdb->get_row(
                 $wpdb->prepare(
-                    "SELECT id FROM {$wpdb->prefix}hello_theme_product_combinations WHERE product_id = %d",
-                    $product_id
+                    "SELECT id FROM {$wpdb->prefix}hello_theme_product_combinations WHERE id = %d",
+                    $id
                 )
             );
 
             if ($existing_entry) {
+                // Jika ada, lakukan update
                 $wpdb->update(
                     $wpdb->prefix . 'hello_theme_product_combinations',
                     array(
@@ -496,11 +499,13 @@ function import_product_combinations($file) {
                         'addon_active_days' => $addon_active_days,
                         'addon_profitsplit' => $addon_profitsplit,
                         'addon_peak_active_days' => $addon_peak_active_days,
-                        'addon_trading_days' => $addon_trading_days
+                        'addon_trading_days' => $addon_trading_days,
+                        'product_id' => $product_id
                     ),
-                    array('id' => $existing_entry->id)
+                    array('id' => $id)
                 );
             } else {
+                // Jika tidak ada, lakukan insert
                 $wpdb->insert(
                     $wpdb->prefix . 'hello_theme_product_combinations',
                     array(
@@ -516,10 +521,9 @@ function import_product_combinations($file) {
                 );
             }
         }
-        fclose($handle); 
+        fclose($handle); // Tutup file setelah selesai diproses
     }
 }
-
 
 
 // Mendaftarkan pengaturan dan bagian pengaturan untuk Affiliate WP
