@@ -169,7 +169,7 @@ function hello_theme_challenge_selection_shortcode($atts) {
 add_shortcode('hello_challenge_selection', 'hello_theme_challenge_selection_shortcode');
 
 
-function get_custom_product_id() {
+function hello_theme_challenge_selection_get_product_id() {
     global $wpdb;
 
     $category = sanitize_text_field($_POST['category']);
@@ -195,7 +195,13 @@ function get_custom_product_id() {
 
         // Check if $product is valid
         if ($product) {
-            $product_image = wp_get_attachment_image_url($product->get_image_id(), 'medium');
+            // Check if product image exists, otherwise use placeholder image
+            if ($product_image_id) {
+                $product_image = wp_get_attachment_image_url($product_image_id, 'medium');
+            } else {
+                // Use WooCommerce placeholder image
+                $product_image = wc_placeholder_img_src('medium');
+            }
             $product_title = $product->get_name();
             $product_description = $product->get_description();
             $product_price = $product->get_price_html(); // Get product price in HTML format
@@ -217,5 +223,5 @@ function get_custom_product_id() {
 
     wp_die();
 }
-add_action('wp_ajax_get_custom_product_id', 'get_custom_product_id');
-add_action('wp_ajax_nopriv_get_custom_product_id', 'get_custom_product_id');
+add_action('wp_ajax_get_custom_product_id', 'hello_theme_challenge_selection_get_product_id');
+add_action('wp_ajax_nopriv_get_custom_product_id', 'hello_theme_challenge_selection_get_product_id');
