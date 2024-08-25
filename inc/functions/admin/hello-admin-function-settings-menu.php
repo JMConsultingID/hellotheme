@@ -383,23 +383,30 @@ function hello_theme_manage_product_combinations_page() {
                     </td>
                 </tr>
                 <tr valign="top">
-                    <th scope="row">Add-On: Active Days</th>
+                    <th scope="row">Add-Ons</th>
                     <td>
-                        <input type="checkbox" name="addon_active_days" value="yes" <?php echo (isset($edit_item) && $edit_item->addon_active_days === 'yes') ? 'checked' : ''; ?> />
-                    </td>
-                    <th scope="row">Add-On: Profit Split</th>
-                    <td>
-                        <input type="checkbox" name="addon_profitsplit" value="yes" <?php echo (isset($edit_item) && $edit_item->addon_profitsplit === 'yes') ? 'checked' : ''; ?> />
-                    </td>
-                    <th scope="row">Add-On: The Peak Active Days</th>
-                    <td>
-                        <input type="checkbox" name="addon_peak_active_days" value="yes" <?php echo (isset($edit_item) && $edit_item->addon_peak_active_days === 'yes') ? 'checked' : ''; ?> />
-                    </td>
-                    <th scope="row">Add-On: Trading Days</th>
-                    <td>
-                        <input type="checkbox" name="addon_trading_days" value="yes" <?php echo (isset($edit_item) && $edit_item->addon_trading_days === 'yes') ? 'checked' : ''; ?> />
+                        <label>
+                            <input type="checkbox" name="addon_active_days" value="yes" <?php echo (isset($edit_item) && $edit_item->addon_active_days === 'yes') ? 'checked' : ''; ?> />
+                            Active Days
+                        </label>
+                        &nbsp;&nbsp;
+                        <label>
+                            <input type="checkbox" name="addon_profitsplit" value="yes" <?php echo (isset($edit_item) && $edit_item->addon_profitsplit === 'yes') ? 'checked' : ''; ?> />
+                            Profit Split
+                        </label>
+                        &nbsp;&nbsp;
+                        <label>
+                            <input type="checkbox" name="addon_peak_active_days" value="yes" <?php echo (isset($edit_item) && $edit_item->addon_peak_active_days === 'yes') ? 'checked' : ''; ?> />
+                            The Peak Active Days
+                        </label>
+                        &nbsp;&nbsp;
+                        <label>
+                            <input type="checkbox" name="addon_trading_days" value="yes" <?php echo (isset($edit_item) && $edit_item->addon_trading_days === 'yes') ? 'checked' : ''; ?> />
+                            Trading Days
+                        </label>
                     </td>
                 </tr>
+
                 <tr valign="top">
                     <th scope="row">Product ID</th>
                     <td>
