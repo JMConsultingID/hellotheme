@@ -269,140 +269,171 @@ function hello_theme_save_addon_product_fields_checkbox_fields($post_id) {
 add_action('woocommerce_process_product_meta', 'hello_theme_save_addon_product_fields_checkbox_fields');
 
 
-function hello_challenge_selection_shortcode($atts) {
-    // Get shortcode attributes
-    $atts = shortcode_atts(
-        array(
-            'category' => 'base-camp,the-peak'
-        ),
-        $atts,
-        'hello_challenge_selection'
-    );
-
-    // Convert category attribute to array
-    $categories = explode(',', $atts['category']);
-
-    // Start output buffering
+function hello_theme_challenge_selection_shortcode($atts) {
+    // Mulai output buffering
     ob_start();
     ?>
-    <div id="product-selection-form">
-        <!-- Category Selection -->
-        <label for="category-select">Pilih Kategori:</label>
-        <select id="category-select">
-            <?php foreach ($categories as $category) : ?>
-                <option value="<?php echo esc_attr($category); ?>"><?php echo ucfirst($category); ?></option>
-            <?php endforeach; ?>
-        </select>
-
-        <!-- Product Bar Selection -->
-        <div id="product-bar">
-            <!-- Produk akan dimuat di sini berdasarkan kategori yang dipilih -->
+    <div id="challenge-selection-form">
+        <!-- Button Selection untuk Basecamp atau The Peak -->
+        <div id="category-selection">
+            <label>
+                <input type="radio" name="category" value="base-camp" checked> Basecamp
+            </label>
+            <label>
+                <input type="radio" name="category" value="the-peak"> The Peak
+            </label>
         </div>
 
-        <!-- Type of Account (Radio Buttons) -->
-        <div id="account-type">
-            <label><input type="radio" name="account_type" value="standard" checked> Standard Account</label>
-            <label><input type="radio" name="account_type" value="swing"> Swing Account</label>
+        <!-- Button Selection Bar untuk Challenge -->
+        <div id="challenge-selection-bar">
+            <button type="button" class="challenge-option" data-value="10k">10k</button>
+            <button type="button" class="challenge-option" data-value="25k">25k</button>
+            <button type="button" class="challenge-option" data-value="50k">50k</button>
+            <button type="button" class="challenge-option" data-value="100k">100k</button>
+            <button type="button" class="challenge-option" data-value="200k">200k</button>
         </div>
 
-        <!-- Add-ons (Checkboxes) -->
-        <div id="addons">
+        <!-- Button Selection untuk Type of Account -->
+        <div id="account-type-selection">
+            <label>
+                <input type="radio" name="account_type" value="standard" checked> Standard
+            </label>
+            <label>
+                <input type="radio" name="account_type" value="swing"> Swing
+            </label>
+        </div>
+
+        <!-- Button Selection untuk Add-ons -->
+        <div id="addons-selection">
             <!-- Add-ons akan dimuat di sini berdasarkan kategori yang dipilih -->
         </div>
 
-        <!-- Display product price and checkout button -->
-        <div id="product-summary">
-            <p id="product-price">Harga: <span id="selected-product-price"></span></p>
-            <a id="checkout-button" href="#" class="button" disabled>Continue to Checkout</a>
+        <!-- Button Checkout -->
+        <div id="checkout-section">
+            <a id="checkout-button" href="#" class="button" disabled>Checkout</a>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const categorySelection = document.querySelector('#category-selection');
+            const challengeButtons = document.querySelectorAll('.challenge-option');
+            const accountTypeSelection = document.querySelector('#account-type-selection');
+            const addonsSelection = document.querySelector('#addons-selection');
+            const checkoutButton = document.querySelector('#checkout-button');
+
+            let selectedCategory = document.querySelector('input[name="category"]:checked').value;
+            let selectedChallenge = '10k'; // Default value
+            let selectedAccountType = document.querySelector('input[name="account_type"]:checked').value;
+            let selectedAddons = [];
+
+            // Update addons selection based on selected category
+            function updateAddonsSelection() {
+                addonsSelection.innerHTML = ''; // Clear previous addons
+
+                if (selectedCategory === 'base-camp') {
+                    addonsSelection.innerHTML = `
+                        <label><input type="checkbox" name="addons" value="active-days"> Active Days</label>
+                        <label><input type="checkbox" name="addons" value="profitsplit"> Profit Split</label>
+                    `;
+                } else if (selectedCategory === 'the-peak') {
+                    addonsSelection.innerHTML = `
+                        <label><input type="checkbox" name="addons" value="active-days"> Active Days</label>
+                        <label><input type="checkbox" name="addons" value="tradingdays"> Trading Days</label>
+                    `;
+                }
+
+                // Update selected addons array
+                document.querySelectorAll('input[name="addons"]').forEach(function(checkbox) {
+                    checkbox.addEventListener('change', function() {
+                        selectedAddons = Array.from(document.querySelectorAll('input[name="addons"]:checked')).map(el => el.value);
+                        updateCheckoutButton();
+                    });
+                });
+            }
+
+            // Event listeners for category selection
+            categorySelection.addEventListener('change', function(e) {
+                selectedCategory = e.target.value;
+                updateAddonsSelection();
+                updateCheckoutButton();
+            });
+
+            // Event listeners for challenge buttons
+            challengeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    selectedChallenge = button.getAttribute('data-value');
+                    challengeButtons.forEach(btn => btn.classList.remove('selected'));
+                    button.classList.add('selected');
+                    updateCheckoutButton();
+                });
+            });
+
+            // Event listeners for account type selection
+            accountTypeSelection.addEventListener('change', function(e) {
+                selectedAccountType = e.target.value;
+                updateCheckoutButton();
+            });
+
+            // Update checkout button based on selections
+            function updateCheckoutButton() {
+                const data = {
+                    action: 'get_custom_product_id',
+                    category: selectedCategory,
+                    account_type: selectedAccountType,
+                    challenge: selectedChallenge,
+                    active_days: selectedAddons.includes('active-days') ? 'yes' : 'no',
+                    profitsplit: selectedAddons.includes('profitsplit') ? 'yes' : 'no',
+                    tradingdays: selectedAddons.includes('tradingdays') ? 'yes' : 'no'
+                };
+
+                jQuery.post(ajax_object.ajaxurl, data, function(response) {
+                    if (response.success) {
+                        checkoutButton.href = '/checkout/?add-to-cart=' + response.data.product_id;
+                        checkoutButton.removeAttribute('disabled');
+                    } else {
+                        checkoutButton.href = '#';
+                        checkoutButton.setAttribute('disabled', 'disabled');
+                    }
+                });
+            }
+
+            // Initialize addons and checkout button
+            updateAddonsSelection();
+            updateCheckoutButton();
+        });
+    </script>
     <?php
     return ob_get_clean();
 }
-add_shortcode('hello_challenge_selection', 'hello_challenge_selection_shortcode');
+add_shortcode('hello_challenge_selection', 'hello_theme_challenge_selection_shortcode');
 
-function get_product_id_based_on_selection() {
-    // Validasi request AJAX
-    if (!isset($_POST['category']) || !isset($_POST['account_type'])) {
-        wp_send_json_error(array('message' => 'Invalid request.'));
-        return;
-    }
+function get_custom_product_id() {
+    global $wpdb;
 
-    // Ambil data dari AJAX request dan sanitasi input
     $category = sanitize_text_field($_POST['category']);
     $account_type = sanitize_text_field($_POST['account_type']);
-    $active_days = isset($_POST['active_days']) && $_POST['active_days'] === 'yes';
-    $profit_split = isset($_POST['profit_split']) && $_POST['profit_split'] === 'yes';
-    $trading_days = isset($_POST['trading_days']) && $_POST['trading_days'] === 'yes';
+    $challenge = sanitize_text_field($_POST['challenge']);
+    $active_days = sanitize_text_field($_POST['active_days']);
+    $profitsplit = sanitize_text_field($_POST['profitsplit']);
+    $tradingdays = sanitize_text_field($_POST['tradingdays']);
 
-    // Siapkan argumen untuk WP_Query
-    $meta_query = array(
-        'relation' => 'AND',  // Menggunakan 'AND' karena kita ingin semua kondisi sesuai
-        array(
-            'key' => 'product_category',
-            'value' => $category,
-            'compare' => '='
-        ),
-        array(
-            'key' => 'account_type',
-            'value' => $account_type,
-            'compare' => '='
-        )
+    $query = $wpdb->prepare(
+        "SELECT product_id FROM {$wpdb->prefix}hello_theme_product_combinations 
+        WHERE category = %s AND account_type = %s AND challenge = %s 
+        AND addon_active_days = %s AND addon_profitsplit = %s AND addon_trading_days = %s",
+        $category, $account_type, $challenge, $active_days, $profitsplit, $tradingdays
     );
 
-    // Tambahkan kondisi add-ons ke dalam query
-    if ($category === 'base-camp') {
-        if ($active_days) {
-            $meta_query[] = array(
-                'key' => 'addon_active_days',
-                'value' => 'yes',
-                'compare' => '='
-            );
-        }
-        if ($profit_split) {
-            $meta_query[] = array(
-                'key' => 'addon_profit_split',
-                'value' => 'yes',
-                'compare' => '='
-            );
-        }
-    } elseif ($category === 'the-peak') {
-        if ($active_days) {
-            $meta_query[] = array(
-                'key' => 'addon_active_days',
-                'value' => 'yes',
-                'compare' => '='
-            );
-        }
-        if ($trading_days) {
-            $meta_query[] = array(
-                'key' => 'addon_trading_days',
-                'value' => 'yes',
-                'compare' => '='
-            );
-        }
-    }
+    $product_id = $wpdb->get_var($query);
 
-    // WP_Query untuk mencari produk berdasarkan meta query
-    $args = array(
-        'post_type' => 'product',
-        'posts_per_page' => 1,
-        'meta_query' => $meta_query,
-        'fields' => 'ids'  // Mengambil hanya ID produk untuk efisiensi
-    );
-
-    $query = new WP_Query($args);
-
-    // Cek apakah produk ditemukan
-    if ($query->have_posts()) {
-        $product_id = $query->posts[0];  // Mengambil ID produk pertama dari hasil query
+    if ($product_id) {
         wp_send_json_success(array('product_id' => $product_id));
     } else {
         wp_send_json_error(array('message' => 'No product found.'));
     }
 
-    wp_die();  // Menghentikan eksekusi lebih lanjut
+    wp_die();
 }
-add_action('wp_ajax_get_product_id_based_on_selection', 'get_product_id_based_on_selection');
-add_action('wp_ajax_nopriv_get_product_id_based_on_selection', 'get_product_id_based_on_selection');
-
+add_action('wp_ajax_get_custom_product_id', 'get_custom_product_id');
+add_action('wp_ajax_nopriv_get_custom_product_id', 'get_custom_product_id');
