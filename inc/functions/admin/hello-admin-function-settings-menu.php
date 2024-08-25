@@ -341,14 +341,6 @@ function hello_theme_manage_product_combinations_page() {
     ?>
     <div class="wrap">
         <h1>Manage Product Combinations</h1>
-        <!-- Form untuk unggah CSV -->
-        <form method="post" enctype="multipart/form-data">
-            <h2>Import Product Combinations</h2>
-            <input type="file" name="product_combinations_file" accept=".csv" required>
-            <?php submit_button('Import Combinations', 'secondary', 'import_product_combinations'); ?>
-        </form>
-
-        <hr>
         <form method="post">
             <input type="hidden" name="edit_id" value="<?php echo isset($edit_item) ? $edit_item->id : ''; ?>" />
             <table class="form-table">
@@ -399,6 +391,15 @@ function hello_theme_manage_product_combinations_page() {
                 </tr>
             </table>
             <?php submit_button(isset($edit_item) ? 'Update Product Combination' : 'Save Product Combination', 'primary', 'save_product_combination'); ?>
+        </form>
+
+        <hr>
+
+        <!-- Form untuk unggah CSV -->
+        <form method="post" enctype="multipart/form-data">
+            <h2>Import Product Combinations</h2>
+            <input type="file" name="product_combinations_file" accept=".csv" required>
+            <?php submit_button('Import Combinations', 'secondary', 'import_product_combinations'); ?>
         </form>
 
         <hr>
