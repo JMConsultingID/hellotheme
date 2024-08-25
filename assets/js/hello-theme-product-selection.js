@@ -136,10 +136,10 @@
                     checkoutButton.removeAttribute('disabled');
 
                     // Update product image, title, description, and price
-                    productImage.innerHTML = `<img src="${response.data.product_image}" alt="Product Image" />`;
-                    productTitle.innerHTML = `Title: ${response.data.product_title}`;
-                    productDescription.innerHTML = `Description: ${response.data.product_description}`;
-                    productPrice.innerHTML = `Price: ${response.data.product_price}`;
+                    productImage.innerHTML = `<img src="${response.data.product_image}" alt="${response.data.product_title}" class="product-img" />`;
+                    productTitle.innerHTML = `<h4 class="sub-title">${response.data.product_title}</h4>`;
+                    productDescription.innerHTML = `${response.data.product_description}`;
+                    productPrice.innerHTML = `<span class="num-total">${response.data.product_price}</span><span class="note">VAT Included</span>`;
                 } else {
                     checkoutButton.href = '#';
                     checkoutButton.setAttribute('disabled', 'disabled');
