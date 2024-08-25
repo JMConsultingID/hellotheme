@@ -32,7 +32,7 @@ function hello_theme_challenge_selection_shortcode($atts) {
 
         ob_start();
         ?>
-        <div id="challenge-selection-form" data-category="<?php echo esc_attr($category); ?>"
+        <div id="challenge-selection-form" class="hello-theme-product-selection"> data-category="<?php echo esc_attr($category); ?>"
              data-challenge="<?php echo esc_attr($challenge); ?>"
              data-account-type="<?php echo esc_attr($account_type); ?>"
              data-active-days="<?php echo esc_attr($active_days); ?>"
@@ -40,64 +40,74 @@ function hello_theme_challenge_selection_shortcode($atts) {
              data-peak_active_days="<?php echo esc_attr($peak_active_days); ?>"
              data-tradingdays="<?php echo esc_attr($tradingdays); ?>"
              data-valid="<?php echo $is_valid_combination ? 'yes' : 'no'; ?>">
+            <div class="warpper-alf">
 
-            <?php if (!$is_valid_combination): ?>
-                <div class="warning">The given parameter is invalid. Using the default preselect.</div>
-            <?php endif; ?>
+                <div class="left box-shadow">
 
-            <!-- Button Selection untuk Basecamp atau The Peak -->
-            <div id="category-selection">
-                <label>
-                    <input type="radio" name="category" value="base-camp" <?php checked('base-camp', $category); ?>> Basecamp
-                </label>
-                <label>
-                    <input type="radio" name="category" value="the-peak" <?php checked('the-peak', $category); ?>> The Peak
-                </label>
-            </div>
+                    <?php if (!$is_valid_combination): ?>
+                        <div class="warning">The given parameter is invalid. Using the default preselect.</div>
+                    <?php endif; ?>
 
-            <!-- Button Selection Bar untuk Challenge -->
-            <div id="challenge-selection-bar">
-                <button type="button" class="challenge-option" data-value="10k" <?php if ($challenge == '10k') echo 'class="selected"'; ?>>10k</button>
-                <button type="button" class="challenge-option" data-value="25k" <?php if ($challenge == '25k') echo 'class="selected"'; ?>>25k</button>
-                <button type="button" class="challenge-option" data-value="50k" <?php if ($challenge == '50k') echo 'class="selected"'; ?>>50k</button>
-                <button type="button" class="challenge-option" data-value="100k" <?php if ($challenge == '100k') echo 'class="selected"'; ?>>100k</button>
-                <button type="button" class="challenge-option" data-value="200k" <?php if ($challenge == '200k') echo 'class="selected"'; ?>>200k</button>
-            </div>
+                    <!-- Button Selection untuk Basecamp atau The Peak -->
+                    <div id="category-selection">
+                        <label>
+                            <input type="radio" name="category" value="base-camp" <?php checked('base-camp', $category); ?>> Basecamp
+                        </label>
+                        <label>
+                            <input type="radio" name="category" value="the-peak" <?php checked('the-peak', $category); ?>> The Peak
+                        </label>
+                    </div>
 
-            <!-- Button Selection untuk Type of Account -->
-            <div id="account-type-selection">
-                <label>
-                    <input type="radio" name="account_type" value="standard" <?php checked('standard', $account_type); ?>> Standard
-                </label>
-                <label>
-                    <input type="radio" name="account_type" value="swing" <?php checked('swing', $account_type); ?>> Swing
-                </label>
-            </div>
+                    <!-- Button Selection Bar untuk Challenge -->
+                    <div id="challenge-selection-bar">
+                        <button type="button" class="challenge-option" data-value="10k" <?php if ($challenge == '10k') echo 'class="selected"'; ?>>10k</button>
+                        <button type="button" class="challenge-option" data-value="25k" <?php if ($challenge == '25k') echo 'class="selected"'; ?>>25k</button>
+                        <button type="button" class="challenge-option" data-value="50k" <?php if ($challenge == '50k') echo 'class="selected"'; ?>>50k</button>
+                        <button type="button" class="challenge-option" data-value="100k" <?php if ($challenge == '100k') echo 'class="selected"'; ?>>100k</button>
+                        <button type="button" class="challenge-option" data-value="200k" <?php if ($challenge == '200k') echo 'class="selected"'; ?>>200k</button>
+                    </div>
 
-            <!-- Button Selection untuk Add-ons -->
-            <div id="addons-selection">
-                <!-- Add-ons akan dimuat di sini berdasarkan kategori yang dipilih -->
-            </div>
+                    <!-- Button Selection untuk Type of Account -->
+                    <div id="account-type-selection">
+                        <label>
+                            <input type="radio" name="account_type" value="standard" <?php checked('standard', $account_type); ?>> Standard
+                        </label>
+                        <label>
+                            <input type="radio" name="account_type" value="swing" <?php checked('swing', $account_type); ?>> Swing
+                        </label>
+                    </div>
 
-            <!-- Product Image and Price -->
-            <div id="product-display">
-                <div id="product-image">
-                    <!-- Gambar produk akan ditampilkan di sini -->
+                    <!-- Button Selection untuk Add-ons -->
+                    <div id="addons-selection">
+                        <!-- Add-ons akan dimuat di sini berdasarkan kategori yang dipilih -->
+                    </div>
+
                 </div>
-                <div id="product-title">
-                    <!-- Judul produk akan ditampilkan di sini -->
-                </div>
-                <div id="product-description">
-                    <!-- Deskripsi produk akan ditampilkan di sini -->
-                </div>
-                <div id="product-price">
-                    <!-- Harga produk akan ditampilkan di sini -->
-                </div>
-            </div>
 
-            <!-- Button Checkout -->
-            <div id="checkout-section">
-                <a id="checkout-button" href="#" class="button" disabled>Checkout</a>
+                <div class="right box-shadow">
+
+                    <!-- Product Image and Price -->
+                    <div id="product-display">
+                        <div id="product-image">
+                            <!-- Gambar produk akan ditampilkan di sini -->
+                        </div>
+                        <div id="product-title">
+                            <!-- Judul produk akan ditampilkan di sini -->
+                        </div>
+                        <div id="product-description">
+                            <!-- Deskripsi produk akan ditampilkan di sini -->
+                        </div>
+                        <div id="product-price">
+                            <!-- Harga produk akan ditampilkan di sini -->
+                        </div>
+                    </div>
+
+                    <!-- Button Checkout -->
+                    <div id="checkout-section">
+                        <a id="checkout-button" href="#" class="button" disabled>Checkout</a>
+                    </div>
+                </div>
+
             </div>
         </div>
         <?php
