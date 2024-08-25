@@ -467,7 +467,7 @@ function import_product_combinations($file) {
     // Membuka file CSV
     $handle = fopen($file, 'r');
     if ($handle !== false) {
-        $header = fgetcsv($handle, 1000, ','); // Baca header dan abaikan
+        $header = fgetcsv($handle, 1000, ','); 
         while (($row = fgetcsv($handle, 1000, ',')) !== false) {
             // Ambil data dari setiap baris
             $category = sanitize_text_field($row[1]);
@@ -479,22 +479,44 @@ function import_product_combinations($file) {
             $addon_trading_days = sanitize_text_field($row[7]);
             $product_id = intval($row[8]);
 
-            // Masukkan data ke dalam tabel
-            $wpdb->insert(
-                $wpdb->prefix . 'hello_theme_product_combinations',
-                array(
-                    'category' => $category,
-                    'account_type' => $account_type,
-                    'challenge' => $challenge,
-                    'addon_active_days' => $addon_active_days,
-                    'addon_profitsplit' => $addon_profitsplit,
-                    'addon_peak_active_days' => $addon_peak_active_days,
-                    'addon_trading_days' => $addon_trading_days,
-                    'product_id' => $product_id
+            $existing_entry = $wpdb->get_row(
+                $wpdb->prepare(
+                    "SELECT id FROM {$wpdb->prefix}hello_theme_product_combinations WHERE product_id = %d",
+                    $product_id
                 )
             );
+
+            if ($existing_entry) {
+                $wpdb->update(
+                    $wpdb->prefix . 'hello_theme_product_combinations',
+                    array(
+                        'category' => $category,
+                        'account_type' => $account_type,
+                        'challenge' => $challenge,
+                        'addon_active_days' => $addon_active_days,
+                        'addon_profitsplit' => $addon_profitsplit,
+                        'addon_peak_active_days' => $addon_peak_active_days,
+                        'addon_trading_days' => $addon_trading_days
+                    ),
+                    array('id' => $existing_entry->id)
+                );
+            } else {
+                $wpdb->insert(
+                    $wpdb->prefix . 'hello_theme_product_combinations',
+                    array(
+                        'category' => $category,
+                        'account_type' => $account_type,
+                        'challenge' => $challenge,
+                        'addon_active_days' => $addon_active_days,
+                        'addon_profitsplit' => $addon_profitsplit,
+                        'addon_peak_active_days' => $addon_peak_active_days,
+                        'addon_trading_days' => $addon_trading_days,
+                        'product_id' => $product_id
+                    )
+                );
+            }
         }
-        fclose($handle); // Tutup file setelah selesai diproses
+        fclose($handle); 
     }
 }
 
