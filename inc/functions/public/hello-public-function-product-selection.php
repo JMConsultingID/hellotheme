@@ -69,12 +69,15 @@ function hello_theme_challenge_selection_shortcode($atts) {
                     <div class="panels">
                         <div class="panel">
                             <!-- Button Selection Bar Challenge -->
+                            <div class="select-account-challenge">
+                            <h5 class="sub-title">Select Account Challenge</h5>
                             <div id="challenge-selection-bar">
                                 <button type="button" class="challenge-option" data-value="10k" <?php if ($challenge == '10k') echo 'class="selected"'; ?>>10k</button>
                                 <button type="button" class="challenge-option" data-value="25k" <?php if ($challenge == '25k') echo 'class="selected"'; ?>>25k</button>
                                 <button type="button" class="challenge-option" data-value="50k" <?php if ($challenge == '50k') echo 'class="selected"'; ?>>50k</button>
                                 <button type="button" class="challenge-option" data-value="100k" <?php if ($challenge == '100k') echo 'class="selected"'; ?>>100k</button>
                                 <button type="button" class="challenge-option" data-value="200k" <?php if ($challenge == '200k') echo 'class="selected"'; ?>>200k</button>
+                            </div>
                             </div>
 
                             <div id="account-type-selection" class="type-of-account">
