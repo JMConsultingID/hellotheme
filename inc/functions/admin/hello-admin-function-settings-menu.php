@@ -407,6 +407,7 @@ function hello_theme_manage_product_combinations_page() {
         <!-- Form untuk unggah CSV -->
         <form method="post" enctype="multipart/form-data">
             <h2>Import Product Combinations</h2>
+            <p>If you want to use a pre-built spreadsheet template for your product combination, you can copy or download the csv file <a href="https://docs.google.com/spreadsheets/d/1UVBgsijEJPnqVvpe6KCcpK6QcDh0byqq9dLo_w21SAk/edit?usp=sharing" target="_blank">here.</a></p>
             <input type="file" name="product_combinations_file" accept=".csv" required>
             <?php submit_button('Import Combinations', 'secondary', 'import_product_combinations'); ?>
         </form>
