@@ -77,7 +77,7 @@ function hello_theme_challenge_selection_shortcode($atts) {
                     </div>
 
                     <div class="panels">
-                        <div class="panel" id="panel-basecamp">
+                        <div class="panel">
                             <!-- Button Selection Bar untuk Challenge -->
                             <div id="challenge-selection-bar">
                                 <button type="button" class="challenge-option" data-value="10k" <?php if ($challenge == '10k') echo 'class="selected"'; ?>>10k</button>
