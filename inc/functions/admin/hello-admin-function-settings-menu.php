@@ -364,7 +364,10 @@ function hello_theme_manage_product_combinations_page() {
                 <tr valign="top">
                     <th scope="row">Category</th>
                     <td>
-                        <input type="text" name="category" value="<?php echo isset($edit_item) ? esc_attr($edit_item->category) : ''; ?>" required />
+                        <select name="category">
+                            <option value="base-camp" <?php echo (isset($edit_item) && $edit_item->category === 'base-camp') ? 'selected' : ''; ?>>Basecamp</option>
+                            <option value="the-peak" <?php echo (isset($edit_item) && $edit_item->category === 'the-peak') ? 'selected' : ''; ?>>The Peak</option>
+                        </select>
                     </td>
                 </tr>
                 <tr valign="top">
@@ -379,7 +382,13 @@ function hello_theme_manage_product_combinations_page() {
                 <tr valign="top">
                     <th scope="row">Challenge</th>
                     <td>
-                        <input type="text" name="challenge" value="<?php echo isset($edit_item) ? esc_attr($edit_item->challenge) : ''; ?>" required />
+                        <select name="challenge">
+                            <option value="10k" <?php echo (isset($edit_item) && $edit_item->challenge === '10k') ? 'selected' : ''; ?>>10k</option>
+                            <option value="25k" <?php echo (isset($edit_item) && $edit_item->challenge === '25k') ? 'selected' : ''; ?>>25k</option>
+                            <option value="50k" <?php echo (isset($edit_item) && $edit_item->challenge === '50k') ? 'selected' : ''; ?>>50k</option>
+                            <option value="100k" <?php echo (isset($edit_item) && $edit_item->challenge === '100k') ? 'selected' : ''; ?>>100k</option>
+                            <option value="200k" <?php echo (isset($edit_item) && $edit_item->challenge === '200k') ? 'selected' : ''; ?>>200k</option>
+                        </select>
                     </td>
                 </tr>
                 <tr valign="top">
