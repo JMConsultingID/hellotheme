@@ -47,14 +47,14 @@ function hello_theme_add_menu_page() {
         'hello_theme_woocommerce_settings_page'
     );   
 
-    add_submenu_page(
-        'hello-theme-panel',
-        'Hello Products',
-        'Hello Products',
-        'manage_options',
-        'hello-product-selection-settings',
-        'hello_theme_product_selection_settings_page'
-    );
+    // add_submenu_page(
+    //     'hello-theme-panel',
+    //     'Hello Products',
+    //     'Hello Products',
+    //     'manage_options',
+    //     'hello-product-selection-settings',
+    //     'hello_theme_product_selection_settings_page'
+    // );
 
     add_submenu_page(
         'hello-theme-panel',
