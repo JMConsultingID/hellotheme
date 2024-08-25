@@ -264,7 +264,7 @@ function hello_theme_manage_product_combinations_page() {
 
             if ($file_type == 'text/csv' || $file_type == 'application/vnd.ms-excel') {
                 // Memproses file unggahan
-                import_product_combinations($file);
+                hello_theme_import_product_combinations($file);
                 echo '<div class="updated"><p>Product combinations imported successfully!</p></div>';
             } else {
                 echo '<div class="error"><p>Invalid file type. Please upload a CSV file.</p></div>';
@@ -273,6 +273,13 @@ function hello_theme_manage_product_combinations_page() {
             echo '<div class="error"><p>Please upload a file.</p></div>';
         }
     }
+
+    // Mengecek apakah form telah disubmit untuk mengosongkan tabel
+    if (isset($_POST['clear_table_action']) && $_POST['clear_table_action'] === 'clear_table') {
+        hello_theme_clear_product_combinations_table();
+        echo '<div class="updated"><p>Product combinations table cleared successfully!</p></div>';
+    }
+
 
     // Proses penyimpanan data
     if (isset($_POST['save_product_combination'])) {
@@ -457,11 +464,19 @@ function hello_theme_manage_product_combinations_page() {
                 ?>
             </tbody>
         </table>
+
+        <hr>
+
+        <form method="post">
+            <h2>Clear Product Combinations Table</h2>
+            <input type="hidden" name="clear_table_action" value="clear_table" />
+            <?php submit_button('Clear Product Combinations Table', 'delete', 'clear_table_submit'); ?>
+        </form>
     </div>
     <?php
 }
 
-function import_product_combinations($file) {
+function hello_theme_import_product_combinations($file) {
     global $wpdb;
 
     // Membuka file CSV
@@ -524,6 +539,12 @@ function import_product_combinations($file) {
         fclose($handle); // Tutup file setelah selesai diproses
     }
 }
+
+function hello_theme_clear_product_combinations_table() {
+    global $wpdb;
+    $wpdb->query("TRUNCATE TABLE {$wpdb->prefix}hello_theme_product_combinations");
+}
+
 
 
 // Mendaftarkan pengaturan dan bagian pengaturan untuk Affiliate WP
