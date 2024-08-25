@@ -234,10 +234,6 @@ to {
 }
 
 @media (max-width: 767px) {
-body {
-  padding-left: 16px;
-  padding-right: 16px;
-}
 .hello-theme-product-selection .warpper-alf {
   flex-direction: column;
   margin-bottom: 30px;
