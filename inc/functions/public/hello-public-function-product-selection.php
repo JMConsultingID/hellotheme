@@ -281,7 +281,7 @@ function hello_theme_challenge_selection_shortcode($atts) {
     // Pengecekan kombinasi validitas parameter
     global $wpdb;
     $query = $wpdb->prepare(
-        "SELECT COUNT(*) FROM {$wpdb->prefix}custom_product_combinations 
+        "SELECT COUNT(*) FROM {$wpdb->prefix}hello_theme_product_combinations 
         WHERE category = %s AND account_type = %s AND challenge = %s 
         AND addon_active_days = %s AND addon_profitsplit = %s AND addon_trading_days = %s",
         $category, $account_type, $challenge, $active_days, $profitsplit, $tradingdays
