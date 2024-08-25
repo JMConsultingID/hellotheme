@@ -139,7 +139,7 @@
                     productImage.innerHTML = `<img src="${response.data.product_image}" alt="${response.data.product_title}" class="product-img" />`;
                     productTitle.innerHTML = `<h4 class="sub-title">${response.data.product_title}</h4>`;
                     productDescription.innerHTML = `${response.data.product_description}`;
-                    productPrice.innerHTML = `<span class="num-total">${response.data.product_price}</span><span class="note">VAT Included</span>`;
+                    productPrice.innerHTML = `<span class="num-total">${response.data.product_price}</span>`;
                 } else {
                     checkoutButton.href = '#';
                     checkoutButton.setAttribute('disabled', 'disabled');
