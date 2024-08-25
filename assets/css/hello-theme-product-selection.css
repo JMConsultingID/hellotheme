@@ -82,7 +82,6 @@ to {
 }
 }
 .hello-theme-product-selection .panel {
-	display: none;
 	flex-direction: column;
 	flex-wrap: nowrap;
 	gap: 30px;
