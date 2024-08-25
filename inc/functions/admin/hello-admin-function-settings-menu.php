@@ -256,8 +256,8 @@ add_action( 'admin_init', 'hello_theme_register_product_selection_settings' );
 function hello_theme_manage_product_combinations_page() {
     global $wpdb;
 
+    // Proses penyimpanan data
     if (isset($_POST['save_product_combination'])) {
-        // Proses penyimpanan data
         $category = sanitize_text_field($_POST['category']);
         $account_type = sanitize_text_field($_POST['account_type']);
         $challenge = sanitize_text_field($_POST['challenge']);
@@ -266,74 +266,158 @@ function hello_theme_manage_product_combinations_page() {
         $addon_trading_days = isset($_POST['addon_trading_days']) ? 'yes' : 'no';
         $product_id = intval($_POST['product_id']);
 
-        $wpdb->insert(
+        if (isset($_POST['edit_id'])) {
+            // Update existing entry
+            $wpdb->update(
+                $wpdb->prefix . 'hello_theme_product_combinations',
+                array(
+                    'category' => $category,
+                    'account_type' => $account_type,
+                    'challenge' => $challenge,
+                    'addon_active_days' => $addon_active_days,
+                    'addon_profitsplit' => $addon_profitsplit,
+                    'addon_trading_days' => $addon_trading_days,
+                    'product_id' => $product_id
+                ),
+                array('id' => intval($_POST['edit_id']))
+            );
+            echo '<div class="updated"><p>Product combination updated successfully!</p></div>';
+        } else {
+            // Insert new entry
+            $wpdb->insert(
+                $wpdb->prefix . 'hello_theme_product_combinations',
+                array(
+                    'category' => $category,
+                    'account_type' => $account_type,
+                    'challenge' => $challenge,
+                    'addon_active_days' => $addon_active_days,
+                    'addon_profitsplit' => $addon_profitsplit,
+                    'addon_trading_days' => $addon_trading_days,
+                    'product_id' => $product_id
+                )
+            );
+            echo '<div class="updated"><p>Product combination saved successfully!</p></div>';
+        }
+    }
+
+    // Proses penghapusan data
+    if (isset($_GET['delete_id'])) {
+        $wpdb->delete(
             $wpdb->prefix . 'hello_theme_product_combinations',
-            array(
-                'category' => $category,
-                'account_type' => $account_type,
-                'challenge' => $challenge,
-                'addon_active_days' => $addon_active_days,
-                'addon_profitsplit' => $addon_profitsplit,
-                'addon_trading_days' => $addon_trading_days,
-                'product_id' => $product_id
+            array('id' => intval($_GET['delete_id']))
+        );
+        echo '<div class="updated"><p>Product combination deleted successfully!</p></div>';
+    }
+
+    // Ambil data yang akan di-edit
+    $edit_item = null;
+    if (isset($_GET['edit_id'])) {
+        $edit_item = $wpdb->get_row(
+            $wpdb->prepare(
+                "SELECT * FROM {$wpdb->prefix}hello_theme_product_combinations WHERE id = %d",
+                intval($_GET['edit_id'])
             )
         );
-        echo '<div class="updated"><p>Product combination saved successfully!</p></div>';
     }
 
     ?>
     <div class="wrap">
         <h1>Manage Product Combinations</h1>
         <form method="post">
+            <input type="hidden" name="edit_id" value="<?php echo isset($edit_item) ? $edit_item->id : ''; ?>" />
             <table class="form-table">
                 <tr valign="top">
                     <th scope="row">Category</th>
                     <td>
-                        <input type="text" name="category" value="" required />
+                        <input type="text" name="category" value="<?php echo isset($edit_item) ? $edit_item->category : ''; ?>" required />
                     </td>
                 </tr>
                 <tr valign="top">
                     <th scope="row">Type Of Account</th>
                     <td>
                         <select name="account_type">
-                            <option value="standard">Standard Account</option>
-                            <option value="swing">Swing Account</option>
+                            <option value="standard" <?php selected($edit_item->account_type, 'standard'); ?>>Standard Account</option>
+                            <option value="swing" <?php selected($edit_item->account_type, 'swing'); ?>>Swing Account</option>
                         </select>
                     </td>
                 </tr>
                 <tr valign="top">
                     <th scope="row">Challenge</th>
                     <td>
-                        <input type="text" name="challenge" value="" required />
+                        <input type="text" name="challenge" value="<?php echo isset($edit_item) ? $edit_item->challenge : ''; ?>" required />
                     </td>
                 </tr>
                 <tr valign="top">
                     <th scope="row">Add-On: Active Days</th>
                     <td>
-                        <input type="checkbox" name="addon_active_days" value="yes" />
+                        <input type="checkbox" name="addon_active_days" value="yes" <?php checked($edit_item->addon_active_days, 'yes'); ?> />
                     </td>
                 </tr>
                 <tr valign="top">
                     <th scope="row">Add-On: Profit Split</th>
                     <td>
-                        <input type="checkbox" name="addon_profitsplit" value="yes" />
+                        <input type="checkbox" name="addon_profitsplit" value="yes" <?php checked($edit_item->addon_profitsplit, 'yes'); ?> />
                     </td>
                 </tr>
                 <tr valign="top">
                     <th scope="row">Add-On: Trading Days</th>
                     <td>
-                        <input type="checkbox" name="addon_trading_days" value="yes" />
+                        <input type="checkbox" name="addon_trading_days" value="yes" <?php checked($edit_item->addon_trading_days, 'yes'); ?> />
                     </td>
                 </tr>
                 <tr valign="top">
                     <th scope="row">Product ID</th>
                     <td>
-                        <input type="number" name="product_id" value="" required />
+                        <input type="number" name="product_id" value="<?php echo isset($edit_item) ? $edit_item->product_id : ''; ?>" required />
                     </td>
                 </tr>
             </table>
-            <?php submit_button('Save Product Combination', 'primary', 'save_product_combination'); ?>
+            <?php submit_button(isset($edit_item) ? 'Update Product Combination' : 'Save Product Combination', 'primary', 'save_product_combination'); ?>
         </form>
+
+        <hr>
+
+        <h2>Existing Product Combinations</h2>
+        <table class="wp-list-table widefat fixed striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Category</th>
+                    <th>Type Of Account</th>
+                    <th>Challenge</th>
+                    <th>Active Days</th>
+                    <th>Profit Split</th>
+                    <th>Trading Days</th>
+                    <th>Product ID</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}custom_product_combinations");
+                if ($results) {
+                    foreach ($results as $row) {
+                        echo '<tr>';
+                        echo '<td>' . esc_html($row->id) . '</td>';
+                        echo '<td>' . esc_html($row->category) . '</td>';
+                        echo '<td>' . esc_html($row->account_type) . '</td>';
+                        echo '<td>' . esc_html($row->challenge) . '</td>';
+                        echo '<td>' . esc_html($row->addon_active_days) . '</td>';
+                        echo '<td>' . esc_html($row->addon_profitsplit) . '</td>';
+                        echo '<td>' . esc_html($row->addon_trading_days) . '</td>';
+                        echo '<td>' . esc_html($row->product_id) . '</td>';
+                        echo '<td>';
+                        echo '<a href="?page=hello-product-combinations&edit_id=' . intval($row->id) . '">Edit</a> | ';
+                        echo '<a href="?page=hello-product-combinations&delete_id=' . intval($row->id) . '" onclick="return confirm(\'Are you sure you want to delete this item?\')">Delete</a>';
+                        echo '</td>';
+                        echo '</tr>';
+                    }
+                } else {
+                    echo '<tr><td colspan="9">No product combinations found.</td></tr>';
+                }
+                ?>
+            </tbody>
+        </table>
     </div>
     <?php
 }
