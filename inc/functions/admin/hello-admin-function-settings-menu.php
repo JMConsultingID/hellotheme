@@ -350,52 +350,52 @@ function hello_theme_manage_product_combinations_page() {
                 <tr valign="top">
                     <th scope="row">Category</th>
                     <td>
-                        <input type="text" name="category" value="<?php echo isset($edit_item) ? $edit_item->category : ''; ?>" required />
+                        <input type="text" name="category" value="<?php echo isset($edit_item) ? esc_attr($edit_item->category) : ''; ?>" required />
                     </td>
                 </tr>
                 <tr valign="top">
                     <th scope="row">Type Of Account</th>
                     <td>
                         <select name="account_type">
-                            <option value="standard" <?php selected($edit_item->account_type, 'standard'); ?>>Standard Account</option>
-                            <option value="swing" <?php selected($edit_item->account_type, 'swing'); ?>>Swing Account</option>
+                            <option value="standard" <?php echo (isset($edit_item) && $edit_item->account_type === 'standard') ? 'selected' : ''; ?>>Standard Account</option>
+                            <option value="swing" <?php echo (isset($edit_item) && $edit_item->account_type === 'swing') ? 'selected' : ''; ?>>Swing Account</option>
                         </select>
                     </td>
                 </tr>
                 <tr valign="top">
                     <th scope="row">Challenge</th>
                     <td>
-                        <input type="text" name="challenge" value="<?php echo isset($edit_item) ? $edit_item->challenge : ''; ?>" required />
+                        <input type="text" name="challenge" value="<?php echo isset($edit_item) ? esc_attr($edit_item->challenge) : ''; ?>" required />
                     </td>
                 </tr>
                 <tr valign="top">
                     <th scope="row">Add-On: Active Days</th>
                     <td>
-                        <input type="checkbox" name="addon_active_days" value="yes" <?php checked($edit_item->addon_active_days, 'yes'); ?> />
+                        <input type="checkbox" name="addon_active_days" value="yes" <?php echo (isset($edit_item) && $edit_item->addon_active_days === 'yes') ? 'checked' : ''; ?> />
                     </td>
                 </tr>
                 <tr valign="top">
                     <th scope="row">Add-On: Profit Split</th>
                     <td>
-                        <input type="checkbox" name="addon_profitsplit" value="yes" <?php checked($edit_item->addon_profitsplit, 'yes'); ?> />
+                        <input type="checkbox" name="addon_profitsplit" value="yes" <?php echo (isset($edit_item) && $edit_item->addon_profitsplit === 'yes') ? 'checked' : ''; ?> />
                     </td>
                 </tr>
                 <tr valign="top">
                     <th scope="row">Add-On: The Peak Active Days</th>
                     <td>
-                        <input type="checkbox" name="addon_peak_active_days" value="yes" <?php checked($edit_item->addon_peak_active_days, 'yes'); ?> />
+                        <input type="checkbox" name="addon_peak_active_days" value="yes" <?php echo (isset($edit_item) && $edit_item->addon_peak_active_days === 'yes') ? 'checked' : ''; ?> />
                     </td>
                 </tr>
                 <tr valign="top">
                     <th scope="row">Add-On: Trading Days</th>
                     <td>
-                        <input type="checkbox" name="addon_trading_days" value="yes" <?php checked($edit_item->addon_trading_days, 'yes'); ?> />
+                        <input type="checkbox" name="addon_trading_days" value="yes" <?php echo (isset($edit_item) && $edit_item->addon_trading_days === 'yes') ? 'checked' : ''; ?> />
                     </td>
                 </tr>
                 <tr valign="top">
                     <th scope="row">Product ID</th>
                     <td>
-                        <input type="number" name="product_id" value="<?php echo isset($edit_item) ? $edit_item->product_id : ''; ?>" required />
+                        <input type="number" name="product_id" value="<?php echo isset($edit_item) ? esc_attr($edit_item->product_id) : ''; ?>" required />
                     </td>
                 </tr>
             </table>
