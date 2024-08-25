@@ -48,7 +48,7 @@ function hello_theme_challenge_selection_shortcode($atts) {
                         <div class="warning">The given parameter is invalid. Using the default preselect.</div>
                     <?php endif; ?>
 
-                    <!-- Button Selection untuk Basecamp atau The Peak -->
+                    <!-- Button Selection Category -->
                     <div id="category-selection">
                         <input type="radio" class="hide radio" id="id-basecamp" name="category" value="base-camp" <?php checked('base-camp', $category); ?>
                         />
@@ -68,7 +68,7 @@ function hello_theme_challenge_selection_shortcode($atts) {
 
                     <div class="panels">
                         <div class="panel">
-                            <!-- Button Selection Bar untuk Challenge -->
+                            <!-- Button Selection Bar Challenge -->
                             <div id="challenge-selection-bar">
                                 <button type="button" class="challenge-option" data-value="10k" <?php if ($challenge == '10k') echo 'class="selected"'; ?>>10k</button>
                                 <button type="button" class="challenge-option" data-value="25k" <?php if ($challenge == '25k') echo 'class="selected"'; ?>>25k</button>
@@ -92,7 +92,7 @@ function hello_theme_challenge_selection_shortcode($atts) {
                             </div>
 
 
-                            <!-- Button Selection untuk Type of Account -->
+                            <!-- Button Selection Type of Account -->
                             <!-- <div id="account-type-selection">
                                 <label>
                                     <input type="radio" name="account_type" value="standard" <?php checked('standard', $account_type); ?>> Standard
@@ -103,7 +103,7 @@ function hello_theme_challenge_selection_shortcode($atts) {
                             </div> -->
 
 
-                            <!-- Button Selection untuk Add-ons -->
+                            <!-- Button Selection Add-ons -->
 
                             <div id="addons-selection" class="addon">
                               <h3 class="sub-title">Addon</h3>
@@ -126,29 +126,40 @@ function hello_theme_challenge_selection_shortcode($atts) {
                 </div>
 
                 <div class="right box-shadow">
+                    <div class="items-panel">
+                        <div class="box-tabs-content">
+                        <div data-tab-index="1" class="e-content e-active">
+                            <div class="products">
 
-                    <!-- Product Image and Price -->
-                    <div id="product-display">
-                        <div id="product-image">
-                            <!-- Gambar produk akan ditampilkan di sini -->
-                        </div>
-                        <div id="product-title">
-                            <!-- Judul produk akan ditampilkan di sini -->
-                        </div>
-                        <div id="product-description">
-                            <!-- Deskripsi produk akan ditampilkan di sini -->
-                        </div>
-                        <div id="product-price">
-                            <!-- Harga produk akan ditampilkan di sini -->
-                        </div>
-                    </div>
+                                <!-- Product Image and Price -->
+                                <div id="product-display">
+                                    <div class="product">
+                                        <div id="product-image"></div>
+                                    </div>
 
-                    <!-- Button Checkout -->
-                    <div id="checkout-section">
-                        <a id="checkout-button" href="#" class="button" disabled>Checkout</a>
+                                    <div class="description">
+                                        <div id="product-title" class="sub-title"></div>
+                                        <div id="product-description" class="detail-product"></div>
+                                    </div>
+
+                                    <div class="amount">
+                                        <h4 class="sub-title">Amount to be paid</h4>
+                                        <div class="amount-box">
+                                            <div id="product-price"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="box-btn">
+                                        <a id="checkout-button" href="#" class="button price-btn">Continue</a>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        </div>
                     </div>
                 </div>
-
             </div>
         </div>
         <?php
