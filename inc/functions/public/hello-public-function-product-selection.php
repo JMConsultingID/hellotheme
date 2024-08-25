@@ -295,7 +295,7 @@ function hello_theme_challenge_selection_shortcode($atts) {
         <!-- Button Selection untuk Type of Account -->
         <div id="account-type-selection">
             <label>
-                <input type="radio" name="account_type" value="standard" checked> Standard
+                <input type="radio" name="account_type" value="standard"> Standard
             </label>
             <label>
                 <input type="radio" name="account_type" value="swing"> Swing
@@ -304,7 +304,17 @@ function hello_theme_challenge_selection_shortcode($atts) {
 
         <!-- Button Selection untuk Add-ons -->
         <div id="addons-selection">
-            <!-- Add-ons will be loaded here based on selected category -->
+            <!-- Add-ons akan dimuat di sini berdasarkan kategori yang dipilih -->
+        </div>
+
+        <!-- Product Image and Price -->
+        <div id="product-display">
+            <div id="product-image">
+                <!-- Gambar produk akan ditampilkan di sini -->
+            </div>
+            <div id="product-price">
+                <!-- Harga produk akan ditampilkan di sini -->
+            </div>
         </div>
 
         <!-- Button Checkout -->
@@ -338,7 +348,17 @@ function get_custom_product_id() {
     $product_id = $wpdb->get_var($query);
 
     if ($product_id) {
-        wp_send_json_success(array('product_id' => $product_id));
+        // Get product details
+        $product = wc_get_product($product_id);
+        $product_image = wp_get_attachment_image_url($product->get_image_id(), 'medium');
+        $product_price = $product->get_price_html(); // Mengambil harga produk dalam format HTML
+
+        // Kirim respon dengan ID produk, gambar produk, dan harga produk
+        wp_send_json_success(array(
+            'product_id' => $product_id,
+            'product_image' => $product_image,
+            'product_price' => $product_price
+        ));
     } else {
         wp_send_json_error(array('message' => 'No product found.'));
     }
@@ -347,3 +367,4 @@ function get_custom_product_id() {
 }
 add_action('wp_ajax_get_custom_product_id', 'get_custom_product_id');
 add_action('wp_ajax_nopriv_get_custom_product_id', 'get_custom_product_id');
+

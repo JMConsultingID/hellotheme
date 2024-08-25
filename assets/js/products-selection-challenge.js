@@ -4,10 +4,12 @@ jQuery(document).ready(function($) {
     const accountTypeSelection = document.querySelector('#account-type-selection');
     const addonsSelection = document.querySelector('#addons-selection');
     const checkoutButton = document.querySelector('#checkout-button');
+    const productImage = document.querySelector('#product-image');
+    const productPrice = document.querySelector('#product-price');
 
     let selectedCategory = document.querySelector('input[name="category"]:checked').value;
     let selectedChallenge = null; // Set to null initially
-    let selectedAccountType = null; // Set to null initially to ensure it's unselected on load
+    let selectedAccountType = null; // Set to null initially
     let selectedAddons = [];
 
     // Update addons selection based on selected category
@@ -74,12 +76,14 @@ jQuery(document).ready(function($) {
         updateCheckoutButton();
     });
 
-    // Update checkout button based on selections
+    // Update checkout button and display product details based on selections
     function updateCheckoutButton() {
         // Check if all selections are made
         if (!selectedCategory || !selectedChallenge || !selectedAccountType) {
             checkoutButton.href = '#';
             checkoutButton.setAttribute('disabled', 'disabled');
+            productImage.innerHTML = '';
+            productPrice.innerHTML = '';
             return;
         }
 
@@ -97,14 +101,21 @@ jQuery(document).ready(function($) {
             if (response.success) {
                 checkoutButton.href = '/checkout/?add-to-cart=' + response.data.product_id;
                 checkoutButton.removeAttribute('disabled');
+
+                // Update product image and price
+                productImage.innerHTML = `<img src="${response.data.product_image}" alt="Product Image" />`;
+                productPrice.innerHTML = `Price: ${response.data.product_price}`;
+
             } else {
                 checkoutButton.href = '#';
                 checkoutButton.setAttribute('disabled', 'disabled');
+                productImage.innerHTML = '';
+                productPrice.innerHTML = '';
             }
         });
     }
 
-    // Initialize addons, account type selection, and checkout button
+    // Initialize addons and checkout button
     updateAddonsSelection();
     document.querySelectorAll('input[name="account_type"]').forEach(function(radio) {
         radio.checked = false;  // Unselect all radio buttons for account type on load
