@@ -137,7 +137,7 @@
 
                     // Update product image, title, description, and price
                     productImage.innerHTML = `<img src="${response.data.product_image}" alt="${response.data.product_title}" class="product-img" />`;
-                    productTitle.innerHTML = `<h4 class="sub-title">${response.data.product_title}</h4>`;
+                    productTitle.innerHTML = `<h5 class="sub-title">${response.data.product_title}</h5>`;
                     productDescription.innerHTML = `${response.data.product_description}`;
                     productPrice.innerHTML = `<span class="num-total">${response.data.product_price}</span>`;
                 } else {
