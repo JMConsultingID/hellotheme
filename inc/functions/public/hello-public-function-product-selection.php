@@ -76,51 +76,13 @@ function hello_theme_challenge_selection_shortcode($atts) {
                         </div>
                     </div>
 
-                    <div class="panels">
-                        <div class="panel" id="panel-basecamp">
-
-
-                            <div class="balence">
-                              <h3 class="sub-title">Balence</h3>
-                              <div class="box-progress">
-                                <div id="progress-container-1" class="progress-container">
-                                  <input
-                                    type="range"
-                                    name="range"
-                                    id="progress-range-basecamp"
-                                    value="1"
-                                    min="1"
-                                    max="5"
-                                  />
-                                </div>
-                                <button type="button" id="price-10k" class="btn-price challenge-option" data-tab-index="1" data-value="10k" <?php if ($challenge == '10k') echo 'class="selected"'; ?>>
-                                  <span class="btn-price_label"> $10K </span>
-                                </button>
-                                <button type="button" id="price-25K" class="btn-price challenge-option" data-tab-index="2" data-value="25k" <?php if ($challenge == '25k') echo 'class="selected"'; ?>>
-                                  <span class="btn-price_label"> $25K </span>
-                                </button>
-                                <button type="button" id="price-50K" class="btn-price challenge-option" data-tab-index="3" data-value="50k" <?php if ($challenge == '50k') echo 'class="selected"'; ?>>
-                                  <span class="btn-price_label"> $50K </span>
-                                </button>
-                                <button type="button" id="price-100K" class="btn-price challenge-option" data-tab-index="4" data-value="100k" <?php if ($challenge == '100k') echo 'class="selected"'; ?>>
-                                  <span class="btn-price_label"> $100K </span>
-                                </button>
-                                <button type="button" id="price-200K" class="btn-price challenge-option" data-tab-index="5" data-value="200k" <?php if ($challenge == '200k') echo 'class="selected"'; ?>>
-                                  <span class="btn-price_label"> $200K </span>
-                                </button>
-                              </div>
-                            </div>
-
-                        <!-- Button Selection Bar untuk Challenge -->
-                        <!-- <div id="challenge-selection-bar">
-                            <button type="button" class="challenge-option" data-value="10k" <?php if ($challenge == '10k') echo 'class="selected"'; ?>>10k</button>
-                            <button type="button" class="challenge-option" data-value="25k" <?php if ($challenge == '25k') echo 'class="selected"'; ?>>25k</button>
-                            <button type="button" class="challenge-option" data-value="50k" <?php if ($challenge == '50k') echo 'class="selected"'; ?>>50k</button>
-                            <button type="button" class="challenge-option" data-value="100k" <?php if ($challenge == '100k') echo 'class="selected"'; ?>>100k</button>
-                            <button type="button" class="challenge-option" data-value="200k" <?php if ($challenge == '200k') echo 'class="selected"'; ?>>200k</button>
-                        </div> -->
-
-                        </div>
+                    <!-- Button Selection Bar untuk Challenge -->
+                    <div id="challenge-selection-bar">
+                        <button type="button" class="challenge-option" data-value="10k" <?php if ($challenge == '10k') echo 'class="selected"'; ?>>10k</button>
+                        <button type="button" class="challenge-option" data-value="25k" <?php if ($challenge == '25k') echo 'class="selected"'; ?>>25k</button>
+                        <button type="button" class="challenge-option" data-value="50k" <?php if ($challenge == '50k') echo 'class="selected"'; ?>>50k</button>
+                        <button type="button" class="challenge-option" data-value="100k" <?php if ($challenge == '100k') echo 'class="selected"'; ?>>100k</button>
+                        <button type="button" class="challenge-option" data-value="200k" <?php if ($challenge == '200k') echo 'class="selected"'; ?>>200k</button>
                     </div>
 
                     <!-- Button Selection untuk Type of Account -->
