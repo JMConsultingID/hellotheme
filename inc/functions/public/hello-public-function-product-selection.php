@@ -270,35 +270,64 @@ add_action('woocommerce_process_product_meta', 'hello_theme_save_addon_product_f
 
 
 function hello_theme_challenge_selection_shortcode($atts) {
+    // Cek parameter URL
+    $category = isset($_GET['category']) ? sanitize_text_field($_GET['category']) : 'base-camp';
+    $challenge = isset($_GET['challenge']) ? sanitize_text_field($_GET['challenge']) : '10k';
+    $account_type = isset($_GET['account_type']) ? sanitize_text_field($_GET['account_type']) : 'standard';
+    $active_days = isset($_GET['active_days']) ? sanitize_text_field($_GET['active_days']) : 'no';
+    $profitsplit = isset($_GET['profitsplit']) ? sanitize_text_field($_GET['profitsplit']) : 'no';
+    $tradingdays = isset($_GET['tradingdays']) ? sanitize_text_field($_GET['tradingdays']) : 'no';
+
+    // Pengecekan kombinasi validitas parameter
+    global $wpdb;
+    $query = $wpdb->prepare(
+        "SELECT COUNT(*) FROM {$wpdb->prefix}custom_product_combinations 
+        WHERE category = %s AND account_type = %s AND challenge = %s 
+        AND addon_active_days = %s AND addon_profitsplit = %s AND addon_trading_days = %s",
+        $category, $account_type, $challenge, $active_days, $profitsplit, $tradingdays
+    );
+    $is_valid_combination = $wpdb->get_var($query) > 0;
+
     ob_start();
     ?>
-    <div id="challenge-selection-form">
+    <div id="challenge-selection-form" data-category="<?php echo esc_attr($category); ?>"
+         data-challenge="<?php echo esc_attr($challenge); ?>"
+         data-account-type="<?php echo esc_attr($account_type); ?>"
+         data-active-days="<?php echo esc_attr($active_days); ?>"
+         data-profitsplit="<?php echo esc_attr($profitsplit); ?>"
+         data-tradingdays="<?php echo esc_attr($tradingdays); ?>"
+         data-valid="<?php echo $is_valid_combination ? 'yes' : 'no'; ?>">
+
+        <?php if (!$is_valid_combination): ?>
+            <div class="warning">Parameter yang diberikan tidak valid. Menggunakan default preselect.</div>
+        <?php endif; ?>
+
         <!-- Button Selection untuk Basecamp atau The Peak -->
         <div id="category-selection">
             <label>
-                <input type="radio" name="category" value="base-camp" checked> Basecamp
+                <input type="radio" name="category" value="base-camp" <?php checked('base-camp', $category); ?>> Basecamp
             </label>
             <label>
-                <input type="radio" name="category" value="the-peak"> The Peak
+                <input type="radio" name="category" value="the-peak" <?php checked('the-peak', $category); ?>> The Peak
             </label>
         </div>
 
         <!-- Button Selection Bar untuk Challenge -->
         <div id="challenge-selection-bar">
-            <button type="button" class="challenge-option" data-value="10k">10k</button>
-            <button type="button" class="challenge-option" data-value="25k">25k</button>
-            <button type="button" class="challenge-option" data-value="50k">50k</button>
-            <button type="button" class="challenge-option" data-value="100k">100k</button>
-            <button type="button" class="challenge-option" data-value="200k">200k</button>
+            <button type="button" class="challenge-option" data-value="10k" <?php if ($challenge == '10k') echo 'class="selected"'; ?>>10k</button>
+            <button type="button" class="challenge-option" data-value="25k" <?php if ($challenge == '25k') echo 'class="selected"'; ?>>25k</button>
+            <button type="button" class="challenge-option" data-value="50k" <?php if ($challenge == '50k') echo 'class="selected"'; ?>>50k</button>
+            <button type="button" class="challenge-option" data-value="100k" <?php if ($challenge == '100k') echo 'class="selected"'; ?>>100k</button>
+            <button type="button" class="challenge-option" data-value="200k" <?php if ($challenge == '200k') echo 'class="selected"'; ?>>200k</button>
         </div>
 
         <!-- Button Selection untuk Type of Account -->
         <div id="account-type-selection">
             <label>
-                <input type="radio" name="account_type" value="standard"> Standard
+                <input type="radio" name="account_type" value="standard" <?php checked('standard', $account_type); ?>> Standard
             </label>
             <label>
-                <input type="radio" name="account_type" value="swing"> Swing
+                <input type="radio" name="account_type" value="swing" <?php checked('swing', $account_type); ?>> Swing
             </label>
         </div>
 
