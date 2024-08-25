@@ -7,7 +7,7 @@ jQuery(document).ready(function($) {
 
     let selectedCategory = document.querySelector('input[name="category"]:checked').value;
     let selectedChallenge = null; // Set to null initially
-    let selectedAccountType = null; // Set to null initially
+    let selectedAccountType = null; // Set to null initially to ensure it's unselected on load
     let selectedAddons = [];
 
     // Update addons selection based on selected category
@@ -104,7 +104,10 @@ jQuery(document).ready(function($) {
         });
     }
 
-    // Initialize addons and checkout button
+    // Initialize addons, account type selection, and checkout button
     updateAddonsSelection();
+    document.querySelectorAll('input[name="account_type"]').forEach(function(radio) {
+        radio.checked = false;  // Unselect all radio buttons for account type on load
+    });
     updateCheckoutButton();
 });
