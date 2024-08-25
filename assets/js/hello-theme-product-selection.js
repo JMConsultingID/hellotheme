@@ -5,7 +5,7 @@
         const categorySelection = document.querySelector('#category-selection');
         const challengeButtons = document.querySelectorAll('.challenge-option');
         const accountTypeSelection = document.querySelector('#account-type-selection');
-        const addonsSelection = document.querySelector('#addons-selection');
+        const addonsSelection = document.querySelector('#addons-selection ul');
         const checkoutButton = document.querySelector('#checkout-button');
         const productImage = document.querySelector('#product-image');
         const productTitle = document.querySelector('#product-title');
