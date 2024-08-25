@@ -19,11 +19,26 @@
         let selectedAccountType = form.dataset.accountType;
         let selectedAddons = [];
 
-        function resetAddonsSelection() {
-            document.querySelectorAll('input[name="addons"]').forEach(function(checkbox) {
-                checkbox.checked = false;
-            });
-            selectedAddons = [];
+        function saveSelections() {
+            const selections = {
+                category: selectedCategory,
+                challenge: selectedChallenge,
+                accountType: selectedAccountType,
+                addons: selectedAddons
+            };
+            localStorage.setItem('productSelections', JSON.stringify(selections));
+        }
+
+        function loadSelections() {
+            const selections = JSON.parse(localStorage.getItem('productSelections'));
+            if (selections) {
+                selectedCategory = selections.category;
+                selectedChallenge = selections.challenge;
+                selectedAccountType = selections.accountType;
+                selectedAddons = selections.addons || [];
+
+                applyPreselect();
+            }
         }
 
         // Apply preselect based on URL parameters or defaults
@@ -159,8 +174,7 @@
         }
 
         // Initialize addons and checkout button
-        applyPreselect();
-        resetAddonsSelection(); // Reset all addons checkboxes when page loads
+        loadSelections(); // Load selections when page loads
     });
 
 })( jQuery );
