@@ -19,28 +19,6 @@
         let selectedAccountType = form.dataset.accountType;
         let selectedAddons = [];
 
-        function saveSelections() {
-            const selections = {
-                category: selectedCategory,
-                challenge: selectedChallenge,
-                accountType: selectedAccountType,
-                addons: selectedAddons
-            };
-            localStorage.setItem('productSelections', JSON.stringify(selections));
-        }
-
-        function loadSelections() {
-            const selections = JSON.parse(localStorage.getItem('productSelections'));
-            if (selections) {
-                selectedCategory = selections.category;
-                selectedChallenge = selections.challenge;
-                selectedAccountType = selections.accountType;
-                selectedAddons = selections.addons || [];
-
-                applyPreselect();
-            }
-        }
-
         // Apply preselect based on URL parameters or defaults
         function applyPreselect() {
             // Set category selection
@@ -174,7 +152,7 @@
         }
 
         // Initialize addons and checkout button
-        loadSelections(); // Load selections when page loads
+        applyPreselect();
     });
 
 })( jQuery );
