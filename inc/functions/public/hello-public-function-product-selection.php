@@ -143,7 +143,6 @@ function hello_theme_challenge_selection_shortcode($atts) {
                                     </div>
 
                                     <div class="amount">
-                                        <h4 class="sub-title">Amount to be paid</h4>
                                         <div class="amount-box">
                                             <div id="product-price"></div>
                                           <span class="note">VAT Included</span>
