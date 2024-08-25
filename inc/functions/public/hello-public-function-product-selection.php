@@ -78,7 +78,7 @@ function hello_theme_challenge_selection_shortcode($atts) {
                             </div>
 
                             <div id="account-type-selection" class="type-of-account">
-                              <h3 class="sub-title">Type of Account</h3>
+                              <h5 class="sub-title">Type of Account</h5>
                               <ul>
                                 <li>
                                   <input id="standard-account" type="radio" class="input-radio" name="account_type" value="standard" <?php checked('standard', $account_type); ?>/>
@@ -106,7 +106,7 @@ function hello_theme_challenge_selection_shortcode($atts) {
                             <!-- Button Selection Add-ons -->
 
                             <div id="addons-selection" class="addon">
-                              <h3 class="sub-title">Addon</h3>
+                              <h5 class="sub-title">Addon</h5>
                               <ul>
                                 <li>
                                   <input type="checkbox" class="input-checkbox" name="active-days" id="active-days"/>
