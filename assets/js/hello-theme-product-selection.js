@@ -17,7 +17,6 @@
         let selectedCategory = form.dataset.category;
         let selectedChallenge = form.dataset.challenge;
         let selectedAccountType = form.dataset.accountType;
-        let selectedAddons = [];
 
         // Fungsi untuk menyimpan pilihan ke Local Storage
         function saveSelections() {
