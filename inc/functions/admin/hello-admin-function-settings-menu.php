@@ -256,6 +256,24 @@ add_action( 'admin_init', 'hello_theme_register_product_selection_settings' );
 function hello_theme_manage_product_combinations_page() {
     global $wpdb;
 
+    // Proses unggahan file CSV
+    if (isset($_POST['import_product_combinations'])) {
+        if (!empty($_FILES['product_combinations_file']['tmp_name'])) {
+            $file = $_FILES['product_combinations_file']['tmp_name'];
+            $file_type = $_FILES['product_combinations_file']['type'];
+
+            if ($file_type == 'text/csv' || $file_type == 'application/vnd.ms-excel') {
+                // Memproses file unggahan
+                import_product_combinations($file);
+                echo '<div class="updated"><p>Product combinations imported successfully!</p></div>';
+            } else {
+                echo '<div class="error"><p>Invalid file type. Please upload a CSV file.</p></div>';
+            }
+        } else {
+            echo '<div class="error"><p>Please upload a file.</p></div>';
+        }
+    }
+
     // Proses penyimpanan data
     if (isset($_POST['save_product_combination'])) {
         $category = sanitize_text_field($_POST['category']);
@@ -323,6 +341,14 @@ function hello_theme_manage_product_combinations_page() {
     ?>
     <div class="wrap">
         <h1>Manage Product Combinations</h1>
+        <!-- Form untuk unggah CSV -->
+        <form method="post" enctype="multipart/form-data">
+            <h2>Import Product Combinations</h2>
+            <input type="file" name="product_combinations_file" accept=".csv" required>
+            <?php submit_button('Import Combinations', 'secondary', 'import_product_combinations'); ?>
+        </form>
+
+        <hr>
         <form method="post">
             <input type="hidden" name="edit_id" value="<?php echo isset($edit_item) ? $edit_item->id : ''; ?>" />
             <table class="form-table">
@@ -421,6 +447,42 @@ function hello_theme_manage_product_combinations_page() {
     </div>
     <?php
 }
+
+function import_product_combinations($file) {
+    global $wpdb;
+
+    // Membuka file CSV
+    $handle = fopen($file, 'r');
+    if ($handle !== false) {
+        $header = fgetcsv($handle, 1000, ','); // Baca header dan abaikan
+        while (($row = fgetcsv($handle, 1000, ',')) !== false) {
+            // Ambil data dari setiap baris
+            $category = sanitize_text_field($row[1]);
+            $account_type = sanitize_text_field($row[2]);
+            $challenge = sanitize_text_field($row[3]);
+            $addon_active_days = sanitize_text_field($row[4]);
+            $addon_profitsplit = sanitize_text_field($row[5]);
+            $addon_trading_days = sanitize_text_field($row[6]);
+            $product_id = intval($row[7]);
+
+            // Masukkan data ke dalam tabel
+            $wpdb->insert(
+                $wpdb->prefix . 'hello_theme_product_combinations',
+                array(
+                    'category' => $category,
+                    'account_type' => $account_type,
+                    'challenge' => $challenge,
+                    'addon_active_days' => $addon_active_days,
+                    'addon_profitsplit' => $addon_profitsplit,
+                    'addon_trading_days' => $addon_trading_days,
+                    'product_id' => $product_id
+                )
+            );
+        }
+        fclose($handle); // Tutup file setelah selesai diproses
+    }
+}
+
 
 
 // Mendaftarkan pengaturan dan bagian pengaturan untuk Affiliate WP
