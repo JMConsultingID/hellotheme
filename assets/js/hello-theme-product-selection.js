@@ -12,14 +12,34 @@
         const productDescription = document.querySelector('#product-description');
         const productPrice = document.querySelector('#product-price');
 
-        // Preselect based on data attributes from the root element
+        // Function to get URL parameter value
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            const results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        // Check if there are parameters in the URL
+        const urlCategory = getUrlParameter('category');
+        const urlChallenge = getUrlParameter('challenge');
+        const urlAccountType = getUrlParameter('account_type');
+
+        // Preselect based on URL parameters or Local Storage
         const form = document.querySelector('#challenge-selection-form');
-        let selectedCategory = form.dataset.category;
-        let selectedChallenge = form.dataset.challenge;
-        let selectedAccountType = form.dataset.accountType;
-        
+        let selectedCategory = urlCategory || form.dataset.category;
+        let selectedChallenge = urlChallenge || form.dataset.challenge;
+        let selectedAccountType = urlAccountType || form.dataset.accountType;
+
+        // If URL parameters exist, clear Local Storage to avoid conflicts
+        if (urlCategory || urlChallenge || urlAccountType) {
+            localStorage.removeItem('productSelections');
+        }
+
+        // Attempt to load selectedAddons from Local Storage or initialize as an empty array
         let selectedAddons = JSON.parse(localStorage.getItem('productSelections'))?.addons || [];
 
+        // Function to save selections to Local Storage
         function saveSelections() {
             const selections = {
                 category: selectedCategory,
@@ -30,20 +50,20 @@
             localStorage.setItem('productSelections', JSON.stringify(selections));
         }
 
-        // Fungsi untuk memuat pilihan dari Local Storage
+        // Function to load selections from Local Storage
         function loadSelections() {
             const selections = JSON.parse(localStorage.getItem('productSelections'));
             if (selections) {
                 selectedCategory = selections.category;
                 selectedChallenge = selections.challenge;
                 selectedAccountType = selections.accountType;
-                selectedAddons = selections.addons || []; // Memuat addons yang tersimpan
+                selectedAddons = selections.addons || [];
 
                 applyPreselect();
             }
         }
 
-        // Apply preselect based on URL parameters, defaults, or local storage
+        // Apply preselection based on URL parameters, defaults, or Local Storage
         function applyPreselect() {
             if (selectedCategory) {
                 document.querySelector(`input[name="category"][value="${selectedCategory}"]`).checked = true;
@@ -63,7 +83,7 @@
             updateAddonsSelection();
         }
 
-        // Update addons selection based on selected category
+        // Update addons selection based on the selected category
         function updateAddonsSelection() {
             addonsSelection.innerHTML = ''; // Clear previous addons
 
@@ -81,10 +101,10 @@
 
             // Set selected addons based on loaded selections
             document.querySelectorAll('input[name="addons"]').forEach(function(checkbox) {
-                checkbox.checked = selectedAddons.includes(checkbox.value); // Memuat pilihan addons dari Local Storage
+                checkbox.checked = selectedAddons.includes(checkbox.value); // Load addons from Local Storage
                 checkbox.addEventListener('change', function() {
                     selectedAddons = Array.from(document.querySelectorAll('input[name="addons"]:checked')).map(el => el.value);
-                    saveSelections(); // Save selections to local storage
+                    saveSelections(); // Save selections to Local Storage
                     updateCheckoutButton();
                 });
             });
