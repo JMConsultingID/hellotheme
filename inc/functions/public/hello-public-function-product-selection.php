@@ -50,12 +50,29 @@ function hello_theme_challenge_selection_shortcode($atts) {
 
                     <!-- Button Selection untuk Basecamp atau The Peak -->
                     <div id="category-selection">
-                        <label>
-                            <input type="radio" name="category" value="base-camp" <?php checked('base-camp', $category); ?>> Basecamp
-                        </label>
-                        <label>
-                            <input type="radio" name="category" value="the-peak" <?php checked('the-peak', $category); ?>> The Peak
-                        </label>
+                        <input
+                          type="radio"
+                          class="hide radio"
+                          id="id-basecamp"
+                          name="category"
+                          value="base-camp" <?php checked('base-camp', $category); ?>
+                        />
+                        <input
+                          type="radio"
+                          class="hide radio"
+                          id="id-thepeak"
+                          name="category"
+                          value="the-peak" <?php checked('the-peak', $category); ?>
+                        />
+                        <div class="category-tabs">
+                          <div class="category-items">
+                            <label class="tab-label" id="tab-label-basecamp" for="id-basecamp"
+                              >Base Camp</label
+                            >
+                            <label class="tab-label" id="tab-label-thepeak" for="id-thepeak"
+                              >The Peak</label
+                            >
+                          </div>
                     </div>
 
                     <!-- Button Selection Bar untuk Challenge -->
