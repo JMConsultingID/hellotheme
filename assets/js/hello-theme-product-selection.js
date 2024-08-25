@@ -158,10 +158,9 @@
             });
         }
 
-        resetAddonsSelection(); // Reset all addons checkboxes when page loads
-
         // Initialize addons and checkout button
         applyPreselect();
+        resetAddonsSelection(); // Reset all addons checkboxes when page loads
     });
 
 })( jQuery );
