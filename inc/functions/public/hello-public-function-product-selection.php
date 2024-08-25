@@ -32,7 +32,7 @@ function hello_theme_challenge_selection_shortcode($atts) {
 
         ob_start();
         ?>
-        <div id="challenge-selection-form" class="hello-theme-product-selection"> data-category="<?php echo esc_attr($category); ?>"
+        <div id="challenge-selection-form" class="hello-theme-product-selection" data-category="<?php echo esc_attr($category); ?>"
              data-challenge="<?php echo esc_attr($challenge); ?>"
              data-account-type="<?php echo esc_attr($account_type); ?>"
              data-active-days="<?php echo esc_attr($active_days); ?>"
