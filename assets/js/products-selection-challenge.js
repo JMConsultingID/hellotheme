@@ -5,6 +5,8 @@ jQuery(document).ready(function($) {
     const addonsSelection = document.querySelector('#addons-selection');
     const checkoutButton = document.querySelector('#checkout-button');
     const productImage = document.querySelector('#product-image');
+    const productTitle = document.querySelector('#product-title');
+    const productDescription = document.querySelector('#product-description');
     const productPrice = document.querySelector('#product-price');
 
     // Preselect based on data attributes from the root element
