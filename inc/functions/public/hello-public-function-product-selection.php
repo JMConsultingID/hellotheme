@@ -11,7 +11,6 @@
 function hello_theme_challenge_selection_shortcode($atts) {
     $enabled_product_selection = get_option('enable_product_selection_pages');
     if ($enabled_product_selection === '1') {
-        // Cek parameter URL
         $category = isset($_GET['category']) ? sanitize_text_field($_GET['category']) : 'base-camp';
         $challenge = isset($_GET['challenge']) ? sanitize_text_field($_GET['challenge']) : '10k';
         $account_type = isset($_GET['account_type']) ? sanitize_text_field($_GET['account_type']) : 'standard';
@@ -20,7 +19,6 @@ function hello_theme_challenge_selection_shortcode($atts) {
         $peak_active_days = isset($_GET['peak_active_days']) ? sanitize_text_field($_GET['peak_active_days']) : 'no';
         $tradingdays = isset($_GET['tradingdays']) ? sanitize_text_field($_GET['tradingdays']) : 'no';
 
-        // Pengecekan kombinasi validitas parameter
         global $wpdb;
         $query = $wpdb->prepare(
             "SELECT COUNT(*) FROM {$wpdb->prefix}hello_theme_product_combinations 
@@ -45,22 +43,19 @@ function hello_theme_challenge_selection_shortcode($atts) {
                 <div class="left box-shadow">
 
                     <?php if (!$is_valid_combination): ?>
-                        <div class="warning">The given parameter is invalid. Using the default preselect.</div>
+                        <div class="warning">
+                            <p>Error Code: 10089 - Invalid Parameter.</p>
+                        </div>
                     <?php endif; ?>
 
                     <!-- Button Selection Category -->
                     <div id="category-selection">
-                        <input type="radio" class="hide radio" id="id-basecamp" name="category" value="base-camp" <?php checked('base-camp', $category); ?>
-                        />
-                        <input type="radio" class="hide radio" id="id-thepeak" name="category" value="the-peak" <?php checked('the-peak', $category); ?>
-                        />
+                        <input type="radio" class="hide radio" id="id-basecamp" name="category" value="base-camp" <?php checked('base-camp', $category); ?>/>
+                        <input type="radio" class="hide radio" id="id-thepeak" name="category" value="the-peak" <?php checked('the-peak', $category); ?> />
                         <div class="category-tabs">
                           <div class="category-items">
-                            <label class="tab-label" id="tab-label-basecamp" for="id-basecamp"
-                              >Base Camp</label
-                            >
-                            <label class="tab-label" id="tab-label-thepeak" for="id-thepeak"
-                              >The Peak</label
+                            <label class="tab-label" id="tab-label-basecamp" for="id-basecamp">Base Camp</label>
+                            <label class="tab-label" id="tab-label-thepeak" for="id-thepeak">The Peak</label
                             >
                           </div>
                         </div>
@@ -94,20 +89,6 @@ function hello_theme_challenge_selection_shortcode($atts) {
                               </ul>
                             </div>
 
-
-                            <!-- Button Selection Type of Account -->
-                            <!-- <div id="account-type-selection">
-                                <label>
-                                    <input type="radio" name="account_type" value="standard" <?php checked('standard', $account_type); ?>> Standard
-                                </label>
-                                <label>
-                                    <input type="radio" name="account_type" value="swing" <?php checked('swing', $account_type); ?>> Swing
-                                </label>
-                            </div> -->
-
-
-                            <!-- Button Selection Add-ons -->
-
                             <div id="addons-selection" class="addon">
                               <h5 class="sub-title">Addon</h5>
                               <ul>
@@ -121,8 +102,6 @@ function hello_theme_challenge_selection_shortcode($atts) {
                                 </li>
                               </ul>
                             </div>
-                            <!-- <div id="addons-selection">
-                            </div> -->
                         </div>
                     </div>
 

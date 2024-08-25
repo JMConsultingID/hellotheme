@@ -256,7 +256,6 @@ add_action( 'admin_init', 'hello_theme_register_product_selection_settings' );
 function hello_theme_manage_product_combinations_page() {
     global $wpdb;
 
-    // Proses unggahan file CSV
     if (isset($_POST['import_product_combinations'])) {
         if (!empty($_FILES['product_combinations_file']['tmp_name'])) {
             $file = $_FILES['product_combinations_file']['tmp_name'];
@@ -274,14 +273,12 @@ function hello_theme_manage_product_combinations_page() {
         }
     }
 
-    // Mengecek apakah form telah disubmit untuk mengosongkan tabel
     if (isset($_POST['clear_table_action']) && $_POST['clear_table_action'] === 'clear_table') {
         hello_theme_clear_product_combinations_table();
         echo '<div class="updated"><p>Product combinations table cleared successfully!</p></div>';
     }
 
 
-    // Proses penyimpanan data
     if (isset($_POST['save_product_combination'])) {
         $category = sanitize_text_field($_POST['category']);
         $account_type = sanitize_text_field($_POST['account_type']);
@@ -328,7 +325,6 @@ function hello_theme_manage_product_combinations_page() {
         }
     }
 
-    // Proses penghapusan data
     if (isset($_GET['delete_id'])) {
         $wpdb->delete(
             $wpdb->prefix . 'hello_theme_product_combinations',
@@ -349,9 +345,20 @@ function hello_theme_manage_product_combinations_page() {
     }
 
     ?>
-    <div class="wrap">
-        <h1>Manage Product Combinations</h1>
+    <div class="wrap">        
+        <form method="post" action="options.php">
+            <h1>Hello Product Selection Settings</h1>
+            <?php
+            settings_fields( 'hello_product_selection_settings_group' );
+            do_settings_sections( 'hello-product-selection-settings' );
+            submit_button();
+            ?>
+        </form>
+
+        <hr>
+
         <form method="post">
+            <h1>Manage Product Combinations</h1>
             <input type="hidden" name="edit_id" value="<?php echo isset($edit_item) ? $edit_item->id : ''; ?>" />
             <table class="form-table">
                 <tr valign="top">
@@ -411,7 +418,6 @@ function hello_theme_manage_product_combinations_page() {
 
         <hr>
 
-        <!-- Form untuk unggah CSV -->
         <form method="post" enctype="multipart/form-data">
             <h2>Import Product Combinations</h2>
             <p>If you want to use a pre-built spreadsheet template for your product combination, you can copy or download the csv file <a href="https://docs.google.com/spreadsheets/d/1UVBgsijEJPnqVvpe6KCcpK6QcDh0byqq9dLo_w21SAk/edit?usp=sharing" target="_blank">here.</a></p>
