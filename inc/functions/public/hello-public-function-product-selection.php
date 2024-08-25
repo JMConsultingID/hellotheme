@@ -284,15 +284,6 @@ function hello_theme_challenge_selection_shortcode($atts) {
             </label>
         </div>
 
-        <!-- Button Selection Bar untuk Challenge -->
-        <div id="challenge-selection-bar">
-            <button type="button" class="challenge-option" data-value="10k">10k</button>
-            <button type="button" class="challenge-option" data-value="25k">25k</button>
-            <button type="button" class="challenge-option" data-value="50k">50k</button>
-            <button type="button" class="challenge-option" data-value="100k">100k</button>
-            <button type="button" class="challenge-option" data-value="200k">200k</button>
-        </div>
-
         <!-- Button Selection untuk Type of Account -->
         <div id="account-type-selection">
             <label>
@@ -301,6 +292,15 @@ function hello_theme_challenge_selection_shortcode($atts) {
             <label>
                 <input type="radio" name="account_type" value="swing"> Swing
             </label>
+        </div>
+
+        <!-- Button Selection Bar untuk Challenge -->
+        <div id="challenge-selection-bar">
+            <button type="button" class="challenge-option" data-value="10k">10k</button>
+            <button type="button" class="challenge-option" data-value="25k">25k</button>
+            <button type="button" class="challenge-option" data-value="50k">50k</button>
+            <button type="button" class="challenge-option" data-value="100k">100k</button>
+            <button type="button" class="challenge-option" data-value="200k">200k</button>
         </div>
 
         <!-- Button Selection untuk Add-ons -->
