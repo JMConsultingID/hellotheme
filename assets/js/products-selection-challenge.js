@@ -69,15 +69,14 @@ jQuery(document).ready(function($) {
     categorySelection.addEventListener('change', function(e) {
         selectedCategory = e.target.value;
 
-        // Unselect Button Selection Bar (Challenge)
-        selectedChallenge = null;
-        challengeButtons.forEach(btn => btn.classList.remove('selected'));
+        // Reset preselect to default when category changes
+        if (selectedCategory === 'base-camp' || selectedCategory === 'the-peak') {
+            selectedChallenge = '10k';
+            selectedAccountType = 'standard';
 
-        // Unselect Button Type of Account
-        selectedAccountType = null;
-        document.querySelectorAll('input[name="account_type"]').forEach(function(radio) {
-            radio.checked = false;
-        });
+            // Set default selections
+            applyPreselect();
+        }
 
         // Reset addons
         updateAddonsSelection();
