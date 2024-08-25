@@ -6,8 +6,8 @@ jQuery(document).ready(function($) {
     const checkoutButton = document.querySelector('#checkout-button');
 
     let selectedCategory = document.querySelector('input[name="category"]:checked').value;
-    let selectedChallenge = '10k'; // Default value
-    let selectedAccountType = document.querySelector('input[name="account_type"]:checked').value;
+    let selectedChallenge = null; // Set to null initially
+    let selectedAccountType = null; // Set to null initially
     let selectedAddons = [];
 
     // Update addons selection based on selected category
@@ -26,8 +26,10 @@ jQuery(document).ready(function($) {
             `;
         }
 
-        // Update selected addons array
+        // Reset addons selection
+        selectedAddons = [];
         document.querySelectorAll('input[name="addons"]').forEach(function(checkbox) {
+            checkbox.checked = false;  // Unselect all checkboxes
             checkbox.addEventListener('change', function() {
                 selectedAddons = Array.from(document.querySelectorAll('input[name="addons"]:checked')).map(el => el.value);
                 updateCheckoutButton();
@@ -35,10 +37,24 @@ jQuery(document).ready(function($) {
         });
     }
 
-    // Event listeners for category selection
+    // Event listener for category selection
     categorySelection.addEventListener('change', function(e) {
         selectedCategory = e.target.value;
+
+        // Unselect Button Selection Bar (Challenge)
+        selectedChallenge = null;
+        challengeButtons.forEach(btn => btn.classList.remove('selected'));
+
+        // Unselect Button Type of Account
+        selectedAccountType = null;
+        document.querySelectorAll('input[name="account_type"]').forEach(function(radio) {
+            radio.checked = false;
+        });
+
+        // Reset addons
         updateAddonsSelection();
+        
+        // Update checkout button state
         updateCheckoutButton();
     });
 
@@ -52,7 +68,7 @@ jQuery(document).ready(function($) {
         });
     });
 
-    // Event listeners for account type selection
+    // Event listener for account type selection
     accountTypeSelection.addEventListener('change', function(e) {
         selectedAccountType = e.target.value;
         updateCheckoutButton();
@@ -60,6 +76,13 @@ jQuery(document).ready(function($) {
 
     // Update checkout button based on selections
     function updateCheckoutButton() {
+        // Check if all selections are made
+        if (!selectedCategory || !selectedChallenge || !selectedAccountType) {
+            checkoutButton.href = '#';
+            checkoutButton.setAttribute('disabled', 'disabled');
+            return;
+        }
+
         const data = {
             action: 'get_custom_product_id',
             category: selectedCategory,
