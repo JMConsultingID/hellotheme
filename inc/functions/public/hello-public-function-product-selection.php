@@ -87,16 +87,42 @@ function hello_theme_challenge_selection_shortcode($atts) {
                                 <button type="button" class="challenge-option" data-value="200k" <?php if ($challenge == '200k') echo 'class="selected"'; ?>>200k</button>
                             </div>
 
+                            <div id="account-type-selection" class="type-of-account">
+                              <h3 class="sub-title">Type of Account</h3>
+                              <ul>
+                                <li>
+                                  <input
+                                    id="standard-account"
+                                    type="radio"
+                                    class="input-radio"
+                                    name="account_type" value="standard" <?php checked('standard', $account_type); ?>
+                                  />
+                                  <label for="standard-account" class=""
+                                    >Standard Account</label
+                                  >
+                                </li>
+                                <li>
+                                  <input
+                                    id="swing-account"
+                                    type="radio"
+                                    class="input-radio"
+                                    name="account_type" value="swing" <?php checked('swing', $account_type); ?>
+                                  />
+                                  <label for="swing-account" class="">Swing Account</label>
+                                </li>
+                              </ul>
+                            </div>
+
 
                             <!-- Button Selection untuk Type of Account -->
-                            <div id="account-type-selection">
+                            <!-- <div id="account-type-selection">
                                 <label>
                                     <input type="radio" name="account_type" value="standard" <?php checked('standard', $account_type); ?>> Standard
                                 </label>
                                 <label>
                                     <input type="radio" name="account_type" value="swing" <?php checked('swing', $account_type); ?>> Swing
                                 </label>
-                            </div>
+                            </div> -->
 
 
                             <!-- Button Selection untuk Add-ons -->
