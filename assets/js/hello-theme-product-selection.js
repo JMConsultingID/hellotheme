@@ -19,6 +19,13 @@
         let selectedAccountType = form.dataset.accountType;
         let selectedAddons = [];
 
+        function resetAddonsSelection() {
+            document.querySelectorAll('input[name="addons"]').forEach(function(checkbox) {
+                checkbox.checked = false;
+            });
+            selectedAddons = [];
+        }
+
         // Apply preselect based on URL parameters or defaults
         function applyPreselect() {
             // Set category selection
@@ -150,6 +157,8 @@
                 }
             });
         }
+
+        resetAddonsSelection(); // Reset all addons checkboxes when page loads
 
         // Initialize addons and checkout button
         applyPreselect();
