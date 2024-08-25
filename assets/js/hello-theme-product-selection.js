@@ -47,13 +47,13 @@
 
             if (selectedCategory === 'base-camp') {
                 addonsSelection.innerHTML = `
-                    <label><input type="checkbox" name="addons" value="active-days"> Active Days: 21 days + 15% fee (standard: 1st 30 days, then 21 days)</label>
-                    <label><input type="checkbox" name="addons" value="profitsplit"> Profit Split: 50%/70%/80% + 20% fee (standard 50%/50%/80%)</label>
+                    <li><input type="checkbox" class="input-checkbox" name="addons" id="active-days" value="active-days"/><label for="active-days" class="">Active Days: 21 days + 15% fee (standard: 1st 30 days, then 21 days)</label></li>
+                    <li><input type="checkbox" class="input-checkbox" name="addons" id="profitsplit" value="profitsplit"/><label for="profitsplit" class="">Profit Split: 50%/70%/80% + 20% fee (standard 50%/50%/80%)</label></li>
                 `;
             } else if (selectedCategory === 'the-peak') {
                 addonsSelection.innerHTML = `
-                    <label><input type="checkbox" name="addons" value="peak_active_days"> Active Days: bi-weekly: + 20% fee (standard: 1st 21 days, then 14 days)</label>
-                    <label><input type="checkbox" name="addons" value="tradingdays"> Trading Days: no minimum trading days + 15% fee (standard: 5 days)</label>
+                    <li><input type="checkbox" class="input-checkbox" name="addons" id="peak_active_days" value="peak_active_days"/><label for="peak_active_days" class="">Active Days: bi-weekly: + 20% fee (standard: 1st 21 days, then 14 days)</label></li>
+                    <li><input type="checkbox" class="input-checkbox" name="addons" id="tradingdays" value="tradingdays"/><label for="tradingdays" class="">Trading Days: no minimum trading days + 15% fee (standard: 5 days)</label></li>
                 `;
             }
 

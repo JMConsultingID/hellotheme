@@ -50,19 +50,9 @@ function hello_theme_challenge_selection_shortcode($atts) {
 
                     <!-- Button Selection untuk Basecamp atau The Peak -->
                     <div id="category-selection">
-                        <input
-                          type="radio"
-                          class="hide radio"
-                          id="id-basecamp"
-                          name="category"
-                          value="base-camp" <?php checked('base-camp', $category); ?>
+                        <input type="radio" class="hide radio" id="id-basecamp" name="category" value="base-camp" <?php checked('base-camp', $category); ?>
                         />
-                        <input
-                          type="radio"
-                          class="hide radio"
-                          id="id-thepeak"
-                          name="category"
-                          value="the-peak" <?php checked('the-peak', $category); ?>
+                        <input type="radio" class="hide radio" id="id-thepeak" name="category" value="the-peak" <?php checked('the-peak', $category); ?>
                         />
                         <div class="category-tabs">
                           <div class="category-items">
@@ -91,23 +81,11 @@ function hello_theme_challenge_selection_shortcode($atts) {
                               <h3 class="sub-title">Type of Account</h3>
                               <ul>
                                 <li>
-                                  <input
-                                    id="standard-account"
-                                    type="radio"
-                                    class="input-radio"
-                                    name="account_type" value="standard" <?php checked('standard', $account_type); ?>
-                                  />
-                                  <label for="standard-account" class=""
-                                    >Standard Account</label
-                                  >
+                                  <input id="standard-account" type="radio" class="input-radio" name="account_type" value="standard" <?php checked('standard', $account_type); ?>/>
+                                  <label for="standard-account" class="">Standard Account</label>
                                 </li>
                                 <li>
-                                  <input
-                                    id="swing-account"
-                                    type="radio"
-                                    class="input-radio"
-                                    name="account_type" value="swing" <?php checked('swing', $account_type); ?>
-                                  />
+                                  <input id="swing-account" type="radio" class="input-radio" name="account_type" value="swing" <?php checked('swing', $account_type); ?>/>
                                   <label for="swing-account" class="">Swing Account</label>
                                 </li>
                               </ul>
@@ -126,9 +104,22 @@ function hello_theme_challenge_selection_shortcode($atts) {
 
 
                             <!-- Button Selection untuk Add-ons -->
-                            <div id="addons-selection">
-                                <!-- Add-ons akan dimuat di sini berdasarkan kategori yang dipilih -->
+
+                            <div id="addons-selection" class="addon">
+                              <h3 class="sub-title">Addon</h3>
+                              <ul>
+                                <li>
+                                  <input type="checkbox" class="input-checkbox" name="active-days" id="active-days"/>
+                                  <label for="active-days" class="">Active Days: 21</label>
+                                </li>
+                                <li>
+                                  <input type="checkbox" class="input-checkbox" name="profit-split" id="profit-split"/>
+                                  <label for="profit-split" class="">Profit Split: 100%</label>
+                                </li>
+                              </ul>
                             </div>
+                            <!-- <div id="addons-selection">
+                            </div> -->
                         </div>
                     </div>
 
