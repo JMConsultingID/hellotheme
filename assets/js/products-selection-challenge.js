@@ -7,10 +7,34 @@ jQuery(document).ready(function($) {
     const productImage = document.querySelector('#product-image');
     const productPrice = document.querySelector('#product-price');
 
-    let selectedCategory = document.querySelector('input[name="category"]:checked').value;
-    let selectedChallenge = null; // Set to null initially
-    let selectedAccountType = null; // Set to null initially
+    // Preselect based on data attributes from the root element
+    const form = document.querySelector('#challenge-selection-form');
+    let selectedCategory = form.dataset.category;
+    let selectedChallenge = form.dataset.challenge;
+    let selectedAccountType = form.dataset.accountType;
     let selectedAddons = [];
+
+    // Apply preselect based on URL parameters or defaults
+    function applyPreselect() {
+        // Set category selection
+        document.querySelector(`input[name="category"][value="${selectedCategory}"]`).checked = true;
+
+        // Set challenge button
+        challengeButtons.forEach(btn => {
+            btn.classList.remove('selected');
+            if (btn.dataset.value === selectedChallenge) {
+                btn.classList.add('selected');
+            }
+        });
+
+        // Set account type selection
+        document.querySelectorAll('input[name="account_type"]').forEach(function(radio) {
+            radio.checked = radio.value === selectedAccountType;
+        });
+
+        // Set addons selection
+        updateAddonsSelection();
+    }
 
     // Update addons selection based on selected category
     function updateAddonsSelection() {
@@ -31,15 +55,17 @@ jQuery(document).ready(function($) {
         // Reset addons selection
         selectedAddons = [];
         document.querySelectorAll('input[name="addons"]').forEach(function(checkbox) {
-            checkbox.checked = false;  // Unselect all checkboxes
+            checkbox.checked = form.dataset[checkbox.value] === 'yes'; // Check based on URL parameter or default
             checkbox.addEventListener('change', function() {
                 selectedAddons = Array.from(document.querySelectorAll('input[name="addons"]:checked')).map(el => el.value);
                 updateCheckoutButton();
             });
         });
+
+        updateCheckoutButton(); // Update checkout button after setting addons
     }
 
-    // Event listener for category selection
+    // Event listener for category selection change
     categorySelection.addEventListener('change', function(e) {
         selectedCategory = e.target.value;
 
@@ -70,7 +96,7 @@ jQuery(document).ready(function($) {
         });
     });
 
-    // Event listener for account type selection
+    // Event listener for account type selection change
     accountTypeSelection.addEventListener('change', function(e) {
         selectedAccountType = e.target.value;
         updateCheckoutButton();
@@ -105,7 +131,6 @@ jQuery(document).ready(function($) {
                 // Update product image and price
                 productImage.innerHTML = `<img src="${response.data.product_image}" alt="Product Image" />`;
                 productPrice.innerHTML = `Price: ${response.data.product_price}`;
-
             } else {
                 checkoutButton.href = '#';
                 checkoutButton.setAttribute('disabled', 'disabled');
@@ -116,9 +141,5 @@ jQuery(document).ready(function($) {
     }
 
     // Initialize addons and checkout button
-    updateAddonsSelection();
-    document.querySelectorAll('input[name="account_type"]').forEach(function(radio) {
-        radio.checked = false;  // Unselect all radio buttons for account type on load
-    });
-    updateCheckoutButton();
+    applyPreselect();
 });
