@@ -98,6 +98,7 @@ function hello_theme_product_combinations() {
         challenge varchar(55) NOT NULL,
         addon_active_days varchar(3) NOT NULL,
         addon_profitsplit varchar(3) NOT NULL,
+        addon_peak_active_days varchar(3) NOT NULL,
         addon_trading_days varchar(3) NOT NULL,
         product_id bigint(20) NOT NULL,
         PRIMARY KEY  (id)

@@ -281,6 +281,7 @@ function hello_theme_manage_product_combinations_page() {
         $challenge = sanitize_text_field($_POST['challenge']);
         $addon_active_days = isset($_POST['addon_active_days']) ? 'yes' : 'no';
         $addon_profitsplit = isset($_POST['addon_profitsplit']) ? 'yes' : 'no';
+        $addon_peak_active_days = isset($_POST['addon_peak_active_days']) ? 'yes' : 'no';
         $addon_trading_days = isset($_POST['addon_trading_days']) ? 'yes' : 'no';
         $product_id = intval($_POST['product_id']);
 
@@ -294,6 +295,7 @@ function hello_theme_manage_product_combinations_page() {
                     'challenge' => $challenge,
                     'addon_active_days' => $addon_active_days,
                     'addon_profitsplit' => $addon_profitsplit,
+                    'addon_peak_active_days' => $addon_peak_active_days,
                     'addon_trading_days' => $addon_trading_days,
                     'product_id' => $product_id
                 ),
@@ -310,6 +312,7 @@ function hello_theme_manage_product_combinations_page() {
                     'challenge' => $challenge,
                     'addon_active_days' => $addon_active_days,
                     'addon_profitsplit' => $addon_profitsplit,
+                    'addon_peak_active_days' => $addon_peak_active_days,
                     'addon_trading_days' => $addon_trading_days,
                     'product_id' => $product_id
                 )
@@ -378,6 +381,12 @@ function hello_theme_manage_product_combinations_page() {
                     </td>
                 </tr>
                 <tr valign="top">
+                    <th scope="row">Add-On: The Peak Active Days</th>
+                    <td>
+                        <input type="checkbox" name="addon_peak_active_days" value="yes" <?php checked($edit_item->addon_peak_active_days, 'yes'); ?> />
+                    </td>
+                </tr>
+                <tr valign="top">
                     <th scope="row">Add-On: Trading Days</th>
                     <td>
                         <input type="checkbox" name="addon_trading_days" value="yes" <?php checked($edit_item->addon_trading_days, 'yes'); ?> />
@@ -414,6 +423,7 @@ function hello_theme_manage_product_combinations_page() {
                     <th>Challenge</th>
                     <th>Active Days</th>
                     <th>Profit Split</th>
+                    <th>Peak Active Days</th>
                     <th>Trading Days</th>
                     <th>Product ID</th>
                     <th>Actions</th>
@@ -431,6 +441,7 @@ function hello_theme_manage_product_combinations_page() {
                         echo '<td>' . esc_html($row->challenge) . '</td>';
                         echo '<td>' . esc_html($row->addon_active_days) . '</td>';
                         echo '<td>' . esc_html($row->addon_profitsplit) . '</td>';
+                        echo '<td>' . esc_html($row->addon_peak_active_days) . '</td>';
                         echo '<td>' . esc_html($row->addon_trading_days) . '</td>';
                         echo '<td>' . esc_html($row->product_id) . '</td>';
                         echo '<td>';
@@ -463,8 +474,9 @@ function import_product_combinations($file) {
             $challenge = sanitize_text_field($row[3]);
             $addon_active_days = sanitize_text_field($row[4]);
             $addon_profitsplit = sanitize_text_field($row[5]);
-            $addon_trading_days = sanitize_text_field($row[6]);
-            $product_id = intval($row[7]);
+            $addon_peak_active_days = sanitize_text_field($row[6]);
+            $addon_trading_days = sanitize_text_field($row[7]);
+            $product_id = intval($row[8]);
 
             // Masukkan data ke dalam tabel
             $wpdb->insert(
@@ -475,6 +487,7 @@ function import_product_combinations($file) {
                     'challenge' => $challenge,
                     'addon_active_days' => $addon_active_days,
                     'addon_profitsplit' => $addon_profitsplit,
+                    'addon_peak_active_days' => $addon_peak_active_days,
                     'addon_trading_days' => $addon_trading_days,
                     'product_id' => $product_id
                 )
