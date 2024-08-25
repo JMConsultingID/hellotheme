@@ -66,7 +66,7 @@ function hello_theme_enqueue_product_selection() {
     $enabled_product_selection = get_option('enable_product_selection_pages');
     if ($enabled_product_selection === '1') {
         wp_enqueue_style( 'hello-theme-products-selection-challenge-css', get_stylesheet_directory_uri() . '/assets/css/hello-theme-product-selection.css');
-        wp_enqueue_script('hello-theme-products-selection-challenge-js', get_stylesheet_directory_uri() . '/assets/js/products-selection-challenge.js', array('jquery'), null, true);
+        wp_enqueue_script('hello-theme-products-selection-challenge-js', get_stylesheet_directory_uri() . '/assets/js/hello-theme-product-selection.js', array('jquery'), null, true);
         wp_localize_script('hello-theme-products-selection-challenge-js', 'ajax_object', array('ajaxurl' => admin_url('admin-ajax.php')));
     }
 }
