@@ -394,7 +394,7 @@ function hello_theme_manage_product_combinations_page() {
             </thead>
             <tbody>
                 <?php
-                $results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}custom_product_combinations");
+                $results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}hello_theme_product_combinations");
                 if ($results) {
                     foreach ($results as $row) {
                         echo '<tr>';
