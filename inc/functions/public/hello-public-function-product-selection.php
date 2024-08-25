@@ -76,28 +76,34 @@ function hello_theme_challenge_selection_shortcode($atts) {
                         </div>
                     </div>
 
-                    <!-- Button Selection Bar untuk Challenge -->
-                    <div id="challenge-selection-bar">
-                        <button type="button" class="challenge-option" data-value="10k" <?php if ($challenge == '10k') echo 'class="selected"'; ?>>10k</button>
-                        <button type="button" class="challenge-option" data-value="25k" <?php if ($challenge == '25k') echo 'class="selected"'; ?>>25k</button>
-                        <button type="button" class="challenge-option" data-value="50k" <?php if ($challenge == '50k') echo 'class="selected"'; ?>>50k</button>
-                        <button type="button" class="challenge-option" data-value="100k" <?php if ($challenge == '100k') echo 'class="selected"'; ?>>100k</button>
-                        <button type="button" class="challenge-option" data-value="200k" <?php if ($challenge == '200k') echo 'class="selected"'; ?>>200k</button>
-                    </div>
+                    <div class="panels">
+                        <div class="panel" id="panel-basecamp">
+                            <!-- Button Selection Bar untuk Challenge -->
+                            <div id="challenge-selection-bar">
+                                <button type="button" class="challenge-option" data-value="10k" <?php if ($challenge == '10k') echo 'class="selected"'; ?>>10k</button>
+                                <button type="button" class="challenge-option" data-value="25k" <?php if ($challenge == '25k') echo 'class="selected"'; ?>>25k</button>
+                                <button type="button" class="challenge-option" data-value="50k" <?php if ($challenge == '50k') echo 'class="selected"'; ?>>50k</button>
+                                <button type="button" class="challenge-option" data-value="100k" <?php if ($challenge == '100k') echo 'class="selected"'; ?>>100k</button>
+                                <button type="button" class="challenge-option" data-value="200k" <?php if ($challenge == '200k') echo 'class="selected"'; ?>>200k</button>
+                            </div>
 
-                    <!-- Button Selection untuk Type of Account -->
-                    <div id="account-type-selection">
-                        <label>
-                            <input type="radio" name="account_type" value="standard" <?php checked('standard', $account_type); ?>> Standard
-                        </label>
-                        <label>
-                            <input type="radio" name="account_type" value="swing" <?php checked('swing', $account_type); ?>> Swing
-                        </label>
-                    </div>
 
-                    <!-- Button Selection untuk Add-ons -->
-                    <div id="addons-selection">
-                        <!-- Add-ons akan dimuat di sini berdasarkan kategori yang dipilih -->
+                            <!-- Button Selection untuk Type of Account -->
+                            <div id="account-type-selection">
+                                <label>
+                                    <input type="radio" name="account_type" value="standard" <?php checked('standard', $account_type); ?>> Standard
+                                </label>
+                                <label>
+                                    <input type="radio" name="account_type" value="swing" <?php checked('swing', $account_type); ?>> Swing
+                                </label>
+                            </div>
+
+
+                            <!-- Button Selection untuk Add-ons -->
+                            <div id="addons-selection">
+                                <!-- Add-ons akan dimuat di sini berdasarkan kategori yang dipilih -->
+                            </div>
+                        </div>
                     </div>
 
                 </div>
