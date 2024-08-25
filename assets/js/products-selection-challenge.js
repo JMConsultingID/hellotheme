@@ -44,13 +44,13 @@ jQuery(document).ready(function($) {
 
         if (selectedCategory === 'base-camp') {
             addonsSelection.innerHTML = `
-                <label><input type="checkbox" name="addons" value="active-days"> Active Days</label>
-                <label><input type="checkbox" name="addons" value="profitsplit"> Profit Split</label>
+                <label><input type="checkbox" name="addons" value="active-days"> Active Days: 21 days + 15% fee (standard: 1st 30 days, then 21 days)</label>
+                <label><input type="checkbox" name="addons" value="profitsplit"> Profit Split: 50%/70%/80% + 20% fee (standard 50%/50%/80%)</label>
             `;
         } else if (selectedCategory === 'the-peak') {
             addonsSelection.innerHTML = `
-                <label><input type="checkbox" name="addons" value="active-days"> Active Days</label>
-                <label><input type="checkbox" name="addons" value="tradingdays"> Trading Days</label>
+                <label><input type="checkbox" name="addons" value="peak_active_days"> Active Days: bi-weekly: + 20% fee (standard: 1st 21 days, then 14 days)</label>
+                <label><input type="checkbox" name="addons" value="tradingdays"> Trading Days: no minimum trading days + 15% fee (standard: 5 days)</label>
             `;
         }
 
@@ -121,6 +121,7 @@ jQuery(document).ready(function($) {
             challenge: selectedChallenge,
             active_days: selectedAddons.includes('active-days') ? 'yes' : 'no',
             profitsplit: selectedAddons.includes('profitsplit') ? 'yes' : 'no',
+            peak_active_days: selectedAddons.includes('peak_active_days') ? 'yes' : 'no',
             tradingdays: selectedAddons.includes('tradingdays') ? 'yes' : 'no'
         };
 

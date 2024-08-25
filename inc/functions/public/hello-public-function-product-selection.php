@@ -17,6 +17,7 @@ function hello_theme_challenge_selection_shortcode($atts) {
         $account_type = isset($_GET['account_type']) ? sanitize_text_field($_GET['account_type']) : 'standard';
         $active_days = isset($_GET['active_days']) ? sanitize_text_field($_GET['active_days']) : 'no';
         $profitsplit = isset($_GET['profitsplit']) ? sanitize_text_field($_GET['profitsplit']) : 'no';
+        $peak_active_days = isset($_GET['peak_active_days']) ? sanitize_text_field($_GET['peak_active_days']) : 'no';
         $tradingdays = isset($_GET['tradingdays']) ? sanitize_text_field($_GET['tradingdays']) : 'no';
 
         // Pengecekan kombinasi validitas parameter
@@ -24,8 +25,8 @@ function hello_theme_challenge_selection_shortcode($atts) {
         $query = $wpdb->prepare(
             "SELECT COUNT(*) FROM {$wpdb->prefix}hello_theme_product_combinations 
             WHERE category = %s AND account_type = %s AND challenge = %s 
-            AND addon_active_days = %s AND addon_profitsplit = %s AND addon_trading_days = %s",
-            $category, $account_type, $challenge, $active_days, $profitsplit, $tradingdays
+            AND addon_active_days = %s AND addon_profitsplit = %s AND addon_peak_active_days = %s AND addon_trading_days = %s",
+            $category, $account_type, $challenge, $active_days, $profitsplit, $peak_active_days, $tradingdays
         );
         $is_valid_combination = $wpdb->get_var($query) > 0;
 
@@ -36,11 +37,12 @@ function hello_theme_challenge_selection_shortcode($atts) {
              data-account-type="<?php echo esc_attr($account_type); ?>"
              data-active-days="<?php echo esc_attr($active_days); ?>"
              data-profitsplit="<?php echo esc_attr($profitsplit); ?>"
+             data-peak_active_days="<?php echo esc_attr($peak_active_days); ?>"
              data-tradingdays="<?php echo esc_attr($tradingdays); ?>"
              data-valid="<?php echo $is_valid_combination ? 'yes' : 'no'; ?>">
 
             <?php if (!$is_valid_combination): ?>
-                <div class="warning">Parameter yang diberikan tidak valid. Menggunakan default preselect.</div>
+                <div class="warning">The given parameter is invalid. Using the default preselect.</div>
             <?php endif; ?>
 
             <!-- Button Selection untuk Basecamp atau The Peak -->
@@ -113,13 +115,14 @@ function get_custom_product_id() {
     $challenge = sanitize_text_field($_POST['challenge']);
     $active_days = sanitize_text_field($_POST['active_days']);
     $profitsplit = sanitize_text_field($_POST['profitsplit']);
+    $peak_active_days = sanitize_text_field($_POST['peak_active_days']);
     $tradingdays = sanitize_text_field($_POST['tradingdays']);
 
     $query = $wpdb->prepare(
         "SELECT product_id FROM {$wpdb->prefix}hello_theme_product_combinations 
         WHERE category = %s AND account_type = %s AND challenge = %s 
-        AND addon_active_days = %s AND addon_profitsplit = %s AND addon_trading_days = %s",
-        $category, $account_type, $challenge, $active_days, $profitsplit, $tradingdays
+        AND addon_active_days = %s AND addon_profitsplit = %s AND addon_peak_active_days = %s AND addon_trading_days = %s",
+        $category, $account_type, $challenge, $active_days, $profitsplit, $peak_active_days, $tradingdays
     );
 
     $product_id = $wpdb->get_var($query);
