@@ -65,8 +65,13 @@ add_action( 'wp_enqueue_scripts', 'hello_theme_pricing_table_live', 20);
 function hello_theme_enqueue_product_selection() {
     $enabled_product_selection = get_option('enable_product_selection_pages');
     if ($enabled_product_selection === '1') {
-        wp_enqueue_style( 'hello-theme-products-selection-challenge-css', get_stylesheet_directory_uri() . '/assets/css/hello-theme-product-selection.css', array(), HELLO_THEME_VERSION, 'all' );
-        wp_enqueue_script('hello-theme-products-selection-challenge-js', get_stylesheet_directory_uri() . '/assets/js/hello-theme-product-selection.js', array('jquery'), HELLO_THEME_VERSION, true);
+        wp_enqueue_style( 'hello-theme-tippy-pcs-css', get_stylesheet_directory_uri() . '/assets/css/tippy.css');
+        wp_enqueue_style( 'hello-theme-tippy-light-pcs-css', get_stylesheet_directory_uri() . '/assets/css/tippy-light.css');
+        wp_enqueue_style( 'hello-theme-products-selection-challenge-css', get_stylesheet_directory_uri() . '/assets/css/hello-theme-product-selection.css', array('hello-theme-tippy-pcs-css', 'hello-theme-tippy-light-pcs-css'), HELLO_THEME_VERSION, 'all' );
+
+        wp_enqueue_script('hello-theme-pcs-popper-js', get_stylesheet_directory_uri() . '/assets/js/popper.min.js', array(), null, true );
+        wp_enqueue_script('hello-theme-pcs-tippy-js', get_stylesheet_directory_uri() . '/assets/js/tippy-bundle.umd.min.js', array(), null, true );
+        wp_enqueue_script('hello-theme-products-selection-challenge-js', get_stylesheet_directory_uri() . '/assets/js/hello-theme-product-selection.js', array('jquery','hello-theme-pcs-popper-js','hello-theme-pcs-tippy-js',), HELLO_THEME_VERSION, true);
         wp_localize_script('hello-theme-products-selection-challenge-js', 'ajax_object', array('ajaxurl' => admin_url('admin-ajax.php')));
     }
 }
