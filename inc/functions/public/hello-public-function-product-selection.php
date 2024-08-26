@@ -8,7 +8,8 @@
  * @package HelloTheme
  */
 
-function hello_theme_challenge_selection_shortcode($atts) {
+function hello_theme_challenge_selection_shortcode($atts)
+{
     $enabled_product_selection = get_option('enable_product_selection_pages');
     if ($enabled_product_selection === '1') {
         $category = isset($_GET['category']) ? sanitize_text_field($_GET['category']) : 'base-camp';
@@ -24,20 +25,25 @@ function hello_theme_challenge_selection_shortcode($atts) {
             "SELECT COUNT(*) FROM {$wpdb->prefix}hello_theme_product_combinations 
             WHERE category = %s AND account_type = %s AND challenge = %s 
             AND addon_active_days = %s AND addon_profitsplit = %s AND addon_peak_active_days = %s AND addon_trading_days = %s",
-            $category, $account_type, $challenge, $active_days, $profitsplit, $peak_active_days, $tradingdays
+            $category,
+            $account_type,
+            $challenge,
+            $active_days,
+            $profitsplit,
+            $peak_active_days,
+            $tradingdays
         );
         $is_valid_combination = $wpdb->get_var($query) > 0;
 
         ob_start();
         ?>
-        <div id="challenge-selection-form" class="hello-theme-product-selection" data-category="<?php echo esc_attr($category); ?>"
-             data-challenge="<?php echo esc_attr($challenge); ?>"
-             data-account-type="<?php echo esc_attr($account_type); ?>"
-             data-active-days="<?php echo esc_attr($active_days); ?>"
-             data-profitsplit="<?php echo esc_attr($profitsplit); ?>"
-             data-peak_active_days="<?php echo esc_attr($peak_active_days); ?>"
-             data-tradingdays="<?php echo esc_attr($tradingdays); ?>"
-             data-valid="<?php echo $is_valid_combination ? 'yes' : 'no'; ?>">
+        <div id="challenge-selection-form" class="hello-theme-product-selection"
+            data-category="<?php echo esc_attr($category); ?>" data-challenge="<?php echo esc_attr($challenge); ?>"
+            data-account-type="<?php echo esc_attr($account_type); ?>" data-active-days="<?php echo esc_attr($active_days); ?>"
+            data-profitsplit="<?php echo esc_attr($profitsplit); ?>"
+            data-peak_active_days="<?php echo esc_attr($peak_active_days); ?>"
+            data-tradingdays="<?php echo esc_attr($tradingdays); ?>"
+            data-valid="<?php echo $is_valid_combination ? 'yes' : 'no'; ?>">
             <div class="warpper-alf">
 
                 <div class="left box-shadow">
@@ -50,14 +56,13 @@ function hello_theme_challenge_selection_shortcode($atts) {
 
                     <!-- Button Selection Category -->
                     <div id="category-selection">
-                        <input type="radio" class="hide radio" id="id-basecamp" name="category" value="base-camp" <?php checked('base-camp', $category); ?>/>
+                        <input type="radio" class="hide radio" id="id-basecamp" name="category" value="base-camp" <?php checked('base-camp', $category); ?> />
                         <input type="radio" class="hide radio" id="id-thepeak" name="category" value="the-peak" <?php checked('the-peak', $category); ?> />
                         <div class="category-tabs">
-                          <div class="category-items">
-                            <label class="tab-label" id="tab-label-basecamp" for="id-basecamp">Base Camp</label>
-                            <label class="tab-label" id="tab-label-thepeak" for="id-thepeak">The Peak</label
-                            >
-                          </div>
+                            <div class="category-items">
+                                <label class="tab-label" id="tab-label-basecamp" for="id-basecamp">Base Camp</label>
+                                <label class="tab-label" id="tab-label-thepeak" for="id-thepeak">The Peak</label>
+                            </div>
                         </div>
                     </div>
 
@@ -65,34 +70,44 @@ function hello_theme_challenge_selection_shortcode($atts) {
                         <div class="panel">
                             <!-- Button Selection Bar Challenge -->
                             <div class="select-account-challenge">
-                            <h5 class="sub-title">Select Account Challenge</h5>
-                            <div id="challenge-selection-bar">
-                                <button type="button" class="challenge-option" data-value="10k" <?php if ($challenge == '10k') echo 'class="selected"'; ?>>10k</button>
-                                <button type="button" class="challenge-option" data-value="25k" <?php if ($challenge == '25k') echo 'class="selected"'; ?>>25k</button>
-                                <button type="button" class="challenge-option" data-value="50k" <?php if ($challenge == '50k') echo 'class="selected"'; ?>>50k</button>
-                                <button type="button" class="challenge-option" data-value="100k" <?php if ($challenge == '100k') echo 'class="selected"'; ?>>100k</button>
-                                <button type="button" class="challenge-option" data-value="200k" <?php if ($challenge == '200k') echo 'class="selected"'; ?>>200k</button>
-                            </div>
+                                <h5 class="sub-title">Select Account Challenge</h5>
+                                <div id="challenge-selection-bar">
+                                    <div class="progress-container">
+                                        <input type="range" name="range" id="sac-progress-range" value="1" min="1" max="5" />
+                                    </div>
+                                    <button type="button" class="challenge-option" data-value="10k" <?php if ($challenge == '10k')
+                                        echo 'class="selected"'; ?>>10k</button>
+                                    <button type="button" class="challenge-option" data-value="25k" <?php if ($challenge == '25k')
+                                        echo 'class="selected"'; ?>>25k</button>
+                                    <button type="button" class="challenge-option" data-value="50k" <?php if ($challenge == '50k')
+                                        echo 'class="selected"'; ?>>50k</button>
+                                    <button type="button" class="challenge-option" data-value="100k" <?php if ($challenge == '100k')
+                                        echo 'class="selected"'; ?>>100k</button>
+                                    <button type="button" class="challenge-option" data-value="200k" <?php if ($challenge == '200k')
+                                        echo 'class="selected"'; ?>>200k</button>
+                                </div>
                             </div>
 
                             <div id="account-type-selection" class="type-of-account">
-                              <h5 class="sub-title">Type of Account</h5>
-                              <ul>
-                                <li>
-                                  <input id="standard-account" type="radio" class="input-radio" name="account_type" value="standard" <?php checked('standard', $account_type); ?>/>
-                                  <label for="standard-account" class="">Standard Account</label>
-                                </li>
-                                <li>
-                                  <input id="swing-account" type="radio" class="input-radio" name="account_type" value="swing" <?php checked('swing', $account_type); ?>/>
-                                  <label for="swing-account" class="">Swing Account</label>
-                                </li>
-                              </ul>
+                                <h5 class="sub-title">Type of Account</h5>
+                                <ul>
+                                    <li>
+                                        <input id="standard-account" type="radio" class="input-radio" name="account_type"
+                                            value="standard" <?php checked('standard', $account_type); ?> />
+                                        <label for="standard-account" class="">Standard Account</label>
+                                    </li>
+                                    <li>
+                                        <input id="swing-account" type="radio" class="input-radio" name="account_type"
+                                            value="swing" <?php checked('swing', $account_type); ?> />
+                                        <label for="swing-account" class="">Swing Account</label>
+                                    </li>
+                                </ul>
                             </div>
 
                             <div id="addons-selection" class="addon">
-                              <h5 class="sub-title">Addon</h5>
-                              <ul>
-                              </ul>
+                                <h5 class="sub-title">Addon</h5>
+                                <ul>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -102,35 +117,35 @@ function hello_theme_challenge_selection_shortcode($atts) {
                 <div class="right box-shadow">
                     <div class="items-panel">
                         <div class="box-tabs-content">
-                        <div data-tab-index="1" class="e-content e-active">
-                            <div class="products">
+                            <div data-tab-index="1" class="e-content e-active">
+                                <div class="products">
 
-                                <!-- Product Image and Price -->
-                                <div id="product-display">
-                                    <div class="product">
-                                        <div id="product-image"></div>
-                                    </div>
-
-                                    <div class="description">
-                                        <div id="product-title" class="sub-title"></div>
-                                        <div id="product-description" class="detail-product"></div>
-                                    </div>
-
-                                    <div class="amount">
-                                        <div class="amount-box">
-                                            <div id="product-price"></div>
-                                          <span class="note">VAT Included</span>
+                                    <!-- Product Image and Price -->
+                                    <div id="product-display">
+                                        <div class="product">
+                                            <div id="product-image"></div>
                                         </div>
-                                    </div>
 
-                                    <div class="box-btn">
-                                        <a id="checkout-button" href="#" class="button price-btn">Continue</a>
+                                        <div class="description">
+                                            <div id="product-title" class="sub-title"></div>
+                                            <div id="product-description" class="detail-product"></div>
+                                        </div>
+
+                                        <div class="amount">
+                                            <div class="amount-box">
+                                                <div id="product-price"></div>
+                                                <span class="note">VAT Included</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="box-btn">
+                                            <a id="checkout-button" href="#" class="button price-btn">Continue</a>
+                                        </div>
+
                                     </div>
 
                                 </div>
-
                             </div>
-                        </div>
                         </div>
                     </div>
                 </div>
@@ -143,7 +158,8 @@ function hello_theme_challenge_selection_shortcode($atts) {
 add_shortcode('hello_challenge_selection', 'hello_theme_challenge_selection_shortcode');
 
 
-function hello_theme_challenge_selection_get_product_id() {
+function hello_theme_challenge_selection_get_product_id()
+{
     global $wpdb;
 
     $category = sanitize_text_field($_POST['category']);
@@ -158,7 +174,13 @@ function hello_theme_challenge_selection_get_product_id() {
         "SELECT product_id FROM {$wpdb->prefix}hello_theme_product_combinations 
         WHERE category = %s AND account_type = %s AND challenge = %s 
         AND addon_active_days = %s AND addon_profitsplit = %s AND addon_peak_active_days = %s AND addon_trading_days = %s",
-        $category, $account_type, $challenge, $active_days, $profitsplit, $peak_active_days, $tradingdays
+        $category,
+        $account_type,
+        $challenge,
+        $active_days,
+        $profitsplit,
+        $peak_active_days,
+        $tradingdays
     );
 
     $product_id = $wpdb->get_var($query);
@@ -181,13 +203,15 @@ function hello_theme_challenge_selection_get_product_id() {
             $product_price = $product->get_price_html(); // Get product price in HTML format
 
             // Send response with product details
-            wp_send_json_success(array(
-                'product_id' => $product_id,
-                'product_image' => $product_image,
-                'product_title' => $product_title,
-                'product_description' => $product_description,
-                'product_price' => $product_price
-            ));
+            wp_send_json_success(
+                array(
+                    'product_id' => $product_id,
+                    'product_image' => $product_image,
+                    'product_title' => $product_title,
+                    'product_description' => $product_description,
+                    'product_price' => $product_price
+                )
+            );
         } else {
             wp_send_json_error(array('message' => 'Product not found.'));
         }
