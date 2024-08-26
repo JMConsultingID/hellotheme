@@ -196,11 +196,10 @@
           tab.setAttribute("tabindex", isSelected ? "0" : "-1");
           if (isSelected) {
             tab.classList.add("selected");
+            setAccountTypeSelection();
           } else {
             tab.classList.remove("selected");
           }
-
-          setAccountTypeSelection();
         });
       });
 
