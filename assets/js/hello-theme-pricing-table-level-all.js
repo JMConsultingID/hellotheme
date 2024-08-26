@@ -2,19 +2,6 @@
     'use strict';
     let activeSlideIndex = 0; // Variable to store the active slide index
 
-    // Initialize tippy tooltips
-    document.addEventListener("DOMContentLoaded", function() {
-        tippy(".hello-theme-label-tooltips", {
-            theme: 'light',
-            placement: 'right',
-            arrow: false,
-            animation: 'fade',
-            allowHTML: true,
-            interactive: true,
-            delay: [100, 100],
-        });
-    });
-
     // Function to initialize Swiper for each tab
     const initTabSwiper = (tabContent) => {
         if (window.innerWidth <= 991) {

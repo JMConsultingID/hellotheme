@@ -1,19 +1,6 @@
 (function ($) {
   "use strict";
-
-  // Initialize tippy tooltips
-  document.addEventListener("DOMContentLoaded", function() {
-      tippy(".hello-theme-label-tooltips", {
-          theme: 'light',
-          placement: 'right',
-          arrow: false,
-          animation: 'fade',
-          allowHTML: true,
-          interactive: true,
-          delay: [100, 100],
-      });
-  });
-
+  
   $(document).ready(function () {
     const categorySelection = document.querySelector("#category-selection");
     const challengeButtons = document.querySelectorAll(".challenge-option");
