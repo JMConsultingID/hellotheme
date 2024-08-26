@@ -21,6 +21,10 @@
     let selectedAccountType = form.dataset.accountType;
     let selectedAddons = [];
 
+    // Progress Range
+    const sacProgressRange = "#sac-progress-range";
+    const btnPriceSelection = "#challenge-selection-bar .challenge-option";
+
     function setAccountTypeSelection() {
       // Set account type selection
       document
@@ -45,6 +49,13 @@
         btn.classList.remove("selected");
         if (btn.dataset.value === selectedChallenge) {
           btn.classList.add("selected");
+          //progress range
+          const tabIndex = parseInt(btn.getAttribute("data-tab-index"));
+          const range = document.querySelector(rangeSelector);
+          range.value = tabIndex;
+          setTimeout(() => {
+            range.dispatchEvent(new Event("input"));
+          }, 100);
         }
       });
       setAccountTypeSelection();
@@ -213,10 +224,7 @@
         });
       });
     }
-    setupProgressBar(
-      "#sac-progress-range",
-      "#challenge-selection-bar .challenge-option"
-    );
+    setupProgressBar(sacProgressRange, btnPriceSelection);
 
     // Initialize addons and checkout button
     applyPreselect();
