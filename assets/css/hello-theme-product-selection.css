@@ -235,9 +235,10 @@
 }
 .hello-theme-product-selection .items-panel .products #product-display{
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 400px;
+  min-height: 450px;
 }
 .hello-theme-product-selection .items-panel .product .product-img {
   max-width: 100%;
