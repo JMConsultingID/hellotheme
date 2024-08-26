@@ -51,7 +51,7 @@
           btn.classList.add("selected");
           //progress range
           const tabIndex = parseInt(btn.getAttribute("data-tab-index"));
-          const range = document.querySelector(rangeSelector);
+          const range = document.querySelector(sacProgressRange);
           range.value = tabIndex;
           setTimeout(() => {
             range.dispatchEvent(new Event("input"));
