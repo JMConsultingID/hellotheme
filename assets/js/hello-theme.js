@@ -14,9 +14,7 @@
         changeBillingAddressLabel();
     });
 
-    // Initialize tippy tooltips
-    document.addEventListener("DOMContentLoaded", function() {
-      tippy(".hello-theme-label-tooltips", {
+    tippy(".hello-theme-label-tooltips", {
           theme: 'light',
           placement: 'right',
           arrow: false,
@@ -24,7 +22,5 @@
           allowHTML: true,
           interactive: true,
           delay: [100, 100],
-      });
     });
-
 })( jQuery );
