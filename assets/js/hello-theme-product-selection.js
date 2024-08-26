@@ -72,8 +72,8 @@
                 `;
       } else if (selectedCategory === "the-peak") {
         addonsSelection.innerHTML = `
-                    <li><input type="checkbox" class="input-checkbox" name="addons" id="peak_active_days" value="peak_active_days"/><label for="peak_active_days" class="">Active Days: bi-weekly: + 20% fee</label></li>
-                    <li><input type="checkbox" class="input-checkbox" name="addons" id="tradingdays" value="tradingdays"/><label for="tradingdays" class="">Trading Days: no minimum trading days + 15% fee</label></li>
+                    <li><input type="checkbox" class="input-checkbox" name="addons" id="peak_active_days" value="peak_active_days"/><label for="peak_active_days" class="">Active Days: bi-weekly: + 20% fee</label><span class="hello-theme-label-tooltips" data-tippy-content="standard: 1st 21 days, then 14 days"><i aria-hidden="true" class="fas fa-info-circle"></i></span></li>
+                    <li><input type="checkbox" class="input-checkbox" name="addons" id="tradingdays" value="tradingdays"/><label for="tradingdays" class="">Trading Days: no minimum trading days + 15% fee</label><span class="hello-theme-label-tooltips" data-tippy-content="standard: 5 days"><i aria-hidden="true" class="fas fa-info-circle"></i></span></li>
                 `;
       }
 

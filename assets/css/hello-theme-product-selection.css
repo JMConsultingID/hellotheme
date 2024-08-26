@@ -123,6 +123,9 @@
 .hello-theme-product-selection .panels input[type="checkbox"] {
   accent-color: dodgerblue;
 }
+.hello-theme-product-selection .panels ul li .hello-theme-label-tooltips{
+  margin-top: -3px;
+}
 
 /* Start Tabs - Progress Range */
 .hello-theme-product-selection
