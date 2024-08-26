@@ -75,15 +75,15 @@ function hello_theme_challenge_selection_shortcode($atts)
                                     <div class="progress-container">
                                         <input type="range" name="range" id="sac-progress-range" value="1" min="1" max="5" />
                                     </div>
-                                    <button type="button" class="challenge-option" data-value="10k" <?php if ($challenge == '10k')
+                                    <button type="button" class="challenge-option" data-value="10k" data-tab-index="1" <?php if ($challenge == '10k')
                                         echo 'class="selected"'; ?>>10k</button>
-                                    <button type="button" class="challenge-option" data-value="25k" <?php if ($challenge == '25k')
+                                    <button type="button" class="challenge-option" data-value="25k" data-tab-index="2" <?php if ($challenge == '25k')
                                         echo 'class="selected"'; ?>>25k</button>
-                                    <button type="button" class="challenge-option" data-value="50k" <?php if ($challenge == '50k')
+                                    <button type="button" class="challenge-option" data-value="50k" data-tab-index="3" <?php if ($challenge == '50k')
                                         echo 'class="selected"'; ?>>50k</button>
-                                    <button type="button" class="challenge-option" data-value="100k" <?php if ($challenge == '100k')
+                                    <button type="button" class="challenge-option" data-value="100k" data-tab-index="4" <?php if ($challenge == '100k')
                                         echo 'class="selected"'; ?>>100k</button>
-                                    <button type="button" class="challenge-option" data-value="200k" <?php if ($challenge == '200k')
+                                    <button type="button" class="challenge-option" data-value="200k" data-tab-index="5" <?php if ($challenge == '200k')
                                         echo 'class="selected"'; ?>>200k</button>
                                 </div>
                             </div>

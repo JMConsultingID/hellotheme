@@ -44,8 +44,7 @@
   color: #005473;
   margin: 0 0 10px;
 }
-.hello-theme-product-selection .category-tabs .tab-label,
-.hello-theme-product-selection #challenge-selection-bar .challenge-option {
+.hello-theme-product-selection .category-tabs .tab-label {
   min-width: 95px;
   padding: 10px 20px;
   background-color: transparent;
@@ -73,23 +72,13 @@
 .hello-theme-product-selection
   #id-thepeak:checked
   ~ .category-tabs
-  #tab-label-thepeak,
-.hello-theme-product-selection
-  #challenge-selection-bar
-  .challenge-option.selected {
+  #tab-label-thepeak {
   background-color: #202049;
   color: #fff;
 }
 .hello-theme-product-selection #id-basecamp:checked ~ .panels #panel-basecamp,
 .hello-theme-product-selection #id-thepeak:checked ~ .panels #panel-thepeak {
   display: flex;
-}
-
-.hello-theme-product-selection #challenge-selection-bar {
-  display: flex;
-  gap: 8px;
-  overflow-y: scroll;
-  padding-bottom: 8px;
 }
 
 @keyframes fadein {
@@ -137,7 +126,9 @@
 }
 
 /* Start Tabs - Progress Range */
-.hello-theme-product-selection .select-account-challenge .box-progress {
+.hello-theme-product-selection
+  .select-account-challenge
+  #challenge-selection-bar {
   position: relative;
   display: flex;
   flex-direction: row;
@@ -227,6 +218,7 @@
   border: none;
   cursor: pointer;
 }
+/* End Tabs */
 
 .hello-theme-product-selection .items-panel .box-tabs-content .e-content {
   display: none !important;
