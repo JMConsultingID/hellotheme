@@ -284,6 +284,11 @@
 .hello-theme-product-selection .products .description {
   margin-top: 10px;
 }
+
+.hello-theme-product-selection .products .description h5.sub-title{
+  font-weight: 700;
+}
+
 .hello-theme-product-selection .products .amount {
   margin-top: 15px;
 }
