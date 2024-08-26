@@ -56,6 +56,7 @@ function hello_theme_challenge_selection_shortcode($atts)
 
                     <!-- Button Selection Category -->
                     <div id="category-selection">
+                        <h5 class="sub-title">Category</h5>
                         <input type="radio" class="hide radio" id="id-basecamp" name="category" value="base-camp" <?php checked('base-camp', $category); ?> />
                         <input type="radio" class="hide radio" id="id-thepeak" name="category" value="the-peak" <?php checked('the-peak', $category); ?> />
                         <div class="category-tabs">
@@ -70,7 +71,7 @@ function hello_theme_challenge_selection_shortcode($atts)
                         <div class="panel">
                             <!-- Button Selection Bar Challenge -->
                             <div class="select-account-challenge">
-                                <h5 class="sub-title">Select Account Challenge</h5>
+                                <h5 class="sub-title">Balance</h5>
                                 <div id="challenge-selection-bar">
                                     <div class="progress-container">
                                         <input type="range" name="range" id="sac-progress-range" value="1" min="1" max="5" />
