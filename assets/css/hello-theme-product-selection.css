@@ -10,7 +10,6 @@
 /* Add your custom CSS here */
 .hello-theme-product-selection .warpper-alf {
   display: flex;
-  align-items: flex-start;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
