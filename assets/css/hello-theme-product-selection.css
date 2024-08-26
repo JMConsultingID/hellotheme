@@ -306,3 +306,14 @@
   }
 }
 /* End Tabs - Progress Range */
+
+/* Warning */
+.hello-theme-product-selection .wwarning p {
+  color: #a00;
+  font-style: italic;
+  text-align: center;
+  border-bottom: 1px solid #a00;
+  line-height: 1rem;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+}
