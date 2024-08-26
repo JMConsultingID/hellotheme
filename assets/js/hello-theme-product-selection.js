@@ -191,10 +191,8 @@
         tabs.forEach((tab, index) => {
           const tabIndex = index + 1;
           const isSelected = tabIndex === currentVal;
-
-          tab.setAttribute("aria-selected", isSelected);
-          tab.setAttribute("tabindex", isSelected ? "0" : "-1");
           if (isSelected) {
+            selectedChallenge = tab.getAttribute("data-value");
             tab.classList.add("selected");
             setAccountTypeSelection();
           } else {
