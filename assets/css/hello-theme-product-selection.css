@@ -141,7 +141,7 @@
   left: 1px;
   right: auto;
   width: 100%;
-  max-width: 580px;
+  max-width: 566px;
   z-index: 1;
 }
 .hello-theme-product-selection
@@ -211,7 +211,7 @@
   font-weight: 700;
   color: #202049;
   text-transform: uppercase;
-  padding: 25px 35px 0px 0px;
+  padding: 25px 25px 0px 0px;
   background-color: transparent;
   border: none;
   cursor: pointer;
