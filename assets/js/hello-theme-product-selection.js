@@ -191,6 +191,11 @@
 
           tab.setAttribute("aria-selected", isSelected);
           tab.setAttribute("tabindex", isSelected ? "0" : "-1");
+          if (isSelected) {
+            contentTab.classList.add("selected");
+          } else {
+            contentTab.classList.remove("selected");
+          }
         });
       });
 
