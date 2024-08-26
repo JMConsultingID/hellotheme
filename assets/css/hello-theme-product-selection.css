@@ -137,14 +137,14 @@
 }
 
 /* Start Tabs - Progress Range */
-.hello-theme-product-selection .balence .box-progress {
+.hello-theme-product-selection .select-account-challenge .box-progress {
   position: relative;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
 }
-.hello-theme-product-selection .balence .progress-container {
+.hello-theme-product-selection .select-account-challenge .progress-container {
   position: absolute;
   top: -5px;
   left: 1px;
@@ -154,14 +154,14 @@
   z-index: 1;
 }
 .hello-theme-product-selection
-  .balence
+  .select-account-challenge
   .progress-container
   input[type="range"] {
   -webkit-appearance: none;
   background: none;
 }
 .hello-theme-product-selection
-  .balence
+  .select-account-challenge
   .progress-container
   input[type="”range”"] {
   -webkit-appearance: none;
@@ -170,7 +170,7 @@
   border-radius: 50px;
 }
 .hello-theme-product-selection
-  .balence
+  .select-account-challenge
   .progress-container
   input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none; /* clear browser thumb */
@@ -185,7 +185,7 @@
   border: 3px solid #ffffff;
 }
 .hello-theme-product-selection
-  .balence
+  .select-account-challenge
   .progress-container
   input[type="range"]::-moz-range-thumb {
   -webkit-appearance: none; /* clear browser thumb */
@@ -201,7 +201,7 @@
   border: 3px solid #ffffff;
 }
 .hello-theme-product-selection
-  .balence
+  .select-account-challenge
   .progress-container
   input[type="range"] {
   width: 100%;
@@ -214,7 +214,10 @@
   background-repeat: no-repeat;
   cursor: pointer;
 }
-.hello-theme-product-selection .balence .box-progress .btn-price {
+.hello-theme-product-selection
+  .select-account-challenge
+  .box-progress
+  .btn-price {
   font-size: 16px;
   line-height: 26px;
   font-weight: 700;
@@ -303,12 +306,15 @@
     text-align: center;
     width: 100%;
   }
-  .hello-theme-product-selection .balence .progress-container {
+  .hello-theme-product-selection .select-account-challenge .progress-container {
     top: 0;
     max-width: 95%;
     right: 3%;
   }
-  .hello-theme-product-selection .balence .box-progress .btn-price {
+  .hello-theme-product-selection
+    .select-account-challenge
+    .box-progress
+    .btn-price {
     padding: 25px 0px 0px;
   }
 }
