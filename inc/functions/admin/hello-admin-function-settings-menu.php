@@ -748,6 +748,7 @@ function hello_affiliatewp_settings_section_callback() {
 
 function hello_product_selection_settings_section_callback() {
     echo '<p>Configure your Product Selections below.</p>';
+    echo '<p>Use the shortcode <code>[hello_challenge_selection]</code> on your frontend</p>';
 }
 
 function hello_table_pricing_settings_section_callback() {

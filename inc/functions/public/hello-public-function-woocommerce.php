@@ -14,19 +14,19 @@ function setup_single_product_checkout_mode() {
         // Disable add to cart messages
         add_filter( 'wc_add_to_cart_message_html', '__return_false' );
         // Empty cart before adding a new item
-        add_filter( 'woocommerce_add_cart_item_data', '_empty_cart' );
+        add_filter( 'woocommerce_add_cart_item_data', '_hello_theme_additional_empty_cart' );
     }
 }
 add_action( 'init', 'setup_single_product_checkout_mode' );
 
-function _empty_cart( $cart_item_data ) {
+function _hello_theme_additional_empty_cart( $cart_item_data ) {
     WC()->cart->empty_cart();
     return $cart_item_data;
 }
 
-add_filter( 'woocommerce_add_cart_item_data', 'woo_hello_theme_add_to_cart' );
+add_filter( 'woocommerce_add_cart_item_data', 'hello_theme_additional_woo_hello_theme_add_to_cart' );
 
-function woo_hello_theme_add_to_cart( $cart_item_data ) {
+function hello_theme_additional_woo_hello_theme_add_to_cart( $cart_item_data ) {
 
     global $woocommerce;
     $woocommerce->cart->empty_cart();
@@ -36,8 +36,8 @@ function woo_hello_theme_add_to_cart( $cart_item_data ) {
 }
 
 // Redirect to checkout page after adding an item to the cart
-add_filter('woocommerce_add_to_cart_redirect', 'hello_theme_add_to_cart_redirect');
-function hello_theme_add_to_cart_redirect() {
+add_filter('woocommerce_add_to_cart_redirect', 'hello_theme_additional_add_to_cart_redirect');
+function hello_theme_additional_add_to_cart_redirect() {
     return wc_get_checkout_url();
 }
 
