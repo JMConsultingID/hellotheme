@@ -21,6 +21,18 @@
     let selectedAccountType = form.dataset.accountType;
     let selectedAddons = [];
 
+    function setAccountTypeSelection() {
+      // Set account type selection
+      document
+        .querySelectorAll('input[name="account_type"]')
+        .forEach(function (radio) {
+          radio.checked = radio.value === selectedAccountType;
+        });
+
+      // Set addons selection
+      updateAddonsSelection();
+    }
+
     // Apply preselect based on URL parameters or defaults
     function applyPreselect() {
       // Set category selection
@@ -35,16 +47,7 @@
           btn.classList.add("selected");
         }
       });
-
-      // Set account type selection
-      document
-        .querySelectorAll('input[name="account_type"]')
-        .forEach(function (radio) {
-          radio.checked = radio.value === selectedAccountType;
-        });
-
-      // Set addons selection
-      updateAddonsSelection();
+      setAccountTypeSelection();
     }
 
     // Update addons selection based on selected category
@@ -196,6 +199,8 @@
           } else {
             tab.classList.remove("selected");
           }
+
+          setAccountTypeSelection();
         });
       });
 
