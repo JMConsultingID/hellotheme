@@ -191,6 +191,7 @@ function hello_theme_challenge_selection_get_product_id()
 
         // Check if $product is valid
         if ($product) {
+            $product_image_id = $product->get_image_id();
             // Check if product image exists, otherwise use placeholder image
             if ($product_image_id) {
                 $product_image = wp_get_attachment_image_url($product_image_id, 'medium');
