@@ -64,7 +64,9 @@ add_action( 'wp_enqueue_scripts', 'hello_theme_pricing_table_live', 20);
 
 function hello_theme_enqueue_product_selection() {
     $enabled_product_selection = get_option('enable_product_selection_pages');
-    if ($enabled_product_selection === '1') {
+    $page_id = get_the_ID();
+
+    if ($enabled_product_selection === '1' && in_array($page_id, array(7134))) {
         wp_enqueue_style( 'hello-theme-tippy-pcs-css', get_stylesheet_directory_uri() . '/assets/css/tippy.css');
         wp_enqueue_style( 'hello-theme-tippy-light-pcs-css', get_stylesheet_directory_uri() . '/assets/css/tippy-light.css');
         wp_enqueue_style( 'hello-theme-products-selection-challenge-css', get_stylesheet_directory_uri() . '/assets/css/hello-theme-product-selection.css', array('hello-theme-tippy-pcs-css', 'hello-theme-tippy-light-pcs-css'), HELLO_THEME_VERSION, 'all' );
