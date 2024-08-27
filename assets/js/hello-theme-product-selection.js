@@ -25,8 +25,6 @@
     const sacProgressRange = "#sac-progress-range";
     const btnPriceSelection = "#challenge-selection-bar .challenge-option";
 
-    updateAccountTypeTooltips(selectedCategory);
-
     function setAccountTypeSelection() {
       // Set account type selection
       document
@@ -60,6 +58,7 @@
           }, 100);
         }
       });
+      updateAccountTypeTooltips(selectedCategory);
       setAccountTypeSelection();
     }
 
