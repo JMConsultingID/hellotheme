@@ -13,8 +13,6 @@
     const productTitle = document.querySelector("#product-title");
     const productDescription = document.querySelector("#product-description");
     const productPrice = document.querySelector("#product-price");
-    const standardTooltip = document.getElementById('standard-tooltip');
-    const swingTooltip = document.getElementById('swing-tooltip');
 
     // Preselect based on data attributes from the root element
     const form = document.querySelector("#challenge-selection-form");
@@ -26,46 +24,6 @@
     // Progress Range
     const sacProgressRange = "#sac-progress-range";
     const btnPriceSelection = "#challenge-selection-bar .challenge-option";
-
-    // Inisialisasi Tippy.js untuk pertama kali
-    let tooltips = tippy('.hello-theme-pcs-label-tooltips', {
-      theme: 'light',
-      placement: 'right',
-      arrow: false,
-      animation: 'fade',
-      allowHTML: true,
-      interactive: true,
-      delay: [100, 100],
-    });
-
-    // Function to update tooltips based on selected category
-    function updateAccountTooltips(selectedCategory) {
-      if (selectedCategory === 'base-camp') {
-        standardTooltip.setAttribute('data-tippy-content', 'No Weekend Holding, No News Trading, Up to 100:1 Leverage.');
-        swingTooltip.setAttribute('data-tippy-content', 'Weekend Holding Allowed, News Trading Allowed, Up to 30:1 Leverage');
-      } else if (selectedCategory === 'the-peak') {
-        standardTooltip.setAttribute('data-tippy-content', 'No News Trading, Up to 100:1 Leverage');
-        swingTooltip.setAttribute('data-tippy-content', 'News Trading Allowed, Up to 30:1 Leverage');
-      }
-
-      // Destroy existing tooltips before re-initializing
-      tooltips.forEach(function (tooltip) {
-        tooltip.destroy();
-      });
-
-      // Re-initialize Tippy.js to update the tooltips with new content
-      tooltips = tippy('.hello-theme-pcs-label-tooltips', {
-        theme: 'light',
-        placement: 'right',
-        arrow: false,
-        animation: 'fade',
-        allowHTML: true,
-        interactive: true,
-        delay: [100, 100],
-      });
-    }
-
-    updateAccountTooltips('base-camp');
 
     function setAccountTypeSelection() {
       // Set account type selection
@@ -146,6 +104,67 @@
       updateCheckoutButton(); // Update checkout button after setting addons
     }
 
+    // Function to initialize tooltips based on category
+    function initializeAccountTooltips(selectedCategory) {
+        // Reset tooltips
+        tippy('.hello-theme-pcs-label-tooltips', { // This will remove all initialized tooltips
+            content: '', // Clear content to reset
+            theme: 'light',
+            placement: 'right',
+            arrow: false,
+            animation: 'fade',
+            allowHTML: true,
+            interactive: true,
+            delay: [100, 100],
+        });
+
+        if (selectedCategory === 'base-camp') {
+            tippy('.basecamp-standard', {
+                content: 'No Weekend Holding, No News Trading, Up to 100:1 Leverage.',
+                theme: 'light',
+                placement: 'right',
+                arrow: false,
+                animation: 'fade',
+                allowHTML: true,
+                interactive: true,
+                delay: [100, 100],
+            });
+
+            tippy('.basecamp-swing', {
+                content: 'Weekend Holding Allowed, News Trading Allowed, Up to 30:1 Leverage',
+                theme: 'light',
+                placement: 'right',
+                arrow: false,
+                animation: 'fade',
+                allowHTML: true,
+                interactive: true,
+                delay: [100, 100],
+            });
+        } else if (selectedCategory === 'the-peak') {
+            tippy('.the-peak-standard', {
+                content: 'No News Trading, Up to 100:1 Leverage',
+                theme: 'light',
+                placement: 'right',
+                arrow: false,
+                animation: 'fade',
+                allowHTML: true,
+                interactive: true,
+                delay: [100, 100],
+            });
+
+            tippy('.the-peak-swing', {
+                content: 'News Trading Allowed, Up to 30:1 Leverage',
+                theme: 'light',
+                placement: 'right',
+                arrow: false,
+                animation: 'fade',
+                allowHTML: true,
+                interactive: true,
+                delay: [100, 100],
+            });
+        }
+    }
+
     // Event listener for category selection change
     categorySelection.addEventListener("change", function (e) {
       selectedCategory = e.target.value;
@@ -160,7 +179,7 @@
       }
 
       // Update tooltips based on the selected category
-      updateAccountTooltips(selectedCategory);
+      initializeAccountTooltips(selectedCategory);
 
       // Reset addons
       updateAddonsSelection();
@@ -168,6 +187,9 @@
       // Update checkout button state
       updateCheckoutButton();
     });
+
+    // Initial call to setup tooltips based on the default or pre-selected category
+    initializeAccountTooltips(selectedCategory);
 
     // Event listeners for challenge buttons
     challengeButtons.forEach((button) => {

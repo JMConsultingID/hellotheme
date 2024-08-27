@@ -96,7 +96,10 @@ function hello_theme_challenge_selection_shortcode($atts)
                                         <input id="standard-account" type="radio" class="input-radio" name="account_type"
                                             value="standard" <?php checked('standard', $account_type); ?> />
                                         <label for="standard-account" class="">Standard Account</label>
-                                        <span class="hello-theme-pcs-label-tooltips" id="standard-tooltip">
+                                        <span class="hello-theme-pcs-label-tooltips basecamp-standard" data-tippy-content="No Weekend Holding, No News Trading, Up to 100:1 Leverage.">
+                                            <i aria-hidden="true" class="fas fa-info-circle"></i>
+                                        </span>
+                                        <span class="hello-theme-pcs-label-tooltips the-peak-standard" data-tippy-content="No News Trading, Up to 100:1 Leverage">
                                             <i aria-hidden="true" class="fas fa-info-circle"></i>
                                         </span>
                                     </li>
@@ -104,7 +107,10 @@ function hello_theme_challenge_selection_shortcode($atts)
                                         <input id="swing-account" type="radio" class="input-radio" name="account_type"
                                             value="swing" <?php checked('swing', $account_type); ?> />
                                         <label for="swing-account" class="">Swing Account</label>
-                                        <span class="hello-theme-pcs-label-tooltips" id="swing-tooltip">
+                                        <span class="hello-theme-pcs-label-tooltips basecamp-swing" data-tippy-content="Weekend Holding Allowed, News Trading Allowed, Up to 30:1 Leverage">
+                                            <i aria-hidden="true" class="fas fa-info-circle"></i>
+                                        </span>
+                                        <span class="hello-theme-pcs-label-tooltips the-peak-swing" data-tippy-content="News Trading Allowed, Up to 30:1 Leverage">
                                             <i aria-hidden="true" class="fas fa-info-circle"></i>
                                         </span>
                                     </li>
