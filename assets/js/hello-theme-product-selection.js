@@ -145,6 +145,8 @@
 
       const container = document.querySelector('#account-type-selection');
 
+      container.classList.remove('category-basecamp', 'category-the-peak');
+
       if (selectedCategory === 'base-camp') {
           container.classList.add('category-basecamp');
       } else if (selectedCategory === 'the-peak') {
