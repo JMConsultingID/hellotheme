@@ -49,8 +49,6 @@
         });
     }
 
-    updateAccountTooltips('base-camp'); 
-
     function setAccountTypeSelection() {
       // Set account type selection
       document
