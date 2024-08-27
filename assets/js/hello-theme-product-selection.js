@@ -27,6 +27,17 @@
     const sacProgressRange = "#sac-progress-range";
     const btnPriceSelection = "#challenge-selection-bar .challenge-option";
 
+    // Inisialisasi Tippy.js untuk pertama kali
+    let tooltips = tippy('.hello-theme-pcs-label-tooltips', {
+      theme: 'light',
+      placement: 'right',
+      arrow: false,
+      animation: 'fade',
+      allowHTML: true,
+      interactive: true,
+      delay: [100, 100],
+    });
+
     // Function to update tooltips based on selected category
     function updateAccountTooltips(selectedCategory) {
       if (selectedCategory === 'base-camp') {
