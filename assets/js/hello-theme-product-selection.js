@@ -144,10 +144,7 @@
         // Set default selections
         applyPreselect();
       }
-
-      // Update tooltips based on the selected category
-      initializeAccountTooltips(selectedCategory);
-
+      
       // Reset addons
       updateAddonsSelection();
 
@@ -156,7 +153,7 @@
     });
 
     // Initial call to setup tooltips based on the default or pre-selected category
-    initializeAccountTooltips(selectedCategory);
+    updateAccountTypeTooltips(selectedCategory);
 
     // Event listeners for challenge buttons
     challengeButtons.forEach((button) => {
@@ -268,8 +265,6 @@
         });
       });
     }
-    updateAccountTypeTooltips(selectedCategory);
-    
     setupProgressBar(sacProgressRange, btnPriceSelection);
 
     // Initialize addons and checkout button
