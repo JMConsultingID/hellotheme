@@ -135,14 +135,17 @@
       selectedCategory = e.target.value;
 
       const container = document.querySelector('#account-type-selection');
+      
+      // Hapus semua kelas yang relevan sebelum menambah yang baru
+      container.classList.remove('category-basecamp', 'category-the-peak');
+
       if (selectedCategory === 'base-camp') {
           container.classList.add('category-basecamp');
-          container.classList.remove('category-the-peak');
       } else if (selectedCategory === 'the-peak') {
           container.classList.add('category-the-peak');
-          container.classList.remove('category-basecamp');
       }
 
+      // Panggil fungsi untuk memperbarui tooltips berdasarkan kategori yang dipilih
       updateAccountTypeTooltips(selectedCategory);
 
       // Reset preselect to default when category changes
