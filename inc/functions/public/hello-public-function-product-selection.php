@@ -96,14 +96,21 @@ function hello_theme_challenge_selection_shortcode($atts)
                                         <input id="standard-account" type="radio" class="input-radio" name="account_type"
                                             value="standard" <?php checked('standard', $account_type); ?> />
                                         <label for="standard-account" class="">Standard Account</label>
+                                        <span class="hello-theme-pcs-label-tooltips" id="standard-tooltip">
+                                            <i aria-hidden="true" class="fas fa-info-circle"></i>
+                                        </span>
                                     </li>
                                     <li>
                                         <input id="swing-account" type="radio" class="input-radio" name="account_type"
                                             value="swing" <?php checked('swing', $account_type); ?> />
                                         <label for="swing-account" class="">Swing Account</label>
+                                        <span class="hello-theme-pcs-label-tooltips" id="swing-tooltip">
+                                            <i aria-hidden="true" class="fas fa-info-circle"></i>
+                                        </span>
                                     </li>
                                 </ul>
                             </div>
+
 
                             <div id="addons-selection" class="addon">
                                 <h5 class="sub-title">Addon</h5>
