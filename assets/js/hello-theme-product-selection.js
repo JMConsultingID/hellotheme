@@ -13,6 +13,8 @@
     const productTitle = document.querySelector("#product-title");
     const productDescription = document.querySelector("#product-description");
     const productPrice = document.querySelector("#product-price");
+    const standardTooltip = document.getElementById('standard-tooltip');
+    const swingTooltip = document.getElementById('swing-tooltip');
 
     // Preselect based on data attributes from the root element
     const form = document.querySelector("#challenge-selection-form");
@@ -24,6 +26,30 @@
     // Progress Range
     const sacProgressRange = "#sac-progress-range";
     const btnPriceSelection = "#challenge-selection-bar .challenge-option";
+
+    // Function to update tooltips based on selected category
+    function updateAccountTooltips(selectedCategory) {
+        if (selectedCategory === 'base-camp') {
+            standardTooltip.setAttribute('data-tippy-content', 'No Weekend Holding, No News Trading, Up to 100:1 Leverage.');
+            swingTooltip.setAttribute('data-tippy-content', 'Weekend Holding Allowed, News Trading Allowed, Up to 30:1 Leverage');
+        } else if (selectedCategory === 'the-peak') {
+            standardTooltip.setAttribute('data-tippy-content', 'No News Trading, Up to 100:1 Leverage');
+            swingTooltip.setAttribute('data-tippy-content', 'News Trading Allowed, Up to 30:1 Leverage');
+        }
+
+        // Re-initialize Tippy.js to update the tooltips with new content
+        tippy('.hello-theme-pcs-label-tooltips', {
+            theme: 'light',
+            placement: 'right',
+            arrow: false,
+            animation: 'fade',
+            allowHTML: true,
+            interactive: true,
+            delay: [100, 100],
+        });
+    }
+
+    updateAccountTooltips('base-camp'); 
 
     function setAccountTypeSelection() {
       // Set account type selection
@@ -103,32 +129,6 @@
 
       updateCheckoutButton(); // Update checkout button after setting addons
     }
-
-    // Function to update tooltips based on selected category
-    function updateAccountTooltips(selectedCategory) {
-        const standardTooltip = document.getElementById('standard-tooltip');
-        const swingTooltip = document.getElementById('swing-tooltip');
-
-        if (selectedCategory === 'base-camp') {
-            standardTooltip.setAttribute('data-tippy-content', 'No Weekend Holding, No News Trading, Up to 100:1 Leverage.');
-            swingTooltip.setAttribute('data-tippy-content', 'Weekend Holding Allowed, News Trading Allowed, Up to 30:1 Leverage');
-        } else if (selectedCategory === 'the-peak') {
-            standardTooltip.setAttribute('data-tippy-content', 'No News Trading, Up to 100:1 Leverage');
-            swingTooltip.setAttribute('data-tippy-content', 'News Trading Allowed, Up to 30:1 Leverage');
-        }
-
-        // Re-initialize Tippy.js to update the tooltips with new content
-        tippy('.hello-theme-pcs-label-tooltips', {
-            theme: 'light',
-            placement: 'right',
-            arrow: false,
-            animation: 'fade',
-            allowHTML: true,
-            interactive: true,
-            delay: [100, 100],
-        });
-    }
-
 
     // Event listener for category selection change
     categorySelection.addEventListener("change", function (e) {
