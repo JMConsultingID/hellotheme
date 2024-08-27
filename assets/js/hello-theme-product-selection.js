@@ -29,25 +29,32 @@
 
     // Function to update tooltips based on selected category
     function updateAccountTooltips(selectedCategory) {
-        if (selectedCategory === 'base-camp') {
-            standardTooltip.setAttribute('data-tippy-content', 'No Weekend Holding, No News Trading, Up to 100:1 Leverage.');
-            swingTooltip.setAttribute('data-tippy-content', 'Weekend Holding Allowed, News Trading Allowed, Up to 30:1 Leverage');
-        } else if (selectedCategory === 'the-peak') {
-            standardTooltip.setAttribute('data-tippy-content', 'No News Trading, Up to 100:1 Leverage');
-            swingTooltip.setAttribute('data-tippy-content', 'News Trading Allowed, Up to 30:1 Leverage');
-        }
+      if (selectedCategory === 'base-camp') {
+        standardTooltip.setAttribute('data-tippy-content', 'No Weekend Holding, No News Trading, Up to 100:1 Leverage.');
+        swingTooltip.setAttribute('data-tippy-content', 'Weekend Holding Allowed, News Trading Allowed, Up to 30:1 Leverage');
+      } else if (selectedCategory === 'the-peak') {
+        standardTooltip.setAttribute('data-tippy-content', 'No News Trading, Up to 100:1 Leverage');
+        swingTooltip.setAttribute('data-tippy-content', 'News Trading Allowed, Up to 30:1 Leverage');
+      }
 
-        // Re-initialize Tippy.js to update the tooltips with new content
-        tippy('.hello-theme-pcs-label-tooltips', {
-            theme: 'light',
-            placement: 'right',
-            arrow: false,
-            animation: 'fade',
-            allowHTML: true,
-            interactive: true,
-            delay: [100, 100],
-        });
+      // Destroy existing tooltips before re-initializing
+      tooltips.forEach(function (tooltip) {
+        tooltip.destroy();
+      });
+
+      // Re-initialize Tippy.js to update the tooltips with new content
+      tooltips = tippy('.hello-theme-pcs-label-tooltips', {
+        theme: 'light',
+        placement: 'right',
+        arrow: false,
+        animation: 'fade',
+        allowHTML: true,
+        interactive: true,
+        delay: [100, 100],
+      });
     }
+
+    updateAccountTooltips('base-camp');
 
     function setAccountTypeSelection() {
       // Set account type selection
