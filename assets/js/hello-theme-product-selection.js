@@ -106,8 +106,6 @@
 
     function updateAccountTypeTooltips(selectedCategory) {
         tippy('.hello-theme-pcs-label-tooltips').forEach(instance => instance.destroy());
-
-        // Tentukan elemen-elemen yang akan di-inisialisasi Tippy.js
         let tooltipsSelector = [];
         if (selectedCategory === 'base-camp') {
             tooltipsSelector = ['.basecamp-standard', '.basecamp-swing'];
@@ -117,7 +115,7 @@
 
         // Inisialisasi Tippy.js hanya pada elemen-elemen yang sesuai
         tooltipsSelector.forEach(selector => {
-            tippy(selector, {
+            tippy(selector + ':not([style="display: none;"])', {
                 theme: 'light',
                 placement: 'right',
                 arrow: false,
@@ -130,9 +128,19 @@
     }
 
 
+
     // Event listener for category selection change
     categorySelection.addEventListener("change", function (e) {
       selectedCategory = e.target.value;
+
+      const container = document.querySelector('#account-type-selection');
+      if (selectedCategory === 'base-camp') {
+          container.classList.add('category-basecamp');
+          container.classList.remove('category-the-peak');
+      } else if (selectedCategory === 'the-peak') {
+          container.classList.add('category-the-peak');
+          container.classList.remove('category-basecamp');
+      }
 
       updateAccountTypeTooltips(selectedCategory);
 
@@ -144,7 +152,7 @@
         // Set default selections
         applyPreselect();
       }
-      
+
       // Reset addons
       updateAddonsSelection();
 

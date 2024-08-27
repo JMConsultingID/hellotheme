@@ -338,3 +338,19 @@
   margin-bottom: 30px;
   padding-bottom: 15px;
 }
+.basecamp-standard,
+.basecamp-swing,
+.the-peak-standard,
+.the-peak-swing {
+    display: none;
+}
+
+.category-basecamp .basecamp-standard,
+.category-basecamp .basecamp-swing {
+    display: inline-block;
+}
+
+.category-the-peak .the-peak-standard,
+.category-the-peak .the-peak-swing {
+    display: inline-block;
+}
