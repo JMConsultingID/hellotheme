@@ -96,6 +96,7 @@ function hello_theme_challenge_selection_shortcode($atts)
                                         <input id="standard-account" type="radio" class="input-radio" name="account_type"
                                             value="standard" <?php checked('standard', $account_type); ?> />
                                         <label for="standard-account" class="">Standard Account</label>
+                                        <!-- Tippy untuk Basecamp dan The Peak untuk Standard Account -->
                                         <span class="hello-theme-pcs-label-tooltips basecamp-standard" data-tippy-content="No Weekend Holding, No News Trading, Up to 100:1 Leverage.">
                                             <i aria-hidden="true" class="fas fa-info-circle"></i>
                                         </span>
@@ -107,6 +108,7 @@ function hello_theme_challenge_selection_shortcode($atts)
                                         <input id="swing-account" type="radio" class="input-radio" name="account_type"
                                             value="swing" <?php checked('swing', $account_type); ?> />
                                         <label for="swing-account" class="">Swing Account</label>
+                                        <!-- Tippy untuk Basecamp dan The Peak untuk Swing Account -->
                                         <span class="hello-theme-pcs-label-tooltips basecamp-swing" data-tippy-content="Weekend Holding Allowed, News Trading Allowed, Up to 30:1 Leverage">
                                             <i aria-hidden="true" class="fas fa-info-circle"></i>
                                         </span>
@@ -116,6 +118,7 @@ function hello_theme_challenge_selection_shortcode($atts)
                                     </li>
                                 </ul>
                             </div>
+
 
 
                             <div id="addons-selection" class="addon">

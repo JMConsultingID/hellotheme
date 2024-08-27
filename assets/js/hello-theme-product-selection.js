@@ -104,70 +104,37 @@
       updateCheckoutButton(); // Update checkout button after setting addons
     }
 
-    // Function to initialize tooltips based on category
-    function initializeAccountTooltips(selectedCategory) {
-        // Reset tooltips
-        tippy('.hello-theme-pcs-label-tooltips', { // This will remove all initialized tooltips
-            content: '', // Clear content to reset
-            theme: 'light',
-            placement: 'right',
-            arrow: false,
-            animation: 'fade',
-            allowHTML: true,
-            interactive: true,
-            delay: [100, 100],
-        });
+    function updateAccountTypeTooltips(selectedCategory) {
+        tippy('.hello-theme-pcs-label-tooltips').forEach(instance => instance.destroy());
 
+        // Tentukan elemen-elemen yang akan di-inisialisasi Tippy.js
+        let tooltipsSelector = [];
         if (selectedCategory === 'base-camp') {
-            tippy('.basecamp-standard', {
-                content: 'No Weekend Holding, No News Trading, Up to 100:1 Leverage.',
-                theme: 'light',
-                placement: 'right',
-                arrow: false,
-                animation: 'fade',
-                allowHTML: true,
-                interactive: true,
-                delay: [100, 100],
-            });
-
-            tippy('.basecamp-swing', {
-                content: 'Weekend Holding Allowed, News Trading Allowed, Up to 30:1 Leverage',
-                theme: 'light',
-                placement: 'right',
-                arrow: false,
-                animation: 'fade',
-                allowHTML: true,
-                interactive: true,
-                delay: [100, 100],
-            });
+            tooltipsSelector = ['.basecamp-standard', '.basecamp-swing'];
         } else if (selectedCategory === 'the-peak') {
-            tippy('.the-peak-standard', {
-                content: 'No News Trading, Up to 100:1 Leverage',
-                theme: 'light',
-                placement: 'right',
-                arrow: false,
-                animation: 'fade',
-                allowHTML: true,
-                interactive: true,
-                delay: [100, 100],
-            });
-
-            tippy('.the-peak-swing', {
-                content: 'News Trading Allowed, Up to 30:1 Leverage',
-                theme: 'light',
-                placement: 'right',
-                arrow: false,
-                animation: 'fade',
-                allowHTML: true,
-                interactive: true,
-                delay: [100, 100],
-            });
+            tooltipsSelector = ['.the-peak-standard', '.the-peak-swing'];
         }
+
+        // Inisialisasi Tippy.js hanya pada elemen-elemen yang sesuai
+        tooltipsSelector.forEach(selector => {
+            tippy(selector, {
+                theme: 'light',
+                placement: 'right',
+                arrow: false,
+                animation: 'fade',
+                allowHTML: true,
+                interactive: true,
+                delay: [100, 100],
+            });
+        });
     }
+
 
     // Event listener for category selection change
     categorySelection.addEventListener("change", function (e) {
       selectedCategory = e.target.value;
+
+      updateAccountTypeTooltips(selectedCategory);
 
       // Reset preselect to default when category changes
       if (selectedCategory === "base-camp" || selectedCategory === "the-peak") {
@@ -301,6 +268,8 @@
         });
       });
     }
+    updateAccountTypeTooltips(selectedCategory);
+    
     setupProgressBar(sacProgressRange, btnPriceSelection);
 
     // Initialize addons and checkout button
