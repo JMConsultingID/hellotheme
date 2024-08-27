@@ -334,8 +334,8 @@
 }
 
 @media (max-width: 480px) {
-  [data-tippy-root] {
-    max-width: 150px;
+  .tippy-box {
+    max-width: 150px!important;
   }
 }
 
