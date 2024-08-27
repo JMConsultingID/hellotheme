@@ -25,6 +25,8 @@
     const sacProgressRange = "#sac-progress-range";
     const btnPriceSelection = "#challenge-selection-bar .challenge-option";
 
+    updateAccountTypeTooltips(selectedCategory);
+
     function setAccountTypeSelection() {
       // Set account type selection
       document
@@ -271,9 +273,6 @@
       });
     }
     setupProgressBar(sacProgressRange, btnPriceSelection);
-
-    // Initial call to setup tooltips based on the default or pre-selected category
-    updateAccountTypeTooltips(selectedCategory);
 
     // Initialize addons and checkout button
     applyPreselect();
