@@ -132,7 +132,7 @@
                 animation: 'fade',
                 allowHTML: true,
                 interactive: true,
-                delay: [100, 100],
+                delay: [100, 100],                
             });
         });
     }

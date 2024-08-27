@@ -8,6 +8,9 @@
  */
 
 /* Add your custom CSS here */
+.tippy-box[data-theme~=light] {
+    box-shadow: unset;
+}
 .hello-theme-product-selection .warpper-alf {
   display: flex;
   flex-direction: row;
