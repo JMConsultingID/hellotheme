@@ -160,9 +160,6 @@
       updateCheckoutButton();
     });
 
-    // Initial call to setup tooltips based on the default or pre-selected category
-    updateAccountTypeTooltips(selectedCategory);
-
     // Event listeners for challenge buttons
     challengeButtons.forEach((button) => {
       button.addEventListener("click", function () {
@@ -274,6 +271,9 @@
       });
     }
     setupProgressBar(sacProgressRange, btnPriceSelection);
+
+    // Initial call to setup tooltips based on the default or pre-selected category
+    updateAccountTypeTooltips(selectedCategory);
 
     // Initialize addons and checkout button
     applyPreselect();
