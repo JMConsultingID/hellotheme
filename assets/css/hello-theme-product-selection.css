@@ -223,6 +223,13 @@
 }
 /* End Tabs */
 
+@media screen and (max-width: 480px) {
+  .tippy-box[data-theme~=light] {
+    max-width: 150px!important;
+  }
+}
+
+
 .hello-theme-product-selection .items-panel .box-tabs-content .e-content {
   display: none !important;
 }
@@ -331,12 +338,6 @@
 }
 /* End Tabs - Progress Range */
 
-}
-
-@media (max-width: 480px) {
-  .tippy-box {
-    max-width: 150px!important;
-  }
 }
 
 /* Warning */
