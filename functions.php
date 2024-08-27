@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 
-define('HELLO_THEME_VERSION', '2.1.22');
+define('HELLO_THEME_VERSION', '2.1.23');
 
 /**
  * Load hello theme scripts & styles.
