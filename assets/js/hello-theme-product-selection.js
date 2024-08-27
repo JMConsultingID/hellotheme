@@ -25,6 +25,15 @@
     const sacProgressRange = "#sac-progress-range";
     const btnPriceSelection = "#challenge-selection-bar .challenge-option";
 
+    const container = document.querySelector('#account-type-selection');
+    if (selectedCategory === 'base-camp') {
+        container.classList.add('category-basecamp');
+        container.classList.remove('category-the-peak');
+    } else if (selectedCategory === 'the-peak') {
+        container.classList.add('category-the-peak');
+        container.classList.remove('category-basecamp');
+    }
+
     function setAccountTypeSelection() {
       // Set account type selection
       document
@@ -135,9 +144,6 @@
       selectedCategory = e.target.value;
 
       const container = document.querySelector('#account-type-selection');
-      
-      // Hapus semua kelas yang relevan sebelum menambah yang baru
-      container.classList.remove('category-basecamp', 'category-the-peak');
 
       if (selectedCategory === 'base-camp') {
           container.classList.add('category-basecamp');
@@ -145,7 +151,6 @@
           container.classList.add('category-the-peak');
       }
 
-      // Panggil fungsi untuk memperbarui tooltips berdasarkan kategori yang dipilih
       updateAccountTypeTooltips(selectedCategory);
 
       // Reset preselect to default when category changes
@@ -275,6 +280,8 @@
       });
     }
     setupProgressBar(sacProgressRange, btnPriceSelection);
+
+    updateAccountTypeTooltips(selectedCategory);
 
     // Initialize addons and checkout button
     applyPreselect();
