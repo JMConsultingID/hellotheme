@@ -331,6 +331,14 @@
 }
 /* End Tabs - Progress Range */
 
+}
+
+@media (max-width: 480px) {
+  [data-tippy-root] {
+    max-width: 150px;
+  }
+}
+
 /* Warning */
 .hello-theme-product-selection .warning p {
   color: #a00;
