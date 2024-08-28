@@ -8,8 +8,8 @@
  */
 
 /* Add your custom CSS here */
-.tippy-box[data-theme~=light] {
-    box-shadow: unset;
+.tippy-box[data-theme~="light"] {
+  box-shadow: unset;
 }
 .hello-theme-product-selection .warpper-alf {
   display: flex;
@@ -126,7 +126,7 @@
 .hello-theme-product-selection .panels input[type="checkbox"] {
   accent-color: dodgerblue;
 }
-.hello-theme-product-selection .panels ul li .hello-theme-pcs-label-tooltips{
+.hello-theme-product-selection .panels ul li .hello-theme-pcs-label-tooltips {
   margin-top: -4px;
 }
 
@@ -224,11 +224,10 @@
 /* End Tabs */
 
 @media screen and (max-width: 480px) {
-  .tippy-box[data-theme~=light] {
-    max-width: 150px!important;
+  .tippy-box[data-theme~="light"] {
+    max-width: 150px !important;
   }
 }
-
 
 .hello-theme-product-selection .items-panel .box-tabs-content .e-content {
   display: none !important;
@@ -246,7 +245,7 @@
   display: flex;
   justify-content: center;
 }
-.hello-theme-product-selection .items-panel .products #product-display{
+.hello-theme-product-selection .items-panel .products #product-display {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -262,7 +261,7 @@
 }
 .hello-theme-product-selection .items-panel .amount .amount-box {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -295,7 +294,7 @@
   margin-top: 10px;
 }
 
-.hello-theme-product-selection .products .description h5.sub-title{
+.hello-theme-product-selection .products .description h5.sub-title {
   font-weight: 700;
 }
 
@@ -338,8 +337,6 @@
 }
 /* End Tabs - Progress Range */
 
-}
-
 /* Warning */
 .hello-theme-product-selection .warning p {
   color: #a00;
@@ -354,15 +351,15 @@
 .basecamp-swing,
 .the-peak-standard,
 .the-peak-swing {
-    display: none;
+  display: none;
 }
 
 .category-basecamp .basecamp-standard,
 .category-basecamp .basecamp-swing {
-    display: inline-block;
+  display: inline-block;
 }
 
 .category-the-peak .the-peak-standard,
 .category-the-peak .the-peak-swing {
-    display: inline-block;
+  display: inline-block;
 }
