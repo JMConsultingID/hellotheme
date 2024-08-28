@@ -25,13 +25,13 @@
     const sacProgressRange = "#sac-progress-range";
     const btnPriceSelection = "#challenge-selection-bar .challenge-option";
 
-    const container = document.querySelector('#account-type-selection');
-    if (selectedCategory === 'base-camp') {
-        container.classList.add('category-basecamp');
-        container.classList.remove('category-the-peak');
-    } else if (selectedCategory === 'the-peak') {
-        container.classList.add('category-the-peak');
-        container.classList.remove('category-basecamp');
+    const container = document.querySelector("#account-type-selection");
+    if (selectedCategory === "base-camp") {
+      container.classList.add("category-basecamp");
+      container.classList.remove("category-the-peak");
+    } else if (selectedCategory === "the-peak") {
+      container.classList.add("category-the-peak");
+      container.classList.remove("category-basecamp");
     }
 
     function setAccountTypeSelection() {
@@ -78,7 +78,7 @@
       if (selectedCategory === "base-camp") {
         addonsSelection.innerHTML = `
                     <li><input type="checkbox" class="input-checkbox" name="addons" id="active-days" value="active-days"/><label for="active-days" class="">Active Days: 21 days + 15% fee</label><span class="hello-theme-pcs-label-tooltips" data-tippy-content="Standard: 1st 30 days, then 21 days"><i aria-hidden="true" class="fas fa-info-circle"></i></span></li>
-                    <li><input type="checkbox" class="input-checkbox" name="addons" id="profitsplit" value="profitsplit"/><label for="profitsplit" class="">ProfitSplit: 50%/70%/80% + 20% fee</label><span class="hello-theme-pcs-label-tooltips" data-tippy-content="Standard: 50%/50%/80%"><i aria-hidden="true" class="fas fa-info-circle"></i></span></li>
+                    <li><input type="checkbox" class="input-checkbox" name="addons" id="profitsplit" value="profitsplit"/><label for="profitsplit" class="">Profit Split: 50%/70%/80% + 20% fee</label><span class="hello-theme-pcs-label-tooltips" data-tippy-content="Standard: 50%/50%/80%"><i aria-hidden="true" class="fas fa-info-circle"></i></span></li>
                 `;
       } else if (selectedCategory === "the-peak") {
         addonsSelection.innerHTML = `
@@ -88,13 +88,13 @@
       }
 
       tippy(".hello-theme-pcs-label-tooltips", {
-          theme: 'light',
-          placement: 'right',
-          arrow: false,
-          animation: 'fade',
-          allowHTML: true,
-          interactive: true,
-          delay: [100, 100],
+        theme: "light",
+        placement: "right",
+        arrow: false,
+        animation: "fade",
+        allowHTML: true,
+        interactive: true,
+        delay: [100, 100],
       });
 
       // Reset addons selection
@@ -115,42 +115,42 @@
     }
 
     function updateAccountTypeTooltips(selectedCategory) {
-        tippy('.hello-theme-pcs-label-tooltips').forEach(instance => instance.destroy());
-        let tooltipsSelector = [];
-        if (selectedCategory === 'base-camp') {
-            tooltipsSelector = ['.basecamp-standard', '.basecamp-swing'];
-        } else if (selectedCategory === 'the-peak') {
-            tooltipsSelector = ['.the-peak-standard', '.the-peak-swing'];
-        }
+      tippy(".hello-theme-pcs-label-tooltips").forEach((instance) =>
+        instance.destroy()
+      );
+      let tooltipsSelector = [];
+      if (selectedCategory === "base-camp") {
+        tooltipsSelector = [".basecamp-standard", ".basecamp-swing"];
+      } else if (selectedCategory === "the-peak") {
+        tooltipsSelector = [".the-peak-standard", ".the-peak-swing"];
+      }
 
-        // Inisialisasi Tippy.js hanya pada elemen-elemen yang sesuai
-        tooltipsSelector.forEach(selector => {
-            tippy(selector + ':not([style="display: none;"])', {
-                theme: 'light',
-                placement: 'right',
-                arrow: false,
-                animation: 'fade',
-                allowHTML: true,
-                interactive: true,
-                delay: [100, 100],                
-            });
+      // Inisialisasi Tippy.js hanya pada elemen-elemen yang sesuai
+      tooltipsSelector.forEach((selector) => {
+        tippy(selector + ':not([style="display: none;"])', {
+          theme: "light",
+          placement: "right",
+          arrow: false,
+          animation: "fade",
+          allowHTML: true,
+          interactive: true,
+          delay: [100, 100],
         });
+      });
     }
-
-
 
     // Event listener for category selection change
     categorySelection.addEventListener("change", function (e) {
       selectedCategory = e.target.value;
 
-      const container = document.querySelector('#account-type-selection');
+      const container = document.querySelector("#account-type-selection");
 
-      container.classList.remove('category-basecamp', 'category-the-peak');
+      container.classList.remove("category-basecamp", "category-the-peak");
 
-      if (selectedCategory === 'base-camp') {
-          container.classList.add('category-basecamp');
-      } else if (selectedCategory === 'the-peak') {
-          container.classList.add('category-the-peak');
+      if (selectedCategory === "base-camp") {
+        container.classList.add("category-basecamp");
+      } else if (selectedCategory === "the-peak") {
+        container.classList.add("category-the-peak");
       }
 
       updateAccountTypeTooltips(selectedCategory);
