@@ -57,7 +57,9 @@ function hello_pricing_table_level_2_shortcode($atts)
                 </div>
             <?php endforeach; ?>
         </div>
-
+        <div class="title-account-size">
+            Account Size
+        </div>
         <?php foreach ($categories as $index => $category): ?>
             <div id="tab-<?php echo $category->term_id; ?>"
                 class="hello-theme-tab-content category-<?php echo $category->slug; ?> <?php echo $index == 0 ? 'active' : ''; ?>"
