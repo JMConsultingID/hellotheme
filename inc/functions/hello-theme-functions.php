@@ -76,18 +76,11 @@ add_action('wp_enqueue_scripts', 'hello_theme_enqueue_product_selection', 21);
 
 // test - received order
 // Menambahkan shortcode Elementor ke halaman order-received
-add_action('woocommerce_thankyou', 'insert_elementor_shortcode', 20);
-
-function insert_elementor_shortcode($order_i, $content)
+function insert_elementor_shortcode($order_id)
 {
     // Pastikan shortcode hanya ditambahkan pada halaman order-received
-    // if (is_order_received_page()) {
-    //     echo do_shortcode('[elementor-template id="353"]');
-    // }
     if (is_order_received_page()) {
-        $shortcode_output = do_shortcode('[elementor-template id="353"]');
-        // Prepend the shortcode output to the existing content
-        $content = $shortcode_output . $content;
+        echo do_shortcode('[elementor-template id="353"]');
     }
-    return $content;
 }
+add_action('woocommerce_thankyou', 'insert_elementor_shortcode', 20);
