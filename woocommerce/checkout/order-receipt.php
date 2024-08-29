@@ -41,9 +41,6 @@ if (!defined('ABSPATH')) {
 		<?php endif; ?>
 	</ul>
 </div>
-<div class="el-custom">
-	<h3 class="sub-title">Here Your Shortcode Elementor</h3>
-</div>
 
 <?php do_action('woocommerce_receipt_' . $order->get_payment_method(), $order->get_id()); ?>
 
