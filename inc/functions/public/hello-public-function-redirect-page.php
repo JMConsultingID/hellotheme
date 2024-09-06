@@ -65,15 +65,21 @@ function hello_theme_add_ga_gtm_script_to_thank_you_page() {
             $transaction_id = $order->get_order_number();
             $transaction_total = $order->get_total();
             $currency = get_woocommerce_currency();
+            $billing_email = $order->get_billing_email();
+            $billing_country = $order->get_billing_country();
+            $billing_city = $order->get_billing_city();
+            $billing_phone = $order->get_billing_phone();
             $items = $order->get_items();
             $products = [];
 
             foreach ($items as $item) {
                 $products[] = [
-                    'name' => $item->get_name(),
-                    'id' => $item->get_product_id(),
+                    'item_id' => $item->get_product_id(),
+                    'item_name' => $item->get_name(),
                     'price' => $item->get_total(),
                     'quantity' => $item->get_quantity(),
+                    'addons' => 'Bi-weekly Payouts - 10%', // You can adjust this field based on the actual data
+                    'discount' => 2.22, // Adjust if you have dynamic discount data
                 ];
             }
 
@@ -82,22 +88,20 @@ function hello_theme_add_ga_gtm_script_to_thank_you_page() {
             if ($status === 'completed') {
                 ?>
                 <script>
-                    // GTM Event
-                    gtag('event', 'purchase', {
-                        "transaction_id": "<?php echo $transaction_id; ?>",
-                        "value": <?php echo $transaction_total; ?>,
-                        "currency": "<?php echo $currency; ?>",
-                        "items": <?php echo $products_json; ?>
-                    });
-
-                    // GTM Event
                     window.dataLayer = window.dataLayer || [];
                     window.dataLayer.push({
-                        'event': 'purchase',
-                        'transaction_id': '<?php echo $transaction_id; ?>',
-                        'value': <?php echo $transaction_total; ?>,
-                        'currency': '<?php echo $currency; ?>',
-                        'items': <?php echo $products_json; ?>
+                        event: 'purchase',
+                        billing_email: '<?php echo $billing_email; ?>',
+                        billing_country: '<?php echo $billing_country; ?>',
+                        billing_city: '<?php echo $billing_city; ?>',
+                        billing_phone: '<?php echo $billing_phone; ?>',
+                        ecommerce: {
+                            transaction_id: '<?php echo $transaction_id; ?>',
+                            value: <?php echo $transaction_total; ?>,
+                            currency: '<?php echo $currency; ?>',
+                            coupon: 'SUMMER_SALE', // Add dynamic coupon logic if needed
+                            items: <?php echo $products_json; ?>
+                        }
                     });
 
                     // Facebook Meta Pixel Purchase Event
@@ -112,16 +116,10 @@ function hello_theme_add_ga_gtm_script_to_thank_you_page() {
             } else {
                 ?>
                 <script>
-                    // GA4 Event
-                    gtag('event', 'not_completed', {
-                        "items": <?php echo $products_json; ?>
-                    });
-
-                    // GTM Event
                     window.dataLayer = window.dataLayer || [];
                     window.dataLayer.push({
-                        'event': 'not_completed',
-                        'transactionProducts': <?php echo $products_json; ?>
+                        event: 'not_completed',
+                        transactionProducts: <?php echo $products_json; ?>
                     });
 
                     // Facebook Meta Pixel Not Completed Event
@@ -136,22 +134,17 @@ function hello_theme_add_ga_gtm_script_to_thank_you_page() {
     } else {
         ?>
         <script>
-            // GA4 Event
-            gtag('event', 'page_view', {
-                "page_id": <?php echo $thank_you_page_id; ?>
-            });
-            // GTM Event
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 'event': 'page_view',
-                'page_id': <?php echo $thank_you_page_id; ?>
+                'page_id': '<?php echo $thank_you_page_id; ?>'
             });
-            // Facebook Meta Pixel PageView Event
             fbq('track', 'PageView');
         </script>
         <?php
     }
 }
+
 
 function hello_theme_redirect_cart_to_home() {
     // Check if WooCommerce is installed and active
