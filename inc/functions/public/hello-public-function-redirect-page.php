@@ -78,8 +78,6 @@ function hello_theme_add_ga_gtm_script_to_thank_you_page() {
                     'item_name' => $item->get_name(),
                     'price' => $item->get_total(),
                     'quantity' => $item->get_quantity(),
-                    'addons' => 'Bi-weekly Payouts - 10%', // You can adjust this field based on the actual data
-                    'discount' => 2.22, // Adjust if you have dynamic discount data
                 ];
             }
 
