@@ -51,16 +51,16 @@ function hello_theme_pricing_table_live() {
 }
 add_action( 'wp_enqueue_scripts', 'hello_theme_pricing_table_live', 20);
 
-function restrict_bridgerpay_gateway_to_logged_in_users( $available_gateways ) {
-    if ( ! is_user_logged_in() ) {
-        // Check if the 'bridgerpay_gateway' is in the available gateways
-        if ( isset( $available_gateways['bridgerpay_gateway'] ) ) {
-            // Remove 'bridgerpay_gateway' from the available gateways
-            unset( $available_gateways['bridgerpay_gateway'] );
-        }
-    }
-    return $available_gateways;
-}
-add_filter( 'woocommerce_available_payment_gateways', 'restrict_bridgerpay_gateway_to_logged_in_users' );
+// function restrict_bridgerpay_gateway_to_logged_in_users( $available_gateways ) {
+//     if ( ! is_user_logged_in() ) {
+//         // Check if the 'bridgerpay_gateway' is in the available gateways
+//         if ( isset( $available_gateways['bridgerpay_gateway'] ) ) {
+//             // Remove 'bridgerpay_gateway' from the available gateways
+//             unset( $available_gateways['bridgerpay_gateway'] );
+//         }
+//     }
+//     return $available_gateways;
+// }
+// add_filter( 'woocommerce_available_payment_gateways', 'restrict_bridgerpay_gateway_to_logged_in_users' );
 
 
