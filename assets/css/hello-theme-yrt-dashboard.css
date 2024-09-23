@@ -5,16 +5,14 @@
 	width: 100%;
 }
 
-.column {
+.woocommerce-dashboard-container .dashboard-column {
   display: flex;
   flex-direction: column;
-  flex-basis: 100%;
-  flex: 1;
 }
 
 .woocommerce-dashboard-container .woocommerce-dashboard-navigation{
-
+	width: 25%;
 }
 .woocommerce-dashboard-container .woocommerce-dashboard-content{
-	
+	width: 75%;
 }

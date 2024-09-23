@@ -27,11 +27,11 @@ defined( 'ABSPATH' ) || exit;
 
 <div class="woocommerce-dashboard-container">
 
-<div class="woocommerce-dashboard-navigation column">
+<div class="woocommerce-dashboard-navigation dashboard-column">
 	<?php do_action( 'woocommerce_account_navigation' ); ?>
 </div>
 
-<div class="woocommerce-dashboard-content column">
+<div class="woocommerce-dashboard-content dashboard-column">
 	<div class="woocommerce-MyAccount-content">
 		<?php
 			/**
