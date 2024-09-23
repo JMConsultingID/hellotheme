@@ -1,12 +1,7 @@
-.woocommerce .woocommerce-dashboard-container .woocommerce-MyAccount-navigation {
+.woocommerce .woocommerce-dashboard-container .woocommerce-MyAccount-navigation,
+.woocommerce .woocommerce-dashboard-container .woocommerce-MyAccount-content  {
     float: unset!important;
     width: auto!important;
-}
-.woocommerce .woocommerce-dashboard-container .woocommerce-MyAccount-content {
-    float: unset!important;
-    width: auto!important;
-    padding: 0!important;
-    padding-left: unset!important;
 }
 .woocommerce-account .woocommerce-dashboard-container{
 	display: flex;
