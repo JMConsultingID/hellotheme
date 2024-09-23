@@ -1,8 +1,8 @@
-.woocommerce-account .woocommerce-MyAccount-navigation {
+.woocommerce-account .woocommerce-dashboard-container .woocommerce-MyAccount-navigation {
     float: unset;
     width: auto;
 }
-.woocommerce-account .woocommerce-MyAccount-content {
+.woocommerce-account .woocommerce-dashboard-container .woocommerce-MyAccount-content {
     float: unset;
     width: auto;
     padding: 0;
