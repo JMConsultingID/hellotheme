@@ -27,17 +27,21 @@ defined( 'ABSPATH' ) || exit;
 
 <div class="woocommerce-dashboard-container">
 
-<?php do_action( 'woocommerce_account_navigation' ); ?>
+<div class="woocommerce-dashboard-navigation">
+	<?php do_action( 'woocommerce_account_navigation' ); ?>
+</div>
 
-<div class="woocommerce-MyAccount-content yrt-dashboard">
-	<?php
-		/**
-		 * My Account content.
-		 *
-		 * @since 2.6.0
-		 */
-		do_action( 'woocommerce_account_content' );
-	?>
+<div class="woocommerce-dashboard-content">
+	<div class="woocommerce-MyAccount-content">
+		<?php
+			/**
+			 * My Account content.
+			 *
+			 * @since 2.6.0
+			 */
+			do_action( 'woocommerce_account_content' );
+		?>
+	</div>
 </div>
 
 </div>
