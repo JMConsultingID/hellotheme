@@ -19,6 +19,6 @@
 .woocommerce-dashboard-container .woocommerce-dashboard-content{
 	width: 75%;
 }
-.woocommerce-dashboard-container .woocommerce-dashboard-content .woocommerce table.shop_table {
+.woocommerce-dashboard-container .woocommerce-dashboard-content table.shop_table {
     border: none;
 }
