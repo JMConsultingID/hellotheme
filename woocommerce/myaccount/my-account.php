@@ -28,7 +28,10 @@ defined( 'ABSPATH' ) || exit;
 <div class="woocommerce-dashboard-container">
 
 <div class="woocommerce-dashboard-navigation dashboard-column">
-	<?php do_action( 'woocommerce_account_navigation' ); ?>
+	<?php 
+		echo '<h4>' . __('EA Licenses.', 'ealicensewoocommerce') . '</h4>';
+		do_action( 'woocommerce_account_navigation' ); 
+	?>
 </div>
 
 <div class="woocommerce-dashboard-content dashboard-column">
