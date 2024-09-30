@@ -33,7 +33,7 @@ defined( 'ABSPATH' ) || exit;
         <h1><?php esc_html_e( 'Welcome back', 'woocommerce' ); ?></h1>
         <p class="text-muted"><?php esc_html_e( 'Log in to your account', 'woocommerce' ); ?></p>
 
-        <form method="post" class="woocommerce-form woocommerce-form-register register" <?php do_action( 'woocommerce_register_form_tag' ); ?> >
+        <form class="woocommerce-form woocommerce-form-login login" method="post">
 
         <?php do_action( 'woocommerce_login_form_start' ); ?>
 

@@ -171,6 +171,10 @@ html{
 	border: none;
 }
 
+.woocommerce .woocommerce-dashboard-login.login-container .woocommerce-form label{
+	color: #000;
+}
+
 .woocommerce .woocommerce-dashboard-login.login-container .login-image {
     background: url('https://yourrobotrader.com/wp-content/uploads/2024/06/img_today_YRT.webp') no-repeat center center;
     background-size: cover;
