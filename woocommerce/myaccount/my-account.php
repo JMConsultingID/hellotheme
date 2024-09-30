@@ -79,7 +79,77 @@ defined( 'ABSPATH' ) || exit;
                             </div>
                         </div>
                     </div>
-            	</div>
+
+                     <!-- Card 2 -->
+                    <div class="col-md-4">
+                        <div class="card card-dashboard p-3">
+                            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="GoldenPickaxe">
+                            <div class="card-body">
+                                <h5 class="card-title">GOLDEN PICKAXE</h5>
+                                <p class="card-text">Last version: 2.23</p>
+                                <a href="#" class="btn btn-custom w-100 mb-2">Download</a>
+                                <a href="#" class="btn btn-outline-dark w-100 mb-2">Tutorial</a>
+                                <a href="#" class="btn btn-outline-dark w-100">Start Trial</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="col-md-4">
+                        <div class="card card-dashboard p-3">
+                            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="WakaWaka">
+                            <div class="card-body">
+                                <h5 class="card-title">WAKAWAKA</h5>
+                                <p class="card-text">Last version: 4.43</p>
+                                <a href="#" class="btn btn-custom w-100 mb-2">Download</a>
+                                <a href="#" class="btn btn-outline-dark w-100 mb-2">Tutorial</a>
+                                <a href="#" class="btn btn-outline-dark w-100">Start Trial</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="col-md-4">
+                        <div class="card card-dashboard p-3">
+                            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="NewsCatcher">
+                            <div class="card-body">
+                                <h5 class="card-title">NEWSCATCHER PRO</h5>
+                                <p class="card-text">Last version: 4.24</p>
+                                <a href="#" class="btn btn-custom w-100 mb-2">Download</a>
+                                <a href="#" class="btn btn-outline-dark w-100 mb-2">Tutorial</a>
+                                <a href="#" class="btn btn-outline-dark w-100">Start Trial</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="col-md-4">
+                        <div class="card card-dashboard p-3">
+                            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="EveningScalper">
+                            <div class="card-body">
+                                <h5 class="card-title">EVENING SCALPER</h5>
+                                <p class="card-text">Last version: 2.56</p>
+                                <a href="#" class="btn btn-custom w-100 mb-2">Download</a>
+                                <a href="#" class="btn btn-outline-dark w-100 mb-2">Tutorial</a>
+                                <a href="#" class="btn btn-outline-dark w-100">Start Trial</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 6 -->
+                    <div class="col-md-4">
+                        <div class="card card-dashboard p-3">
+                            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="NightHunterPro">
+                            <div class="card-body">
+                                <h5 class="card-title">NIGHTHUNTER PRO</h5>
+                                <p class="card-text">Last version: 2.23</p>
+                                <a href="#" class="btn btn-custom w-100 mb-2">Download</a>
+                                <a href="#" class="btn btn-outline-dark w-100 mb-2">Tutorial</a>
+                                <a href="#" class="btn btn-outline-dark w-100">Start Trial</a>
+                            </div>
+                        </div>
+                    </div>
+            </div>
                 
         	</div>
 
