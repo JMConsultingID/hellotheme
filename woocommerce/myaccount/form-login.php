@@ -21,12 +21,12 @@ defined( 'ABSPATH' ) || exit;
 
 <div class="woocommerce-dashboard-login container-fluid login-container">
     <!-- Image Section (Left) -->
-    <div class="col-md-6 login-image d-none d-md-block">
+    <div class="col-md-8 login-image d-none d-md-block">
         <!-- Placeholder for image -->
     </div>
 
     <!-- Login Form (Right) -->
-    <div class="col-md-6 col-12 login-form text-center">
+    <div class="col-md-4 col-12 login-form text-center">
     	<div class="">
     		<?php do_action( 'woocommerce_before_customer_login_form' );  ?>
     	</div>
