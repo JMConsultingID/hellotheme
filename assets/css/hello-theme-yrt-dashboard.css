@@ -92,14 +92,14 @@ html{
     font-size: 30px;
 }
 
-.woocommerce .woocommerce-dashboard-container button.offcanvas-close{
+.woocommerce .woocommerce-dashboard-container .woocommerce-dashboard-content button.offcanvas-close{
     color: #E1E1E1;
 }
 
 .woocommerce .woocommerce-dashboard-container .woocommerce-dashboard-content .offcanvas{
     background-color: #0A1622;
     min-height: 100vh;
-    width: 75%;
+    width: 80%;
     padding: 20px;
 }
 
@@ -109,6 +109,10 @@ html{
     font-weight: 500;
     margin-bottom: 15px;
     display: block;
+}
+
+.woocommerce .woocommerce-dashboard-container .woocommerce-dashboard-content .dashboard-logo a{
+	margin-bottom: 0px;
 }
 
 .woocommerce .woocommerce-dashboard-container ul li.woocommerce-MyAccount-navigation-link{
