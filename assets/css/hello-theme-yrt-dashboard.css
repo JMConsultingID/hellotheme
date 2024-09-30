@@ -158,3 +158,81 @@ html{
 }
 }
 
+/* Dahboard Login */
+.woocommerce .woocommerce-dashboard-login.login-container {
+    display: flex;
+    height: 100vh;
+}
+
+.woocommerce .woocommerce-dashboard-login.login-container .login-image {
+    background: url('https://via.placeholder.com/600x800') no-repeat center center;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.woocommerce .woocommerce-dashboard-login.login-container .login-form {
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #f8f9fa;
+}
+
+.woocommerce .woocommerce-dashboard-login.login-container .login-form h1 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.woocommerce .woocommerce-dashboard-login.login-container .login-form .form-control {
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+}
+
+.woocommerce .woocommerce-dashboard-login.login-container .login-form .btn {
+    background-color: #38BDF8;
+    border-radius: 10px;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.woocommerce .woocommerce-dashboard-login.login-container .login-form .btn:hover {
+    background-color: #60a5fa;
+}
+
+.woocommerce .woocommerce-dashboard-login.login-container .login-form .google-login {
+    background-color: white;
+    border: 1px solid #ddd;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.woocommerce .woocommerce-dashboard-login.login-container .login-form .google-login img {
+    height: 20px;
+    margin-right: 10px;
+}
+
+.woocommerce .woocommerce-dashboard-login.login-container .login-form a {
+    color: #38BDF8;
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .woocommerce .woocommerce-dashboard-login.login-container .login-container {
+        flex-direction: column;
+    }
+
+    .woocommerce .woocommerce-dashboard-login.login-container .login-image {
+        height: 40vh;
+        background-size: cover;
+    }
+
+    .woocommerce .woocommerce-dashboard-login.login-container .login-form {
+        padding: 20px;
+    }
+}
