@@ -87,7 +87,7 @@ html{
 .woocommerce .woocommerce-dashboard-container button.nav-offcanvas{
 	background: transparent;
     padding: unset;
-    color: #000;
+    color: #fff;
     border: none;
     font-size: 30px;
 }

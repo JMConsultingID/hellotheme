@@ -34,7 +34,6 @@ defined( 'ABSPATH' ) || exit;
                 echo '<div class="dashboard-logo">';
 		        echo '<a href="/my-account/"><img src="https://yourrobotrader.com/wp-content/uploads/2022/08/new-logo-12-jan-14-1024x158.webp" alt="Your Robo Trader" class="img-fluid mb-3" width="85%"></a>';
 		        echo '</div>';
-                https://yourrobotrader.com/wp-content/uploads/2022/08/new-logo-12-jan-14-1024x158.webp
                 do_action( 'woocommerce_account_navigation' ); 
             ?>
         </div>
@@ -67,7 +66,9 @@ defined( 'ABSPATH' ) || exit;
 	        <!-- Offcanvas Menu for Mobile -->
 			<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMobile" aria-labelledby="offcanvasMobileLabel">
 			    <div class="offcanvas-header">
-			        <h5 class="offcanvas-title" id="offcanvasMobileLabel"><?php echo __('EA Licenses', 'ealicensewoocommerce'); ?></h5>
+			        <div class="dashboard-logo">
+		       			<a href="/my-account/"><img src="https://yourrobotrader.com/wp-content/uploads/2022/08/new-logo-12-jan-14-1024x158.webp" alt="Your Robo Trader" class="img-fluid mb-3" width="50%"></a>
+		        	</div>
 			        <button type="button" class="nav-offcanvas" data-bs-dismiss="offcanvas" aria-label="Close">
 			            <i class="bi bi-x"></i>
 			        </button>
