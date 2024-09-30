@@ -85,6 +85,10 @@ html{
     font-size: 30px;
 }
 
+.woocommerce .woocommerce-dashboard-container ul li.woocommerce-MyAccount-navigation-link{
+	list-style: none;
+}
+
 @media (max-width: 767px) {
 .woocommerce .woocommerce-dashboard-container .main-content {
     margin-left: 0%; /* This pushes the content to the right of the fixed sidebar */
