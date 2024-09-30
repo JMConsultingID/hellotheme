@@ -97,3 +97,19 @@ html{
 }
 
 }
+
+@media (min-width: 768px) {
+    .woocommerce-MyAccount-navigation {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+    }
+
+    .woocommerce-MyAccount-navigation-link {
+        margin-bottom: auto;
+    }
+
+    .woocommerce-MyAccount-navigation-link--customer-logout {
+        margin-top: auto;
+    }
+}
