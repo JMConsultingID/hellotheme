@@ -38,6 +38,18 @@ defined( 'ABSPATH' ) || exit;
 
         <!-- Main Content -->
         <div class="woocommerce-dashboard-content dashboard-column col-md-9 main-content">
+        	<div class="d-flex justify-content-between mb-4">
+                <h3><?php echo __('Expert Advisors', 'ealicensewoocommerce'); ?></h3>
+                <div class="welcome-text">
+                    <p><?php echo __('Welcome, ', 'ealicensewoocommerce') . '<strong>' . wp_get_current_user()->display_name . '</strong>'; ?></p>
+                </div>
+                <!-- Hamburger Button for Mobile -->
+                <button class="btn btn-primary d-md-none" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasMobile" aria-controls="offcanvasMobile">
+                    <i class="bi bi-list"></i> Menu
+                </button>
+            </div>
+
             <div class="woocommerce-MyAccount-content">
                 <?php
                     /**
@@ -51,4 +63,17 @@ defined( 'ABSPATH' ) || exit;
         </div>
     </div>
 
+</div>
+
+<!-- Offcanvas Menu for Mobile -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasMobile" aria-labelledby="offcanvasMobileLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasMobileLabel"><?php echo __('EA Licenses', 'ealicensewoocommerce'); ?></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <?php 
+            do_action( 'woocommerce_account_navigation' ); 
+        ?>
+    </div>
 </div>
