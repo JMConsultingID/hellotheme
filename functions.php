@@ -74,7 +74,7 @@ function hello_theme_add_coupon_form_before_payment() {
 }
 add_action('woocommerce_review_order_before_payment', 'hello_theme_add_coupon_form_before_payment');
 
-function hello_theme_my_account_enquue_script_styles() {\
+function hello_theme_my_account_enquue_script_styles() {
     if ( is_account_page() ) {
         wp_enqueue_style('bootstrap-css', get_stylesheet_directory_uri() . '/assets/css/bootstrap.min.css', [], '5.3.0');
         wp_enqueue_style('bootstrap-css-icons', 'https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css', array(), '5.3.0');
