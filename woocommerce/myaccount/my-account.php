@@ -25,26 +25,30 @@ defined( 'ABSPATH' ) || exit;
 ?>
 
 
-<div class="woocommerce-dashboard-container">
+<div class="woocommerce-dashboard-container container-fluid">
 
-<div class="woocommerce-dashboard-navigation dashboard-column">
-	<?php 
-		echo '<h4>' . __('EA Licenses', 'ealicensewoocommerce') . '</h4>';
-		do_action( 'woocommerce_account_navigation' ); 
-	?>
-</div>
+    <div class="row">
+        <!-- Sidebar Navigation -->
+        <div class="woocommerce-dashboard-navigation dashboard-column col-md-3">
+            <?php 
+                echo '<h4>' . __('EA Licenses', 'ealicensewoocommerce') . '</h4>';
+                do_action( 'woocommerce_account_navigation' ); 
+            ?>
+        </div>
 
-<div class="woocommerce-dashboard-content dashboard-column">
-	<div class="woocommerce-MyAccount-content">
-		<?php
-			/**
-			 * My Account content.
-			 *
-			 * @since 2.6.0
-			 */
-			do_action( 'woocommerce_account_content' );
-		?>
-	</div>
-</div>
+        <!-- Main Content -->
+        <div class="woocommerce-dashboard-content dashboard-column col-md-9">
+            <div class="woocommerce-MyAccount-content">
+                <?php
+                    /**
+                     * My Account content.
+                     *
+                     * @since 2.6.0
+                     */
+                    do_action( 'woocommerce_account_content' );
+                ?>
+            </div>
+        </div>
+    </div>
 
 </div>

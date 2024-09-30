@@ -26,7 +26,6 @@ require_once get_stylesheet_directory() . '/inc/functions/hello-theme-functions.
 function hello_theme_scripts_styles() {
     wp_enqueue_style('hello-theme-style', get_stylesheet_directory_uri() . '/style.css', [], HELLO_THEME_VERSION);
     wp_enqueue_style('hello-theme-custom-style', get_stylesheet_directory_uri() . '/assets/css/hello-theme.css', [], HELLO_THEME_VERSION);
-    wp_enqueue_style('hello-theme-dashboard-style', get_stylesheet_directory_uri() . '/assets/css/hello-theme-yrt-dashboard.css', [], HELLO_THEME_VERSION);
     wp_enqueue_script('hello-theme-custom-script', get_stylesheet_directory_uri() . '/assets/js/hello-theme.js', [], HELLO_THEME_VERSION, true);
 }
 add_action('wp_enqueue_scripts', 'hello_theme_scripts_styles', 90);
@@ -79,6 +78,7 @@ function hello_theme_my_account_enquue_script_styles() {
     // Cek apakah halaman yang sedang diakses adalah halaman My Account
     if ( is_account_page() ) {
         wp_enqueue_style('bootstrap-css', get_stylesheet_directory_uri() . '/assets/css/bootstrap.min.css', [], '5.3.0');
+        wp_enqueue_style('hello-theme-dashboard-style', get_stylesheet_directory_uri() . '/assets/css/hello-theme-yrt-dashboard.css', [], HELLO_THEME_VERSION);
         wp_enqueue_script('bootstrap-js', get_stylesheet_directory_uri() . '/assets/js/bootstrap.bundle.min.js', array('jquery'), '5.3.0', true);
     }
 }
