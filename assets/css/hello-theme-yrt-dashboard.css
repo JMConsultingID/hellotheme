@@ -25,7 +25,6 @@ html{
     top: 0;
     bottom: 0;
     left: 0;
-    width: 25%;
     background-color: #2d2d2d;
     padding: 20px;
     overflow-y: auto; /* Allow scrolling if the content inside sidebar is too long */
@@ -88,4 +87,11 @@ html{
     color: #000;
     border: none;
     font-size: 30px;
+}
+
+@media (max-width: 767px) {
+.woocommerce .woocommerce-dashboard-container .main-content {
+    margin-left: 0%; /* This pushes the content to the right of the fixed sidebar */
+}
+
 }
