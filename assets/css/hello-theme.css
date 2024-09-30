@@ -21,11 +21,11 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
     transition: background-color 9999s ease-in-out 0s;
-    color: #fff !important;
-    -webkit-text-fill-color: white!important;
-    -webkit-box-shadow: 0 0 0 1000px var( --e-global-color-f33c269 ) inset !important;
-    -webkit-background-clip: text !important;
-    background-clip: text !important
+    color: #000 !important;
+    -webkit-text-fill-color: unset!important;
+    -webkit-box-shadow: unset !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important
 }
 
 /* Page WooCommerce Checkout */
