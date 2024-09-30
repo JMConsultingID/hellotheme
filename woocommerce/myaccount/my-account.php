@@ -44,7 +44,7 @@ defined( 'ABSPATH' ) || exit;
                     <p><?php echo __('Welcome, ', 'ealicensewoocommerce') . '<strong>' . wp_get_current_user()->display_name . '</strong>'; ?></p>
                 </div>
                 <!-- Hamburger Button for Mobile -->
-                <button class="btn d-md-none offcanvas" type="button" data-bs-toggle="offcanvas"
+                <button class="btn btn-primary d-md-none" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasMobile" aria-controls="offcanvasMobile">
                     <i class="bi bi-list"></i>
                 </button>
