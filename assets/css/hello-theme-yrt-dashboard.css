@@ -165,6 +165,12 @@ html{
     padding: 0px;
 }
 
+.woocommerce .woocommerce-dashboard-login.login-container form.checkout_coupon, 
+.woocommerce .woocommerce-dashboard-login.login-container form.login, 
+.woocommerce .woocommerce-dashboard-login.login-container form.register{
+	border: none;
+}
+
 .woocommerce .woocommerce-dashboard-login.login-container .login-image {
     background: url('https://yourrobotrader.com/wp-content/uploads/2024/06/img_today_YRT.webp') no-repeat center center;
     background-size: cover;
