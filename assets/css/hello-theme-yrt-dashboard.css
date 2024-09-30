@@ -8,7 +8,7 @@ html{
 }
 .woocommerce-account .woocommerce-dashboard-container{
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	flex-wrap: wrap;
 	width: 100%;
 }
@@ -25,9 +25,6 @@ html{
     top: 0;
     bottom: 0;
     left: 0;
-    background-color: #2d2d2d;
-    padding: 20px;
-    overflow-y: auto; /* Allow scrolling if the content inside sidebar is too long */
 }
 
 .woocommerce .woocommerce-dashboard-container .fixed-sidebar h4 {
@@ -53,7 +50,6 @@ html{
 }
 
 .woocommerce .woocommerce-dashboard-container .main-content {
-    background-color: #f8f9fa;
     padding: 20px;
     margin-left: 16.66666667%; /* This pushes the content to the right of the fixed sidebar */
 }
