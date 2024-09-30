@@ -31,7 +31,7 @@ defined( 'ABSPATH' ) || exit;
         <!-- Sidebar Navigation -->
         <div class="woocommerce-dashboard-navigation dashboard-column col-lg-2 col-md-3 d-none d-md-block dashboard-sidebar fixed-sidebar">
             <?php 
-                echo '<h4>' . __('EA Licenses', 'ealicensewoocommerce') . '</h4>';
+                echo '<h4 class="dashboard-title">' . __('EA Licenses', 'ealicensewoocommerce') . '</h4>';
                 do_action( 'woocommerce_account_navigation' ); 
             ?>
         </div>

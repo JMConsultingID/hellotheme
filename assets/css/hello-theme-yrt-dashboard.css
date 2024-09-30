@@ -27,8 +27,9 @@ html{
     left: 0;
 }
 
-.woocommerce .woocommerce-dashboard-container .fixed-sidebar h4 {
+.woocommerce .woocommerce-dashboard-container .fixed-sidebar .dashboard-title {
     margin-top: 20px;
+    color: #E1E1E1;
 }
 
 .woocommerce .woocommerce-dashboard-container .dashboard-sidebar {
