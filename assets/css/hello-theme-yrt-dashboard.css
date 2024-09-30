@@ -162,6 +162,7 @@ html{
 .woocommerce .woocommerce-dashboard-login.login-container {
     display: flex;
     height: 100vh;
+    padding: 0px;
 }
 
 .woocommerce .woocommerce-dashboard-login.login-container .login-image {
@@ -178,7 +179,8 @@ html{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: #f8f9fa;
+    background-color: #06CA8C;
+    border:1px solid #02FBAC;
 }
 
 .woocommerce .woocommerce-dashboard-login.login-container .login-form h1 {
@@ -193,28 +195,15 @@ html{
 }
 
 .woocommerce .woocommerce-dashboard-login.login-container .login-form .btn {
-    background-color: #38BDF8;
+    background-color: #06CA8C;
     border-radius: 10px;
     color: white;
     font-size: 1.2rem;
+    border:1px solid #02FBAC;
 }
 
 .woocommerce .woocommerce-dashboard-login.login-container .login-form .btn:hover {
-    background-color: #60a5fa;
-}
-
-.woocommerce .woocommerce-dashboard-login.login-container .login-form .google-login {
-    background-color: white;
-    border: 1px solid #ddd;
-    color: #333;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.woocommerce .woocommerce-dashboard-login.login-container .login-form .google-login img {
-    height: 20px;
-    margin-right: 10px;
+    background-color: #06CA8C;
 }
 
 .woocommerce .woocommerce-dashboard-login.login-container .login-form a {
