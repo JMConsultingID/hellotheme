@@ -11,7 +11,7 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
+    exit; // Exit if accessed directly.
 }
 
 define( 'HELLO_THEME_VERSION', '2.1.4' );
@@ -87,7 +87,7 @@ add_action('wp_enqueue_scripts', 'hello_theme_my_account_enquue_script_styles');
 // Disable admin toolbar only on the "My Account" page
 function hello_theme_disable_admin_toolbar_on_my_account() {
     // Check if the user is logged in and if we are on the "My Account" page
-    if ( is_account_page() && ! current_user_can( 'manage_options' ) ) {
+    if ( is_account_page() ) {
         add_filter( 'show_admin_bar', '__return_false' );
     }
 }
