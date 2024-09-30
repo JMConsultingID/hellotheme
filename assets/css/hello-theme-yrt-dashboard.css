@@ -96,15 +96,19 @@ html{
 	list-style: none;
 }
 
+.woocommerce .woocommerce-dashboard-container form .form-row input.input-text, 
+.woocommerce .woocommerce-dashboard-container .woocommerce form .form-row textarea{
+	background: #0a1622;
+}
+
 @media (max-width: 767px) {
 .woocommerce .woocommerce-dashboard-container .main-content {
     margin-left: 0%; /* This pushes the content to the right of the fixed sidebar */
 }
-
 }
 
 @media (min-width: 768px) {
-    .woocommerce-MyAccount-navigation ul {
+    .woocommerce .woocommerce-dashboard-container .woocommerce-MyAccount-navigation ul {
         display: flex;
         flex-direction: column;
         height: 100vh;
@@ -112,11 +116,11 @@ html{
         position: relative;
     }
 
-    .woocommerce-MyAccount-navigation li {
+    .woocommerce .woocommerce-dashboard-container .woocommerce-MyAccount-navigation li {
         margin-bottom: 10px;
     }
 
-    .woocommerce-MyAccount-navigation-link--customer-logout {
+    .woocommerce .woocommerce-dashboard-container .woocommerce-MyAccount-navigation-link--customer-logout {
         position: absolute;
         bottom: 150px;
         width: 100%;
