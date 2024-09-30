@@ -92,6 +92,20 @@ html{
     font-size: 30px;
 }
 
+.woocommerce .woocommerce-dashboard-container .woocommerce-dashboard-content .offcanvas{
+    background-color: #0A1622;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.woocommerce .woocommerce-dashboard-container .woocommerce-dashboard-content .offcanvas a {
+    color: #E1E1E1;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 15px;
+    display: block;
+}
+
 .woocommerce .woocommerce-dashboard-container ul li.woocommerce-MyAccount-navigation-link{
 	list-style: none;
 }
