@@ -44,7 +44,7 @@ defined( 'ABSPATH' ) || exit;
                     <p><?php echo __('Welcome, ', 'ealicensewoocommerce') . '<strong>' . wp_get_current_user()->display_name . '</strong>'; ?></p>
                 </div>
                 <!-- Hamburger Button for Mobile -->
-                <button class="btn btn-primary d-md-none" type="button" data-bs-toggle="offcanvas"
+                <button class="btn d-md-none nav-offcanvas" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasMobile" aria-controls="offcanvasMobile">
                     <i class="bi bi-list"></i>
                 </button>
@@ -155,7 +155,7 @@ defined( 'ABSPATH' ) || exit;
 		<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasMobile" aria-labelledby="offcanvasMobileLabel">
 		    <div class="offcanvas-header">
 		        <h5 class="offcanvas-title" id="offcanvasMobileLabel"><?php echo __('EA Licenses', 'ealicensewoocommerce'); ?></h5>
-		        <button type="button" class="btn-close offcanvas" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+		        <button type="button" class="btn-close nav-offcanvas" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 		    </div>
 		    <div class="offcanvas-body">
 		        <?php 
