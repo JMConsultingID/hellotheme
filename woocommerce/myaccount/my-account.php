@@ -29,7 +29,7 @@ defined( 'ABSPATH' ) || exit;
 
     <div class="row">
         <!-- Sidebar Navigation -->
-        <div class="woocommerce-dashboard-navigation dashboard-column col-md-3">
+        <div class="woocommerce-dashboard-navigation dashboard-column col-md-3 dashboard-sidebar">
             <?php 
                 echo '<h4>' . __('EA Licenses', 'ealicensewoocommerce') . '</h4>';
                 do_action( 'woocommerce_account_navigation' ); 
@@ -37,7 +37,7 @@ defined( 'ABSPATH' ) || exit;
         </div>
 
         <!-- Main Content -->
-        <div class="woocommerce-dashboard-content dashboard-column col-md-9">
+        <div class="woocommerce-dashboard-content dashboard-column col-md-9 main-content">
             <div class="woocommerce-MyAccount-content">
                 <?php
                     /**
