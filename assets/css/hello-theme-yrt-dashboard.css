@@ -138,6 +138,12 @@ html{
 }
 
 @media (max-width: 767px) {
+.woocommerce .woocommerce-dashboard-container .offcanvas-body {
+    overflow: hidden;
+}
+.woocommerce .woocommerce-dashboard-container .woocommerce-MyAccount-navigation ul {
+    height: 95vh;
+}
 .woocommerce .woocommerce-dashboard-container .main-content {
     margin-left: 0%; /* This pushes the content to the right of the fixed sidebar */
 }
