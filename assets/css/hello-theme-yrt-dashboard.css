@@ -32,14 +32,15 @@ html{
 }
 
 .woocommerce .woocommerce-dashboard-container .dashboard-sidebar {
-    background-color: #2d2d2d;
+    background-color: #0A1622;
     min-height: 100vh;
     padding: 20px;
 }
 
 .woocommerce .woocommerce-dashboard-container .dashboard-sidebar a {
-    color: #a8dadc;
-    font-size: 18px;
+    color: #E1E1E1;
+    font-size: 16px;
+    font-weight: 500;
     margin-bottom: 15px;
     display: block;
 }
