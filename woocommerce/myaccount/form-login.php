@@ -30,6 +30,8 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
         <h1><?php esc_html_e( 'Welcome back', 'woocommerce' ); ?></h1>
         <p class="text-muted"><?php esc_html_e( 'Log in to your account', 'woocommerce' ); ?></p>
 
+        <form method="post" class="woocommerce-form woocommerce-form-register register" <?php do_action( 'woocommerce_register_form_tag' ); ?> >
+
         <?php do_action( 'woocommerce_login_form_start' ); ?>
 
         <div class="d-flex align-items-center mb-3">
@@ -63,6 +65,8 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
         </button>
 
         <?php do_action( 'woocommerce_login_form_end' ); ?>
+
+    	</form>
 
         <!-- Signup Link -->
         <p class="text-center mt-3"><?php esc_html_e( "Don't have an account yet?", 'woocommerce' ); ?>
