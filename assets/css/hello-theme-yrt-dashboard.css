@@ -87,14 +87,19 @@ html{
 .woocommerce .woocommerce-dashboard-container button.nav-offcanvas{
 	background: transparent;
     padding: unset;
-    color: #fff;
+    color: #000;
     border: none;
     font-size: 30px;
+}
+
+.woocommerce .woocommerce-dashboard-container button.offcanvas-close{
+    color: #E1E1E1;
 }
 
 .woocommerce .woocommerce-dashboard-container .woocommerce-dashboard-content .offcanvas{
     background-color: #0A1622;
     min-height: 100vh;
+    width: 75%;
     padding: 20px;
 }
 
