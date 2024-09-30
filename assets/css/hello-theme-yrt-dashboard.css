@@ -31,6 +31,10 @@ html{
     margin-top: 20px;
     color: #E1E1E1;
 }
+.woocommerce .woocommerce-dashboard-container .fixed-sidebar .dashboard-logo {
+    margin-top: 20px;
+    color: #E1E1E1;
+}
 
 .woocommerce .woocommerce-dashboard-container .dashboard-sidebar {
     background-color: #0A1622;
@@ -113,7 +117,7 @@ html{
 
     .woocommerce-MyAccount-navigation-link--customer-logout {
         position: absolute;
-        bottom: 20px;
+        bottom: 150px;
         width: 100%;
     }
 }
