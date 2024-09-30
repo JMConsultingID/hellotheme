@@ -59,6 +59,7 @@ defined( 'ABSPATH' ) || exit;
                      */
                     do_action( 'woocommerce_account_content' );
                 ?>
+
                 <div class="alert alert-info d-flex align-items-center">
                     <i class="bi bi-youtube meta-icon"></i>
                     <p class="mb-0 ms-3">Feeling a bit lost? <a href="#">Click here to watch a tutorial video</a></p>
@@ -149,22 +150,26 @@ defined( 'ABSPATH' ) || exit;
                         </div>
                     </div>
             </div>
-        </div>
+                
+        	</div>
 
-        <!-- Offcanvas Menu for Mobile -->
-		<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMobile" aria-labelledby="offcanvasMobileLabel">
-		    <div class="offcanvas-header">
-		        <h5 class="offcanvas-title" id="offcanvasMobileLabel"><?php echo __('EA Licenses', 'ealicensewoocommerce'); ?></h5>
-		        <button type="button" class="nav-offcanvas" data-bs-dismiss="offcanvas" aria-label="Close">
-		            <i class="bi bi-x"></i>
-		        </button>
-		    </div>
-		    <div class="offcanvas-body">
-		        <?php 
-		            do_action( 'woocommerce_account_navigation' ); 
-		        ?>
-		    </div>
-		</div>
-    </div>
+	        <!-- Offcanvas Menu for Mobile -->
+			<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMobile" aria-labelledby="offcanvasMobileLabel">
+			    <div class="offcanvas-header">
+			        <h5 class="offcanvas-title" id="offcanvasMobileLabel"><?php echo __('EA Licenses', 'ealicensewoocommerce'); ?></h5>
+			        <button type="button" class="nav-offcanvas" data-bs-dismiss="offcanvas" aria-label="Close">
+			            <i class="bi bi-x"></i>
+			        </button>
+			    </div>
+			    <div class="offcanvas-body">
+			        <?php 
+			            do_action( 'woocommerce_account_navigation' ); 
+			        ?>
+			    </div>
+			</div>
+
+    	</div>
+	</div>
+
 </div>
 
