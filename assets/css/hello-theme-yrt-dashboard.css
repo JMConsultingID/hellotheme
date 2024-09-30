@@ -124,23 +124,22 @@ html{
 	background: #0a1622;
 }
 
+.woocommerce .woocommerce-dashboard-container .woocommerce-MyAccount-navigation ul {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: flex-start;
+    position: relative;
+}
+.woocommerce .woocommerce-dashboard-container .woocommerce-MyAccount-navigation-link--customer-logout {
+    position: absolute;
+    bottom: 120px;
+    width: 100%;
+}
+
 @media (max-width: 767px) {
 .woocommerce .woocommerce-dashboard-container .main-content {
     margin-left: 0%; /* This pushes the content to the right of the fixed sidebar */
 }
 }
 
-@media (min-width: 768px) {
-    .woocommerce .woocommerce-dashboard-container .woocommerce-MyAccount-navigation ul {
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
-        justify-content: flex-start;
-        position: relative;
-    }
-    .woocommerce .woocommerce-dashboard-container .woocommerce-MyAccount-navigation-link--customer-logout {
-        position: absolute;
-        bottom: 120px;
-        width: 100%;
-    }
-}
