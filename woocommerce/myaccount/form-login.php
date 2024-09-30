@@ -56,9 +56,9 @@ defined( 'ABSPATH' ) || exit;
         </div>
 
         <!-- Forgot Password -->
-        <div class="d-flex justify-content-end mb-4">
+        <!-- <div class="d-flex justify-content-end mb-4">
             <a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php esc_html_e( 'Forgot your password?', 'woocommerce' ); ?></a>
-        </div>
+        </div> -->
 
         <?php wp_nonce_field( 'woocommerce-login', 'woocommerce-login-nonce' ); ?>
         
