@@ -67,7 +67,7 @@ defined( 'ABSPATH' ) || exit;
 			<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMobile" aria-labelledby="offcanvasMobileLabel">
 			    <div class="offcanvas-header">
 			        <div class="dashboard-logo">
-		       			<a href="/my-account/"><img src="https://yourrobotrader.com/wp-content/uploads/2022/08/new-logo-12-jan-14-1024x158.webp" alt="Your Robo Trader" class="img-fluid" width="35%"></a>
+		       			<a href="/my-account/"><img src="https://yourrobotrader.com/wp-content/uploads/2022/08/new-logo-12-jan-14-1024x158.webp" alt="Your Robo Trader" class="img-fluid" width="80%"></a>
 		        	</div>
 			        <button type="button" class="nav-offcanvas offcanvas-close" data-bs-dismiss="offcanvas" aria-label="Close">
 			            <i class="bi bi-x"></i>
