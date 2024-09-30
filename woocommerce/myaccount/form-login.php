@@ -26,7 +26,7 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
     </div>
 
     <!-- Login Form (Right) -->
-    <div class="col-md-6 col-12 login-form">
+    <div class="col-md-6 col-12 login-form text-center">
         <h1><?php esc_html_e( 'Welcome back', 'woocommerce' ); ?></h1>
         <p class="text-muted"><?php esc_html_e( 'Log in to your account', 'woocommerce' ); ?></p>
 
@@ -34,7 +34,6 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
 
         <div class="d-flex align-items-center mb-3">
             <hr class="flex-grow-1 me-2">
-            <span class="text-muted"><?php esc_html_e( 'or', 'woocommerce' ); ?></span>
             <hr class="flex-grow-1 ms-2">
         </div>
 
