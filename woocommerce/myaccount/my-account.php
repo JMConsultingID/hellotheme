@@ -155,7 +155,9 @@ defined( 'ABSPATH' ) || exit;
 		<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasMobile" aria-labelledby="offcanvasMobileLabel">
 		    <div class="offcanvas-header">
 		        <h5 class="offcanvas-title" id="offcanvasMobileLabel"><?php echo __('EA Licenses', 'ealicensewoocommerce'); ?></h5>
-		        <button type="button" class="btn-close nav-offcanvas" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+		        <button type="button" class="nav-offcanvas" data-bs-dismiss="offcanvas" aria-label="Close">
+		            <i class="bi bi-x"></i>
+		        </button>
 		    </div>
 		    <div class="offcanvas-body">
 		        <?php 
