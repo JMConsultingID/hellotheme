@@ -34,7 +34,6 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
 
         <div class="d-flex align-items-center mb-3">
             <hr class="flex-grow-1 me-2">
-            <hr class="flex-grow-1 ms-2">
         </div>
 
         <!-- Email Input -->
