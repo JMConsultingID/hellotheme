@@ -115,14 +115,9 @@ html{
         justify-content: flex-start;
         position: relative;
     }
-
-    .woocommerce .woocommerce-dashboard-container .woocommerce-MyAccount-navigation li {
-        margin-bottom: 10px;
-    }
-
     .woocommerce .woocommerce-dashboard-container .woocommerce-MyAccount-navigation-link--customer-logout {
         position: absolute;
-        bottom: 150px;
+        bottom: 120px;
         width: 100%;
     }
 }
