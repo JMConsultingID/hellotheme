@@ -49,9 +49,6 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
             <label for="password" class="form-label"><?php esc_html_e( 'Password', 'woocommerce' ); ?></label>
             <div class="input-group">
                 <input type="password" class="form-control" name="password" id="password" autocomplete="current-password" placeholder="<?php esc_html_e( 'Password', 'woocommerce' ); ?>">
-                <button class="btn btn-outline-secondary" type="button">
-                    <i class="bi bi-eye"></i>
-                </button>
             </div>
         </div>
 
@@ -74,10 +71,6 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
             <a href="<?php echo esc_url( wc_get_page_permalink( 'myaccount' ) ); ?>"><?php esc_html_e( 'Sign up', 'woocommerce' ); ?></a>
         </p>
 
-        <!-- Footer Logo -->
-        <div class="text-center mt-4">
-            <img src="https://via.placeholder.com/100x30" alt="ValeryTrading Logo">
-        </div>
     </div>
 </div>
 
