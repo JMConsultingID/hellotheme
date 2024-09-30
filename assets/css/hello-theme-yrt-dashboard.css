@@ -99,17 +99,21 @@ html{
 }
 
 @media (min-width: 768px) {
-    .woocommerce-account .woocommerce-dashboard-container .woocommerce-MyAccount-navigation {
+    .woocommerce-MyAccount-navigation ul {
         display: flex;
         flex-direction: column;
         height: 100vh;
+        justify-content: flex-start;
+        position: relative;
     }
 
-    .woocommerce-account .woocommerce-dashboard-container .woocommerce-MyAccount-navigation-link {
-        margin-bottom: auto;
+    .woocommerce-MyAccount-navigation li {
+        margin-bottom: 10px;
     }
 
-    .woocommerce-account .woocommerce-dashboard-container .woocommerce-MyAccount-navigation-link--customer-logout {
-        margin-top: auto;
+    .woocommerce-MyAccount-navigation-link--customer-logout {
+        position: absolute;
+        bottom: 20px;
+        width: 100%;
     }
 }
