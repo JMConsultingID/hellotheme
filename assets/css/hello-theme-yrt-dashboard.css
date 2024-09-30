@@ -190,6 +190,11 @@ html{
     border-radius: 10px;
     padding: 10px 20px;
     font-size: 1rem;
+    background: #9ad4b2;
+    color: #000;
+}
+.woocommerce .woocommerce-dashboard-login.login-container .login-form .form-control:focus {
+    box-shadow: none;
 }
 
 .woocommerce .woocommerce-dashboard-login.login-container .login-form .btn {
@@ -204,10 +209,6 @@ html{
     background-color: #06CA8C;
 }
 
-.woocommerce .woocommerce-dashboard-login.login-container .login-form a {
-    color: #38BDF8;
-    text-decoration: none;
-}
 
 @media (max-width: 768px) {
     .woocommerce .woocommerce-dashboard-login.login-container .login-container {
