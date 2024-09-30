@@ -29,7 +29,7 @@ defined( 'ABSPATH' ) || exit;
 
     <div class="row">
         <!-- Sidebar Navigation -->
-        <div class="woocommerce-dashboard-navigation dashboard-column col-lg-2 col-md-3 d-none d-md-block dashboard-sidebar">
+        <div class="woocommerce-dashboard-navigation dashboard-column col-lg-2 col-md-3 d-none d-md-block dashboard-sidebar fixed-sidebar">
             <?php 
                 echo '<h4>' . __('EA Licenses', 'ealicensewoocommerce') . '</h4>';
                 do_action( 'woocommerce_account_navigation' ); 
