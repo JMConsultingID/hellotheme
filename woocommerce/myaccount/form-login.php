@@ -32,12 +32,6 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
 
         <?php do_action( 'woocommerce_login_form_start' ); ?>
 
-        <!-- Google Login Button (if using a social login plugin) -->
-        <button class="btn google-login mb-3">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Logo_2013_Google.png" alt="Google Logo">
-            <?php esc_html_e( 'Continue with Google', 'woocommerce' ); ?>
-        </button>
-
         <div class="d-flex align-items-center mb-3">
             <hr class="flex-grow-1 me-2">
             <span class="text-muted"><?php esc_html_e( 'or', 'woocommerce' ); ?></span>
