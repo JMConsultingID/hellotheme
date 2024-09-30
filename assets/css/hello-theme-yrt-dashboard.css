@@ -34,6 +34,7 @@ html{
 .woocommerce .woocommerce-dashboard-container .fixed-sidebar .dashboard-logo {
     margin-bottom: 40px;
     color: #E1E1E1;
+    text-align: center;
 }
 
 .woocommerce .woocommerce-dashboard-container .dashboard-sidebar {
