@@ -17,7 +17,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-do_action( 'woocommerce_before_customer_login_form' ); ?>
+?>
 
 <div class="woocommerce-dashboard-login container-fluid login-container">
     <!-- Image Section (Left) -->
@@ -27,6 +27,9 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
 
     <!-- Login Form (Right) -->
     <div class="col-md-6 col-12 login-form text-center">
+    	<div class="">
+    		<?php do_action( 'woocommerce_before_customer_login_form' );  ?>
+    	</div>
         <h1><?php esc_html_e( 'Welcome back', 'woocommerce' ); ?></h1>
         <p class="text-muted"><?php esc_html_e( 'Log in to your account', 'woocommerce' ); ?></p>
 
