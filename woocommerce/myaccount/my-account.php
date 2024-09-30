@@ -31,7 +31,10 @@ defined( 'ABSPATH' ) || exit;
         <!-- Sidebar Navigation -->
         <div class="woocommerce-dashboard-navigation dashboard-column col-lg-2 col-md-3 d-none d-md-block dashboard-sidebar fixed-sidebar">
             <?php 
-                echo '<h4 class="dashboard-title">' . __('EA Licenses', 'ealicensewoocommerce') . '</h4>';
+                echo '<div class="dashboard-logo">';
+		        echo '<img src="https://yourrobotrader.com/wp-content/uploads/2022/08/new-logo-12-jan-14-1024x158.webp" alt="Your Logo" class="img-fluid mb-3">';
+		        echo '</div>';
+                https://yourrobotrader.com/wp-content/uploads/2022/08/new-logo-12-jan-14-1024x158.webp
                 do_action( 'woocommerce_account_navigation' ); 
             ?>
         </div>
