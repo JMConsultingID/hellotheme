@@ -77,8 +77,8 @@
 
       if (selectedCategory === "base-camp") {
         addonsSelection.innerHTML = `
-                    <li><input type="checkbox" class="input-checkbox" name="addons" id="active-days" value="active-days"/><label for="active-days" class="">Payout Schedule: 21 days + 15% fee</label><span class="hello-theme-pcs-label-tooltips" data-tippy-content="Standard: 30 days"><i aria-hidden="true" class="fas fa-info-circle"></i></span></li>
-                    <li><input type="checkbox" class="input-checkbox" name="addons" id="profitsplit" value="profitsplit"/><label for="profitsplit" class="">Profit Split: 50%/70%/80% + 30% fee</label><span class="hello-theme-pcs-label-tooltips" data-tippy-content="Standard: 50%"><i aria-hidden="true" class="fas fa-info-circle"></i></span></li>
+                    <li><input type="checkbox" class="input-checkbox" name="addons" id="active-days" value="active-days"/><label for="active-days" class="">On-Demand Payout (+50% fee)</label></li>
+                    <li><input type="checkbox" class="input-checkbox" name="addons" id="profitsplit" value="profitsplit"/><label for="profitsplit" class="">100% Refundable Fee (+20% fee)</label></li>
                 `;
       } else if (selectedCategory === "the-peak") {
         addonsSelection.innerHTML = `
