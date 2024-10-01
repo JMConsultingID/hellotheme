@@ -129,6 +129,8 @@ html{
 
 .woocommerce .woocommerce-dashboard-container form .form-row label{
 	color: #0a1622;
+	text-transform: capitalize;
+    letter-spacing: unset;
 }
 
 .woocommerce .woocommerce-dashboard-container form.woocommerce-EditAccountForm .woocommerce-Button{
