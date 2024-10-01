@@ -148,8 +148,12 @@ html{
 }
 
 .woocommerce .woocommerce-dashboard-container form fieldset {
-    border: 1px solid #f0f3ff;
-    margin: 50px 0px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.woocommerce .woocommerce-dashboard-container form fieldset legend{
+	display: none;
 }
 
 .woocommerce .woocommerce-dashboard-container .woocommerce-MyAccount-navigation ul {
