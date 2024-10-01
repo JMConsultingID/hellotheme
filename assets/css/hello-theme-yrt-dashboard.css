@@ -134,6 +134,7 @@ html{
 .woocommerce .woocommerce-dashboard-container form.woocommerce-EditAccountForm .woocommerce-Button{
 	background: #06CA8C;
 	color: #fff;
+	border: none;
 }
 
 .woocommerce .woocommerce-dashboard-container form.woocommerce-EditAccountForm .woocommerce-Button:hover{
@@ -220,14 +221,13 @@ html{
 }
 
 .woocommerce .woocommerce-dashboard-login.login-container .login-form .btn {
-    background-color: #06CA8C;
+    background: #06CA8C;
     border-radius: 10px;
-    color: white;
-    border:1px solid #02FBAC;
+    color: #fff;
 }
 
 .woocommerce .woocommerce-dashboard-login.login-container .login-form .btn:hover {
-    background-color: #06CA8C;
+    background: #282828;
 }
 
 
