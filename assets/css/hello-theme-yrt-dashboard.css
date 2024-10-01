@@ -45,7 +45,7 @@ html{
     color: #fff;
 }
 
-.woocommerce .woocommerce-dashboard-container .dashboard-mobile-topbar button.nav-offcanvas{
+.woocommerce .woocommerce-dashboard-container button.nav-offcanvas{
     background: transparent;
     padding: unset;
     color: #fff;
