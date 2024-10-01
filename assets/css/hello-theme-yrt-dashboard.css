@@ -137,6 +137,11 @@ html{
     letter-spacing: unset;
 }
 
+.woocommerce .woocommerce-dashboard-container form.woocommerce-EditAccountForm .woocommerce-save-button{
+	margin-top: 50px;
+	text-align: center;
+}
+
 .woocommerce .woocommerce-dashboard-container form.woocommerce-EditAccountForm .woocommerce-Button{
 	background: #06CA8C;
 	color: #fff;
