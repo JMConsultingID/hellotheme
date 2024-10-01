@@ -41,7 +41,7 @@ defined( 'ABSPATH' ) || exit;
         <!-- Main Content -->
         <div class="woocommerce-dashboard-content dashboard-column col-lg-10 col-md-9 main-content">
         	<div class="d-flex justify-content-between mb-4">
-                <h3><?php echo __('EA Licenses', 'ealicensewoocommerce'); ?></h3>
+                <h4 style="padding: 0;margin: 0;"><?php echo __('EA Licenses', 'ealicensewoocommerce'); ?></h4>
                 <div class="welcome-text d-none d-md-block">
                     <p><?php echo __('Welcome, ', 'ealicensewoocommerce') . '<strong>' . wp_get_current_user()->display_name . '</strong>'; ?></p>
                 </div>
