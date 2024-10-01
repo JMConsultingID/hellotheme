@@ -40,14 +40,6 @@ html{
     left: 0;
 }
 
-.woocommerce .woocommerce-dashboard-container .dashboard-top-bar{
-    background: #248C6F;
-    color: #fff;
-}
-.woocommerce .woocommerce-dashboard-container .dashboard-top-bar h4{
-    color: #fff;
-}
-
 .woocommerce .woocommerce-dashboard-container .fixed-sidebar .dashboard-title {
     margin-top: 20px;
     color: #E1E1E1;
@@ -114,7 +106,7 @@ html{
 .woocommerce .woocommerce-dashboard-container button.nav-offcanvas{
 	background: transparent;
     padding: unset;
-    color: #fff;
+    color: #000;
     border: none;
     font-size: 30px;
 }
