@@ -29,7 +29,7 @@ defined( 'ABSPATH' ) || exit;
 
     <div class="row">
         <!-- Mobile Top Header OffCanvas Navigation -->
-        <div class="d-flex justify-content-between mb-3 p-3">
+        <div class="d-flex justify-content-between mb-3 p-3 dashboard-top-bar">
             <h4><?php echo __('EA Licenses', 'ealicensewoocommerce'); ?></h4>
             <div class="welcome-text d-none d-md-block">
                 <p><?php echo __('Welcome, ', 'ealicensewoocommerce') . '<strong>' . wp_get_current_user()->display_name . '</strong>'; ?></p>
