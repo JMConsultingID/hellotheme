@@ -124,10 +124,19 @@ html{
 .woocommerce .woocommerce-dashboard-container .woocommerce form .form-row textarea{
 	background: #F9FAFF;
     color: #0a1622;
+    padding: 10px;
 }
 
 .woocommerce .woocommerce-dashboard-container form .form-row label{
 	color: #0a1622;
+}
+
+.woocommerce .woocommerce-dashboard-container form .form-row .woocommerce-Button{
+	background: #06CA8C;
+}
+
+.woocommerce .woocommerce-dashboard-container form .form-row .woocommerce-Button:hover{
+	background: #282828;
 }
 
 .woocommerce .woocommerce-dashboard-container form fieldset {
