@@ -13,6 +13,11 @@ html{
 .woocommerce .woocommerce-dashboard-container .woocommerce-MyAccount-content .woocommerce-info::before{
 	color: #06CA8C;
 }
+.woocommerce .woocommerce-dashboard-container .woocommerce-MyAccount-content a.woocommerce-button.button.view{
+	background: #06CA8C;
+    color: #fff;
+    border: none;
+}
 .woocommerce-account .woocommerce-dashboard-container{
 	font-family: var(--e-global-typography-text-font-family), Sans-serif;
 	display: flex;
