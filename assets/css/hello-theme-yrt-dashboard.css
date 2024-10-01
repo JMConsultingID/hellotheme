@@ -74,6 +74,12 @@ html{
     margin-left: 16.66666667%; /* This pushes the content to the right of the fixed sidebar */
 }
 
+.woocommerce .woocommerce-dashboard-container .main-content .offcanvas-backdrop.show {
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+}
+
 .woocommerce .woocommerce-dashboard-container .card-dashboard {
     border-radius: 15px;
 }
