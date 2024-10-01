@@ -7,7 +7,7 @@ html{
     width: auto!important;
 }
 .woocommerce-account .woocommerce-dashboard-container{
-	font-family: --e-global-typography-primary-font-family;
+	font-family: var(--e-global-typography-text-font-family), Sans-serif;
 	display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
@@ -162,7 +162,7 @@ html{
 
 /* Dahboard Login */
 .woocommerce .woocommerce-dashboard-login.login-container {
-	font-family: --e-global-typography-primary-font-family;
+	font-family: var(--e-global-typography-text-font-family), Sans-serif;
     display: flex;
     height: 100vh;
     padding: 0px;
