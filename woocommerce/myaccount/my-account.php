@@ -27,7 +27,7 @@ defined( 'ABSPATH' ) || exit;
 
 <div class="woocommerce-dashboard-container container-fluid">  
     <div class="row">
-        <div class="d-flex justify-content-between mb-4 d-md-none dashboard-mobile-topbar">
+        <div class="d-flex justify-content-between mb-4 d-md-none dashboard-mobile-topbar p-3">
             <div class="dashboard-logo pt-2">
                 <a href="/my-account/"><img src="https://yourrobotrader.com/wp-content/uploads/2022/08/new-logo-12-jan-14-1024x158.webp" alt="Your Robo Trader" class="img-fluid" width="60%"></a>
             </div>
