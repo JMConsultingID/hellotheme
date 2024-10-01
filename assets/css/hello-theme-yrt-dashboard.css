@@ -131,11 +131,11 @@ html{
 	color: #0a1622;
 }
 
-.woocommerce .woocommerce-dashboard-container form .form-row .woocommerce-Button{
+.woocommerce .woocommerce-dashboard-container form.woocommerce-EditAccountForm .woocommerce-Button{
 	background: #06CA8C;
 }
 
-.woocommerce .woocommerce-dashboard-container form .form-row .woocommerce-Button:hover{
+.woocommerce .woocommerce-dashboard-container form.woocommerce-EditAccountForm .woocommerce-Button:hover{
 	background: #282828;
 }
 
