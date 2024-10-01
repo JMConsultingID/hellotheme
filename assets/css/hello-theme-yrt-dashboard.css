@@ -6,6 +6,13 @@ html{
     float: unset!important;
     width: auto!important;
 }
+
+.woocommerce .woocommerce-dashboard-container .woocommerce-MyAccount-content .woocommerce-info{
+	border-top-color: #06CA8C;
+}
+.woocommerce .woocommerce-dashboard-container .woocommerce-MyAccount-content .woocommerce-info::before{
+	color: #06CA8C;
+}
 .woocommerce-account .woocommerce-dashboard-container{
 	font-family: var(--e-global-typography-text-font-family), Sans-serif;
 	display: flex;
