@@ -30,7 +30,7 @@ defined( 'ABSPATH' ) || exit;
         <!-- Monile TopBar Offcanvas -->
         <div class="d-flex justify-content-between mb-4 d-md-none dashboard-mobile-topbar p-3">
             <div class="dashboard-logo pt-2">
-                <a href="/my-account/"><img src="https://yourrobotrader.com/wp-content/uploads/2022/08/new-logo-12-jan-14-1024x158.webp" alt="Your Robo Trader" class="img-fluid" width="60%"></a>
+                <a href="/my-account/"><img src="https://yourrobotrader.com/wp-content/uploads/2022/08/new-logo-12-jan-14-1024x158.webp" alt="Your Robo Trader" class="img-fluid" width="180px"></a>
             </div>
             <!-- Hamburger Button for Mobile -->
             <button class="btn d-md-none nav-offcanvas float-end" type="button" data-bs-toggle="offcanvas"
@@ -42,7 +42,7 @@ defined( 'ABSPATH' ) || exit;
         <div class="woocommerce-dashboard-navigation dashboard-column col-lg-2 col-md-3 d-none d-md-block dashboard-sidebar fixed-sidebar">
             <?php 
                 echo '<div class="dashboard-logo">';
-		        echo '<a href="/my-account/"><img src="https://yourrobotrader.com/wp-content/uploads/2022/08/new-logo-12-jan-14-1024x158.webp" alt="Your Robo Trader" class="img-fluid mb-3" width="85%"></a>';
+		        echo '<a href="/my-account/"><img src="https://yourrobotrader.com/wp-content/uploads/2022/08/new-logo-12-jan-14-1024x158.webp" alt="Your Robo Trader" class="img-fluid mb-3" width="180px"></a>';
 		        echo '</div>';
                 do_action( 'woocommerce_account_navigation' ); 
             ?>
@@ -72,7 +72,7 @@ defined( 'ABSPATH' ) || exit;
 			<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMobile" aria-labelledby="offcanvasMobileLabel">
 			    <div class="offcanvas-header">
 			        <div class="dashboard-logo">
-		       			<a href="/my-account/"><img src="https://yourrobotrader.com/wp-content/uploads/2022/08/new-logo-12-jan-14-1024x158.webp" alt="Your Robo Trader" class="img-fluid" width="80%"></a>
+		       			<a href="/my-account/"><img src="https://yourrobotrader.com/wp-content/uploads/2022/08/new-logo-12-jan-14-1024x158.webp" alt="Your Robo Trader" class="img-fluid" width="180px"></a>
 		        	</div>
 			        <button type="button" class="nav-offcanvas offcanvas-close" data-bs-dismiss="offcanvas" aria-label="Close">
 			            <i class="bi bi-x"></i>
