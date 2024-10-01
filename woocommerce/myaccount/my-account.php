@@ -30,9 +30,8 @@ defined( 'ABSPATH' ) || exit;
     <div class="row">
         <!-- Mobile Top Header OffCanvas Navigation -->
         <div class="d-flex justify-content-between mb-3 p-3 dashboard-top-bar">
-            <h4><?php echo __('EA Licenses', 'ealicensewoocommerce'); ?></h4>
-            <div class="welcome-text d-none d-md-block">
-                <p><?php echo __('Welcome, ', 'ealicensewoocommerce') . '<strong>' . wp_get_current_user()->display_name . '</strong>'; ?></p>
+            <div class="dashboard-logo pt-2">
+                <a href="/my-account/"><img src="https://yourrobotrader.com/wp-content/uploads/2022/08/new-logo-12-jan-14-1024x158.webp" alt="Your Robo Trader" class="img-fluid" width="60%"></a>
             </div>
             <!-- Hamburger Button for Mobile -->
             <button class="btn d-md-none nav-offcanvas float-end" type="button" data-bs-toggle="offcanvas"

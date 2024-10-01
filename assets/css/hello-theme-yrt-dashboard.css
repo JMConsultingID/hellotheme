@@ -42,6 +42,7 @@ html{
 
 .woocommerce .woocommerce-dashboard-container .dashboard-top-bar{
     background: #248C6F;
+    color: #fff;
 }
 .woocommerce .woocommerce-dashboard-container .dashboard-top-bar h4{
     color: #fff;
