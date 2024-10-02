@@ -30,7 +30,7 @@ defined( 'ABSPATH' ) || exit;
     	<div class="">
     		<?php do_action( 'woocommerce_before_customer_login_form' );  ?>
     	</div>
-        <div class="dashboard-logo pt-2">
+        <div class="dashboard-logo mb-5">
             <a href="/"><img src="/wp-content/uploads/2024/10/yrt_new_logo-_2-jan-09.png" alt="Your Robo Trader" class="img-fluid" width="180px"></a>
         </div>
 
