@@ -287,6 +287,7 @@ html{
 
 .woocommerce .woocommerce-dashboard-login.login-container ul.dashboard-login-tabs li{
     width: 50%;
+    border-bottom: 1px solid #248C6F;
 }
 
 .woocommerce .woocommerce-dashboard-login.login-container ul.dashboard-login-tabs li .nav-link{
