@@ -87,9 +87,9 @@ html{
 }
 
 .woocommerce .woocommerce-dashboard-container .main-content .offcanvas-backdrop.show {
-    background-color: rgba(0, 0, 0, 0.5);
-    -webkit-backdrop-filter: blur(15px);
-    backdrop-filter: blur(15px);
+    opacity: 1;
+    background-color: rgba(15, 23, 42, .5);
+    backdrop-filter: blur(8px);
 }
 
 .woocommerce .woocommerce-dashboard-container .card-dashboard {
