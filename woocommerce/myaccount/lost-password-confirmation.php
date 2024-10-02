@@ -17,7 +17,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-wc_print_notice( esc_html__( 'Password reset email has been sent.', 'woocommerce' ) );
+
 ?>
 
 <div class="woocommerce-dashboard-login container-fluid login-container">
@@ -29,11 +29,15 @@ wc_print_notice( esc_html__( 'Password reset email has been sent.', 'woocommerce
     <!-- Login Form (Right) -->
     <div class="col-md-4 col-12 login-form text-center">
     	<div class="">    			
-    		<?php do_action( 'woocommerce_before_lost_password_confirmation_message' ); ?>
+    		<?php     			
+    			do_action( 'woocommerce_before_lost_password_confirmation_message' ); 
+    		?>
     	</div>
         <div class="dashboard-logo mb-5">
             <a href="/"><img src="/wp-content/uploads/2024/10/yrt_new_logo-_2-jan-09.png" alt="Your Robo Trader" class="img-fluid" width="220px"></a>
         </div>
+
+        <?php wc_print_notice( esc_html__( 'Password reset email has been sent.', 'woocommerce' ) ); ?>
 
         <p><?php echo esc_html( apply_filters( 'woocommerce_lost_password_confirmation_message', esc_html__( 'A password reset email has been sent to the email address on file for your account, but may take several minutes to show up in your inbox. Please wait at least 10 minutes before attempting another reset.', 'woocommerce' ) ) ); ?></p>
 
