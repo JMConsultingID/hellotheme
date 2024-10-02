@@ -30,6 +30,10 @@ defined( 'ABSPATH' ) || exit;
     	<div class="">
     		<?php do_action( 'woocommerce_before_customer_login_form' );  ?>
     	</div>
+        <div class="dashboard-logo pt-2">
+            <a href="/"><img src="https://yourrobotrader.com/wp-content/uploads/2022/08/new-logo-12-jan-14-1024x158.webp" alt="Your Robo Trader" class="img-fluid" width="180px"></a>
+        </div>
+
         <h1><?php esc_html_e( 'Welcome back', 'woocommerce' ); ?></h1>
         <p class="text-muted"><?php esc_html_e( 'Log in to your account', 'woocommerce' ); ?></p>
 
