@@ -286,12 +286,14 @@ html{
 }
 
 .woocommerce .woocommerce-dashboard-login.login-container ul.dashboard-login-tabs li{
-    width: 100%;
+    width: 50%;
+    margin: 0 10px;
 }
 
 .woocommerce .woocommerce-dashboard-login.login-container ul.dashboard-login-tabs li btn.nav-link{
     width: 100%;
     margin: 0 10px;
+    border: unset;
 }
 
 
