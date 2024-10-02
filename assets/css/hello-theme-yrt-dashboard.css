@@ -293,8 +293,9 @@ html{
 
 .woocommerce .woocommerce-dashboard-login.login-container .login-form .btn {
     background: #06CA8C;
-    border-radius: 10px;
+    border-radius: 0px;
     color: #fff;
+    padding: 15px;    
 }
 
 .woocommerce .woocommerce-dashboard-login.login-container .login-form .btn:hover {
