@@ -51,7 +51,13 @@ $allowed_html = array(
 	do_action( 'woocommerce_after_my_account' );
 
 	//sample_video_content_yrt();
+	$dashboard_elementor_page_id = esc_attr(get_option('ealicensewoocommerce_template_dashboard_id'));
 
-	echo do_shortcode('[elementor-template id="10850"]');
+	if (empty($dashboard_elementor_page_id)) {
+	    echo '<div class="notice notice-warning"><p>Please set the EA License Elementor Template ID in the settings.</p></div>';
+	} else {
+	    echo do_shortcode('[elementor-template id="' . $dashboard_elementor_page_id . '"]');
+	}
+
 
 /* Omit closing PHP tag at the end of PHP files to avoid "headers already sent" issues. */
