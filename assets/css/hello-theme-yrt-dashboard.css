@@ -317,3 +317,11 @@ html{
 }
 
 /* Reset Password */
+.woocommerce .woocommerce-dashboard-login.login-container .woocommerce-ResetPassword label{
+    color: #fff;
+}
+.woocommerce .woocommerce-dashboard-login.login-container .woocommerce-ResetPassword input{
+    border-radius: 0px;
+    width: 100%;
+    margin-bottom: 50px;
+}
