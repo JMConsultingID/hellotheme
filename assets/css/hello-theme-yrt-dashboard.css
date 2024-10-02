@@ -281,10 +281,11 @@ html{
 }
 
 .woocommerce .woocommerce-dashboard-login.login-container .login-form .form-control {
-    border-radius: 10px;
+    border-radius: 0px;
     padding: 10px 20px;
     background: #F9FAFF;
     color: #000;
+    border: 1px solid #e1e1e1;
 }
 .woocommerce .woocommerce-dashboard-login.login-container .login-form .form-control:focus {
     box-shadow: none;
@@ -324,6 +325,6 @@ html{
     color: #fff;
 }
 .woocommerce .woocommerce-dashboard-login.login-container .woocommerce-ResetPassword input{
-    border-radius: 0px;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
+    border: 1px solid ;
 }
