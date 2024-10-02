@@ -281,6 +281,20 @@ html{
     z-index: 1;
 }
 
+.woocommerce .woocommerce-dashboard-login.login-container .dashboard-login-tabs ul{
+    border: unset;
+}
+
+.woocommerce .woocommerce-dashboard-login.login-container .dashboard-login-tabs ul li{
+    width: 100%;
+}
+
+.woocommerce .woocommerce-dashboard-login.login-container .dashboard-login-tabs ul li btn.nav-link{
+    width: 100%;
+    margin: 0 10px;
+}
+
+
 .woocommerce .woocommerce-dashboard-login.login-container .login-form {
     padding: 50px;
     display: flex;

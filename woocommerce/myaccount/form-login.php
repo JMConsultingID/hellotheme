@@ -39,7 +39,7 @@ defined( 'ABSPATH' ) || exit;
         </div>
 
         <!-- Bootstrap Tabs for Login and Register -->
-        <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+        <ul class="nav nav-tabs mb-4 dashboard-login-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
                 <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab" aria-controls="login" aria-selected="true">
                     <?php esc_html_e( 'Login', 'woocommerce' ); ?>
