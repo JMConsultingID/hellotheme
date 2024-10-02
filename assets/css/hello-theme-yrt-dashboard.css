@@ -215,9 +215,6 @@ html{
 .woocommerce .woocommerce-dashboard-container .woocommerce-MyAccount-navigation-link--customer-logout {
     bottom: 15vh;
 }
-.woocommerce .woocommerce-dashboard-container .woocommerce-MyAccount-navigation ul {
-    padding-left: 0px;
-}
 }
 
 @media (max-width: 767px) {
