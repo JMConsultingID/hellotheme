@@ -328,8 +328,3 @@ html{
     margin-bottom: 20px;
     border: 1px solid ;
 }
-.woocommerce .woocommerce-dashboard-login.login-container .login-form .woocommerce-Button {
-    background: #06CA8C;
-    border-radius: 10px;
-    color: #fff;
-}

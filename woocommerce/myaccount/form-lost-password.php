@@ -50,7 +50,9 @@ defined( 'ABSPATH' ) || exit;
 
 			<p class="woocommerce-form-row form-row">
 				<input type="hidden" name="wc_reset_password" value="true" />
-				<button type="submit" class="woocommerce-Button button<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" value="<?php esc_attr_e( 'Reset password', 'woocommerce' ); ?>"><?php esc_html_e( 'Reset password', 'woocommerce' ); ?></button>
+		        <button type="submit" class="btn btn-primary w-100 button<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" value="<?php esc_attr_e( 'Reset password', 'woocommerce' ); ?>">
+		            <?php esc_html_e( 'Reset password', 'woocommerce' ); ?>
+		        </button>
 			</p>
 
 			<?php wp_nonce_field( 'lost_password', 'woocommerce-lost-password-nonce' ); ?>
