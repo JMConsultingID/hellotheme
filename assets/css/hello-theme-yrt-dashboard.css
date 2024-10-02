@@ -292,9 +292,11 @@ html{
 .woocommerce .woocommerce-dashboard-login.login-container ul.dashboard-login-tabs li .nav-link{
     width: 100%;
     border: unset;
-    color: #fff;
+    color: #000;
+    border-radius: 0px;
 }
 .woocommerce .woocommerce-dashboard-login.login-container ul.dashboard-login-tabs li .nav-link.active{
+    background: #248C6F;
     border: unset;
     color: #fff;
 }
