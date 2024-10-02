@@ -92,6 +92,10 @@ html{
     backdrop-filter: blur(50px);
 }
 
+.woocommerce .woocommerce-dashboard-container .main-content .offcanvas.offcanvas-start {
+    border-right: unset;
+}
+
 .woocommerce .woocommerce-dashboard-container .card-dashboard {
     border-radius: 15px;
 }
