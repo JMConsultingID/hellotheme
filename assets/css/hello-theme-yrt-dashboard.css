@@ -241,6 +241,10 @@ html{
     padding: 0px;
 }
 
+.woocommerce .woocommerce-dashboard-login.login-container .woocommerce-message{
+    background-color: transparent;
+}
+
 .woocommerce .woocommerce-dashboard-login.login-container form.checkout_coupon, 
 .woocommerce .woocommerce-dashboard-login.login-container form.login, 
 .woocommerce .woocommerce-dashboard-login.login-container form.register{
