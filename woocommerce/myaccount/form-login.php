@@ -37,9 +37,6 @@ defined( 'ABSPATH' ) || exit;
 
         <?php do_action( 'woocommerce_login_form_start' ); ?>
 
-        <div class="d-flex align-items-center mb-3">
-            <hr class="flex-grow-1 me-2">
-        </div>
 
         <!-- Email Input -->
         <div class="mb-3">
