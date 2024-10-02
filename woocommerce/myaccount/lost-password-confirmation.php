@@ -20,8 +20,24 @@ defined( 'ABSPATH' ) || exit;
 wc_print_notice( esc_html__( 'Password reset email has been sent.', 'woocommerce' ) );
 ?>
 
-<?php do_action( 'woocommerce_before_lost_password_confirmation_message' ); ?>
+<div class="woocommerce-dashboard-login container-fluid login-container">
+    <!-- Image Section (Left) -->
+    <div class="col-md-8 login-image d-none d-md-block">
+        <!-- Placeholder for image -->
+    </div>
 
-<p><?php echo esc_html( apply_filters( 'woocommerce_lost_password_confirmation_message', esc_html__( 'A password reset email has been sent to the email address on file for your account, but may take several minutes to show up in your inbox. Please wait at least 10 minutes before attempting another reset.', 'woocommerce' ) ) ); ?></p>
+    <!-- Login Form (Right) -->
+    <div class="col-md-4 col-12 login-form text-center">
+    	<div class="">    			
+    		<?php do_action( 'woocommerce_before_lost_password_confirmation_message' ); ?>
+    	</div>
+        <div class="dashboard-logo mb-5">
+            <a href="/"><img src="/wp-content/uploads/2024/10/yrt_new_logo-_2-jan-09.png" alt="Your Robo Trader" class="img-fluid" width="220px"></a>
+        </div>
+
+        <p><?php echo esc_html( apply_filters( 'woocommerce_lost_password_confirmation_message', esc_html__( 'A password reset email has been sent to the email address on file for your account, but may take several minutes to show up in your inbox. Please wait at least 10 minutes before attempting another reset.', 'woocommerce' ) ) ); ?></p>
+
+    </div>
+</div>
 
 <?php do_action( 'woocommerce_after_lost_password_confirmation_message' ); ?>
