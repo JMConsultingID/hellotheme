@@ -198,9 +198,9 @@ defined( 'ABSPATH' ) || exit;
         </form>
 
         <!-- Signup Link -->
-        <p class="text-center mt-3"><?php esc_html_e( "Don't have an account yet?", 'woocommerce' ); ?>
+        <!-- <p class="text-center mt-3"><?php esc_html_e( "Don't have an account yet?", 'woocommerce' ); ?>
             <a href="<?php echo esc_url( wc_get_page_permalink( 'myaccount' ) ); ?>"><?php esc_html_e( 'Sign up', 'woocommerce' ); ?></a>
-        </p>
+        </p> -->
 
     </div>
 </div>
