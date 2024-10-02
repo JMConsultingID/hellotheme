@@ -25,58 +25,110 @@ defined( 'ABSPATH' ) || exit;
         <!-- Placeholder for image -->
     </div>
 
-    <!-- Login Form (Right) -->
+    <!-- Login/Register Form (Right) -->
     <div class="col-md-4 col-12 login-form text-center">
-    	<div class="">
-    		<?php do_action( 'woocommerce_before_customer_login_form' );  ?>
-    	</div>
+        <div class="">
+            <?php do_action( 'woocommerce_before_customer_login_form' ); ?>
+        </div>
+
+        <!-- Dashboard Logo -->
         <div class="dashboard-logo mb-5">
             <a href="/"><img src="/wp-content/uploads/2024/10/yrt_new_logo-_2-jan-09.png" alt="Your Robo Trader" class="img-fluid" width="220px"></a>
         </div>
 
-        <h1 class="mb-0"><?php esc_html_e( 'Welcome back', 'woocommerce' ); ?></h1>
-        <p class="text-muted"><?php esc_html_e( 'Log in to your account', 'woocommerce' ); ?></p>
+        <!-- Bootstrap Tabs for Login and Register -->
+        <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab" aria-controls="login" aria-selected="true">
+                    <?php esc_html_e( 'Login', 'woocommerce' ); ?>
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="register-tab" data-bs-toggle="tab" data-bs-target="#register" type="button" role="tab" aria-controls="register" aria-selected="false">
+                    <?php esc_html_e( 'Register', 'woocommerce' ); ?>
+                </button>
+            </li>
+        </ul>
 
-        <form class="woocommerce-form woocommerce-form-login login" method="post">
+        <!-- Tab Content for Login and Register -->
+        <div class="tab-content" id="myTabContent">
+            <!-- Login Tab -->
+            <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+                <h1 class="mb-0"><?php esc_html_e( 'Welcome back', 'woocommerce' ); ?></h1>
+                <p class="text-muted"><?php esc_html_e( 'Log in to your account', 'woocommerce' ); ?></p>
 
-        <?php do_action( 'woocommerce_login_form_start' ); ?>
+                <form class="woocommerce-form woocommerce-form-login login" method="post">
+                    <?php do_action( 'woocommerce_login_form_start' ); ?>
 
+                    <!-- Email Input -->
+                    <div class="mb-3">
+                        <label for="username" class="form-label"><?php esc_html_e( 'Email', 'woocommerce' ); ?></label>
+                        <input type="text" class="form-control" name="username" id="username" autocomplete="username" placeholder="<?php esc_html_e( 'Email', 'woocommerce' ); ?>" value="<?php echo (!empty($_POST['username'])) ? esc_attr( wp_unslash( $_POST['username'] ) ) : ''; ?>">
+                    </div>
 
-        <!-- Email Input -->
-        <div class="mb-3">
-            <label for="username" class="form-label"><?php esc_html_e( 'Email', 'woocommerce' ); ?></label>
-            <input type="text" class="form-control" name="username" id="username" autocomplete="username" placeholder="<?php esc_html_e( 'Email', 'woocommerce' ); ?>" value="<?php echo (!empty($_POST['username'])) ? esc_attr( wp_unslash( $_POST['username'] ) ) : ''; ?>">
-        </div>
+                    <!-- Password Input -->
+                    <div class="mb-3">
+                        <label for="password" class="form-label"><?php esc_html_e( 'Password', 'woocommerce' ); ?></label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" name="password" id="password" autocomplete="current-password" placeholder="<?php esc_html_e( 'Password', 'woocommerce' ); ?>">
+                        </div>
+                    </div>
 
-        <!-- Password Input -->
-        <div class="mb-3">
-            <label for="password" class="form-label"><?php esc_html_e( 'Password', 'woocommerce' ); ?></label>
-            <div class="input-group">
-                <input type="password" class="form-control" name="password" id="password" autocomplete="current-password" placeholder="<?php esc_html_e( 'Password', 'woocommerce' ); ?>">
+                    <!-- Forgot Password -->
+                    <div class="d-flex justify-content-end mb-4">
+                        <a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php esc_html_e( 'Forgot your password?', 'woocommerce' ); ?></a>
+                    </div>
+
+                    <?php wp_nonce_field( 'woocommerce-login', 'woocommerce-login-nonce' ); ?>
+
+                    <!-- Login Button -->
+                    <button type="submit" class="btn btn-primary w-100" name="login" value="<?php esc_attr_e( 'Log in', 'woocommerce' ); ?>">
+                        <?php esc_html_e( 'LOG IN', 'woocommerce' ); ?>
+                    </button>
+
+                    <?php do_action( 'woocommerce_login_form_end' ); ?>
+                </form>
+            </div>
+
+            <!-- Register Tab -->
+            <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+                <h1 class="mb-0"><?php esc_html_e( 'Create a new account', 'woocommerce' ); ?></h1>
+                <p class="text-muted"><?php esc_html_e( 'Register to your account', 'woocommerce' ); ?></p>
+
+                <form method="post" class="woocommerce-form woocommerce-form-register register">
+                    <?php do_action( 'woocommerce_register_form_start' ); ?>
+
+                    <!-- Username Input -->
+                    <div class="mb-3">
+                        <label for="reg_username" class="form-label"><?php esc_html_e( 'Username', 'woocommerce' ); ?></label>
+                        <input type="text" class="form-control" name="username" id="reg_username" autocomplete="username" value="<?php echo (!empty($_POST['username'])) ? esc_attr( wp_unslash( $_POST['username'] ) ) : ''; ?>">
+                    </div>
+
+                    <!-- Email Input -->
+                    <div class="mb-3">
+                        <label for="reg_email" class="form-label"><?php esc_html_e( 'Email', 'woocommerce' ); ?></label>
+                        <input type="email" class="form-control" name="email" id="reg_email" autocomplete="email" value="<?php echo (!empty($_POST['email'])) ? esc_attr( wp_unslash( $_POST['email'] ) ) : ''; ?>">
+                    </div>
+
+                    <!-- Password Input -->
+                    <div class="mb-3">
+                        <label for="reg_password" class="form-label"><?php esc_html_e( 'Password', 'woocommerce' ); ?></label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" name="password" id="reg_password" autocomplete="new-password">
+                        </div>
+                    </div>
+
+                    <?php wp_nonce_field( 'woocommerce-register', 'woocommerce-register-nonce' ); ?>
+
+                    <!-- Register Button -->
+                    <button type="submit" class="btn btn-primary w-100" name="register" value="<?php esc_attr_e( 'Register', 'woocommerce' ); ?>">
+                        <?php esc_html_e( 'REGISTER', 'woocommerce' ); ?>
+                    </button>
+
+                    <?php do_action( 'woocommerce_register_form_end' ); ?>
+                </form>
             </div>
         </div>
-
-        <!-- Forgot Password -->
-        <div class="d-flex justify-content-end mb-4">
-            <a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php esc_html_e( 'Forgot your password?', 'woocommerce' ); ?></a>
-        </div>
-
-        <?php wp_nonce_field( 'woocommerce-login', 'woocommerce-login-nonce' ); ?>
-        
-        <!-- Login Button -->
-        <button type="submit" class="btn btn-primary w-100" name="login" value="<?php esc_attr_e( 'Log in', 'woocommerce' ); ?>">
-            <?php esc_html_e( 'LOG IN', 'woocommerce' ); ?>
-        </button>
-
-        <?php do_action( 'woocommerce_login_form_end' ); ?>
-
-    	</form>
-
-        <!-- Signup Link -->
-        <p class="text-center mt-3"><?php esc_html_e( "Don't have an account yet?", 'woocommerce' ); ?>
-            <a href="<?php echo esc_url( wc_get_page_permalink( 'myaccount' ) ); ?>"><?php esc_html_e( 'Sign up', 'woocommerce' ); ?></a>
-        </p>
-
     </div>
 </div>
 
