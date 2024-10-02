@@ -295,6 +295,9 @@ html{
     color: #000;
     border-radius: 0px;
 }
+.woocommerce .woocommerce-dashboard-login.login-container ul.dashboard-login-tabs li .nav-link:hover{
+    background: transparent;
+}
 .woocommerce .woocommerce-dashboard-login.login-container ul.dashboard-login-tabs li .nav-link.active{
     background: #248C6F;
     border: unset;
