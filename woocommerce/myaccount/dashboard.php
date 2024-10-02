@@ -52,4 +52,6 @@ $allowed_html = array(
 
 	//sample_video_content_yrt();
 
+	do_shortcode('[elementor-template id="10850"]');
+
 /* Omit closing PHP tag at the end of PHP files to avoid "headers already sent" issues. */
