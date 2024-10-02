@@ -126,7 +126,6 @@ defined( 'ABSPATH' ) || exit;
                         <div class="input-group">
                             <input type="password" class="form-control" name="password" id="reg_password" autocomplete="new-password" placeholder="<?php esc_html_e( 'Password', 'woocommerce' ); ?>">
                         </div>
-                        </div>
                     </div>
 
                     <?php wp_nonce_field( 'woocommerce-register', 'woocommerce-register-nonce' ); ?>
