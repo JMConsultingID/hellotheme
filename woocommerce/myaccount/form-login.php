@@ -34,7 +34,7 @@ defined( 'ABSPATH' ) || exit;
             <a href="/"><img src="/wp-content/uploads/2024/10/yrt_new_logo-_2-jan-09.png" alt="Your Robo Trader" class="img-fluid" width="180px"></a>
         </div>
 
-        <1 class="mb-0"><?php esc_html_e( 'Welcome back', 'woocommerce' ); ?></h1>
+        <h1 class="mb-0"><?php esc_html_e( 'Welcome back', 'woocommerce' ); ?></h1>
         <p class="text-muted"><?php esc_html_e( 'Log in to your account', 'woocommerce' ); ?></p>
 
         <form class="woocommerce-form woocommerce-form-login login" method="post">
