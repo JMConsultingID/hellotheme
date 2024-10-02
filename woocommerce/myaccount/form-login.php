@@ -100,11 +100,15 @@ defined( 'ABSPATH' ) || exit;
                 <form method="post" class="woocommerce-form woocommerce-form-register register">
                     <?php do_action( 'woocommerce_register_form_start' ); ?>
 
+                    <?php if ( 'no' === get_option( 'woocommerce_registration_generate_username' ) ) : ?>
+
                     <!-- Username Input -->
                     <div class="mb-3">
                         <label for="reg_username" class="form-label"><?php esc_html_e( 'Username', 'woocommerce' ); ?></label>
                         <input type="text" class="form-control" name="username" id="reg_username" autocomplete="username" value="<?php echo (!empty($_POST['username'])) ? esc_attr( wp_unslash( $_POST['username'] ) ) : ''; ?>">
                     </div>
+
+                    <?php endif; ?>
 
                     <!-- Email Input -->
                     <div class="mb-3">
@@ -197,6 +201,6 @@ defined( 'ABSPATH' ) || exit;
     </div>
 </div>
 
-<?php endif ?>
+<?php endif; ?>
 
 <?php do_action( 'woocommerce_after_customer_login_form' ); ?>
