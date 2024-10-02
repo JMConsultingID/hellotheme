@@ -194,7 +194,7 @@ html{
 }
 .woocommerce .woocommerce-dashboard-container .woocommerce-MyAccount-navigation-link--customer-logout {
     position: absolute;
-    bottom: 120px;
+    bottom: 10vh;
     width: 100%;
 }
 
@@ -209,7 +209,7 @@ html{
     margin-left: 25%; /* This pushes the content to the right of the fixed sidebar */
 }
 .woocommerce .woocommerce-dashboard-container .woocommerce-MyAccount-navigation-link--customer-logout {
-    bottom: 180px;
+    bottom: 10vh;
 }
 .woocommerce .woocommerce-dashboard-container .woocommerce-MyAccount-navigation ul {
     padding-left: 0px;
@@ -228,7 +228,7 @@ html{
     margin-left: 0%; /* This pushes the content to the right of the fixed sidebar */
 }
 .woocommerce .woocommerce-dashboard-container .woocommerce-MyAccount-navigation-link--customer-logout {
-    bottom: 180px;
+    bottom: 10vh;
 }
 }
 
