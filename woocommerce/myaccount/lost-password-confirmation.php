@@ -16,8 +16,7 @@
  */
 
 defined( 'ABSPATH' ) || exit;
-
-
+wc_print_notice( esc_html__( 'Password reset email has been sent.', 'woocommerce' ) );
 ?>
 
 <div class="woocommerce-dashboard-login container-fluid login-container">
@@ -30,7 +29,7 @@ defined( 'ABSPATH' ) || exit;
     <div class="col-md-4 col-12 login-form text-center">
     	<div class="">
     		<?php 
-    			wc_print_notice( esc_html__( 'Password reset email has been sent.', 'woocommerce' ) );
+    			
     			<?php do_action( 'woocommerce_before_lost_password_confirmation_message' ); ?>
     		?>
     	</div>
