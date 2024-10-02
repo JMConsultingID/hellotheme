@@ -263,6 +263,17 @@ html{
     justify-content: center;
 }
 
+.woocommerce .woocommerce-dashboard-login.login-container .login-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(56, 189, 248, 0.5);
+    z-index: 1;
+}
+
 .woocommerce .woocommerce-dashboard-login.login-container .login-form {
     padding: 50px;
     display: flex;
