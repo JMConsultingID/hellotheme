@@ -295,7 +295,8 @@ html{
     background: #06CA8C;
     border-radius: 0px;
     color: #fff;
-    padding: 15px;    
+    padding: 15px;
+    font-size: 14px;    
 }
 
 .woocommerce .woocommerce-dashboard-login.login-container .login-form .btn:hover {
@@ -326,6 +327,6 @@ html{
     color: #000;
 }
 .woocommerce .woocommerce-dashboard-login.login-container .woocommerce-ResetPassword input{
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     border: 1px solid ;
 }
