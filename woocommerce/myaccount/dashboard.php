@@ -54,7 +54,7 @@ $allowed_html = array(
 	$dashboard_elementor_page_id = esc_attr(get_option('ealicensewoocommerce_template_dashboard_id'));
 
 	if (empty($dashboard_elementor_page_id)) {
-	    echo '<div class="alert alert-success d-flex align-items-center"><p>Please set the EA License Elementor Template ID in the settings.</p></div>';
+	    echo '<div class="alert alert-warning d-flex align-items-center"><p>Please set the EA License Elementor Template ID in the settings.</p></div>';
 	} else {
 	    echo do_shortcode('[elementor-template id="' . $dashboard_elementor_page_id . '"]');
 	}
