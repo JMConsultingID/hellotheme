@@ -253,10 +253,10 @@ html{
 
 .woocommerce .woocommerce-dashboard-login.login-container .login-image {
     background: url('https://yourrobotrader.com/wp-content/uploads/2024/06/img_today_YRT.webp') no-repeat center center;
-background-size: cover;
-            height: 100vh;
-            position: relative;
-        }
+    background-size: cover;
+    height: 100vh;
+    position: relative;
+}
 .woocommerce .woocommerce-dashboard-login.login-container .login-image::before {
     content: '';
     position: absolute;
@@ -315,3 +315,5 @@ background-size: cover;
         padding: 20px;
     }
 }
+
+/* Reset Password */
