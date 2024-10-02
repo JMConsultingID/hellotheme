@@ -50,6 +50,6 @@ $allowed_html = array(
 	 */
 	do_action( 'woocommerce_after_my_account' );
 
-	sample_video_content_yrt();
+	//sample_video_content_yrt();
 
 /* Omit closing PHP tag at the end of PHP files to avoid "headers already sent" issues. */
