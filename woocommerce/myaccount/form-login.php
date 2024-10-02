@@ -28,7 +28,7 @@ defined( 'ABSPATH' ) || exit;
     </div>
 
     <!-- Login/Register Form (Right) -->
-    <div class="col-md-4 col-12 login-form text-center">
+    <div class="col-md-4 col-12 login-form text-center overflow-hidden">
         <div class="">
             <?php do_action( 'woocommerce_before_customer_login_form' ); ?>
         </div>
@@ -151,7 +151,7 @@ defined( 'ABSPATH' ) || exit;
     </div>
 
     <!-- Login Form (Right) -->
-    <div class="col-md-4 col-12 login-form text-center">
+    <div class="col-md-4 col-12 login-form text-center overflow-hidden">
         <div class="">
             <?php do_action( 'woocommerce_before_customer_login_form' );  ?>
         </div>
