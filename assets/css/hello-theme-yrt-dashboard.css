@@ -289,12 +289,12 @@ html{
     width: 50%;
 }
 
-.woocommerce .woocommerce-dashboard-login.login-container ul.dashboard-login-tabs li btn.nav-link{
+.woocommerce .woocommerce-dashboard-login.login-container ul.dashboard-login-tabs li .nav-link{
     width: 100%;
     border: unset;
     color: #fff;
 }
-.woocommerce .woocommerce-dashboard-login.login-container ul.dashboard-login-tabs li btn.nav-link.active{
+.woocommerce .woocommerce-dashboard-login.login-container ul.dashboard-login-tabs li .nav-link.active{
     border: unset;
     color: #fff;
 }
