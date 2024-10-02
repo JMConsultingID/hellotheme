@@ -105,7 +105,9 @@ defined( 'ABSPATH' ) || exit;
                     <!-- Username Input -->
                     <div class="mb-3">
                         <label for="reg_username" class="form-label"><?php esc_html_e( 'Username', 'woocommerce' ); ?></label>
-                        <input type="text" class="form-control" name="username" id="reg_username" autocomplete="username" value="<?php echo (!empty($_POST['username'])) ? esc_attr( wp_unslash( $_POST['username'] ) ) : ''; ?>">
+                        <div class="input-group">
+                        <input type="text" class="form-control" name="username" id="reg_username" autocomplete="username"  placeholder="<?php esc_html_e( 'Username', 'woocommerce' ); ?>" value="<?php echo (!empty($_POST['username'])) ? esc_attr( wp_unslash( $_POST['username'] ) ) : ''; ?>">
+                        </div>
                     </div>
 
                     <?php endif; ?>
@@ -113,14 +115,17 @@ defined( 'ABSPATH' ) || exit;
                     <!-- Email Input -->
                     <div class="mb-3">
                         <label for="reg_email" class="form-label"><?php esc_html_e( 'Email', 'woocommerce' ); ?></label>
-                        <input type="email" class="form-control" name="email" id="reg_email" autocomplete="email" value="<?php echo (!empty($_POST['email'])) ? esc_attr( wp_unslash( $_POST['email'] ) ) : ''; ?>">
+                        <div class="input-group">
+                        <input type="email" class="form-control" name="email" id="reg_email" autocomplete="email" placeholder="<?php esc_html_e( 'Email', 'woocommerce' ); ?>" value="<?php echo (!empty($_POST['email'])) ? esc_attr( wp_unslash( $_POST['email'] ) ) : ''; ?>">
+                        </div>
                     </div>
 
                     <!-- Password Input -->
                     <div class="mb-3">
                         <label for="reg_password" class="form-label"><?php esc_html_e( 'Password', 'woocommerce' ); ?></label>
                         <div class="input-group">
-                            <input type="password" class="form-control" name="password" id="reg_password" autocomplete="new-password">
+                            <input type="password" class="form-control" name="password" id="reg_password" autocomplete="new-password" placeholder="<?php esc_html_e( 'Password', 'woocommerce' ); ?>">
+                        </div>
                         </div>
                     </div>
 
