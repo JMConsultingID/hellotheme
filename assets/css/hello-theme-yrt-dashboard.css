@@ -281,15 +281,15 @@ html{
     z-index: 1;
 }
 
-.woocommerce .woocommerce-dashboard-login.login-container .dashboard-login-tabs ul{
+.woocommerce .woocommerce-dashboard-login.login-container ul.dashboard-login-tabs{
     border: unset;
 }
 
-.woocommerce .woocommerce-dashboard-login.login-container .dashboard-login-tabs ul li{
+.woocommerce .woocommerce-dashboard-login.login-container ul.dashboard-login-tabs li{
     width: 100%;
 }
 
-.woocommerce .woocommerce-dashboard-login.login-container .dashboard-login-tabs ul li btn.nav-link{
+.woocommerce .woocommerce-dashboard-login.login-container ul.dashboard-login-tabs li btn.nav-link{
     width: 100%;
     margin: 0 10px;
 }
