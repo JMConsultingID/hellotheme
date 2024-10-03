@@ -28,7 +28,8 @@ add_action( 'init', 'setup_single_product_checkout_mode' );
 
 // Function to empty the cart before adding a new product
 function _hello_theme_additional_empty_cart( $cart_item_data ) {
-
+    WC()->cart->empty_cart(); // Clear cart before adding a new product
+    return $cart_item_data; // Proceed with adding the new product
 }
 
 // Function to redirect to the checkout page after product is added
