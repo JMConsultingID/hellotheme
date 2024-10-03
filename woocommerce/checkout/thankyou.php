@@ -20,8 +20,6 @@
 defined( 'ABSPATH' ) || exit;
 ?>
 
-<?php echo do_shortcode('[elementor-template id="10957"]'); ?>
-
 <div class="woocommerce-order">
 
 	<?php
