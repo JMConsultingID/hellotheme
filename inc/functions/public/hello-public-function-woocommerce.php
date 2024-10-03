@@ -8,37 +8,30 @@
  * @package HelloTheme
  */
 
-// Disable add to cart messages
+// Disable add to cart messages and setup single product checkout mode
 function setup_single_product_checkout_mode() {
     if ( get_option( 'hello_theme_checkout_mode' ) === 'single' ) {
         // Disable add to cart messages
         add_filter( 'wc_add_to_cart_message_html', '__return_false' );
-        // Empty cart before adding a new item
+        
+        // Empty the cart before adding a new product
         add_filter( 'woocommerce_add_cart_item_data', '_hello_theme_additional_empty_cart' );
+        
+        // Redirect to the checkout page after adding the product to the cart
+        add_filter( 'woocommerce_add_to_cart_redirect', 'hello_theme_additional_add_to_cart_redirect' );
     }
 }
 add_action( 'init', 'setup_single_product_checkout_mode' );
 
+// Function to empty the cart before adding a new product
 function _hello_theme_additional_empty_cart( $cart_item_data ) {
-    WC()->cart->empty_cart();
-    return $cart_item_data;
+    WC()->cart->empty_cart(); // Clear cart before adding a new product
+    return $cart_item_data; // Proceed with adding the new product
 }
 
-add_filter( 'woocommerce_add_cart_item_data', 'hello_theme_additional_woo_hello_theme_add_to_cart' );
-
-function hello_theme_additional_woo_hello_theme_add_to_cart( $cart_item_data ) {
-
-    global $woocommerce;
-    $woocommerce->cart->empty_cart();
-
-    // Do nothing with the data and return
-    return $cart_item_data;
-}
-
-// Redirect to checkout page after adding an item to the cart
-add_filter('woocommerce_add_to_cart_redirect', 'hello_theme_additional_add_to_cart_redirect');
+// Function to redirect to the checkout page after product is added
 function hello_theme_additional_add_to_cart_redirect() {
-    return wc_get_checkout_url();
+    return wc_get_checkout_url(); // Redirect to checkout
 }
 
 // Disable non-base location price adjustments
