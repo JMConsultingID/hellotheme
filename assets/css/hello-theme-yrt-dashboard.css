@@ -127,10 +127,11 @@ html{
     margin-bottom: 10px;
 }
 
-
-
 .woocommerce .woocommerce-dashboard-container .woocommerce-dashboard-content button.offcanvas-close{
     color: #E1E1E1;
+    osition: absolute;
+    right: -25vw;
+    top: 30px;
 }
 
 .woocommerce .woocommerce-dashboard-container .woocommerce-dashboard-content .offcanvas{
