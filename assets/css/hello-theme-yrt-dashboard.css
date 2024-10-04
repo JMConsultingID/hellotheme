@@ -132,6 +132,7 @@ html{
     position: absolute;
     right: -25vw;
     top: 30px;
+    transition: none;
 }
 
 .woocommerce .woocommerce-dashboard-container .woocommerce-dashboard-content .offcanvas{
