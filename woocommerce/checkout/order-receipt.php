@@ -30,7 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<strong><?php echo esc_html( wc_format_datetime( $order->get_date_created() ) ); ?></strong>
 	</li>
 	<li class="total">
-		<?php esc_html_e( 'Total:', 'woocommerce' ); ?>
+		<?php esc_html_e( 'Totals:', 'woocommerce' ); ?>
 		<strong><?php echo wp_kses_post( $order->get_formatted_order_total() ); ?></strong>
 	</li>
 	<?php if ( $order->get_payment_method_title() ) : ?>
