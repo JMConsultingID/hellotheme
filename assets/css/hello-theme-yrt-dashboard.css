@@ -102,6 +102,7 @@ html{
 
 .woocommerce .woocommerce-dashboard-container .main-content .offcanvas.offcanvas-start {
     border-right: unset;
+    transition: auto;
 }
 
 .woocommerce .woocommerce-dashboard-container .card-dashboard {
