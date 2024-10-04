@@ -165,10 +165,11 @@ function hello_theme_display_order_status_shortcode( $atts ) {
     //     return '';
     // }
 
-    // Get the order ID from the URL
-    $order_id = isset( $_GET['order'] ) ? absint( $_GET['order'] ) : 0;
-
-    if ( ! $order_id ) {
+    // Get the order ID from the URL path (matches the structure /order-received/ORDER_ID/)
+    global $wp;
+    if ( isset( $wp->query_vars['order-received'] ) ) {
+        $order_id = absint( $wp->query_vars['order-received'] );
+    } else {
         return 'No order found.';
     }
 
@@ -188,6 +189,7 @@ function hello_theme_display_order_status_shortcode( $atts ) {
 
 // Register the shortcode
 add_shortcode( 'hello_theme_order_status', 'hello_theme_display_order_status_shortcode' );
+
 
 
 ?>
