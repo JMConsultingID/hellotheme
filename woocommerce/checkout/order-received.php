@@ -38,5 +38,6 @@ defined( 'ABSPATH' ) || exit;
 
 	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	echo $message;
+	echo do_shortcode('[hello_theme_order_status]');
 	?>
 </p>
