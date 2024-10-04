@@ -169,4 +169,35 @@ function hello_theme_woocommerce_checkout_hide_countries_on_checkout($countries)
 // Hook the function to the WooCommerce checkout fields filter
 add_filter('woocommerce_countries', 'hello_theme_woocommerce_checkout_hide_countries_on_checkout', 10, 1);
 
+// Function to display order status
+function hello_theme_display_order_status_shortcode( $atts ) {
+    // Ensure the user is on the Order Received page
+    // if ( ! is_order_received_page() ) {
+    //     return '';
+    // }
+
+    // Get the order ID from the URL path (matches the structure /order-received/ORDER_ID/)
+    global $wp;
+    if ( isset( $wp->query_vars['order-received'] ) ) {
+        $order_id = absint( $wp->query_vars['order-received'] );
+    } else {
+        return 'No order found.';
+    }
+
+    // Get the order object
+    $order = wc_get_order( $order_id );
+
+    if ( ! $order ) {
+        return 'Invalid order.';
+    }
+
+    // Get the order status
+    $order_status = wc_get_order_status_name( $order->get_status() );
+
+    // Display the order status
+    return '<p>' . esc_html( $order_status ) . '</p>';
+}
+
+// Register the shortcode
+add_shortcode( 'hello_theme_order_status', 'hello_theme_display_order_status_shortcode' );
 ?>
