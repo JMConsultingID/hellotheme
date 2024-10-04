@@ -38,6 +38,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php esc_html_e( 'Payment method:', 'woocommerce' ); ?>
 		<strong><?php echo wp_kses_post( $order->get_payment_method_title() ); ?></strong>
 	</li>
+	<li class="method">
+		<?php esc_html_e( 'Order Status:', 'woocommerce' ); ?>
+		<strong><?php echo do_shortcode('[hello_theme_order_status]'); ?></strong>
+	</li>
 	<?php endif; ?>
 </ul>
 </div>
