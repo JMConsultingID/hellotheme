@@ -71,7 +71,7 @@ defined( 'ABSPATH' ) || exit;
 	        <!-- Offcanvas Menu for Mobile -->
 			<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMobile" aria-labelledby="offcanvasMobileLabel">                
                 <button type="button" class="nav-offcanvas offcanvas-close" data-bs-dismiss="offcanvas" aria-label="Close">
-                    <i class="bi bi-x"></i>
+                    <i class="bi bi-arrow-left-circle-fill"></i>
                 </button>
 			    <div class="offcanvas-header">
 			        <div class="dashboard-logo">
