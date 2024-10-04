@@ -161,9 +161,9 @@ add_filter('woocommerce_countries', 'hello_theme_woocommerce_checkout_hide_count
 // Function to display order status
 function hello_theme_display_order_status_shortcode( $atts ) {
     // Ensure the user is on the Order Received page
-    if ( ! is_order_received_page() ) {
-        return '';
-    }
+    // if ( ! is_order_received_page() ) {
+    //     return '';
+    // }
 
     // Get the order ID from the URL
     $order_id = isset( $_GET['order'] ) ? absint( $_GET['order'] ) : 0;
