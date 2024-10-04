@@ -22,7 +22,7 @@ html{
 }
 .woocommerce .woocommerce-dashboard-container .woocommerce-MyAccount-content a.woocommerce-button.button.view,
 .woocommerce .woocommerce-dashboard-container .woocommerce-MyAccount-downloads-file{
-	background: #06CA8C;
+	background-color: #06CA8C !important;
     color: #fff;
     border: none;
 }
