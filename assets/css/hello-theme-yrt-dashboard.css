@@ -20,7 +20,8 @@ html{
 .woocommerce .woocommerce-dashboard-container .woocommerce-MyAccount-content .woocommerce-info::before{
 	color: #06CA8C;
 }
-.woocommerce .woocommerce-dashboard-container .woocommerce-MyAccount-content a.woocommerce-button.button.view{
+.woocommerce .woocommerce-dashboard-container .woocommerce-MyAccount-content a.woocommerce-button.button.view,
+.woocommerce .woocommerce-dashboard-container .woocommerce-MyAccount-downloads-file{
 	background: #06CA8C;
     color: #fff;
     border: none;
