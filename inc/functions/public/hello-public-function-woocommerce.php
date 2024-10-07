@@ -192,5 +192,16 @@ function hello_theme_display_order_status_shortcode( $atts ) {
 add_shortcode( 'hello_theme_order_status', 'hello_theme_display_order_status_shortcode' );
 
 
+add_filter( 'woocommerce_shop_order_list_table_columns', function ( $columns ) {
+$columns['payment_method'] = 'Payment Method';
+return $columns;
+} );
 
+add_action( 'woocommerce_shop_order_list_table_custom_column', function ( $column, $order ) {
+if ( 'payment_method' !== $column ) {
+return;
+}
+
+echo esc_html( $order->get_payment_method_title() );
+}, 10, 2 );
 ?>
