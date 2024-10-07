@@ -8,70 +8,37 @@
  * @package HelloTheme
  */
 
-// Disable add to cart messages and setup single product checkout mode
+// Disable add to cart messages
 function setup_single_product_checkout_mode() {
     if ( get_option( 'hello_theme_checkout_mode' ) === 'single' ) {
         // Disable add to cart messages
         add_filter( 'wc_add_to_cart_message_html', '__return_false' );
-        
-        // Empty the cart before adding a new product
+        // Empty cart before adding a new item
         add_filter( 'woocommerce_add_cart_item_data', '_hello_theme_additional_empty_cart' );
-        
-        // Redirect to the checkout page after adding the product to the cart
-        add_filter( 'woocommerce_add_to_cart_redirect', 'hello_theme_additional_add_to_cart_redirect' );
-
-        // Check if there are more than 1 product in cart at checkout
-        add_action( 'woocommerce_before_checkout_form', 'hello_theme_check_for_multiple_products' );
     }
 }
 add_action( 'init', 'setup_single_product_checkout_mode' );
 
-// Function to empty the cart before adding a new product
 function _hello_theme_additional_empty_cart( $cart_item_data ) {
-    WC()->cart->empty_cart(); // Clear cart before adding a new product
-    return $cart_item_data; // Proceed with adding the new product
-}
-
-// Function to redirect to the checkout page after product is added
-function hello_theme_additional_add_to_cart_redirect() {
-    return wc_get_checkout_url(); // Redirect to checkout
-}
-
-// Check for multiple products and display notice with refresh button
-function hello_theme_check_for_multiple_products() {
-    if ( WC()->cart->get_cart_contents_count() > 1 ) {
-        // Display notice
-        wc_print_notice( __( 'Only 1 product can be checked out at a time. Please refresh the cart to keep only the last product.', 'hello-theme' ), 'error' );
-        
-        // Display refresh button
-        echo '<form method="post">';
-        echo '<button type="submit" name="refresh_cart" class="button">' . __( 'Refresh Cart', 'hello-theme' ) . '</button>';
-        echo '</form>';
-        
-        // If refresh button is pressed, keep only the last added product
-        if ( isset( $_POST['refresh_cart'] ) ) {
-            hello_theme_refresh_cart_keep_last_product();
-        }
-    }
-}
-
-// Function to refresh the cart and keep only the last product
-function hello_theme_refresh_cart_keep_last_product() {
-    $cart_items = WC()->cart->get_cart();
-    
-    // Get the last added product key
-    $last_product_key = array_key_last( $cart_items );
-    
-    // Clear the cart
     WC()->cart->empty_cart();
-    
-    // Add back the last product to the cart
-    $last_product = $cart_items[$last_product_key];
-    WC()->cart->add_to_cart( $last_product['product_id'], $last_product['quantity'], $last_product['variation_id'], $last_product['variation'], $last_product['cart_item_data'] );
-    
-    // Refresh the page
-    wp_safe_redirect( wc_get_checkout_url() );
-    exit;
+    return $cart_item_data;
+}
+
+add_filter( 'woocommerce_add_cart_item_data', 'hello_theme_additional_woo_hello_theme_add_to_cart' );
+
+function hello_theme_additional_woo_hello_theme_add_to_cart( $cart_item_data ) {
+
+    global $woocommerce;
+    $woocommerce->cart->empty_cart();
+
+    // Do nothing with the data and return
+    return $cart_item_data;
+}
+
+// Redirect to checkout page after adding an item to the cart
+add_filter('woocommerce_add_to_cart_redirect', 'hello_theme_additional_add_to_cart_redirect');
+function hello_theme_additional_add_to_cart_redirect() {
+    return wc_get_checkout_url();
 }
 
 // Disable non-base location price adjustments
@@ -234,82 +201,16 @@ function hello_theme_display_order_status_shortcode( $atts ) {
 // Register the shortcode
 add_shortcode( 'hello_theme_order_status', 'hello_theme_display_order_status_shortcode' );
 
-// Add a new column for Payment Method in the WooCommerce Orders list
-function hello_theme_add_payment_method_column( $columns ) {
-    // Insert the payment method column after the order status column
-    $new_columns = array();
+add_filter( 'woocommerce_shop_order_list_table_columns', function ( $columns ) {
+$columns['payment_method'] = 'Payment Method';
+return $columns;
+} );
 
-    foreach ( $columns as $key => $column ) {
-        $new_columns[ $key ] = $column;
-
-        // Add the new column after 'order_status'
-        if ( 'order_status' === $key ) {
-            $new_columns['payment_method'] = __( 'Payment Method', 'hello-theme' );
-        }
-    }
-
-    return $new_columns;
+add_action( 'woocommerce_shop_order_list_table_custom_column', function ( $column, $order ) {
+if ( 'payment_method' !== $column ) {
+return;
 }
-add_filter( 'manage_edit-shop_order_columns', 'hello_theme_add_payment_method_column' );
 
-// Populate the Payment Method column with data
-function hello_theme_display_payment_method_column( $column ) {
-    global $post;
-
-    if ( 'payment_method' === $column ) {
-        $order = wc_get_order( $post->ID );
-
-        if ( $order ) {
-            // Get the payment method title
-            $payment_method = $order->get_payment_method_title();
-
-            if ( ! empty( $payment_method ) ) {
-                echo esc_html( $payment_method );
-            } else {
-                echo __( 'N/A', 'hello-theme' );
-            }
-        }
-    }
-}
-add_action( 'manage_shop_order_posts_custom_column', 'hello_theme_display_payment_method_column', 10, 2 );
-// Add a new column for Payment Method in the WooCommerce Orders list
-function hello_theme_add_payment_method_column( $columns ) {
-    // Insert the payment method column after the order status column
-    $new_columns = array();
-
-    foreach ( $columns as $key => $column ) {
-        $new_columns[ $key ] = $column;
-
-        // Add the new column after 'order_status'
-        if ( 'order_status' === $key ) {
-            $new_columns['payment_method'] = __( 'Payment Method', 'hello-theme' );
-        }
-    }
-
-    return $new_columns;
-}
-add_filter( 'manage_edit-shop_order_columns', 'hello_theme_add_payment_method_column' );
-
-// Populate the Payment Method column with data
-function hello_theme_display_payment_method_column( $column ) {
-    global $post;
-
-    if ( 'payment_method' === $column ) {
-        $order = wc_get_order( $post->ID );
-
-        if ( $order ) {
-            // Get the payment method title
-            $payment_method = $order->get_payment_method_title();
-
-            if ( ! empty( $payment_method ) ) {
-                echo esc_html( $payment_method );
-            } else {
-                echo __( 'N/A', 'hello-theme' );
-            }
-        }
-    }
-}
-add_action( 'manage_shop_order_posts_custom_column', 'hello_theme_display_payment_method_column', 10, 2 );
-
-
+echo esc_html( $order->get_payment_method_title() );
+}, 10, 2 );
 ?>
