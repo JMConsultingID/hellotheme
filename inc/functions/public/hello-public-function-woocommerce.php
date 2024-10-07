@@ -203,44 +203,16 @@ function hello_theme_woocommerce_checkout_hide_countries_on_checkout($countries)
 add_filter('woocommerce_countries', 'hello_theme_woocommerce_checkout_hide_countries_on_checkout', 10, 1);
 
 
-// Add a new column for Payment Method in the WooCommerce Orders list
-function hello_theme_add_payment_method_column( $columns ) {
-    // Insert the payment method column after the order status column
-    $new_columns = array();
+add_filter( 'woocommerce_shop_order_list_table_columns', function ( $columns ) {
+$columns['payment_method'] = 'Payment Method';
+return $columns;
+} );
 
-    foreach ( $columns as $key => $column ) {
-        $new_columns[ $key ] = $column;
-
-        // Add the new column after 'order_status'
-        if ( 'order_status' === $key ) {
-            $new_columns['payment_method'] = __( 'Payment Method', 'hello-theme' );
-        }
-    }
-
-    return $new_columns;
+add_action( 'woocommerce_shop_order_list_table_custom_column', function ( $column, $order ) {
+if ( 'payment_method' !== $column ) {
+return;
 }
-add_filter( 'manage_edit-shop_order_columns', 'hello_theme_add_payment_method_column' );
 
-// Populate the Payment Method column with data
-function hello_theme_display_payment_method_column( $column ) {
-    global $post;
-
-    if ( 'payment_method' === $column ) {
-        $order = wc_get_order( $post->ID );
-
-        if ( $order ) {
-            // Get the payment method title
-            $payment_method = $order->get_payment_method_title();
-
-            if ( ! empty( $payment_method ) ) {
-                echo esc_html( $payment_method );
-            } else {
-                echo __( 'N/A', 'hello-theme' );
-            }
-        }
-    }
-}
-add_action( 'manage_shop_order_posts_custom_column', 'hello_theme_display_payment_method_column', 10, 2 );
-
-
+echo esc_html( $order->get_payment_method_title() );
+}, 10, 2 );
 ?>
