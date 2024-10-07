@@ -85,27 +85,33 @@ function insert_elementor_shortcode($order_id)
 }
 add_action('woocommerce_thankyou', 'insert_elementor_shortcode', 20);
 
-function add_payment_method_column_to_order_table($columns) {
-    $new_columns = array();
-
-    foreach ($columns as $column_name => $column_info) {
-        $new_columns[$column_name] = $column_info;
-        
-        if ($column_name === 'order_total') {
-            $new_columns['payment_method'] = __('Payment Method', 'woocommerce');
-        }
-    }
-    
-    return $new_columns;
+function add_payment_method_column_to_wc_admin_orders($columns) {
+    $columns['payment_method'] = __('Payment Method', 'woocommerce');
+    return $columns;
 }
-add_filter('manage_edit-shop_order_columns', 'add_payment_method_column_to_order_table');
+add_filter('woocommerce_admin_order_list_table_columns', 'add_payment_method_column_to_wc_admin_orders');
 
-function display_payment_method_in_order_table($column) {
-    global $post;
-
+function display_payment_method_in_wc_admin_orders($column, $order) {
     if ($column == 'payment_method') {
-        $order = wc_get_order($post->ID);
         echo $order->get_payment_method_title();
     }
 }
-add_action('manage_shop_order_posts_custom_column', 'display_payment_method_in_order_table');
+add_action('woocommerce_admin_order_list_table_custom_column', 'display_payment_method_in_wc_admin_orders', 10, 2);
+
+function set_payment_method_column_sortable($columns) {
+    $columns['payment_method'] = 'payment_method';
+    return $columns;
+}
+add_filter('woocommerce_admin_order_list_table_sortable_columns', 'set_payment_method_column_sortable');
+
+function handle_payment_method_column_sorting($query) {
+    if (!is_admin() || !$query->is_main_query() || !isset($_GET['page']) || $_GET['page'] !== 'wc-orders') {
+        return;
+    }
+
+    if (isset($query->query_vars['orderby']) && $query->query_vars['orderby'] == 'payment_method') {
+        $query->set('meta_key', '_payment_method_title');
+        $query->set('orderby', 'meta_value');
+    }
+}
+add_action('pre_get_posts', 'handle_payment_method_column_sorting');
