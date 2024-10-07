@@ -184,7 +184,7 @@ function hello_theme_display_order_status_shortcode( $atts ) {
     $order_status = wc_get_order_status_name( $order->get_status() );
 
     // Display the order status
-    return '<p>' . esc_html( $order_status ) . '</p>';
+    return '<div class="order-status order-status-'.$order_status.'">' . esc_html( $order_status ) . '</div>';
 }
 
 // Register the shortcode
