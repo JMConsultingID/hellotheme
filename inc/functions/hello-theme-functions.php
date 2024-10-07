@@ -34,7 +34,7 @@ function wt_pklist_toggle_received_seal($is_enable_received_seal, $template_type
 {
     if($order->get_status()=='completed')
     {
-         return false;
+         return true;
     }
     return false;
 }
