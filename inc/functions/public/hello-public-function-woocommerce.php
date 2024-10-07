@@ -231,8 +231,6 @@ function hello_theme_display_payment_method_column( $column ) {
 }
 add_action( 'manage_shop_order_posts_custom_column', 'hello_theme_display_payment_method_column', 10, 2 );
 
-
-
 add_filter( 'woocommerce_shop_order_list_table_columns', function ( $columns ) {
 $columns['payment_method'] = 'Payment Method';
 return $columns;
