@@ -27,3 +27,14 @@ require_once get_stylesheet_directory() . '/inc/functions/public/hello-public-fu
 if ($enabled_pricing_table === '1') {
     require_once get_stylesheet_directory() . '/inc/functions/helper/hello-theme-helper.php';
 }
+
+
+add_filter('wf_pklist_toggle_received_seal', 'wt_pklist_toggle_received_seal', 10, 3);
+function wt_pklist_toggle_received_seal($is_enable_received_seal, $template_type, $order)
+{
+    if($order->get_status()=='completed')
+    {
+         return false;
+    }
+    return false;
+}
