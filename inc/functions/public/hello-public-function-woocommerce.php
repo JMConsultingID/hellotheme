@@ -169,6 +169,7 @@ function hello_theme_woocommerce_checkout_hide_countries_on_checkout($countries)
 // Hook the function to the WooCommerce checkout fields filter
 add_filter('woocommerce_countries', 'hello_theme_woocommerce_checkout_hide_countries_on_checkout', 10, 1);
 
+
 // Function to display order status
 function hello_theme_display_order_status_shortcode( $atts ) {
     // Ensure the user is on the Order Received page
@@ -193,13 +194,15 @@ function hello_theme_display_order_status_shortcode( $atts ) {
 
     // Get the order status
     $order_status = wc_get_order_status_name( $order->get_status() );
+    $order_status_var = $order->get_status();
 
     // Display the order status
-    return '<p>' . esc_html( $order_status ) . '</p>';
+    return '<div class="order-status order-status-'.$order_status_var.'">' . esc_html( $order_status ) . '</div>';
 }
 
 // Register the shortcode
 add_shortcode( 'hello_theme_order_status', 'hello_theme_display_order_status_shortcode' );
+
 
 // Add a new column for Payment Method in the WooCommerce Orders list
 function hello_theme_add_payment_method_column( $columns ) {
@@ -239,5 +242,18 @@ function hello_theme_display_payment_method_column( $column ) {
     }
 }
 add_action( 'manage_shop_order_posts_custom_column', 'hello_theme_display_payment_method_column', 10, 2 );
+
+add_filter( 'woocommerce_shop_order_list_table_columns', function ( $columns ) {
+$columns['payment_method'] = 'Payment Method';
+return $columns;
+} );
+
+add_action( 'woocommerce_shop_order_list_table_custom_column', function ( $column, $order ) {
+if ( 'payment_method' !== $column ) {
+return;
+}
+
+echo esc_html( $order->get_payment_method_title() );
+}, 10, 2 );
 
 ?>
