@@ -203,6 +203,80 @@ function hello_theme_woocommerce_checkout_hide_countries_on_checkout($countries)
 add_filter('woocommerce_countries', 'hello_theme_woocommerce_checkout_hide_countries_on_checkout', 10, 1);
 
 
+
+// Function to display order status
+function hello_theme_display_order_status_shortcode( $atts ) {
+    // Ensure the user is on the Order Received page
+    // if ( ! is_order_received_page() ) {
+    //     return '';
+    // }
+
+    // Get the order ID from the URL path (matches the structure /order-received/ORDER_ID/)
+    global $wp;
+    if ( isset( $wp->query_vars['order-received'] ) ) {
+        $order_id = absint( $wp->query_vars['order-received'] );
+    } else {
+        return 'No order found.';
+    }
+
+    // Get the order object
+    $order = wc_get_order( $order_id );
+
+    if ( ! $order ) {
+        return 'Invalid order.';
+    }
+
+    // Get the order status
+    $order_status = wc_get_order_status_name( $order->get_status() );
+    $order_status_var = $order->get_status();
+
+    // Display the order status
+    return '<div class="order-status order-status-'.$order_status_var.'">' . esc_html( $order_status ) . '</div>';
+}
+
+// Register the shortcode
+add_shortcode( 'hello_theme_order_status', 'hello_theme_display_order_status_shortcode' );
+
+
+// Add a new column for Payment Method in the WooCommerce Orders list
+function hello_theme_add_payment_method_column( $columns ) {
+    // Insert the payment method column after the order status column
+    $new_columns = array();
+
+    foreach ( $columns as $key => $column ) {
+        $new_columns[ $key ] = $column;
+
+        // Add the new column after 'order_status'
+        if ( 'order_status' === $key ) {
+            $new_columns['payment_method'] = __( 'Payment Method', 'hello-theme' );
+        }
+    }
+
+    return $new_columns;
+}
+add_filter( 'manage_edit-shop_order_columns', 'hello_theme_add_payment_method_column' );
+
+// Populate the Payment Method column with data
+function hello_theme_display_payment_method_column( $column ) {
+    global $post;
+
+    if ( 'payment_method' === $column ) {
+        $order = wc_get_order( $post->ID );
+
+        if ( $order ) {
+            // Get the payment method title
+            $payment_method = $order->get_payment_method_title();
+
+            if ( ! empty( $payment_method ) ) {
+                echo esc_html( $payment_method );
+            } else {
+                echo __( 'N/A', 'hello-theme' );
+            }
+        }
+    }
+}
+add_action( 'manage_shop_order_posts_custom_column', 'hello_theme_display_payment_method_column', 10, 2 );
+
 add_filter( 'woocommerce_shop_order_list_table_columns', function ( $columns ) {
 $columns['payment_method'] = 'Payment Method';
 return $columns;
@@ -215,4 +289,3 @@ return;
 
 echo esc_html( $order->get_payment_method_title() );
 }, 10, 2 );
-?>
