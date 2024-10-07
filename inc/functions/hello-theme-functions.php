@@ -84,3 +84,28 @@ function insert_elementor_shortcode($order_id)
     }
 }
 add_action('woocommerce_thankyou', 'insert_elementor_shortcode', 20);
+
+function add_payment_method_column_to_order_table($columns) {
+    $new_columns = array();
+
+    foreach ($columns as $column_name => $column_info) {
+        $new_columns[$column_name] = $column_info;
+        
+        if ($column_name === 'order_total') {
+            $new_columns['payment_method'] = __('Payment Method', 'woocommerce');
+        }
+    }
+    
+    return $new_columns;
+}
+add_filter('manage_edit-shop_order_columns', 'add_payment_method_column_to_order_table');
+
+function display_payment_method_in_order_table($column) {
+    global $post;
+
+    if ($column == 'payment_method') {
+        $order = wc_get_order($post->ID);
+        echo $order->get_payment_method_title();
+    }
+}
+add_action('manage_shop_order_posts_custom_column', 'display_payment_method_in_order_table');
