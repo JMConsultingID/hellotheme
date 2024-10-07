@@ -100,3 +100,16 @@ echo $order->get_payment_method_title();
 }
 }
 add_action('manage_shop_order_posts_custom_column', 'ts_display_payment_method_column', 10, 2);
+
+add_filter( 'woocommerce_shop_order_list_table_columns', function ( $columns ) {
+$columns['payment_method'] = 'Payment Method';
+return $columns;
+} );
+
+add_action( 'woocommerce_shop_order_list_table_custom_column', function ( $column, $order ) {
+if ( 'payment_method' !== $column ) {
+return;
+}
+
+echo esc_html( $order->get_payment_method_title() );
+}, 10, 2 );
