@@ -87,6 +87,11 @@ html{
     font-weight: 500;
     margin-bottom: 15px;
     display: block;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%; /* 16px */
+    letter-spacing: 0.32px;
 }
 
 .woocommerce .woocommerce-dashboard-container .dashboard-sidebar a:hover {
@@ -210,6 +215,7 @@ html{
     height: 100vh;
     justify-content: flex-start;
     position: relative;
+    padding: 0px;
 }
 .woocommerce .woocommerce-dashboard-container .woocommerce-MyAccount-navigation-link--customer-logout {
     position: absolute;
