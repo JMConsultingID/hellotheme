@@ -84,13 +84,9 @@ html{
 .woocommerce .woocommerce-dashboard-container .dashboard-sidebar a {
     color: #E1E1E1;
     font-size: 16px;
-    font-weight: 500;
-    margin-bottom: 15px;
-    display: block;
-    font-size: 16px;
     font-style: normal;
     font-weight: 700;
-    line-height: 100%; /* 16px */
+    line-height: 16px;
     letter-spacing: 0.32px;
 }
 
@@ -166,6 +162,8 @@ html{
 
 .woocommerce .woocommerce-dashboard-container ul li.woocommerce-MyAccount-navigation-link{
 	list-style: none;
+    padding: 12px 0px;
+    margin-bottom: 16px;
 }
 
 .woocommerce .woocommerce-dashboard-container form .form-row input.input-text, 
