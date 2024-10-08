@@ -71,7 +71,6 @@ html{
 }
 .woocommerce .woocommerce-dashboard-container .fixed-sidebar .dashboard-logo {
     color: #E1E1E1;
-    text-align: center;
 }
 
 .woocommerce .woocommerce-dashboard-container .dashboard-sidebar {
@@ -81,6 +80,7 @@ html{
 }
 
 .woocommerce .woocommerce-dashboard-container .dashboard-sidebar a {
+    padding: 12px 0px;
     color: #E1E1E1;
     font-size: 16px;
     font-style: normal;
@@ -166,7 +166,6 @@ html{
 
 .woocommerce .woocommerce-dashboard-container ul li.woocommerce-MyAccount-navigation-link{
 	list-style: none;
-    padding: 12px 0px;
     margin-bottom: 16px;
 }
 
