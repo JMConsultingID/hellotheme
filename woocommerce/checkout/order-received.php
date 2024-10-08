@@ -39,5 +39,19 @@ defined( 'ABSPATH' ) || exit;
 	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	echo $message;
 	echo do_shortcode('[hello_theme_order_status]');
+
+	<?php if ( $order->has_status( 'failed' ) ) : ?>
+
+		<p class="woocommerce-notice woocommerce-notice--error woocommerce-thankyou-order-failed"><?php esc_html_e( 'Unfortunately your order cannot be processed as the originating bank/merchant has declined your transaction. Please attempt your purchase again.', 'woocommerce' ); ?></p>
+
+		<p class="woocommerce-notice woocommerce-notice--error woocommerce-thankyou-order-failed-actions">
+			<a href="<?php echo esc_url( $order->get_checkout_payment_url() ); ?>" class="button pay"><?php esc_html_e( 'Pay', 'woocommerce' ); ?></a>
+			<?php if ( is_user_logged_in() ) : ?>
+				<a href="<?php echo esc_url( wc_get_page_permalink( 'myaccount' ) ); ?>" class="button pay"><?php esc_html_e( 'My account', 'woocommerce' ); ?></a>
+			<?php endif; ?>
+		</p>
+
+	<?php endif; ?>
+
 	?>
 </p>
