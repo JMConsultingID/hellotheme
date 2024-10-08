@@ -90,6 +90,11 @@ html{
     letter-spacing: 0.32px;
 }
 
+.woocommerce .woocommerce-dashboard-container .dashboard-sidebar a svg{
+    margin-right: 8px;
+}
+
+
 .woocommerce .woocommerce-dashboard-container .dashboard-sidebar a:hover {
     color: #f1faee;
     text-decoration: none;
