@@ -1,6 +1,10 @@
 html{
 	margin-top: 0px!important;
 }
+.elementor-element svg {
+    width: inherit;
+    fill: inherit;
+}
 .woocommerce .woocommerce-dashboard-container .woocommerce-MyAccount-navigation,
 .woocommerce .woocommerce-dashboard-container .woocommerce-MyAccount-content  {
     float: unset!important;
