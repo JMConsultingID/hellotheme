@@ -197,12 +197,21 @@ html{
     align-items: center;
     gap: 8px;
 }
+.woocommerce .woocommerce-dashboard-container ul li.woocommerce-MyAccount-navigation-link a{
+    width: 100%;
+}
 .woocommerce .woocommerce-dashboard-container ul li.woocommerce-MyAccount-navigation-link.is-active{
+    background: #09CA8C;
+}
+.woocommerce .woocommerce-dashboard-container ul li.woocommerce-MyAccount-navigation-link:hover{
     background: #09CA8C;
 }
 .woocommerce .woocommerce-dashboard-container ul li.woocommerce-MyAccount-navigation-link.is-active svg,
 .woocommerce .woocommerce-dashboard-container ul li.woocommerce-MyAccount-navigation-link.is-active .fas,
-.woocommerce .woocommerce-dashboard-container .woocommerce-dashboard-content .offcanvas ul li.is-active a .fas {
+.woocommerce .woocommerce-dashboard-container .woocommerce-dashboard-content .offcanvas ul li.is-active a .fas,
+.woocommerce .woocommerce-dashboard-container ul li.woocommerce-MyAccount-navigation-link:hover svg,
+.woocommerce .woocommerce-dashboard-container ul li.woocommerce-MyAccount-navigation-link:hover .fas,
+.woocommerce .woocommerce-dashboard-container .woocommerce-dashboard-content .offcanvas ul li:hover a .fas {
     fill: #fff;
     stroke: #fff;
     color: #fff;
