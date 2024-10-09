@@ -113,6 +113,13 @@ html{
 .woocommerce .woocommerce-dashboard-container .main-content .eayrt-box-shadow {
     box-shadow: 25px 29px 11px 0px rgba(0, 0, 0, 0.00), 16px 19px 10px 0px rgba(0, 0, 0, 0.01), 1px 1px 3px 0px rgba(0, 0, 0, 0.10);
 }
+
+.woocommerce .woocommerce-dashboard-container .main-content .eayrt-box-shadow a.elementor-button-link{
+    width: 100%;
+}
+.woocommerce .woocommerce-dashboard-container .main-content .eayrt-box-shadow a.elementor-button-link span.elementor-button-content-wrapper {
+    justify-content: flex-start;
+}
 .woocommerce .woocommerce-dashboard-container .main-content .offcanvas-backdrop.show {
     opacity: 1;
     background-color: rgba(15, 23, 42, .5);
