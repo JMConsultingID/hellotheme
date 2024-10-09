@@ -91,6 +91,7 @@ html{
 
 .woocommerce .woocommerce-dashboard-container .dashboard-sidebar a svg,
 .woocommerce .woocommerce-dashboard-container .dashboard-sidebar a .fas{
+    color: #09CA8C;
     margin-right: 8px;
 }
 
@@ -178,9 +179,11 @@ html{
 .woocommerce .woocommerce-dashboard-container ul li.woocommerce-MyAccount-navigation-link.is-active{
     background: #09CA8C;
 }
-.woocommerce .woocommerce-dashboard-container ul li.woocommerce-MyAccount-navigation-link.is-active svg {
+.woocommerce .woocommerce-dashboard-container ul li.woocommerce-MyAccount-navigation-link.is-active svg,
+.woocommerce .woocommerce-dashboard-container ul li.woocommerce-MyAccount-navigation-link.is-active .fas {
     fill: #fff;
     stroke: #fff;
+    color: #fff;
 }
 
 .woocommerce .woocommerce-dashboard-container ul li.woocommerce-MyAccount-navigation-link{
