@@ -177,7 +177,10 @@ html{
 .woocommerce .woocommerce-dashboard-container ul li.woocommerce-MyAccount-navigation-link.is-active{
     background: #09CA8C;
 }
-
+.woocommerce .woocommerce-dashboard-container ul li.woocommerce-MyAccount-navigation-link.is-active svg {
+    fill: #fff;
+    stroke: #fff;
+}
 
 .woocommerce .woocommerce-dashboard-container ul li.woocommerce-MyAccount-navigation-link{
     list-style: none;
