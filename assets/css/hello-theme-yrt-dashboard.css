@@ -45,6 +45,13 @@ html{
     border: none;
 }
 
+.woocommerce .woocommerce-dashboard-container .fixed-sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+}
+
 .woocommerce .woocommerce-dashboard-container .dashboard-mobile-topbar{
     background-color: #0A1622;
     color: #fff;
