@@ -39,7 +39,7 @@ defined( 'ABSPATH' ) || exit;
             </button>
         </div>
         <!-- Sidebar Navigation -->
-        <div class="woocommerce-dashboard-navigation dashboard-column col-xl-2 col-lg-3 col-md-3 d-none d-md-block dashboard-sidebar fixed-sidebar">
+        <div class="woocommerce-dashboard-navigation dashboard-column col-xxl-2 col-xl-3 col-lg-3 col-md-3 d-none d-md-block dashboard-sidebar fixed-sidebar">
             <?php 
                 echo '<div class="dashboard-logo">';
 		        echo '<a href="/my-account/"><img src="https://yourrobotrader.com/wp-content/uploads/2022/08/new-logo-12-jan-14-1024x158.webp" alt="Your Robo Trader" class="img-fluid" width="180px" style="margin-bottom:48px;"></a>';
@@ -49,7 +49,7 @@ defined( 'ABSPATH' ) || exit;
         </div>
 
         <!-- Main Content -->
-        <div class="woocommerce-dashboard-content dashboard-column col-xl-10 col-lg-9 col-md-9 main-content">
+        <div class="woocommerce-dashboard-content dashboard-column col-xxl-10 col-xl-9 col-lg-9 col-md-9 main-content">
         	<div class="d-flex justify-content-between mb-4 d-none d-md-flex">
                 <h4 style="padding: 0;margin: 0;"><?php echo __('EA Licenses', 'ealicensewoocommerce'); ?></h4>
                 <div class="welcome-text d-none d-md-block">
