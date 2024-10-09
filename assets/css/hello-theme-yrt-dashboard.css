@@ -95,7 +95,9 @@ html{
     color: #09CA8C;
     margin-right: 8px;
 }
-
+.woocommerce .woocommerce-dashboard-container .eayrt-cta-all-icon .fas{
+    color: #09CA8C;
+}
 
 .woocommerce .woocommerce-dashboard-container .dashboard-sidebar a:hover {
     color: #f1faee;
