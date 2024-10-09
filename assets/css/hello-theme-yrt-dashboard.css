@@ -89,7 +89,8 @@ html{
     letter-spacing: 0.32px;
 }
 
-.woocommerce .woocommerce-dashboard-container .dashboard-sidebar a svg{
+.woocommerce .woocommerce-dashboard-container .dashboard-sidebar a svg,
+.woocommerce .woocommerce-dashboard-container .dashboard-sidebar a .fas{
     margin-right: 8px;
 }
 
@@ -190,36 +191,6 @@ html{
     padding: 0px 20px;
     align-items: center;
     gap: 8px;
-}
-
-.woocommerce .woocommerce-dashboard-container ul li a.has-icon {
-    position: relative;
-    padding-left: 30px;
-}
-.woocommerce .woocommerce-dashboard-container ul li a.has-icon:before {
-    font-family: "Font Awesome 5 Free";
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-}
-.woocommerce .woocommerce-dashboard-container ul li a.fas:before {
-    font-weight: 900;
-}
-.woocommerce .woocommerce-dashboard-container ul li a.fa-tachometer-alt:before {
-    content: "\f3fd";
-}
-.woocommerce .woocommerce-dashboard-container ul li a.fa-key:before {
-    content: "\f084";
-}
-.woocommerce .woocommerce-dashboard-container ul li a.fa-shopping-cart:before {
-    content: "\f07a";
-}
-.woocommerce .woocommerce-dashboard-container ul li a.fa-tag:before {
-    content: "\f02b";
-}
-.woocommerce .woocommerce-dashboard-container ul li a.fa-cog:before {
-    content: "\f013";
 }
 
 .woocommerce .woocommerce-dashboard-container form .form-row input.input-text, 
