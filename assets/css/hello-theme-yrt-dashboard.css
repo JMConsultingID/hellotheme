@@ -95,7 +95,8 @@ html{
     color: #09CA8C;
     margin-right: 8px;
 }
-.woocommerce .woocommerce-dashboard-container .eayrt-cta-all-icon .fas{
+.woocommerce .woocommerce-dashboard-container .eayrt-cta-all-icon .fas,
+.woocommerce .woocommerce-dashboard-container .eayrt-cta-all-icon .far{
     color: #09CA8C;
 }
 
