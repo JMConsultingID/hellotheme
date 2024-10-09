@@ -107,6 +107,7 @@ html{
 
 .woocommerce .woocommerce-dashboard-container .main-content {
     padding: 20px;
+    background: #E9EDEF;
 }
 
 .woocommerce .woocommerce-dashboard-container .main-content .offcanvas-backdrop.show {
