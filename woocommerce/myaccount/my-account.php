@@ -30,7 +30,18 @@ defined( 'ABSPATH' ) || exit;
         <!-- Monile TopBar Offcanvas -->
         <div class="d-flex justify-content-between mb-4 d-md-none dashboard-mobile-topbar p-3">
             <div class="dashboard-logo pt-2">
-                <a href="/my-account/"><img src="https://yourrobotrader.com/wp-content/uploads/2022/08/new-logo-12-jan-14-1024x158.webp" alt="Your Robo Trader" class="img-fluid" width="180px"></a>
+                <a href="/my-account/"><img src="https://yourrobotrader.com/wp-content/uploads/2022/08/new-logo-12-jan-14-1024x158.webp" alt="Your Robo Trader" class="img-fluid" width="180px">
+                <svg width="216" height="34" viewBox="0 0 216 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="216" height="34" rx="4" fill="url(#paint0_linear_4116_93)"/>
+<rect x="0.5" y="0.5" width="215" height="33" rx="3.5" stroke="black" stroke-opacity="0.1"/>
+<defs>
+<linearGradient id="paint0_linear_4116_93" x1="0" y1="34" x2="64.8018" y2="-83.4337" gradientUnits="userSpaceOnUse">
+<stop stop-color="#0D6B5C"/>
+<stop offset="1" stop-color="#6AF5AA"/>
+</linearGradient>
+</defs>
+</svg>
+</a>
             </div>
             <!-- Hamburger Button for Mobile -->
             <button class="btn d-md-none nav-offcanvas float-end" type="button" data-bs-toggle="offcanvas"
