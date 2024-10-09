@@ -167,6 +167,26 @@ html{
 .woocommerce .woocommerce-dashboard-container ul li.woocommerce-MyAccount-navigation-link{
 	list-style: none;
     margin-bottom: 16px;
+    border-radius: 8px;
+    display: flex;
+    height: 48px;
+    padding: 0px 20px;
+    align-items: center;
+    gap: 8px;
+}
+.woocommerce .woocommerce-dashboard-container ul li.woocommerce-MyAccount-navigation-link.is-active{
+    background: #09CA8C;
+}
+
+
+.woocommerce .woocommerce-dashboard-container ul li.woocommerce-MyAccount-navigation-link{
+    list-style: none;
+    margin-bottom: 16px;
+    display: flex;
+    height: 48px;
+    padding: 0px 20px;
+    align-items: center;
+    gap: 8px;
 }
 
 .woocommerce .woocommerce-dashboard-container form .form-row input.input-text, 
