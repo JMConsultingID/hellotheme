@@ -324,9 +324,11 @@ html{
 }
 
 @media (max-width: 767px) {
-.woocommerce .woocommerce-dashboard-container table.shop_table_responsive tr, 
-.woocommerce .woocommerce-dashboard-container table.shop_table_responsive tr {
+.woocommerce .woocommerce-dashboard-container table.shop_table_responsive tr{
     margin-top: 50px;
+}
+.woocommerce .woocommerce-dashboard-container table.shop_table_responsive tr:nth-child(1){
+    margin-top: 0px;
 }
 .woocommerce .woocommerce-dashboard-container .offcanvas-body {
     overflow: hidden;
