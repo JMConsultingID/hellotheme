@@ -27,7 +27,7 @@ html{
     padding: 20px 24px;
 }
 
-.woocommerce-dashboard-container .woocommerce-dashboard-content table.shop_table tr th{
+.woocommerce-dashboard-container .woocommerce-dashboard-content table.shop_table tr th:not(.woocommerce-orders-table__cell){
     background: #09CA8C;
     color: #fff;
 }
