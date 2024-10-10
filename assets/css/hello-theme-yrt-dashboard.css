@@ -4,7 +4,7 @@ html{
 
 .woocommerce-dashboard-container .woocommerce-dashboard-content table tbody>tr:nth-child(odd)>td, 
 .woocommerce-dashboard-container .woocommerce-dashboard-content table tbody>tr:nth-child(odd)>th {
-    background-color: unset;
+    background-color: #fff;
 }
 
 .woocommerce-dashboard-container .woocommerce-dashboard-content table.shop_table,
@@ -24,7 +24,7 @@ html{
     color: #fff;
 }
 .woocommerce-dashboard-container .woocommerce-dashboard-content table.shop_table tr td{
-    background: #FFFFFF;
+    background: #fff;
 }
 
 .eayrt-offers-coupon-text p,
