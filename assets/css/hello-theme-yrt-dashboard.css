@@ -83,6 +83,7 @@ html{
 }
 
 .woocommerce-dashboard-container .woocommerce-dashboard-content .woocommerce-MyAccount-content section.woocommerce-order-details a.button {
+    font-size: 14px;
     background: transparent;
     margin-right: 10px; /* Spacing between buttons */
     border-radius: 6px;
