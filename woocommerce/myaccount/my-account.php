@@ -51,7 +51,7 @@ defined( 'ABSPATH' ) || exit;
 
         <!-- Main Content -->
         <div class="woocommerce-dashboard-content dashboard-column col-xxl-10 col-xl-9 col-lg-9 col-md-9 main-content ms-sm-auto min-vh-100">
-        	<div class="d-flex justify-content-between mb-4 d-md-flex text-md-start text-start">
+        	<div class="d-flex justify-content-between mb-1 d-md-flex text-md-start text-start">
                 <p class="p-0 m-0"><strong><?php echo ealicensewoocommerce_get_current_title(); ?></strong></p>
                 <div class="welcome-text d-md-block d-flex text-end">
                     <p><?php echo __('Welcome, ', 'ealicensewoocommerce') . '<strong>' . wp_get_current_user()->display_name . '</strong>'; ?></p>
