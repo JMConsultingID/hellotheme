@@ -91,16 +91,12 @@ html{
     gap: 12px;
 }
 
-.woocommerce-dashboard-container .woocommerce-dashboard-content .woocommerce-MyAccount-content section.woocommerce-order-details .order-again a.button {
-    margin-top: -10px;
-}
-
 .woocommerce-dashboard-container .woocommerce-dashboard-content .woocommerce-MyAccount-content section.woocommerce-order-details br {
     display: none; /* Menyembunyikan <br> agar tidak ada spasi vertikal */
 }
 
 .woocommerce-dashboard-container .woocommerce-dashboard-content .woocommerce-MyAccount-content section.woocommerce-order-details p.order-again {
-    display:inline-flex;
+    display:none;
     margin: 0;
 }
 
