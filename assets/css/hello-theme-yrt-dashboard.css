@@ -82,7 +82,17 @@ html{
 
 .woocommerce-dashboard-container .woocommerce-dashboard-content .woocommerce-MyAccount-content section.woocommerce-order-details a.button {
     margin-right: 10px; /* Spacing between buttons */
-    display: inline-block;
+    border-radius: 6px;
+    border: 1px solid #0A1622;
+    display: flex;
+    padding: 12px 24px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.woocommerce-dashboard-container .woocommerce-dashboard-content .woocommerce-MyAccount-content section.woocommerce-order-details .order-again a.button {
+    margin-top: -10px;
 }
 
 .woocommerce-dashboard-container .woocommerce-dashboard-content .woocommerce-MyAccount-content section.woocommerce-order-details br {
