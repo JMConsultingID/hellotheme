@@ -7,7 +7,6 @@ html{
     padding: 0px;
     overflow: hidden;
     border-radius: 8px;
-    background: #FFF;
     box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.10);   
 }
 
@@ -325,6 +324,10 @@ html{
 }
 
 @media (max-width: 767px) {
+.woocommerce .woocommerce-dashboard-container table.shop_table_responsive tr, 
+.woocommerce .woocommerce-dashboard-container table.shop_table_responsive tr {
+    margin-top: 50px;
+}
 .woocommerce .woocommerce-dashboard-container .offcanvas-body {
     overflow: hidden;
 }
