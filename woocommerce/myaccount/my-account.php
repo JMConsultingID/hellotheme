@@ -87,7 +87,7 @@ defined( 'ABSPATH' ) || exit;
 			</div>
 
             <footer class="footer mt-auto">
-              <div class="container text-start">
+              <div class="container text-center">
                 <span class="text-muted">&copy; <?php echo date("Y"); ?> yourrobotrader.com. All rights reserved.</span>
               </div>
             </footer>

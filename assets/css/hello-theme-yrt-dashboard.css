@@ -10,6 +10,10 @@ html{
     box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.10);   
 }
 
+.woocommerce-dashboard-container .woocommerce-dashboard-content footer{
+    font-size: 14px;
+}
+
 .woocommerce-dashboard-container .woocommerce-dashboard-content table tbody>tr:nth-child(odd)>td, 
 .woocommerce-dashboard-container .woocommerce-dashboard-content table tbody>tr:nth-child(odd)>th {
     background-color: #fff;
