@@ -1,6 +1,17 @@
 html{
 	margin-top: 0px!important;
 }
+
+.woocommerce-dashboard-container .woocommerce-dashboard-content table tbody>tr:nth-child(odd)>td, 
+.woocommerce-dashboard-container .woocommerce-dashboard-content table tbody>tr:nth-child(odd)>th {
+    background-color: unset;
+}
+
+.woocommerce-dashboard-container .woocommerce-dashboard-content table.shop_table,
+.woocommerce-dashboard-container .woocommerce-dashboard-content table.shop_table tr td {
+    border: none;
+}
+
 .eayrt-offers-coupon-text p,
 .eayrt-offers-coupon-text span{
     background: linear-gradient(74deg, #0D6B5C 0%, #6AF5AA 100%);
@@ -48,9 +59,7 @@ html{
   display: flex;
   flex-direction: column;
 }
-.woocommerce-dashboard-container .woocommerce-dashboard-content table.shop_table {
-    border: none;
-}
+
 
 .woocommerce .woocommerce-dashboard-container .fixed-sidebar {
     position: fixed;
