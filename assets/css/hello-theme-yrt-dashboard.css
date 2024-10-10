@@ -183,6 +183,7 @@ html{
 .woocommerce .woocommerce-dashboard-container .dashboard-mobile-topbar{
     background-color: #0A1622;
     color: #fff;
+    z-index: 1;
 }
 
 .woocommerce .woocommerce-dashboard-container button.nav-offcanvas{
@@ -432,6 +433,7 @@ html{
 }
 .woocommerce .woocommerce-dashboard-container .main-content {
     margin-left: 0%; /* This pushes the content to the right of the fixed sidebar */
+    margin-top: 77px;
 }
 .woocommerce .woocommerce-dashboard-container .woocommerce-MyAccount-navigation-link--customer-logout {
     bottom: 15vh;
