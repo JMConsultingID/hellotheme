@@ -2,6 +2,14 @@ html{
 	margin-top: 0px!important;
 }
 
+.woocommerce-dashboard-container .woocommerce-dashboard-content table.shop_table{
+    padding: 0px;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #FFF;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.10);   
+}
+
 .woocommerce-dashboard-container .woocommerce-dashboard-content table tbody>tr:nth-child(odd)>td, 
 .woocommerce-dashboard-container .woocommerce-dashboard-content table tbody>tr:nth-child(odd)>th {
     background-color: #fff;
