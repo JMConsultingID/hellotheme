@@ -37,6 +37,10 @@ html{
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+.woocommerce-dashboard-container td.woocommerce-orders-table__cell-order-ea-status {
+    color: #09CA8C;
+}
+
 .eayrt-offers-coupon-text p,
 .eayrt-offers-coupon-text span{
     background: linear-gradient(74deg, #0D6B5C 0%, #6AF5AA 100%);
