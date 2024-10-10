@@ -25,6 +25,7 @@ html{
 }
 .woocommerce-dashboard-container .woocommerce-dashboard-content table.shop_table tr td{
     background: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .eayrt-offers-coupon-text p,
