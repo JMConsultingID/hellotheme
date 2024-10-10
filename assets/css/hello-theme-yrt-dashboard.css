@@ -335,7 +335,7 @@ html{
     margin-top: 50px;
 }
 .woocommerce .woocommerce-dashboard-container table.shop_table_responsive tr td.woocommerce-orders-table__cell.woocommerce-orders-table__cell-order-actions {
-    padding: 20 5px;
+    padding: 20px 5px;
 }
 .woocommerce .woocommerce-dashboard-container table.shop_table_responsive tr td.woocommerce-orders-table__cell.woocommerce-orders-table__cell-order-actions::before {
     display: none;
