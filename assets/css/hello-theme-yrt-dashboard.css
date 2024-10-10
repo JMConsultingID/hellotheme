@@ -28,7 +28,7 @@ html{
     padding: 20px 24px;
 }
 
-.woocommerce-dashboard-container .woocommerce-dashboard-content section.woocommerce-order-details table.shop_table tr th.woocommerce-orders-table__cell{
+.woocommerce-dashboard-container .woocommerce-dashboard-content table.shop_table tr th.woocommerce-orders-table__cell{
     border: unset;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
