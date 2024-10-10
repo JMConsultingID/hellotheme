@@ -50,7 +50,7 @@ defined( 'ABSPATH' ) || exit;
         </div>
 
         <!-- Main Content -->
-        <div class="woocommerce-dashboard-content dashboard-column col-xxl-10 col-xl-9 col-lg-9 col-md-9 main-content ms-sm-auto">
+        <div class="woocommerce-dashboard-content dashboard-column col-xxl-10 col-xl-9 col-lg-9 col-md-9 main-content ms-sm-auto min-vh-100">
         	<div class="d-flex justify-content-between mb-4 d-md-flex text-md-start text-start">
                 <h4 class="p-0 m-0"><?php echo ealicensewoocommerce_get_current_title(); ?></h4>
                 <div class="welcome-text d-md-block d-flex text-end">
