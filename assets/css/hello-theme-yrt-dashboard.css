@@ -73,6 +73,13 @@ html{
     color: #fff;
     border: none;
 }
+
+.woocommerce .woocommerce-dashboard-container .woocommerce-MyAccount-content table.my_account_orders .button {
+    margin: 0px 5px;
+    width: auto;
+    font-size: 14px;
+    font-weight: normal;
+}
 .woocommerce-account .woocommerce-dashboard-container{
 	font-family: var(--e-global-typography-text-font-family), Sans-serif;
 	display: flex;
