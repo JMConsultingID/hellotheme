@@ -17,6 +17,7 @@ html{
 }
 
 .woocommerce-dashboard-container .woocommerce-dashboard-content table.shop_table tr td,
+.woocommerce-dashboard-container .woocommerce-dashboard-content table.shop_table tr th.woocommerce-orders-table__cell
 .woocommerce-dashboard-container .woocommerce-dashboard-content table caption+thead tr:first-child td, 
 .woocommerce-dashboard-container .woocommerce-dashboard-content table caption+thead tr:first-child th, 
 .woocommerce-dashboard-container .woocommerce-dashboard-content table colgroup+thead tr:first-child td, 
@@ -31,7 +32,8 @@ html{
     background: #09CA8C;
     color: #fff;
 }
-.woocommerce-dashboard-container .woocommerce-dashboard-content table.shop_table tr td{
+.woocommerce-dashboard-container .woocommerce-dashboard-content table.shop_table tr td,
+.woocommerce-dashboard-container .woocommerce-dashboard-content table.shop_table tr th.woocommerce-orders-table__cell{
     background: #fff;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
