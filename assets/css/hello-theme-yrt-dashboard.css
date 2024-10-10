@@ -16,6 +16,15 @@ html{
 .woocommerce-dashboard-container .woocommerce-dashboard-content table thead:first-child tr:first-child td, 
 .woocommerce-dashboard-container .woocommerce-dashboard-content table thead:first-child tr:first-child th{
     border: unset;
+    padding: 20px 24px;
+}
+
+.woocommerce-dashboard-container .woocommerce-dashboard-content table.shop_table tr th{
+    background: #09CA8C;
+    color: #fff;
+}
+.woocommerce-dashboard-container .woocommerce-dashboard-content table.shop_table tr td{
+    background: #FFFFFF;
 }
 
 .eayrt-offers-coupon-text p,
