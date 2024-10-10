@@ -3,6 +3,7 @@ html{
 }
 
 .woocommerce-dashboard-container .woocommerce-dashboard-content table.shop_table{
+    border: unset;
     padding: 0px;
     overflow: hidden;
     border-radius: 8px;
@@ -15,7 +16,6 @@ html{
     background-color: #fff;
 }
 
-.woocommerce-dashboard-container .woocommerce-dashboard-content table.shop_table,
 .woocommerce-dashboard-container .woocommerce-dashboard-content table.shop_table tr td,
 .woocommerce-dashboard-container .woocommerce-dashboard-content table caption+thead tr:first-child td, 
 .woocommerce-dashboard-container .woocommerce-dashboard-content table caption+thead tr:first-child th, 
