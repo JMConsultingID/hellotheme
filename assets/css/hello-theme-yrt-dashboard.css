@@ -8,7 +8,7 @@ html{
 }
 
 .woocommerce-dashboard-container .woocommerce-dashboard-content table.shop_table,
-.woocommerce-dashboard-container .woocommerce-dashboard-content table.shop_table tr td 
+.woocommerce-dashboard-container .woocommerce-dashboard-content table.shop_table tr td,
 .woocommerce-dashboard-container .woocommerce-dashboard-content table caption+thead tr:first-child td, 
 .woocommerce-dashboard-container .woocommerce-dashboard-content table caption+thead tr:first-child th, 
 .woocommerce-dashboard-container .woocommerce-dashboard-content table colgroup+thead tr:first-child td, 
