@@ -140,7 +140,13 @@ html{
     width: 100%;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
-
+.woocommerce-dashboard-container .woocommerce-dashboard-content  section.woocommerce-customer-details address p{
+    padding: 10px;
+    margin:0px;
+}
+.woocommerce-dashboard-container .woocommerce-dashboard-content  section.woocommerce-customer-details address p.woocommerce-customer-details--phone{
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
 .woocommerce .woocommerce-dashboard-container .woocommerce-MyAccount-content table.my_account_orders .button {
     margin: 0px 5px;
     width: auto;
