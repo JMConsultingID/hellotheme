@@ -34,6 +34,7 @@ html{
 }
 .woocommerce-dashboard-container .woocommerce-dashboard-content table.shop_table tbody tr td,
 .woocommerce-dashboard-container .woocommerce-dashboard-content table.shop_table tbody tr th,
+.woocommerce-dashboard-container .woocommerce-dashboard-content table.shop_table tfoot tr td,
 .woocommerce-dashboard-container .woocommerce-dashboard-content table.shop_table tfoot tr th{
     background: #fff;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
