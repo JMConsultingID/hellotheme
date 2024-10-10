@@ -39,6 +39,11 @@ html{
     background: #fff;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
+.woocommerce-dashboard-container .woocommerce-dashboard-content table.shop_table thead tr th.woocommerce-table__product-table.product-total
+.woocommerce-dashboard-container .woocommerce-dashboard-content table.shop_table tbody tr td,
+.woocommerce-dashboard-container .woocommerce-dashboard-content table.shop_table tfoot tr td {
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+}
 
 .woocommerce-dashboard-container td.woocommerce-orders-table__cell-order-ea-status {
     color: #09CA8C;
