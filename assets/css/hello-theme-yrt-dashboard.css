@@ -133,6 +133,14 @@ html{
     box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.10);
 }
 
+.woocommerce-dashboard-container .woocommerce-dashboard-content  section.woocommerce-customer-details address br,
+.woocommerce-dashboard-container .woocommerce-dashboard-content  section.woocommerce-customer-details address p {
+    content: "A" !important;
+    display: block !important;
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
 .woocommerce .woocommerce-dashboard-container .woocommerce-MyAccount-content table.my_account_orders .button {
     margin: 0px 5px;
     width: auto;
