@@ -42,7 +42,7 @@ defined( 'ABSPATH' ) || exit;
         <!-- Sidebar Navigation -->
         <div class="woocommerce-dashboard-navigation dashboard-column col-xxl-2 col-xl-3 col-lg-3 col-md-3 d-none d-md-block dashboard-sidebar position-fixed top-0 start-0">
             <?php 
-                echo '<div class="dashboard-logo">';
+                echo '<div class="dashboard-logo px-md-3">';
 		        echo '<a href="/my-account/"><img src="https://yourrobotrader.com/wp-content/uploads/2024/10/yourrobotrader.com_ea_dashboard_green.png" alt="Your Robo Trader" class="img-fluid" width="180px" style="margin-bottom:48px;"></a>';
 		        echo '</div>';
                 do_action( 'woocommerce_account_navigation' ); 
