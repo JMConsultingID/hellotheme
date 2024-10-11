@@ -30,7 +30,7 @@ defined( 'ABSPATH' ) || exit;
         <!-- Monile TopBar Offcanvas -->
         <div class="d-flex justify-content-between mb-md-4 mb-sm-0 d-md-none dashboard-mobile-topbar position-fixed p-3">
             <div class="dashboard-logo pt-2">
-                <a href="/my-account/"><img src="https://yourrobotrader.com/wp-content/uploads/2022/08/new-logo-12-jan-14-1024x158.webp" alt="Your Robo Trader" class="img-fluid" width="180px">
+                <a href="/my-account/"><img src="https://yourrobotrader.com/wp-content/uploads/2024/10/yourrobotrader.com_ea_dashboard_green.png" alt="Your Robo Trader" class="img-fluid" width="180px">
                 </a>
             </div>
             <!-- Hamburger Button for Mobile -->
@@ -43,7 +43,7 @@ defined( 'ABSPATH' ) || exit;
         <div class="woocommerce-dashboard-navigation dashboard-column col-xxl-2 col-xl-3 col-lg-3 col-md-3 d-none d-md-block dashboard-sidebar position-fixed top-0 start-0">
             <?php 
                 echo '<div class="dashboard-logo">';
-		        echo '<a href="/my-account/"><img src="https://yourrobotrader.com/wp-content/uploads/2022/08/new-logo-12-jan-14-1024x158.webp" alt="Your Robo Trader" class="img-fluid" width="180px" style="margin-bottom:48px;"></a>';
+		        echo '<a href="/my-account/"><img src="https://yourrobotrader.com/wp-content/uploads/2024/10/yourrobotrader.com_ea_dashboard_green.png" alt="Your Robo Trader" class="img-fluid" width="180px" style="margin-bottom:48px;"></a>';
 		        echo '</div>';
                 do_action( 'woocommerce_account_navigation' ); 
             ?>
@@ -76,7 +76,7 @@ defined( 'ABSPATH' ) || exit;
                 </button>
 			    <div class="offcanvas-header">
 			        <div class="dashboard-logo">
-		       			<a href="/my-account/"><img src="https://yourrobotrader.com/wp-content/uploads/2022/08/new-logo-12-jan-14-1024x158.webp" alt="Your Robo Trader" class="img-fluid" width="180px"></a>
+		       			<a href="/my-account/"><img src="https://yourrobotrader.com/wp-content/uploads/2024/10/yourrobotrader.com_ea_dashboard_green.png" alt="Your Robo Trader" class="img-fluid" width="180px"></a>
 		        	</div>
 			    </div>
 			    <div class="offcanvas-body">
