@@ -8,7 +8,6 @@
  * @package HelloTheme
  */
 
-// Menambahkan menu dan submenu di bawah dashboard WordPress
 function hello_theme_add_menu_page() {
     add_menu_page(
         'Hello Theme Panel',
