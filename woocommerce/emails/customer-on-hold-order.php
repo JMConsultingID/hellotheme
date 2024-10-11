@@ -39,11 +39,11 @@ do_action( 'woocommerce_email_order_details', $order, $sent_to_admin, $plain_tex
 ?>
 
 <p>
-Bank Name : Community Federal Savings Bank
-Account Holder : YRT CAPITAL LIMITED
-Account Holder : YRT CAPITAL LIMITED
-Account Number : 8458972993
-Swift Code : CMFGUS33
+Bank Name : Community Federal Savings Bank<br>
+Account Holder : YRT CAPITAL LIMITED<br>
+Account Holder : YRT CAPITAL LIMITED<br>
+Account Number : 8458972993<br>
+Swift Code : CMFGUS33<br>
 </p>
 
 <?php
