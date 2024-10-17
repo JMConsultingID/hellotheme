@@ -78,3 +78,40 @@ function hello_theme_add_coupon_form_before_payment()
     </div>';
 }
 add_action('woocommerce_review_order_before_payment', 'hello_theme_add_coupon_form_before_payment');
+
+
+add_action('wp_footer', 'hello_theme_affwp_register_form_script');
+add_filter('affwp_tracking_cookie_compat_mode', '__return_true');
+add_filter('affwp_get_referring_affiliate_id', function ($affiliate_id, $reference, $context) {
+    if ('woocommerce' === $context) {
+        $affiliate_id = affiliate_wp()->tracking->get_affiliate_id();
+    }
+
+    return $affiliate_id;
+}, 10, 3);
+
+function hello_theme_product_combinations()
+{
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'hello_theme_product_combinations';
+
+    $charset_collate = $wpdb->get_charset_collate();
+
+    $sql = "CREATE TABLE $table_name (
+        id mediumint(9) NOT NULL AUTO_INCREMENT,
+        category varchar(55) NOT NULL,
+        account_type varchar(55) NOT NULL,
+        challenge varchar(55) NOT NULL,
+        addon_active_days varchar(3) NOT NULL,
+        addon_profitsplit varchar(3) NOT NULL,
+        addon_peak_active_days varchar(3) NOT NULL,
+        addon_trading_days varchar(3) NOT NULL,
+        product_id bigint(20) NOT NULL,
+        PRIMARY KEY  (id)
+    ) $charset_collate;";
+
+    require_once (ABSPATH . 'wp-admin/includes/upgrade.php');
+    dbDelta($sql);
+}
+
+add_action('after_switch_theme', 'hello_theme_product_combinations');
